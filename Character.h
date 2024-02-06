@@ -49,6 +49,12 @@ enum class CharismaSkills{
 };
 
 
+class Weapon;
+class Armor;
+class Helmet;
+class Shield;
+class Boots;
+class Ring;
 
 class Character{
 public:
@@ -76,6 +82,19 @@ public:
     int getAttackBonus() const;
     int getDamageBonus() const;
 
+    void equipArmor(const Armor& armor);
+    void equipShield(const Shield& shield);
+    void equipWeapon(const Weapon& weapon);
+    void equipBoots(const Boots& boots);
+    void equipRing(const Ring& ring);
+    void equipHelmet(const Helmet& helmet);
+
+    void unequipArmor();
+    void unequipShield();
+    void unequipWeapon();
+    void unequipBoots();
+    void unequipRing();
+    void unequipHelmet();
 
 private:
 
@@ -90,7 +109,13 @@ private:
     int attackBonus;  //based on level and strength/dexterity modifiers
     int damageBonus; //based on strength modifier
 
-    int item;
+    Armor equippedArmor;
+    Shield equippedShield;
+    Weapon equippedWeapon;
+    Boots equippedBoots;
+    Ring equippedRing;
+    Helmet equippedHelmet;
+
 
     //helper method
     int calculateModifier(int score);
