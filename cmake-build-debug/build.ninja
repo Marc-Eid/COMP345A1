@@ -55,6 +55,12 @@ build CMakeFiles/COMP345A1.dir/main.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_D
   OBJECT_DIR = CMakeFiles\COMP345A1.dir
   OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir
 
+build CMakeFiles/COMP345A1.dir/Character.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_Debug C$:/Users/marki/Documents/Github/COMP345A1/Character.cpp || cmake_object_order_depends_target_COMP345A1
+  DEP_FILE = CMakeFiles\COMP345A1.dir\Character.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\COMP345A1.dir
+  OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target COMP345A1
@@ -63,7 +69,7 @@ build CMakeFiles/COMP345A1.dir/main.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_D
 #############################################
 # Link the executable COMP345A1.exe
 
-build COMP345A1.exe: CXX_EXECUTABLE_LINKER__COMP345A1_Debug CMakeFiles/COMP345A1.dir/main.cpp.obj
+build COMP345A1.exe: CXX_EXECUTABLE_LINKER__COMP345A1_Debug CMakeFiles/COMP345A1.dir/main.cpp.obj CMakeFiles/COMP345A1.dir/Character.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\COMP345A1.dir

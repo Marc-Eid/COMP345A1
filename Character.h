@@ -15,6 +15,39 @@ enum class CharacterClass{
     Rogue
 };
 
+enum class StrengthSkills{
+    Athletics
+};
+
+enum class DexteritySkills{
+    Acrobatics,
+    SleightOfHand,
+    Stealth
+};
+
+enum class IntelligenceSkills{
+    Arcana,
+    History,
+    Investigation,
+    Nature,
+    Religion
+};
+
+enum class WisdomSkills{
+    AnimalHandling,
+    Insight,
+    Medicine,
+    Perception,
+    Survival
+};
+
+enum class CharismaSkills{
+    Deception,
+    Intimidation,
+    Performance,
+    Persuasion
+};
+
 
 
 class Character{
@@ -27,44 +60,43 @@ public:
     ~Character();
 
     //Method to generate ability scores randomly
-    void generatedAbilityScores();
+    void generateAbilityScores();
 
-    //getters and setters
+    //getters
+    int getLevel() const;
+    CharacterClass getClass() const;
+    int getStrength() const;
+    int getDexterity() const;
+    int getConstitution() const;
+    int getIntelligence() const;
+    int getWisdom() const;
+    int getCharisma() const;
+    int getHitPoints() const;
+    int getArmorClass() const;
+    int getAttackBonus() const;
+    int getDamageBonus() const;
 
 
 private:
 
-    //ability scores, generated randomly
-    int strength;
-    int dexterity;
-    int constitution;
-    int intelligence;
-    int wisdom;
-    int charisma;
-
-
-    int level;
+    int level{};
     CharacterClass characterClass;
 
-    //calculated from ability score subtract 10 from the ability score and then divide the total by 2 (round down)
-    int abilityModifier;
+    //ability scores, generated randomly
+    int strength, dexterity, constitution, intelligence, wisdom, charisma;
 
-    //based on constitution modifier and level
-    int hitPoints;
-
-    //based on dexterity modifier
-    int armorClass;
-
-    //based on level and strength/dexterity modifiers
-    int attackBonus;
-
-    //based on strength modifier
-    int damageBonus;
+    int hitPoints; //based on constitution modifier and level
+    int armorClass; //based on dexterity modifier
+    int attackBonus;  //based on level and strength/dexterity modifiers
+    int damageBonus; //based on strength modifier
 
     int item;
 
-    //helper method to calculate ability modifiers.
-    int calculateModifier();
+    //helper method
+    int calculateModifier(int score);
 
-
+    virtual void calculateHitPoints() = 0; // for each subclass to implement
+    void calculateArmorClass();
+    void calculateAttackBonus();
+    void calculateDamageBonus();
 };
