@@ -51,6 +51,54 @@ void Character::calculateDamageBonus() {
     damageBonus = damageModifier;
 }
 
+void Character::equipArmor(const Armor &armor) {
+    equippedArmor = armor;
+}
+
+void Character::equipShield(const Shield &shield) {
+    equippedShield = shield;
+}
+
+void Character::equipWeapon(const Weapon &weapon) {
+    equippedWeapon = weapon;
+}
+
+void Character::equipBoots(const Boots &boots) {
+    equippedBoots = boots;
+}
+
+void Character::equipRing(const Ring &ring) {
+    equippedRing = ring;
+}
+
+void Character::equipHelmet(const Helmet &helmet) {
+    equippedHelmet = helmet;
+}
+
+void Character::unequipArmor() {
+    equippedArmor = NULL;
+}
+
+void Character::unequipShield() {
+    equippedShield = NULL;
+}
+
+void Character::unequipWeapon() {
+    equippedWeapon = NULL;
+}
+
+void Character::unequipBoots() {
+    equippedBoots = NULL;
+}
+
+void Character::unequipRing() {
+    equippedRing = NULL;
+}
+
+void Character::unequipHelmet() {
+    equippedHelmet = NULL;
+}
+
 //Getters
 int Character::getLevel() const { return Character::level; }
 CharacterClass Character::getClass() const { return Character::characterClass; }
@@ -64,3 +112,5 @@ int Character::getHitPoints() const { return hitPoints; }
 int Character::getArmorClass() const { return armorClass; }
 int Character::getAttackBonus() const { return attackBonus; }
 int Character::getDamageBonus() const { return damageBonus; }
+
+
