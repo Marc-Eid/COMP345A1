@@ -1,116 +1,83 @@
-//
-// Created by marki on 2024-02-05.
-//
-
 #include "Character.h"
-#include <cmath>
+#include <iostream>
 #include <random>
 
 
-Character::Character(int level, CharacterClass characterClass): level(level), characterClass(characterClass) {
-    generateAbilityScores();
-    calculateArmorClass();
-    calculateAttackBonus();
-    calculateAttackBonus();
-    calculateDamageBonus();
-}
-
-
-Character::~Character(){}
-
-
-int Character::calculateModifier(int score) {
-    return floor((score - 10)  / 2);
+Character::Character(const string& name, int level) : name(name), level(level) {
+    generateAbilityScores(); // General ability score generation
+    hitPoints = 0;
+    armorClass = 0;
+    attackBonus = 0;
+    damageBonus = 0;
 }
 
 void Character::generateAbilityScores() {
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<> dis(1,30);
+    abilityScores["Strength"] = rollDice(3, 6);
+    abilityScores["Dexterity"] = rollDice(3, 6);
+    abilityScores["Constitution"] = rollDice(3, 6);
+    abilityScores["Intelligence"] = rollDice(3, 6);
+    abilityScores["Wisdom"] = rollDice(3, 6);
+    abilityScores["Charisma"] = rollDice(3, 6);
 
-    strength = dis(gen);
-    dexterity = dis(gen);
-    constitution = dis(gen);
-    intelligence = dis(gen);
-    wisdom = dis(gen);
-    charisma = dis(gen);
+    // Calculate modifiers
+    for (const auto& score : abilityScores) {
+        modifiers[score.first] = calculateModifier(score.second);
+    }
 }
 
-void Character::calculateArmorClass() {
-    int dexModifier = calculateModifier(dexterity);
-    armorClass = 10 + dexModifier; // Example: base 10 armor class + dexterity modifier
+int Character::calculateModifier(int abilityScore) {
+    return (abilityScore - 10) / 2;
 }
 
-void Character::calculateAttackBonus() {
-    int attackModifier = calculateModifier(strength);
-    attackBonus = level + attackModifier;
+
+int Character::rollDice(int numberOfDice, int diceSides) {
+    random_device rd; // Obtain a random number from hardware
+    mt19937 generator(rd()); // Seed the generator
+    uniform_int_distribution<> distribution(1, diceSides);
+
+    int total = 0;
+    for (int i = 0; i < numberOfDice; ++i) {
+        total += distribution(generator);
+    }
+    return total;
 }
 
-void Character::calculateDamageBonus() {
-    int damageModifier = calculateModifier(strength);
-    damageBonus = damageModifier;
+void Character::equipItem(const string& itemType, const string& itemName) {
+    equipment[itemType] = itemName;
+    calculateAttributes(); // Recalculate attributes in case the item affects them
 }
 
-void Character::equipArmor(const Armor &armor) {
-    equippedArmor = armor;
+void Character::displayCharacterSheet() const {
+    cout << "Character Name: " << name << "\nLevel: " << level << "\n";
+
+    for (const auto& score : abilityScores) {
+        cout << score.first << ": " << score.second << " (Modifier: " << modifiers.at(score.first) << ")\n";
+    }
+    cout << "Hit Points: " << hitPoints << "\nArmor Class: " << armorClass
+              << "\nAttack Bonus: " << attackBonus << "\nDamage Bonus: " << damageBonus << "\n";
+
+    cout << "Equipment:";
+    if(equipment.empty()){
+        cout << " N/A\n";
+    }
+    for (const auto& item : equipment) {
+        cout << "\n" + item.first << ": " << item.second << "\n";
+    }
 }
 
-void Character::equipShield(const Shield &shield) {
-    equippedShield = shield;
+int Character::getArmorACValue(const std::string& armorName) {
+    // Example armor AC values. In a real game, you'd look these up in a database or data structure.
+    map<string, int> armorACValues = {
+            {"Leather", 2},
+            {"Chain Mail", 5},
+            {"Plate", 8}
+    };
+
+    // Find the armor in the map and return its AC value, default to 0 if not found
+    auto it = armorACValues.find(armorName);
+    if (it != armorACValues.end()) {
+        return it->second;
+    } else {
+        return 0; // No AC bonus for unrecognized armor
+    }
 }
-
-void Character::equipWeapon(const Weapon &weapon) {
-    equippedWeapon = weapon;
-}
-
-void Character::equipBoots(const Boots &boots) {
-    equippedBoots = boots;
-}
-
-void Character::equipRing(const Ring &ring) {
-    equippedRing = ring;
-}
-
-void Character::equipHelmet(const Helmet &helmet) {
-    equippedHelmet = helmet;
-}
-
-void Character::unequipArmor() {
-    equippedArmor = NULL;
-}
-
-void Character::unequipShield() {
-    equippedShield = NULL;
-}
-
-void Character::unequipWeapon() {
-    equippedWeapon = NULL;
-}
-
-void Character::unequipBoots() {
-    equippedBoots = NULL;
-}
-
-void Character::unequipRing() {
-    equippedRing = NULL;
-}
-
-void Character::unequipHelmet() {
-    equippedHelmet = NULL;
-}
-
-//Getters
-int Character::getLevel() const { return Character::level; }
-CharacterClass Character::getClass() const { return Character::characterClass; }
-int Character::getStrength() const { return strength; }
-int Character::getDexterity() const { return dexterity; }
-int Character::getConstitution() const { return constitution; }
-int Character::getIntelligence() const { return intelligence; }
-int Character::getWisdom() const { return wisdom; }
-int Character::getCharisma() const { return charisma; }
-int Character::getHitPoints() const { return hitPoints; }
-int Character::getArmorClass() const { return armorClass; }
-int Character::getAttackBonus() const { return attackBonus; }
-int Character::getDamageBonus() const { return damageBonus; }
-
-

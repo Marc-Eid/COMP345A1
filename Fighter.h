@@ -1,12 +1,16 @@
-//
-// Created by marki on 2024-02-04.
-//
-
 #pragma once
 #include "Character.h"
 
-class Fighter: Character{
-private:
-
+class Fighter : public Character {
 public:
+    Fighter(const string& name, int level);
+    ~Fighter() override = default;
+    void calculateAttributes() override;
+    void calculateHitPoints() override;
+    void calculateArmorClass() override;
+    void calculateAttackBonus() override;
+    void calculateDamageBonus() override;
+    void displayCharacterSheet() const override;
 };
+
+

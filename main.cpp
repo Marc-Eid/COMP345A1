@@ -1,6 +1,9 @@
 #include <iostream>
+#include "Fighter.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
+    Fighter f1("test", 5);
+    f1.displayCharacterSheet();
     return 0;
 }
