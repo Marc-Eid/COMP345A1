@@ -66,6 +66,14 @@ public:
     */
     void equipItem(const std::string& itemCategory, const std::string& itemName);
 
+    /**
+    * @brief Simulates rolling dice to generate random numbers.
+    *
+    * @param numberOfDice The number of dice to roll.
+    * @param diceSides The number of sides on each die.
+    * @return The total result of the dice rolls.
+    */
+    static int rollDice(int numberOfDice, int diceSides);
 
     /**
     * @brief Pure virtual method to display the character's attribute sheet.
@@ -129,14 +137,5 @@ protected:
     * @return The armor class (AC) value of the specified armor.
     */
     static int getArmorACValue(const string& armorName);
-
-    /**
-    * @brief Simulates rolling dice to generate random numbers.
-    *
-    * @param numberOfDice The number of dice to roll.
-    * @param diceSides The number of sides on each die.
-    * @return The total result of the dice rolls.
-    */
-    static int rollDice(int numberOfDice, int diceSides);
 };
 
