@@ -49,23 +49,23 @@ cmake_ninja_workdir = C$:/Users/marki/Documents/Github/COMP345A1/cmake-build-deb
 
 build cmake_object_order_depends_target_COMP345A1: phony || CMakeFiles/COMP345A1.dir
 
-build CMakeFiles/COMP345A1.dir/main.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_Debug C$:/Users/marki/Documents/Github/COMP345A1/main.cpp || cmake_object_order_depends_target_COMP345A1
-  DEP_FILE = CMakeFiles\COMP345A1.dir\main.cpp.obj.d
+build CMakeFiles/COMP345A1.dir/src/main.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_Debug C$:/Users/marki/Documents/Github/COMP345A1/src/main.cpp || cmake_object_order_depends_target_COMP345A1
+  DEP_FILE = CMakeFiles\COMP345A1.dir\src\main.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\COMP345A1.dir
-  OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir
+  OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir\src
 
-build CMakeFiles/COMP345A1.dir/Character.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_Debug C$:/Users/marki/Documents/Github/COMP345A1/Character.cpp || cmake_object_order_depends_target_COMP345A1
-  DEP_FILE = CMakeFiles\COMP345A1.dir\Character.cpp.obj.d
+build CMakeFiles/COMP345A1.dir/src/Character.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_Debug C$:/Users/marki/Documents/Github/COMP345A1/src/Character.cpp || cmake_object_order_depends_target_COMP345A1
+  DEP_FILE = CMakeFiles\COMP345A1.dir\src\Character.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\COMP345A1.dir
-  OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir
+  OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir\src
 
-build CMakeFiles/COMP345A1.dir/Fighter.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_Debug C$:/Users/marki/Documents/Github/COMP345A1/Fighter.cpp || cmake_object_order_depends_target_COMP345A1
-  DEP_FILE = CMakeFiles\COMP345A1.dir\Fighter.cpp.obj.d
+build CMakeFiles/COMP345A1.dir/src/Fighter.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_Debug C$:/Users/marki/Documents/Github/COMP345A1/src/Fighter.cpp || cmake_object_order_depends_target_COMP345A1
+  DEP_FILE = CMakeFiles\COMP345A1.dir\src\Fighter.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\COMP345A1.dir
-  OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir
+  OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir\src
 
 
 # =============================================================================
@@ -75,7 +75,7 @@ build CMakeFiles/COMP345A1.dir/Fighter.cpp.obj: CXX_COMPILER__COMP345A1_unscanne
 #############################################
 # Link the executable COMP345A1.exe
 
-build COMP345A1.exe: CXX_EXECUTABLE_LINKER__COMP345A1_Debug CMakeFiles/COMP345A1.dir/main.cpp.obj CMakeFiles/COMP345A1.dir/Character.cpp.obj CMakeFiles/COMP345A1.dir/Fighter.cpp.obj
+build COMP345A1.exe: CXX_EXECUTABLE_LINKER__COMP345A1_Debug CMakeFiles/COMP345A1.dir/src/main.cpp.obj CMakeFiles/COMP345A1.dir/src/Character.cpp.obj CMakeFiles/COMP345A1.dir/src/Fighter.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\COMP345A1.dir
