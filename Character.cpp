@@ -81,3 +81,7 @@ int Character::getArmorACValue(const std::string& armorName) {
         return 0; // No AC bonus for unrecognized armor
     }
 }
+
+int Character::getLevel() const {
+    return level;
+}

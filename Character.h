@@ -82,6 +82,8 @@ public:
     */
     virtual void displayCharacterSheet() const;
 
+    int getLevel() const;
+
 protected:
     string name;
     int level;
