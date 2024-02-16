@@ -208,6 +208,18 @@ COMP345A1_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 COMP345A1_SOURCE_DIR:STATIC=C:/Users/marki/Documents/Github/COMP345A1
 
+//The directory containing a CMake configuration file for CppUnit.
+CppUnit_DIR:PATH=CppUnit_DIR-NOTFOUND
+
+//Value Computed by CMake
+UnitTests_BINARY_DIR:STATIC=C:/Users/marki/Documents/Github/COMP345A1/cmake-build-debug
+
+//Value Computed by CMake
+UnitTests_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+UnitTests_SOURCE_DIR:STATIC=C:/Users/marki/Documents/Github/COMP345A1
+
 
 ########################
 # INTERNAL cache entries

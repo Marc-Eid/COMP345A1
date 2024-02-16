@@ -51,7 +51,6 @@ build cmake_object_order_depends_target_COMP345A1: phony || CMakeFiles\COMP345A1
 
 build CMakeFiles\COMP345A1.dir\main.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_Debug C$:\Users\marki\Documents\Github\COMP345A1\main.cpp || cmake_object_order_depends_target_COMP345A1
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++20 -MDd -Zi
-  INCLUDES = -IC:\CppUnit\include
   OBJECT_DIR = CMakeFiles\COMP345A1.dir
   OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir
   TARGET_COMPILE_PDB = CMakeFiles\COMP345A1.dir\
@@ -59,7 +58,6 @@ build CMakeFiles\COMP345A1.dir\main.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_D
 
 build CMakeFiles\COMP345A1.dir\Character.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_Debug C$:\Users\marki\Documents\Github\COMP345A1\Character.cpp || cmake_object_order_depends_target_COMP345A1
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++20 -MDd -Zi
-  INCLUDES = -IC:\CppUnit\include
   OBJECT_DIR = CMakeFiles\COMP345A1.dir
   OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir
   TARGET_COMPILE_PDB = CMakeFiles\COMP345A1.dir\
@@ -67,17 +65,8 @@ build CMakeFiles\COMP345A1.dir\Character.cpp.obj: CXX_COMPILER__COMP345A1_unscan
 
 build CMakeFiles\COMP345A1.dir\Fighter.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_Debug C$:\Users\marki\Documents\Github\COMP345A1\Fighter.cpp || cmake_object_order_depends_target_COMP345A1
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++20 -MDd -Zi
-  INCLUDES = -IC:\CppUnit\include
   OBJECT_DIR = CMakeFiles\COMP345A1.dir
   OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir
-  TARGET_COMPILE_PDB = CMakeFiles\COMP345A1.dir\
-  TARGET_PDB = COMP345A1.pdb
-
-build CMakeFiles\COMP345A1.dir\unitTests\TestFighter.cpp.obj: CXX_COMPILER__COMP345A1_unscanned_Debug C$:\Users\marki\Documents\Github\COMP345A1\unitTests\TestFighter.cpp || cmake_object_order_depends_target_COMP345A1
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++20 -MDd -Zi
-  INCLUDES = -IC:\CppUnit\include
-  OBJECT_DIR = CMakeFiles\COMP345A1.dir
-  OBJECT_FILE_DIR = CMakeFiles\COMP345A1.dir\unitTests
   TARGET_COMPILE_PDB = CMakeFiles\COMP345A1.dir\
   TARGET_PDB = COMP345A1.pdb
 
@@ -89,11 +78,10 @@ build CMakeFiles\COMP345A1.dir\unitTests\TestFighter.cpp.obj: CXX_COMPILER__COMP
 #############################################
 # Link the executable COMP345A1.exe
 
-build COMP345A1.exe: CXX_EXECUTABLE_LINKER__COMP345A1_Debug CMakeFiles\COMP345A1.dir\main.cpp.obj CMakeFiles\COMP345A1.dir\Character.cpp.obj CMakeFiles\COMP345A1.dir\Fighter.cpp.obj CMakeFiles\COMP345A1.dir\unitTests\TestFighter.cpp.obj
+build COMP345A1.exe: CXX_EXECUTABLE_LINKER__COMP345A1_Debug CMakeFiles\COMP345A1.dir\main.cpp.obj CMakeFiles\COMP345A1.dir\Character.cpp.obj CMakeFiles\COMP345A1.dir\Fighter.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -MDd -Zi
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = cppunitd.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  LINK_PATH = -LIBPATH:C:\CppUnit\lib
+  LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\COMP345A1.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -101,6 +89,80 @@ build COMP345A1.exe: CXX_EXECUTABLE_LINKER__COMP345A1_Debug CMakeFiles\COMP345A1
   TARGET_FILE = COMP345A1.exe
   TARGET_IMPLIB = COMP345A1.lib
   TARGET_PDB = COMP345A1.pdb
+
+# =============================================================================
+# Object build statements for EXECUTABLE target UnitTests
+
+
+#############################################
+# Order-only phony target for UnitTests
+
+build cmake_object_order_depends_target_UnitTests: phony || CMakeFiles\UnitTests.dir
+
+build CMakeFiles\UnitTests.dir\unitTests\TestRunner.cpp.obj: CXX_COMPILER__UnitTests_unscanned_Debug C$:\Users\marki\Documents\Github\COMP345A1\unitTests\TestRunner.cpp || cmake_object_order_depends_target_UnitTests
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++20 -MDd -Zi
+  INCLUDES = -IC:\CppUnit\include
+  OBJECT_DIR = CMakeFiles\UnitTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\UnitTests.dir\unitTests
+  TARGET_COMPILE_PDB = CMakeFiles\UnitTests.dir\
+  TARGET_PDB = UnitTests.pdb
+
+build CMakeFiles\UnitTests.dir\Character.cpp.obj: CXX_COMPILER__UnitTests_unscanned_Debug C$:\Users\marki\Documents\Github\COMP345A1\Character.cpp || cmake_object_order_depends_target_UnitTests
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++20 -MDd -Zi
+  INCLUDES = -IC:\CppUnit\include
+  OBJECT_DIR = CMakeFiles\UnitTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\UnitTests.dir
+  TARGET_COMPILE_PDB = CMakeFiles\UnitTests.dir\
+  TARGET_PDB = UnitTests.pdb
+
+build CMakeFiles\UnitTests.dir\Fighter.cpp.obj: CXX_COMPILER__UnitTests_unscanned_Debug C$:\Users\marki\Documents\Github\COMP345A1\Fighter.cpp || cmake_object_order_depends_target_UnitTests
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++20 -MDd -Zi
+  INCLUDES = -IC:\CppUnit\include
+  OBJECT_DIR = CMakeFiles\UnitTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\UnitTests.dir
+  TARGET_COMPILE_PDB = CMakeFiles\UnitTests.dir\
+  TARGET_PDB = UnitTests.pdb
+
+build CMakeFiles\UnitTests.dir\unitTests\TestFighter.cpp.obj: CXX_COMPILER__UnitTests_unscanned_Debug C$:\Users\marki\Documents\Github\COMP345A1\unitTests\TestFighter.cpp || cmake_object_order_depends_target_UnitTests
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -std:c++20 -MDd -Zi
+  INCLUDES = -IC:\CppUnit\include
+  OBJECT_DIR = CMakeFiles\UnitTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\UnitTests.dir\unitTests
+  TARGET_COMPILE_PDB = CMakeFiles\UnitTests.dir\
+  TARGET_PDB = UnitTests.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target UnitTests
+
+
+#############################################
+# Link the executable UnitTests.exe
+
+build UnitTests.exe: CXX_EXECUTABLE_LINKER__UnitTests_Debug CMakeFiles\UnitTests.dir\unitTests\TestRunner.cpp.obj CMakeFiles\UnitTests.dir\Character.cpp.obj CMakeFiles\UnitTests.dir\Fighter.cpp.obj CMakeFiles\UnitTests.dir\unitTests\TestFighter.cpp.obj
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Ob0 /Od /RTC1 -MDd -Zi
+  LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
+  LINK_LIBRARIES = cppunitd.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_PATH = -LIBPATH:C:\CppUnit\lib
+  OBJECT_DIR = CMakeFiles\UnitTests.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\UnitTests.dir\
+  TARGET_FILE = UnitTests.exe
+  TARGET_IMPLIB = UnitTests.lib
+  TARGET_PDB = UnitTests.pdb
+
+
+#############################################
+# Utility command for test
+
+build CMakeFiles\test.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\marki\Documents\Github\COMP345A1\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2023.3.2\bin\cmake\win\x64\bin\ctest.exe" --force-new-ctest-process "
+  DESC = Running tests...
+  pool = console
+  restat = 1
+
+build test: phony CMakeFiles\test.util
 
 
 #############################################
@@ -130,6 +192,8 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 
 build COMP345A1: phony COMP345A1.exe
 
+build UnitTests: phony UnitTests.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -138,7 +202,7 @@ build COMP345A1: phony COMP345A1.exe
 #############################################
 # Folder: C:/Users/marki/Documents/Github/COMP345A1/cmake-build-debug
 
-build all: phony COMP345A1.exe
+build all: phony COMP345A1.exe UnitTests.exe
 
 # =============================================================================
 # Built-in targets
