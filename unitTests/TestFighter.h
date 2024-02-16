@@ -1,22 +1,21 @@
-#include <iostream>
-#include <cppunit/TestCase.h>
-#include <cppunit/TestFixture.h>
-#include <cppunit/ui/text/TextTestRunner.h>
+/**
+ * @file TestFighter.h
+ * @brief Defines the Test suite for the Fighter class.
+ *
+ * Declares unit tests for the Fighter class using the CppUnit framework.
+ */
+
+
 #include <cppunit/extensions/HelperMacros.h>
-#include <cppunit/extensions/TestFactoryRegistry.h>
-#include <cppunit/TestResult.h>
-#include <cppunit/TestResultCollector.h>
-#include <cppunit/TestRunner.h>
-#include <cppunit/BriefTestProgressListener.h>
-#include <cppunit/CompilerOutputter.h>
-#include <cppunit/XmlOutputter.h>
 
 #include "../Fighter.h"
 
-
-using namespace CppUnit;
 using namespace std;
 
+//! Test Class for the Fighter class
+//! It must be a subclass of CppUnit::TestFixture
+//! It then uses CPPUNIT_TEST_SUITE() to create the test suite, and CPPUNIT_TEST() to include the test methods in the test suite.
+//! CPPUNIT_TEST_SUITE_REGISTRATION() is then used to register the test class in the test registry.
 class TestFighter : public CppUnit::TestFixture
 {
         CPPUNIT_TEST_SUITE(TestFighter);
@@ -38,4 +37,5 @@ private:
 
 };
 
+//!Register for running the test
 CPPUNIT_TEST_SUITE_REGISTRATION(TestFighter);//most important

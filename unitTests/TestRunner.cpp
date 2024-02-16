@@ -1,7 +1,19 @@
+//! @file
+//! @brief Driver file to create and execute the test suite
+
+
+
 #include <cppunit/CompilerOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TestRunner.h>
 
+
+//! main() function. Entry point of the program
+//! It does the following:
+//! 1. Create a test suite object from the registry as populated by the code in the Test Classes
+//! 2. Create a test runner that will execute all the tests in the registry
+//! 3. (optionally) sets an outputter that will output the results
+//! 4. Run the test cases.
 int main()
 {
 
