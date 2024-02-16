@@ -9,17 +9,27 @@ add_executable(COMP345A1 main.cpp
         Fighter.h
         Character.cpp
         Fighter.cpp
+)
+
+
+# Test suite
+enable_testing()
+add_executable(UnitTests unitTests/TestRunner.cpp
+        Character.h
+        Fighter.h
+        Character.cpp
+        Fighter.cpp
         unitTests/TestFighter.h
         unitTests/TestFighter.cpp
 )
 
 # Include directories for CppUnit headers
-target_include_directories(${PROJECT_NAME} PRIVATE "C:/CppUnit/include")
+target_include_directories(UnitTests PRIVATE "C:/CppUnit/include")
 
 # Link directories for CppUnit library
-target_link_directories(${PROJECT_NAME} PRIVATE "C:/CppUnit/lib")
+target_link_directories(UnitTests PRIVATE "C:/CppUnit/lib")
 
 # Link against the CppUnit library
-target_link_libraries(${PROJECT_NAME} 
+target_link_libraries(UnitTests
     debug "cppunitd.lib" 
     optimized "cppunit.lib")
