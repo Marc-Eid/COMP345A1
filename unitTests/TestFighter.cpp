@@ -14,3 +14,8 @@ void TestFighter::testCalculateHitpoints() {
 
     CPPUNIT_ASSERT(fighterObject->hitPoints == 10 + fighterObject->getLevel() * constitutionModifier );
 }
+
+void TestFighter::testCalculateAttackBonus() {
+
+    CPPUNIT_ASSERT(fighterObject->getLevel() + fighterObject->modifiers["Strength"] == fighterObject->attackBonus);
+}
