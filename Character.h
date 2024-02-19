@@ -26,7 +26,7 @@ using namespace std;
  *
  * Libraries Used:
  * - `<string>`: For representing character names and equipment in a human-readable format.
- * - `<map>`: To associate character attributes, modifiers, and equipment slots with their respective values and items.
+ * - `<map>`: To associate character attributes, modifiers, and equipment slots with their respective values and Items.
  *    Chosen for its efficient key-value storage and easy retrieval of character-related data.
  */
 
@@ -78,7 +78,7 @@ public:
     /**
     * @brief Pure virtual method to display the character's attribute sheet.
     *
-    * Implementations should output all relevant character information, including name, level, ability scores, derived attributes, and equipped items.
+    * Implementations should output all relevant character information, including name, level, ability scores, derived attributes, and equipped Items.
     */
     virtual void displayCharacterSheet() const;
 

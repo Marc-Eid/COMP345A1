@@ -1,5 +1,5 @@
-C:/Users/marki/Documents/Github/COMP345A1/cmake-build-debug/CMakeFiles/COMP345A1.dir
-C:/Users/marki/Documents/Github/COMP345A1/cmake-build-debug/CMakeFiles/UnitTests.dir
-C:/Users/marki/Documents/Github/COMP345A1/cmake-build-debug/CMakeFiles/test.dir
-C:/Users/marki/Documents/Github/COMP345A1/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/marki/Documents/Github/COMP345A1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/rogersioufi/Documents/Projects/COMP345A1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/rogersioufi/Documents/Projects/COMP345A1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/rogersioufi/Documents/Projects/COMP345A1/cmake-build-debug/CMakeFiles/test.dir
+/Users/rogersioufi/Documents/Projects/COMP345A1/cmake-build-debug/CMakeFiles/UnitTests.dir
+/Users/rogersioufi/Documents/Projects/COMP345A1/cmake-build-debug/CMakeFiles/COMP345A1.dir
