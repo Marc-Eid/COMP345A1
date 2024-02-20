@@ -9,7 +9,7 @@ Item::Item(const string& name, const Enchantment& enchantment): name(name), ench
 Item::~Item()= default;
 
 Enchantment Item::getEnchantment() const {
-    return enchantment
+    return enchantment;
 }
 
 
