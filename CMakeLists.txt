@@ -9,7 +9,7 @@ add_executable(COMP345A1 main.cpp
         Fighter.h
         Character.cpp
         Fighter.cpp
-        Items/Item.h Items/Helmet.cpp Items/Helmet.h Containers/ItemContainer.cpp Containers/ItemContainer.h Items/Item.cpp Items/Armor.cpp Items/Armor.h Items/Shield.cpp Items/Shield.h Items/Ring.cpp Items/Ring.h Items/Belt.cpp Items/Belt.h Items/Boots.cpp Items/Boots.h Items/Weapon.cpp Items/Weapon.h
+#        Items/Item.h Items/Helmet.cpp Items/Helmet.h Containers/ItemContainer.cpp Containers/ItemContainer.h Items/Item.cpp Items/Armor.cpp Items/Armor.h Items/Shield.cpp Items/Shield.h Items/Ring.cpp Items/Ring.h Items/Belt.cpp Items/Belt.h Items/Boots.cpp Items/Boots.h Items/Weapon.cpp Items/Weapon.h
         Cell.cpp
         Map.h
         Map.cpp)
