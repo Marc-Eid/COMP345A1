@@ -24,10 +24,10 @@ add_executable(UnitTests unitTests/TestRunner.cpp
 )
 
 # Include directories for CppUnit headers
-target_include_directories(UnitTests PRIVATE "C:/CppUnit/include")
+target_include_directories(UnitTests PRIVATE "./CppUnit/include")
 
 # Link directories for CppUnit library
-target_link_directories(UnitTests PRIVATE "C:/CppUnit/lib")
+target_link_directories(UnitTests PRIVATE "./CppUnit/lib")
 
 # Link against the CppUnit library
 target_link_libraries(UnitTests
