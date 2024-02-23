@@ -1,0 +1,5 @@
+C:/Users/hp/CLionProjects/COMP345A1/out/build/x64-Debug/CMakeFiles/COMP345A1.dir
+C:/Users/hp/CLionProjects/COMP345A1/out/build/x64-Debug/CMakeFiles/UnitTests.dir
+C:/Users/hp/CLionProjects/COMP345A1/out/build/x64-Debug/CMakeFiles/test.dir
+C:/Users/hp/CLionProjects/COMP345A1/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/hp/CLionProjects/COMP345A1/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
