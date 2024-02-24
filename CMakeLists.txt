@@ -24,7 +24,6 @@ add_executable(UnitTests src/TestRunner.cpp
         src/tests/TestDice/TestDice.cpp
 )
 
-#[[
 
 # Include directories for CppUnit headers
 target_include_directories(UnitTests PRIVATE "./CppUnit/include")
@@ -37,8 +36,8 @@ target_link_libraries(UnitTests
     debug "cppunitd.lib" 
     optimized "cppunit.lib")
 
-]]
 
+#[[
 
 #Configuration for Oliver Hassan using CppUnit installed by Homebrew on Mac
 # Include directories for CppUnit headers
@@ -51,3 +50,5 @@ set_target_properties(UnitTests PROPERTIES
 # Link against the CppUnit library
 target_link_directories(UnitTests PRIVATE "/usr/local/opt/cppunit/lib")
 target_link_libraries(UnitTests debug cppunit optimized cppunit)
+
+]]
