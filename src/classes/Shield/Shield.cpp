@@ -3,9 +3,7 @@
 //
 
 #include "Shield.h"
-#include <vector>
-#include <stdexcept> // For std::runtime_error
-#include <algorithm> // For std::find
+
 
 const std::vector<EnhancementType> Shield::allowedEnhancements = {
         EnhancementType::ArmorClass

@@ -3,8 +3,6 @@
 //
 
 #include "ItemContainer.h"
-#include <iostream>
-#include <iomanip>
 
 ItemContainer::ItemContainer()= default;
 

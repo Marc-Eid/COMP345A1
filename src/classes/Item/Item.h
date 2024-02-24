@@ -6,6 +6,7 @@
 #define COMP345A1_ITEM_H
 
 #include <string>
+#include <stdexcept>
 
 using namespace std;
 

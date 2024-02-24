@@ -3,9 +3,6 @@
 //
 
 #include "Boots.h"
-#include <vector>
-#include <stdexcept> // For std::runtime_error
-#include <algorithm> // For std::find
 
 const std::vector<EnhancementType> Boots::allowedEnhancements = {
         EnhancementType::ArmorClass, EnhancementType::Dexterity

@@ -8,8 +8,10 @@
 #ifndef COMP345A1_ITEMCONTAINER_H
 #define COMP345A1_ITEMCONTAINER_H
 
+#include "../Item/Item.h"
 #include <vector>
-#include "../Item/Item.h" // Ensure this path is correct based on your project structure
+#include <iostream>
+#include <iomanip>
 
 /**
  * @class ItemContainer

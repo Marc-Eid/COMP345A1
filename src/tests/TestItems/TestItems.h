@@ -3,6 +3,7 @@
 #include "../../classes/Item/Item.h"
 #include "../../classes/Helmet/Helmet.h"
 #include "../../classes/Armor/Armor.h"
+
 class TestItems : public CppUnit::TestFixture {
 CPPUNIT_TEST_SUITE(TestItems);
         CPPUNIT_TEST(testAddItem);

@@ -6,6 +6,9 @@
 #define COMP345A1_ARMOR_H
 
 #include "../Item/Item.h"
+#include <vector>
+#include <stdexcept> // For std::runtime_error
+#include <algorithm> // For std::find
 
 /**
 * @class Armor

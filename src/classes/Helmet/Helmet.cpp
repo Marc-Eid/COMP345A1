@@ -3,9 +3,6 @@
 //
 
 #include "Helmet.h"
-#include <vector>
-#include <stdexcept> // For std::runtime_error
-#include <algorithm> // For std::find
 
 const std::vector<EnhancementType> Helmet::allowedEnhancements = {
         EnhancementType::Intelligence, EnhancementType::Wisdom, EnhancementType::ArmorClass
