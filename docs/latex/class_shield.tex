@@ -1,0 +1,65 @@
+\doxysection{Shield Class Reference}
+\hypertarget{class_shield}{}\label{class_shield}\index{Shield@{Shield}}
+
+
+Represents a shield item.  
+
+
+
+
+{\ttfamily \#include $<$Shield.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_shield_af605972c14ff0b841c29bdeb783b586b}{Shield}} (const std\+::string \&name, const \mbox{\hyperlink{struct_enchantment}{Enchantment}} \&enchantment)
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_shield}{Shield} object. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_shield_a9c8cc85f4b8bbade2fbe2fc5a60e83b7}{get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of the item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a shield item. 
+
+Game Rules\+: \doxylink{class_shield}{Shield} may enhance \doxylink{class_armor}{Armor} Class. Design\+: Inherits from \doxylink{class_item}{Item} and specifies Shield-\/related functionality. Libraries\+: Inherits $<$string$>$ from \doxylink{_item_8h_source}{Item.\+h}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_shield_af605972c14ff0b841c29bdeb783b586b}\label{class_shield_af605972c14ff0b841c29bdeb783b586b} 
+\index{Shield@{Shield}!Shield@{Shield}}
+\index{Shield@{Shield}!Shield@{Shield}}
+\doxysubsubsection{\texorpdfstring{Shield()}{Shield()}}
+{\footnotesize\ttfamily Shield\+::\+Shield (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \mbox{\hyperlink{struct_enchantment}{Enchantment}} \&}]{enchantment }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxylink{class_shield}{Shield} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the shield. \\
+\hline
+{\em enchantment} & The enchantment applied to the shield. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_shield_a9c8cc85f4b8bbade2fbe2fc5a60e83b7}\label{class_shield_a9c8cc85f4b8bbade2fbe2fc5a60e83b7} 
+\index{Shield@{Shield}!getType@{getType}}
+\index{getType@{getType}!Shield@{Shield}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily string Shield\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Get the type of the item. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string Returns the type of the item as a string. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Items/Shield.\+h\item 
+Items/Shield.\+cpp\end{DoxyCompactItemize}

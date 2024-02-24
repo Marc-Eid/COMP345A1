@@ -1,0 +1,65 @@
+\doxysection{Boots Class Reference}
+\hypertarget{class_boots}{}\label{class_boots}\index{Boots@{Boots}}
+
+
+Represents a boots item.  
+
+
+
+
+{\ttfamily \#include $<$Boots.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_boots_ad69749d897541794dbb9544546be3365}{Boots}} (const std\+::string \&name, const \mbox{\hyperlink{struct_enchantment}{Enchantment}} \&enchantment)
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_boots}{Boots} object. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_boots_a30a90c975541a20a521d2c0d0c6863fb}{get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of the item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a boots item. 
+
+Game Rules\+: \doxylink{class_boots}{Boots} may enhance \doxylink{class_armor}{Armor} Class or Dexterity. Design\+: Inherits from \doxylink{class_item}{Item} and specifies Boots-\/related functionality. Libraries\+: Inherits $<$string$>$ from \doxylink{_item_8h_source}{Item.\+h}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_boots_ad69749d897541794dbb9544546be3365}\label{class_boots_ad69749d897541794dbb9544546be3365} 
+\index{Boots@{Boots}!Boots@{Boots}}
+\index{Boots@{Boots}!Boots@{Boots}}
+\doxysubsubsection{\texorpdfstring{Boots()}{Boots()}}
+{\footnotesize\ttfamily Boots\+::\+Boots (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \mbox{\hyperlink{struct_enchantment}{Enchantment}} \&}]{enchantment }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxylink{class_boots}{Boots} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the boots. \\
+\hline
+{\em enchantment} & The enchantment applied to the boots. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_boots_a30a90c975541a20a521d2c0d0c6863fb}\label{class_boots_a30a90c975541a20a521d2c0d0c6863fb} 
+\index{Boots@{Boots}!getType@{getType}}
+\index{getType@{getType}!Boots@{Boots}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily string Boots\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Get the type of the item. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string Returns the type of the item as a string. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Items/Boots.\+h\item 
+Items/Boots.\+cpp\end{DoxyCompactItemize}

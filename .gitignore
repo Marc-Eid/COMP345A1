@@ -1,0 +1,53 @@
+cmake-build-debug/
+COMP345A1
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Dependency directories
+.vscode/
+.vs/
+bin/
+
+# CMake build directory
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+
+# CMake build artifacts
+.DS_Store
+.cmake/
+
+# IDE-specific files
+*.cbp
+
+# Testing directories
+CppUnit/build/
+CppUnit/include/cppunit/config-auto.h
+Testing/
+
+# Custom build directories
+out/build/

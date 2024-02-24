@@ -1,0 +1,65 @@
+\doxysection{Weapon Class Reference}
+\hypertarget{class_weapon}{}\label{class_weapon}\index{Weapon@{Weapon}}
+
+
+Represents a weapon item.  
+
+
+
+
+{\ttfamily \#include $<$Weapon.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_weapon_a793a21350a4d21db33bbb2a3635557a2}{Weapon}} (const std\+::string \&name, const \mbox{\hyperlink{struct_enchantment}{Enchantment}} \&enchantment)
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{class_weapon}{Weapon} object. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_weapon_a52cfef3126d119c3d3cd343c713c22f2}{get\+Type}} () const override
+\begin{DoxyCompactList}\small\item\em Get the type of the item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a weapon item. 
+
+Game Rules\+: \doxylink{class_weapon}{Weapon} may enhance Attack Bonus or Damage bonus. Design\+: Inherits from \doxylink{class_item}{Item} and specifies Weapon-\/related functionality. Libraries\+: Inherits $<$string$>$ from \doxylink{_item_8h_source}{Item.\+h}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_weapon_a793a21350a4d21db33bbb2a3635557a2}\label{class_weapon_a793a21350a4d21db33bbb2a3635557a2} 
+\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{Weapon()}{Weapon()}}
+{\footnotesize\ttfamily Weapon\+::\+Weapon (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \mbox{\hyperlink{struct_enchantment}{Enchantment}} \&}]{enchantment }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxylink{class_weapon}{Weapon} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the weapon. \\
+\hline
+{\em enchantment} & The enchantment applied to the weapon. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_weapon_a52cfef3126d119c3d3cd343c713c22f2}\label{class_weapon_a52cfef3126d119c3d3cd343c713c22f2} 
+\index{Weapon@{Weapon}!getType@{getType}}
+\index{getType@{getType}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily std\+::string Weapon\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Get the type of the item. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string Returns the type of the item as a string. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Items/Weapon.\+h\item 
+Items/Weapon.\+cpp\end{DoxyCompactItemize}

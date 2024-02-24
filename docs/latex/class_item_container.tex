@@ -1,0 +1,34 @@
+\doxysection{Item\+Container Class Reference}
+\hypertarget{class_item_container}{}\label{class_item_container}\index{ItemContainer@{ItemContainer}}
+
+
+Container class for storing items.  
+
+
+
+
+{\ttfamily \#include $<$Item\+Container.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_item_container_a23e6a64362c8fa4b0555458814d07be6}\label{class_item_container_a23e6a64362c8fa4b0555458814d07be6} 
+void {\bfseries add\+Item} (\mbox{\hyperlink{class_item}{Item}} \texorpdfstring{$\ast$}{*}item)
+\item 
+\Hypertarget{class_item_container_aa732f863c5acf5bdb96ee5c3004e878f}\label{class_item_container_aa732f863c5acf5bdb96ee5c3004e878f} 
+\mbox{\hyperlink{class_item}{Item}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Item} (int index) const
+\item 
+\Hypertarget{class_item_container_a1857d62ad8d772464b445af953e8f9f4}\label{class_item_container_a1857d62ad8d772464b445af953e8f9f4} 
+void {\bfseries clear} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Container class for storing items. 
+
+Game Rules\+: Can hold any item type (\doxylink{class_helmet}{Helmet}, \doxylink{class_armor}{Armor}, ...) and used for backpacks, chests, etc. Design\+: Uses polymorphism to manage a collection of \doxylink{class_item}{Item} pointers Libraries\+: $<$vector$>$ for dynamic array of items 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Containers/Item\+Container.\+h\item 
+Containers/Item\+Container.\+cpp\end{DoxyCompactItemize}
