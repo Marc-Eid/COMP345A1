@@ -1,6 +1,9 @@
 #include "TestDice.h"
 #include <cppunit/ui/text/TestRunner.h>
 
+//Register the test suite with CppUnit.
+CPPUNIT_TEST_SUITE_REGISTRATION(TestDice);
+
 /**
  * @brief Test case for valid input to the roll method.
  */

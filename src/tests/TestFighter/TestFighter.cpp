@@ -4,6 +4,9 @@
 
 #include "TestFighter.h"
 
+//Register the test suite with CppUnit.
+CPPUNIT_TEST_SUITE_REGISTRATION(TestFighter);
+
 //! setUp() method that is executed before all the test cases that the test class includes
 void TestFighter::setUp(void) {
     fighterObject = new Fighter("Fighter", 5);

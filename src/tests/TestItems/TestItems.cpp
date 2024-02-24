@@ -4,6 +4,9 @@
 
 #include "TestItems.h"
 
+//Register the test suite with CppUnit.
+CPPUNIT_TEST_SUITE_REGISTRATION(TestItems);
+
 void TestItems::testAddItem() {
     ItemContainer container;
     Item* helmet = new Helmet("Test Helmet", Enchantment{1, EnhancementType::ArmorClass});
