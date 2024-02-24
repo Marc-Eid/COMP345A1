@@ -6,9 +6,9 @@
  */
 
 
-#include <cppunit/extensions/HelperMacros.h>
+#include "cppunit/extensions/HelperMacros.h"
 
-#include "../Fighter.h"
+#include "../../classes/Fighter/Fighter.h"
 
 using namespace std;
 
@@ -36,6 +36,3 @@ private:
     Fighter *fighterObject;
 
 };
-
-//!Register for running the test
-CPPUNIT_TEST_SUITE_REGISTRATION(TestFighter);//most important

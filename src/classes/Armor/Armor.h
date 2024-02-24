@@ -5,7 +5,7 @@
 #ifndef COMP345A1_ARMOR_H
 #define COMP345A1_ARMOR_H
 
-#include "Item.h"
+#include "../Item/Item.h"
 
 /**
 * @class Armor

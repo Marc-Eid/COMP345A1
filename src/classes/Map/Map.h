@@ -1,7 +1,7 @@
 //
 // Created by hp on 12/02/2024.
 //
-#include "Cell.h"
+#include "../Cell/Cell.h"
 #include <iostream>
 #include <queue>
 

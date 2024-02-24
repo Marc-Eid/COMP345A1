@@ -5,7 +5,7 @@
 #ifndef COMP345A1_HELMET_H
 #define COMP345A1_HELMET_H
 
-#include "Item.h"
+#include "../Item/Item.h"
 
 /**
  * @class Helmet

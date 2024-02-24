@@ -5,7 +5,7 @@
 #ifndef COMP345A1_BELT_H
 #define COMP345A1_BELT_H
 
-#include "Item.h"
+#include "../Item/Item.h"
 
 /**
  * @class Belt

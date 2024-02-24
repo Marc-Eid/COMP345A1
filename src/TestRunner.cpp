@@ -6,7 +6,8 @@
 #include <cppunit/CompilerOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TestRunner.h>
-
+#include "tests/TestDice/TestDice.h"
+#include "tests/TestFighter/TestFighter.h"
 
 //! main() function. Entry point of the program
 //! It does the following:
@@ -16,6 +17,10 @@
 //! 4. Run the test cases.
 int main()
 {
+
+ //Register the test suites with CppUnit.
+    CPPUNIT_TEST_SUITE_REGISTRATION(TestDice);
+    CPPUNIT_TEST_SUITE_REGISTRATION(TestFighter);
 
     //Get the top level suite from the registry
     CppUnit::Test *suite = CppUnit::TestFactoryRegistry::getRegistry().makeTest();
@@ -29,8 +34,6 @@ int main()
 
 // Run the tests.
     bool wasSuccessful = runner.run();
-
-    getchar();
 
 //return error code 1 if one of the test failed.
     return wasSuccessful ? 0 : 1;

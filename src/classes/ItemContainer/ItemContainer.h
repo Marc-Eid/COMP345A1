@@ -6,7 +6,7 @@
 #define COMP345A1_ITEMCONTAINER_H
 
 #include <vector>
-#include "../Items/Item.h"
+#include "../Item/Item.h"
 
 
 /**
