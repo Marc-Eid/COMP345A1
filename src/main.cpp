@@ -18,7 +18,7 @@ int main() {
     displayCharacter();
     displayMap();
     displayItemContainer();
-    displayDice();
+//    displayDice();
     return 0;
 }
 

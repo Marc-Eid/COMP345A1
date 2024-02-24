@@ -50,12 +50,12 @@ Map::Map(int widthX, int heightY) {
 bool Map::Place(int x, int y, char item) {
     // Check if the coordinates are not Out of the Map
     if(x < 0 && x > width - 1 || y < 0 && y > height - 1){
-        cout << "Coordinates are out of the Map";
+        cout << "Coordinates are out of the Map" << endl;
         return false;
     }
     // Check if it is trying to replace Edges
     if ((x == 0 || x == width - 1) && (y == 0 || y == height -1)){
-        cout << "You cant replace the wall";
+        cout << "You cant replace the wall" << endl;
         return false;
     }
 
@@ -70,7 +70,7 @@ bool Map::Place(int x, int y, char item) {
                 map[startX][startY].setState(Cell::State::EMPTY);
         }
         //Set the Start coordinates
-        cout << "Successfully Placed the Starting point";
+        cout << "Successfully Placed the Starting point" <<  endl;
         startX = x;
         startY = y;
         return true;
@@ -86,7 +86,7 @@ bool Map::Place(int x, int y, char item) {
         }
         // Set the Exit Coordinates
 
-        cout << "Successfully set exit";
+        cout << "Successfully set exit" << endl;
         endX = x;
         endY = y;
         return  true;
@@ -104,7 +104,7 @@ bool Map::Place(int x, int y, char item) {
             }
 
             map[x][y].setState(Cell::State::WALL);
-            cout << "Successfully Placed the Wall";
+            cout << "Successfully Placed the Wall" << endl;
             return true;
 
         }

@@ -31,7 +31,6 @@ protected:
     void testCalculateHitpoints(void);
     void testCalculateAttackBonus(void);
 
-
 private:
     Fighter *fighterObject;
 

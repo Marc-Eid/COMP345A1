@@ -37,9 +37,12 @@ add_executable(UnitTests src/TestRunner.cpp
         src/classes/Ring/Ring.cpp
         src/classes/Belt/Belt.cpp
         src/classes/Boots/Boots.cpp
+        src/classes/Cell/Cell.cpp
+        src/classes/Map/Map.cpp
         src/classes/Weapon/Weapon.cpp
         src/tests/TestDice/TestDice.cpp
         src/tests/TestItems/TestItems.cpp
+        src/tests/TestMap/TestMap.cpp
 )
 
 
