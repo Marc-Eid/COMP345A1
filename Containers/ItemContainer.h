@@ -18,14 +18,15 @@
  * Libraries: <vector> for dynamic array of items
  */
 class ItemContainer {
-    vector<Item*> items;
 public:
+    vector<Item*> items;
     ItemContainer();
     ~ItemContainer();
 
     void addItem(Item* item);
     Item* getItem(int index) const;
     void clear();
+    void printItems() const;
 };
 
 

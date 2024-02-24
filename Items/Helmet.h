@@ -16,6 +16,11 @@
  * Libraries: Inherits <string> from Item.h
  */
 class Helmet: public Item {
+private:
+    /**
+     * Static const member that defines the allowedEnhancements of the item
+     */
+    static const std::vector<EnhancementType> allowedEnhancements;
 public:
     /**
      * @brief Construct a new Helmet object.

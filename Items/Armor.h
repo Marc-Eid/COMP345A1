@@ -16,6 +16,11 @@
  * Libraries: Inherits <string> from Item.h
 */
 class Armor : public Item {
+private:
+    /**
+     * Static const member that defines the allowedEnhancements of the item
+     */
+    static const std::vector<EnhancementType> allowedEnhancements;
 public:
     /**
      * @brief Construct a new Armor object.
@@ -31,6 +36,7 @@ public:
      * @return std::string Returns the type of the item as a string.
      */
     string getType() const override;
+
 };
 
 #endif //COMP345A1_ARMOR_H

@@ -5,6 +5,8 @@
 #ifndef COMP345A1_BOOTS_H
 #define COMP345A1_BOOTS_H
 
+#include "Item.h"
+
 /**
  * @class Boots
  * @brief Represents a boots item
@@ -13,7 +15,12 @@
  * Design: Inherits from Item and specifies Boots-related functionality.
  * Libraries: Inherits <string> from Item.h.
  */
-class Boots {
+class Boots: public Item {
+private:
+    /**
+     * Static const member that defines the allowedEnhancements of the item
+     */
+    static const std::vector<EnhancementType> allowedEnhancements;
 public:
     /**
      * @brief Construct a new Boots object.

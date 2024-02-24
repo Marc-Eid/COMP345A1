@@ -5,6 +5,8 @@
 #ifndef COMP345A1_RING_H
 #define COMP345A1_RING_H
 
+#include "Item.h"
+
 /**
  * @class Ring
  * @brief Represents a ring item
@@ -13,7 +15,12 @@
  * Design: Inherits from Item and specifies Ring-related functionality.
  * Libraries: Inherits <string> from Item.h.
  */
-class Ring {
+class Ring: public Item {
+private:
+    /**
+     * Static const member that defines the allowedEnhancements of the item
+     */
+    static const std::vector<EnhancementType> allowedEnhancements;
 public:
     /**
      * @brief Construct a new Ring object.

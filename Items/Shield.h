@@ -5,6 +5,7 @@
 #ifndef COMP345A1_SHIELD_H
 #define COMP345A1_SHIELD_H
 
+#include "Item.h"
 /**
  * @class Shield
  * @brief Represents a shield item
@@ -13,7 +14,12 @@
  * Design: Inherits from Item and specifies Shield-related functionality.
  * Libraries: Inherits <string> from Item.h.
  */
-class Shield {
+class Shield: public Item {
+private:
+    /**
+     * Static const member that defines the allowedEnhancements of the item
+     */
+    static const std::vector<EnhancementType> allowedEnhancements;
 public:
     /**
      * @brief Construct a new Shield object.

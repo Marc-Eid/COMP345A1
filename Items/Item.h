@@ -71,6 +71,18 @@ public:
     */
     virtual string getType() const = 0;
 
+    /**
+     * @brief Function to return the name of the item.
+     * @return string Returns name of the item.
+     */
+    string getName() const;
+
+    /**
+     * @brief Static Function to convert Enhancement Type type to String
+     * @param type EnhancementType
+     * @return string Returns Enhancement Type in String
+     */
+    static std::string enchantmentTypeToString(EnhancementType type);
 
 };
 

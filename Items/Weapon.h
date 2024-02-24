@@ -5,6 +5,7 @@
 #ifndef COMP345A1_WEAPON_H
 #define COMP345A1_WEAPON_H
 
+#include "Item.h"
 /**
  * @class Weapon
  * @brief Represents a weapon item
@@ -13,7 +14,12 @@
  * Design: Inherits from Item and specifies Weapon-related functionality.
  * Libraries: Inherits <string> from Item.h.
  */
-class Weapon {
+class Weapon: public Item {
+private:
+    /**
+     * Static const member that defines the allowedEnhancements of the item
+     */
+    static const std::vector<EnhancementType> allowedEnhancements;
 public:
     /**
      * @brief Construct a new Weapon object.
