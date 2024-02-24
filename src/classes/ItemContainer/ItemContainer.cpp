@@ -48,3 +48,7 @@ void ItemContainer::printItems() const {
                   << std::setw(6) << enchantment.bonus << "\n";
     }
 }
+
+int ItemContainer::getItemCount() const {
+    return items.size(); // Return the number of items in the container
+}

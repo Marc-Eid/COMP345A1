@@ -8,6 +8,7 @@
 #include <cppunit/ui/text/TestRunner.h>
 #include "tests/TestDice/TestDice.h"
 #include "tests/TestFighter/TestFighter.h"
+#include "tests/TestItems/TestItems.h"
 
 //! main() function. Entry point of the program
 //! It does the following:
@@ -21,7 +22,7 @@ int main()
  //Register the test suites with CppUnit.
     CPPUNIT_TEST_SUITE_REGISTRATION(TestDice);
     CPPUNIT_TEST_SUITE_REGISTRATION(TestFighter);
-
+    CPPUNIT_TEST_SUITE_REGISTRATION(TestItems);
     //Get the top level suite from the registry
     CppUnit::Test *suite = CppUnit::TestFactoryRegistry::getRegistry().makeTest();
 
