@@ -48,3 +48,6 @@ Makefile
 CppUnit/build/
 CppUnit/include/cppunit/config-auto.h
 Testing/
+
+# Custom build directories
+out/build/
