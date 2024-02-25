@@ -18,7 +18,7 @@ int main() {
     displayCharacter();
     displayMap();
     displayItemContainer();
-//    displayDice();
+    displayDice();
     return 0;
 }
 
@@ -34,9 +34,8 @@ void displayCharacter(){
     // Demonstrate utility function usage
     int diceRoll = Character::rollDice(1, 20); // Simulating a d20 roll
     std::cout << "\nSimulating a d20 roll: " << diceRoll << std::endl;
-
-
 };
+
 void displayMap(){
     displayCharacter();
     // Create a Map
@@ -73,7 +72,6 @@ void displayItemContainer(){
     cout << "Printing elements in the Item Container: " << endl;
     container.printItems();
     cout << endl;
-
 }
 
 void displayDice() {
@@ -83,14 +81,20 @@ void displayDice() {
             "\tx is the number of dice,\n"
             "\tdy the kind of dice (d4, d6, d8, d10, d12, d20 or d100),\n"
             "\tz is a negative of positive number added after all the dice results have been added (optional).\n"
-            "Dice Input: ";
+            "\nDice Input: ";
     cin >> diceInput;
     try {
         int diceResult = dice.roll(diceInput);
-        cout << "Rolled: " << diceInput << ", Result: " << diceResult << endl;
+        cout << "\tRolled: " << diceInput << ", Result: " << diceResult << endl;
+        cout << "\nMore Dice Roll Examples:"<< endl;
+        cout << "\tRolled: " << "55d100-26" << ", Result: " << dice.roll("55d100-26") << endl;
+        cout << "\tRolled: " << "3d20" << ", Result: " << dice.roll("3d20") << endl;
+        cout << "\tRolled: " << "3d8-0" << ", Result: " << dice.roll("3d8-0") << endl;
+        cout << "\tRolled: " << "3d4+15" << ", Result: " << dice.roll("3d4+15") << endl;
+        cout << "\tRolled: " << "9d20+1" << ", Result: " << dice.roll("9d20+1") << endl;
+        cout << "\tRolled: " << "7d6" << ", Result: " << dice.roll("7d6") << endl;
+        cout << "\tRolled: " << "1d6-100" << ", Result: " << dice.roll("1d6-100") << endl;
     } catch (const invalid_argument& e) {
         cerr << "Error: " << e.what() << endl;
     }
-
-    displayItemContainer();
 };
