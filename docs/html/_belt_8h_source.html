@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>COMP345A1: Items/Belt.h Source File</title>
+<title>COMP345A1: src/classes/Belt/Belt.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,7 +76,7 @@ $(function() { codefold.init(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_7d02ce0627a9d08bc7415ddf5065332d.html">Items</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_018e9aafb459e6e1a4953404cb0c0b1d.html">classes</a></li><li class="navelem"><a class="el" href="dir_78f28bddc7759201553ebd8d6b45139c.html">Belt</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -90,23 +90,28 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#ifndef COMP345A1_BELT_H</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define COMP345A1_BELT_H</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;Item.h&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_belt.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="class_belt.html">Belt</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_item.html">Item</a> {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_function" href="class_belt.html#ad28d5fbbf5565cdeb1721d42215b0fe5">Belt</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> <a class="code hl_struct" href="struct_enchantment.html">Enchantment</a>&amp; enchantment);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_belt.html#a8d177e9d03aa6100e2d8d2fa7cb098bb">getType</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>};</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;../Item/Item.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stdexcept&gt;</span> <span class="comment">// For std::runtime_error</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;algorithm&gt;</span> <span class="comment">// For std::find</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_belt.html">   21</a></span><span class="keyword">class </span><a class="code hl_class" href="class_belt.html">Belt</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_item.html">Item</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">static</span> <span class="keyword">const</span> std::vector&lt;EnhancementType&gt; allowedEnhancements;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_function" href="class_belt.html#ad28d5fbbf5565cdeb1721d42215b0fe5">Belt</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> <a class="code hl_struct" href="struct_enchantment.html">Enchantment</a>&amp; enchantment);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_belt.html#a8d177e9d03aa6100e2d8d2fa7cb098bb">getType</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
 </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#endif </span><span class="comment">// COMP345A1_BELT_H</span></div>
-<div class="ttc" id="aclass_belt_html"><div class="ttname"><a href="class_belt.html">Belt</a></div><div class="ttdoc">Represents a belt item.</div><div class="ttdef"><b>Definition</b> Belt.h:18</div></div>
-<div class="ttc" id="aclass_belt_html_a8d177e9d03aa6100e2d8d2fa7cb098bb"><div class="ttname"><a href="class_belt.html#a8d177e9d03aa6100e2d8d2fa7cb098bb">Belt::getType</a></div><div class="ttdeci">string getType() const override</div><div class="ttdoc">Get the type of the item.</div><div class="ttdef"><b>Definition</b> Belt.cpp:6</div></div>
-<div class="ttc" id="aclass_belt_html_ad28d5fbbf5565cdeb1721d42215b0fe5"><div class="ttname"><a href="class_belt.html#ad28d5fbbf5565cdeb1721d42215b0fe5">Belt::Belt</a></div><div class="ttdeci">Belt(const std::string &amp;name, const Enchantment &amp;enchantment)</div><div class="ttdoc">Construct a new Belt object.</div><div class="ttdef"><b>Definition</b> Belt.cpp:3</div></div>
-<div class="ttc" id="aclass_item_html"><div class="ttname"><a href="class_item.html">Item</a></div><div class="ttdoc">Base class for all item types in the game.</div><div class="ttdef"><b>Definition</b> Item.h:40</div></div>
-<div class="ttc" id="astruct_enchantment_html"><div class="ttname"><a href="struct_enchantment.html">Enchantment</a></div><div class="ttdoc">Struct for the enchantment of an item.</div><div class="ttdef"><b>Definition</b> Item.h:27</div></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif </span><span class="comment">// COMP345A1_BELT_H</span></div>
+<div class="ttc" id="aclass_belt_html"><div class="ttname"><a href="class_belt.html">Belt</a></div><div class="ttdoc">Represents a belt item.</div><div class="ttdef"><b>Definition</b> Belt.h:21</div></div>
+<div class="ttc" id="aclass_belt_html_a8d177e9d03aa6100e2d8d2fa7cb098bb"><div class="ttname"><a href="class_belt.html#a8d177e9d03aa6100e2d8d2fa7cb098bb">Belt::getType</a></div><div class="ttdeci">string getType() const override</div><div class="ttdoc">Get the type of the item.</div><div class="ttdef"><b>Definition</b> Belt.cpp:13</div></div>
+<div class="ttc" id="aclass_belt_html_ad28d5fbbf5565cdeb1721d42215b0fe5"><div class="ttname"><a href="class_belt.html#ad28d5fbbf5565cdeb1721d42215b0fe5">Belt::Belt</a></div><div class="ttdeci">Belt(const std::string &amp;name, const Enchantment &amp;enchantment)</div><div class="ttdoc">Construct a new Belt object.</div><div class="ttdef"><b>Definition</b> Belt.cpp:7</div></div>
+<div class="ttc" id="aclass_item_html"><div class="ttname"><a href="class_item.html">Item</a></div><div class="ttdoc">Base class for all item types in the game.</div><div class="ttdef"><b>Definition</b> Item.h:41</div></div>
+<div class="ttc" id="astruct_enchantment_html"><div class="ttname"><a href="struct_enchantment.html">Enchantment</a></div><div class="ttdoc">Struct for the enchantment of an item.</div><div class="ttdef"><b>Definition</b> Item.h:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
