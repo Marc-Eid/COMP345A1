@@ -139,5 +139,10 @@ protected:
     * @return The armor class (AC) value of the specified armor.
     */
     static int getArmorACValue(const string& armorName);
+
+private:
+    //list of all observers plugged onto the subject
+    List<>
+
 };
 

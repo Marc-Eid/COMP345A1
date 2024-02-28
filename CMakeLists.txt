@@ -19,6 +19,10 @@ add_executable(COMP345A1 src/main.cpp
         src/classes/Cell/Cell.cpp
         src/classes/Map/Map.cpp
         src/classes/Dice/Dice.cpp
+        src/classes/ObserverPattern/Subject.h
+        src/classes/ObserverPattern/Observer.h
+        src/classes/ObserverPattern/Subject.cpp
+        src/classes/ObserverPattern/Observer.cpp
 )
 
 
