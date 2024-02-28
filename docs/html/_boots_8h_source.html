@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>COMP345A1: Items/Boots.h Source File</title>
+<title>COMP345A1: src/classes/Boots/Boots.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,7 +76,7 @@ $(function() { codefold.init(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_7d02ce0627a9d08bc7415ddf5065332d.html">Items</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_018e9aafb459e6e1a4953404cb0c0b1d.html">classes</a></li><li class="navelem"><a class="el" href="dir_d2427d5c71629d0bab450ea243909a96.html">Boots</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -90,21 +90,29 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#ifndef COMP345A1_BOOTS_H</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define COMP345A1_BOOTS_H</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="class_boots.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="class_boots.html">Boots</a> {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_function" href="class_boots.html#ad69749d897541794dbb9544546be3365">Boots</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> <a class="code hl_struct" href="struct_enchantment.html">Enchantment</a>&amp; enchantment);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_boots.html#a30a90c975541a20a521d2c0d0c6863fb">getType</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;../Item/Item.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stdexcept&gt;</span> <span class="comment">// For std::runtime_error</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;algorithm&gt;</span> <span class="comment">// For std::find</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_boots.html">   21</a></span><span class="keyword">class </span><a class="code hl_class" href="class_boots.html">Boots</a>: <span class="keyword">public</span> <a class="code hl_class" href="class_item.html">Item</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">static</span> <span class="keyword">const</span> std::vector&lt;EnhancementType&gt; allowedEnhancements;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_function" href="class_boots.html#ad69749d897541794dbb9544546be3365">Boots</a>(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> <a class="code hl_struct" href="struct_enchantment.html">Enchantment</a>&amp; enchantment);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">string</span> <a class="code hl_function" href="class_boots.html#a30a90c975541a20a521d2c0d0c6863fb">getType</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
 </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif </span><span class="comment">//COMP345A1_BOOTS_H</span></div>
-<div class="ttc" id="aclass_boots_html"><div class="ttname"><a href="class_boots.html">Boots</a></div><div class="ttdoc">Represents a boots item.</div><div class="ttdef"><b>Definition</b> Boots.h:16</div></div>
-<div class="ttc" id="aclass_boots_html_a30a90c975541a20a521d2c0d0c6863fb"><div class="ttname"><a href="class_boots.html#a30a90c975541a20a521d2c0d0c6863fb">Boots::getType</a></div><div class="ttdeci">string getType() const override</div><div class="ttdoc">Get the type of the item.</div><div class="ttdef"><b>Definition</b> Boots.cpp:9</div></div>
-<div class="ttc" id="aclass_boots_html_ad69749d897541794dbb9544546be3365"><div class="ttname"><a href="class_boots.html#ad69749d897541794dbb9544546be3365">Boots::Boots</a></div><div class="ttdeci">Boots(const std::string &amp;name, const Enchantment &amp;enchantment)</div><div class="ttdoc">Construct a new Boots object.</div><div class="ttdef"><b>Definition</b> Boots.cpp:7</div></div>
-<div class="ttc" id="astruct_enchantment_html"><div class="ttname"><a href="struct_enchantment.html">Enchantment</a></div><div class="ttdoc">Struct for the enchantment of an item.</div><div class="ttdef"><b>Definition</b> Item.h:27</div></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif </span><span class="comment">//COMP345A1_BOOTS_H</span></div>
+<div class="ttc" id="aclass_boots_html"><div class="ttname"><a href="class_boots.html">Boots</a></div><div class="ttdoc">Represents a boots item.</div><div class="ttdef"><b>Definition</b> Boots.h:21</div></div>
+<div class="ttc" id="aclass_boots_html_a30a90c975541a20a521d2c0d0c6863fb"><div class="ttname"><a href="class_boots.html#a30a90c975541a20a521d2c0d0c6863fb">Boots::getType</a></div><div class="ttdeci">string getType() const override</div><div class="ttdoc">Get the type of the item.</div><div class="ttdef"><b>Definition</b> Boots.cpp:17</div></div>
+<div class="ttc" id="aclass_boots_html_ad69749d897541794dbb9544546be3365"><div class="ttname"><a href="class_boots.html#ad69749d897541794dbb9544546be3365">Boots::Boots</a></div><div class="ttdeci">Boots(const std::string &amp;name, const Enchantment &amp;enchantment)</div><div class="ttdoc">Construct a new Boots object.</div><div class="ttdef"><b>Definition</b> Boots.cpp:11</div></div>
+<div class="ttc" id="aclass_item_html"><div class="ttname"><a href="class_item.html">Item</a></div><div class="ttdoc">Base class for all item types in the game.</div><div class="ttdef"><b>Definition</b> Item.h:41</div></div>
+<div class="ttc" id="astruct_enchantment_html"><div class="ttname"><a href="struct_enchantment.html">Enchantment</a></div><div class="ttdoc">Struct for the enchantment of an item.</div><div class="ttdef"><b>Definition</b> Item.h:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

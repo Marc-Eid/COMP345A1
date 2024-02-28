@@ -7,5 +7,5 @@ var searchData=
   ['calculatehitpoints_4',['calculateHitPoints',['../class_character.html#a1c8040ed1be48d6efc517ae51b5964d1',1,'Character::calculateHitPoints()'],['../class_fighter.html#aaae63f319a0f62001bd27b538a56ab76',1,'Fighter::calculateHitPoints()']]],
   ['calculatemodifier_5',['calculateModifier',['../class_character.html#a8c024f252337e56cc0d1fa5231f1de73',1,'Character']]],
   ['cell_6',['Cell',['../class_cell.html#a394510643e8664cf12b5efaf5cb99f71',1,'Cell::Cell()'],['../class_cell.html#aea8dbcaadc644d6e72f8f34961fca29b',1,'Cell::Cell(State state)']]],
-  ['cppunit_5ftest_5fsuite_5fregistration_7',['CPPUNIT_TEST_SUITE_REGISTRATION',['../_test_fighter_8h.html#ab881da0b395745f61c03912f603adb5e',1,'TestFighter.h']]]
+  ['clear_7',['clear',['../class_item_container.html#a1857d62ad8d772464b445af953e8f9f4',1,'ItemContainer']]]
 ];

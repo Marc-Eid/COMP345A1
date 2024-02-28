@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>COMP345A1: Map.h Source File</title>
+<title>COMP345A1: src/classes/Map/Map.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -53,7 +53,6 @@ $(function() {
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -75,6 +74,11 @@ $(function() { codefold.init(0); });
 </div>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_018e9aafb459e6e1a4953404cb0c0b1d.html">classes</a></li><li class="navelem"><a class="el" href="dir_7b383dbe34c9483b56a9b31f193088e3.html">Map</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">Map.h</div></div>
 </div><!--header-->
@@ -82,7 +86,7 @@ $(function() { codefold.init(0); });
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Created by hp on 12/02/2024.</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;Cell.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;../Cell/Cell.h&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;queue&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
@@ -139,11 +143,11 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#endif </span><span class="comment">//COMP345A1_MAP_H</span></div>
 <div class="ttc" id="aclass_cell_html"><div class="ttname"><a href="class_cell.html">Cell</a></div><div class="ttdef"><b>Definition</b> Cell.h:12</div></div>
 <div class="ttc" id="aclass_map_html"><div class="ttname"><a href="class_map.html">Map</a></div><div class="ttdoc">Container class for the Cells.</div><div class="ttdef"><b>Definition</b> Map.h:35</div></div>
-<div class="ttc" id="aclass_map_html_a1cefc1b8ed6692667e2019f64acc0f5a"><div class="ttname"><a href="class_map.html#a1cefc1b8ed6692667e2019f64acc0f5a">Map::printMap</a></div><div class="ttdeci">void printMap()</div><div class="ttdef"><b>Definition</b> Map.cpp:289</div></div>
-<div class="ttc" id="aclass_map_html_a29b53bf7c03e9f5fccb6079cb459bba5"><div class="ttname"><a href="class_map.html#a29b53bf7c03e9f5fccb6079cb459bba5">Map::Place</a></div><div class="ttdeci">bool Place(int x, int y, char item)</div><div class="ttdoc">Places the item on the inputted coordinates.</div><div class="ttdef"><b>Definition</b> Map.cpp:52</div></div>
-<div class="ttc" id="aclass_map_html_a8497952fd6e1f0584d868e6ceb97d42d"><div class="ttname"><a href="class_map.html#a8497952fd6e1f0584d868e6ceb97d42d">Map::Map</a></div><div class="ttdeci">Map(int width, int height)</div><div class="ttdoc">Accepts width and height of the map and initializes a two dimensional array with Wall arround.</div><div class="ttdef"><b>Definition</b> Map.cpp:12</div></div>
-<div class="ttc" id="aclass_map_html_aa403fbe09394ccf39747588f5168e3b2"><div class="ttname"><a href="class_map.html#aa403fbe09394ccf39747588f5168e3b2">Map::~Map</a></div><div class="ttdeci">~Map()</div><div class="ttdoc">Responsible for destructing the Map object.</div><div class="ttdef"><b>Definition</b> Map.cpp:319</div></div>
-<div class="ttc" id="aclass_map_html_ae97c4ead268b89b62e815511baf51ab9"><div class="ttname"><a href="class_map.html#ae97c4ead268b89b62e815511baf51ab9">Map::isValid</a></div><div class="ttdeci">bool isValid()</div><div class="ttdef"><b>Definition</b> Map.cpp:206</div></div>
+<div class="ttc" id="aclass_map_html_a1cefc1b8ed6692667e2019f64acc0f5a"><div class="ttname"><a href="class_map.html#a1cefc1b8ed6692667e2019f64acc0f5a">Map::printMap</a></div><div class="ttdeci">void printMap()</div><div class="ttdef"><b>Definition</b> Map.cpp:287</div></div>
+<div class="ttc" id="aclass_map_html_a29b53bf7c03e9f5fccb6079cb459bba5"><div class="ttname"><a href="class_map.html#a29b53bf7c03e9f5fccb6079cb459bba5">Map::Place</a></div><div class="ttdeci">bool Place(int x, int y, char item)</div><div class="ttdoc">Places the item on the inputted coordinates.</div><div class="ttdef"><b>Definition</b> Map.cpp:50</div></div>
+<div class="ttc" id="aclass_map_html_a8497952fd6e1f0584d868e6ceb97d42d"><div class="ttname"><a href="class_map.html#a8497952fd6e1f0584d868e6ceb97d42d">Map::Map</a></div><div class="ttdeci">Map(int width, int height)</div><div class="ttdoc">Accepts width and height of the map and initializes a two dimensional array with Wall arround.</div><div class="ttdef"><b>Definition</b> Map.cpp:10</div></div>
+<div class="ttc" id="aclass_map_html_aa403fbe09394ccf39747588f5168e3b2"><div class="ttname"><a href="class_map.html#aa403fbe09394ccf39747588f5168e3b2">Map::~Map</a></div><div class="ttdeci">~Map()</div><div class="ttdoc">Responsible for destructing the Map object.</div><div class="ttdef"><b>Definition</b> Map.cpp:317</div></div>
+<div class="ttc" id="aclass_map_html_ae97c4ead268b89b62e815511baf51ab9"><div class="ttname"><a href="class_map.html#ae97c4ead268b89b62e815511baf51ab9">Map::isValid</a></div><div class="ttdeci">bool isValid()</div><div class="ttdef"><b>Definition</b> Map.cpp:204</div></div>
 <div class="ttc" id="astruct_coordinate_html"><div class="ttname"><a href="struct_coordinate.html">Coordinate</a></div><div class="ttdef"><b>Definition</b> Map.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

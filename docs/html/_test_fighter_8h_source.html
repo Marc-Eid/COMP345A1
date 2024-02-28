@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>COMP345A1: unitTests/TestFighter.h Source File</title>
+<title>COMP345A1: src/tests/TestFighter/TestFighter.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,7 +76,7 @@ $(function() { codefold.init(0); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_4f83fc4e7000500481bc2234a29e5a13.html">unitTests</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d93a1d4020dea85bb71b237545b5e722.html">tests</a></li><li class="navelem"><a class="el" href="dir_ea424fbe3f27c12dda524971b5802a53.html">TestFighter</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -84,9 +84,9 @@ $(function() { codefold.init(0); });
 </div><!--header-->
 <div class="contents">
 <a href="_test_fighter_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;cppunit/extensions/HelperMacros.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;cppunit/extensions/HelperMacros.h&quot;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="_fighter_8h.html">../Fighter.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="_fighter_8h.html">../../classes/Fighter/Fighter.h</a>&quot;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">using namespace </span>std;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
@@ -106,22 +106,18 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_test_fighter.html#aeef7afff8a57bb5cb021eba6517b89f1">testCalculateHitpoints</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_test_fighter.html#af0416368e3bb9436f3feb0a03b1b6c49">testCalculateAttackBonus</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_class" href="class_fighter.html">Fighter</a> *fighterObject;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>};</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_class" href="class_fighter.html">Fighter</a> *fighterObject;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
 </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="_test_fighter_8h.html#ab881da0b395745f61c03912f603adb5e">   41</a></span><a class="code hl_function" href="_test_fighter_8h.html#ab881da0b395745f61c03912f603adb5e">CPPUNIT_TEST_SUITE_REGISTRATION</a>(<a class="code hl_class" href="class_test_fighter.html">TestFighter</a>);<span class="comment">//most important</span></div>
 <div class="ttc" id="a_fighter_8h_html"><div class="ttname"><a href="_fighter_8h.html">Fighter.h</a></div><div class="ttdoc">Fighter class extending the Character with specialized combat abilities.</div></div>
-<div class="ttc" id="a_test_fighter_8h_html_ab881da0b395745f61c03912f603adb5e"><div class="ttname"><a href="_test_fighter_8h.html#ab881da0b395745f61c03912f603adb5e">CPPUNIT_TEST_SUITE_REGISTRATION</a></div><div class="ttdeci">CPPUNIT_TEST_SUITE_REGISTRATION(TestFighter)</div><div class="ttdoc">Register for running the test.</div></div>
 <div class="ttc" id="aclass_fighter_html"><div class="ttname"><a href="class_fighter.html">Fighter</a></div><div class="ttdef"><b>Definition</b> Fighter.h:31</div></div>
 <div class="ttc" id="aclass_test_fighter_html"><div class="ttname"><a href="class_test_fighter.html">TestFighter</a></div><div class="ttdef"><b>Definition</b> TestFighter.h:20</div></div>
-<div class="ttc" id="aclass_test_fighter_html_aa249ae2abf06dae05aeee3b2b25cb17a"><div class="ttname"><a href="class_test_fighter.html#aa249ae2abf06dae05aeee3b2b25cb17a">TestFighter::tearDown</a></div><div class="ttdeci">void tearDown(void)</div><div class="ttdoc">tearDown() method that is executed after all the test cases that the test class includes</div><div class="ttdef"><b>Definition</b> TestFighter.cpp:13</div></div>
-<div class="ttc" id="aclass_test_fighter_html_aeef7afff8a57bb5cb021eba6517b89f1"><div class="ttname"><a href="class_test_fighter.html#aeef7afff8a57bb5cb021eba6517b89f1">TestFighter::testCalculateHitpoints</a></div><div class="ttdeci">void testCalculateHitpoints(void)</div><div class="ttdef"><b>Definition</b> TestFighter.cpp:19</div></div>
-<div class="ttc" id="aclass_test_fighter_html_af0416368e3bb9436f3feb0a03b1b6c49"><div class="ttname"><a href="class_test_fighter.html#af0416368e3bb9436f3feb0a03b1b6c49">TestFighter::testCalculateAttackBonus</a></div><div class="ttdeci">void testCalculateAttackBonus(void)</div><div class="ttdef"><b>Definition</b> TestFighter.cpp:27</div></div>
-<div class="ttc" id="aclass_test_fighter_html_af38838433e29866af332bc001546f4d0"><div class="ttname"><a href="class_test_fighter.html#af38838433e29866af332bc001546f4d0">TestFighter::setUp</a></div><div class="ttdeci">void setUp(void)</div><div class="ttdoc">setUp() method that is executed before all the test cases that the test class includes</div><div class="ttdef"><b>Definition</b> TestFighter.cpp:8</div></div>
+<div class="ttc" id="aclass_test_fighter_html_aa249ae2abf06dae05aeee3b2b25cb17a"><div class="ttname"><a href="class_test_fighter.html#aa249ae2abf06dae05aeee3b2b25cb17a">TestFighter::tearDown</a></div><div class="ttdeci">void tearDown(void)</div><div class="ttdoc">tearDown() method that is executed after all the test cases that the test class includes</div><div class="ttdef"><b>Definition</b> TestFighter.cpp:16</div></div>
+<div class="ttc" id="aclass_test_fighter_html_aeef7afff8a57bb5cb021eba6517b89f1"><div class="ttname"><a href="class_test_fighter.html#aeef7afff8a57bb5cb021eba6517b89f1">TestFighter::testCalculateHitpoints</a></div><div class="ttdeci">void testCalculateHitpoints(void)</div><div class="ttdef"><b>Definition</b> TestFighter.cpp:22</div></div>
+<div class="ttc" id="aclass_test_fighter_html_af0416368e3bb9436f3feb0a03b1b6c49"><div class="ttname"><a href="class_test_fighter.html#af0416368e3bb9436f3feb0a03b1b6c49">TestFighter::testCalculateAttackBonus</a></div><div class="ttdeci">void testCalculateAttackBonus(void)</div><div class="ttdef"><b>Definition</b> TestFighter.cpp:30</div></div>
+<div class="ttc" id="aclass_test_fighter_html_af38838433e29866af332bc001546f4d0"><div class="ttname"><a href="class_test_fighter.html#af38838433e29866af332bc001546f4d0">TestFighter::setUp</a></div><div class="ttdeci">void setUp(void)</div><div class="ttdoc">setUp() method that is executed before all the test cases that the test class includes</div><div class="ttdef"><b>Definition</b> TestFighter.cpp:11</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

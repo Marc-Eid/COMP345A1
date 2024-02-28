@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ring_0',['Ring',['../class_ring.html',1,'']]]
+  ['map_0',['Map',['../class_map.html',1,'']]]
 ];
