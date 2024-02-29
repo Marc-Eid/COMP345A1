@@ -47,6 +47,10 @@ int {\bfseries get\+Attack\+Bonus} () const
 \item 
 int {\bfseries get\+Damage\+Bonus} () const
 \item 
+int {\bfseries get\+Level} () const
+\item 
+string {\bfseries get\+Name} () const
+\item 
 void {\bfseries set\+Hitpoints} (int hp)
 \item 
 void {\bfseries set\+Armor\+Class} (int ac)
@@ -56,43 +60,24 @@ void {\bfseries set\+Attack\+Bonus} (int ab)
 void {\bfseries set\+Damage\+Bonus} (int db)
 \item 
 void \mbox{\hyperlink{class_character_aa6c888ee32bf1611e65ec3a0f472557f}{equip\+Item}} (const std\+::string \&item\+Category, const std\+::string \&item\+Name)
-\begin{DoxyCompactList}\small\item\em Equips an item to the character. \end{DoxyCompactList}\item 
-int {\bfseries get\+Level} () const
-\item 
-string {\bfseries get\+Name} () const
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Equips an item to the character. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_subject}{Subject}}}
 \begin{DoxyCompactItemize}
 \item 
 virtual void {\bfseries Attach} (\mbox{\hyperlink{class_observer}{Observer}} \texorpdfstring{$\ast$}{*}o)
-\item 
+\begin{DoxyCompactList}\small\item\em Adds an observer to the list of observers. \end{DoxyCompactList}\item 
 virtual void {\bfseries Detach} (\mbox{\hyperlink{class_observer}{Observer}} \texorpdfstring{$\ast$}{*}o)
-\item 
+\begin{DoxyCompactList}\small\item\em Removes an observer from the list of observers. \end{DoxyCompactList}\item 
 virtual void {\bfseries Notify} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em notifies all subsribed observers \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Subject} ()
+\begin{DoxyCompactList}\small\item\em virtual destructor of the \doxylink{class_subject}{Subject} class \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_character}{Character}}}
 \begin{DoxyCompactItemize}
 \item 
 static int \mbox{\hyperlink{class_character_a04cc9bbd6828307175128f19e6051d6a}{roll\+Dice}} (int number\+Of\+Dice, int dice\+Sides)
 \begin{DoxyCompactList}\small\item\em Simulates rolling dice to generate random numbers. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_character}{Character}}}
-\begin{DoxyCompactItemize}
-\item 
-map$<$ string, int $>$ {\bfseries ability\+Scores}
-\item 
-map$<$ string, int $>$ {\bfseries modifiers}
-\item 
-int {\bfseries hit\+Points}
-\item 
-int {\bfseries armor\+Class}
-\item 
-int {\bfseries attack\+Bonus}
-\item 
-int {\bfseries damage\+Bonus}
-\item 
-map$<$ string, string $>$ {\bfseries equipment}
-\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_character}{Character}}}
 \begin{DoxyCompactItemize}
 \item 
@@ -111,6 +96,20 @@ static int \mbox{\hyperlink{class_character_a1af14f462f8030c3b3ba30697f681529}{g
 string {\bfseries name}
 \item 
 int {\bfseries level}
+\item 
+map$<$ string, int $>$ {\bfseries ability\+Scores}
+\item 
+map$<$ string, int $>$ {\bfseries modifiers}
+\item 
+int {\bfseries hit\+Points}
+\item 
+int {\bfseries armor\+Class}
+\item 
+int {\bfseries attack\+Bonus}
+\item 
+int {\bfseries damage\+Bonus}
+\item 
+map$<$ string, string $>$ {\bfseries equipment}
 \end{DoxyCompactItemize}
 
 

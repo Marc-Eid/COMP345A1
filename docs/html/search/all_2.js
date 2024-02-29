@@ -9,7 +9,8 @@ var searchData=
   ['cell_6',['Cell',['../class_cell.html',1,'Cell'],['../class_cell.html#a394510643e8664cf12b5efaf5cb99f71',1,'Cell::Cell()'],['../class_cell.html#aea8dbcaadc644d6e72f8f34961fca29b',1,'Cell::Cell(State state)']]],
   ['character_7',['Character',['../class_character.html',1,'']]],
   ['character_2eh_8',['Character.h',['../_character_8h.html',1,'']]],
-  ['characterobserver_9',['CharacterObserver',['../class_character_observer.html',1,'']]],
-  ['clear_10',['clear',['../class_item_container.html#a1857d62ad8d772464b445af953e8f9f4',1,'ItemContainer']]],
-  ['coordinate_11',['Coordinate',['../struct_coordinate.html',1,'']]]
+  ['characterobserver_9',['CharacterObserver',['../class_character_observer.html',1,'CharacterObserver'],['../class_character_observer.html#a254ed3594bea4060cebb8f00dcf313b0',1,'CharacterObserver::CharacterObserver()'],['../class_character_observer.html#a31670b18c38b7008d5619cdaaeb05376',1,'CharacterObserver::CharacterObserver(Character *character)']]],
+  ['characterobserver_2eh_10',['CharacterObserver.h',['../_character_observer_8h.html',1,'']]],
+  ['clear_11',['clear',['../class_item_container.html#a1857d62ad8d772464b445af953e8f9f4',1,'ItemContainer']]],
+  ['coordinate_12',['Coordinate',['../struct_coordinate.html',1,'']]]
 ];
