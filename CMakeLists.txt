@@ -23,6 +23,8 @@ add_executable(COMP345A1 src/main.cpp
         src/classes/ObserverPattern/Observer.h
         src/classes/ObserverPattern/Subject.cpp
         src/classes/ObserverPattern/Observer.cpp
+        src/classes/ObserverPattern/CharacterObserver.h
+        src/classes/ObserverPattern/CharacterObserver.cpp
 )
 
 

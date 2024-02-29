@@ -2,7 +2,7 @@
 
 #include <string>
 #include <map>
-
+#include "../ObserverPattern/Subject.h"
 using namespace std;
 
 
@@ -30,8 +30,9 @@ using namespace std;
  *    Chosen for its efficient key-value storage and easy retrieval of character-related data.
  */
 
-class Character {
+class Character: public Subject{
 public:
+
     Character(const string& name, int level);
 
     /**
@@ -41,10 +42,22 @@ public:
     */
     virtual ~Character() = default;
 
-    map<string, int> abilityScores; // Basic Attributes
-    map<string, int> modifiers;
-    int hitPoints, armorClass, attackBonus, damageBonus; // Derived Attributes
-    map<string, string> equipment; // Equipment Slots
+    // getter methods
+    map<string, int> getAbilityScores() const { return abilityScores; };
+    map<string, int> getModifiers() const { return modifiers; };
+    map<string, string> getEquipment() const { return equipment; };
+    int getHitpoints() const { return hitPoints; };
+    int getArmorClass() const { return armorClass; };
+    int getAttackBonus() const { return attackBonus; };
+    int getDamageBonus() const { return damageBonus; };
+    int getLevel() const { return level; };
+    string getName() const { return name; };
+
+    // setter methods
+    void setHitpoints(int hp) {  hitPoints = hp; Notify();};
+    void setArmorClass(int ac) {  armorClass = ac; Notify();};
+    void setAttackBonus(int ab) {  attackBonus = ab; Notify();};
+    void setDamageBonus(int db) {  damageBonus = db; Notify();};
 
 
     /**
@@ -82,12 +95,15 @@ public:
     */
     virtual void displayCharacterSheet() const;
 
-    int getLevel() const;
 
 protected:
     string name;
     int level;
 
+    map<string, int> abilityScores; // Basic Attributes
+    map<string, int> modifiers;
+    int hitPoints, armorClass, attackBonus, damageBonus; // Derived Attributes
+    map<string, string> equipment; // Equipment Slots
 
     /**
     * @brief Generates random ability scores for the character.
@@ -141,8 +157,7 @@ protected:
     static int getArmorACValue(const string& armorName);
 
 private:
-    //list of all observers plugged onto the subject
-    List<>
+
 
 };
 

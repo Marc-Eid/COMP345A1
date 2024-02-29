@@ -88,7 +88,8 @@ Inheritance diagram for Character:</div>
  <div class="center">
   <img src="class_character.png" usemap="#Character_map" alt=""/>
   <map id="Character_map" name="Character_map">
-<area href="class_fighter.html" alt="Fighter" shape="rect" coords="0,56,69,80"/>
+<area href="class_subject.html" alt="Subject" shape="rect" coords="0,0,69,24"/>
+<area href="class_fighter.html" alt="Fighter" shape="rect" coords="0,112,69,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -100,6 +101,39 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3333a88ae593c36b229c90371e935d42" id="r_a3333a88ae593c36b229c90371e935d42"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3333a88ae593c36b229c90371e935d42">~Character</a> ()=default</td></tr>
 <tr class="memdesc:a3333a88ae593c36b229c90371e935d42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor for the <a class="el" href="class_character.html">Character</a> class.  <br /></td></tr>
 <tr class="separator:a3333a88ae593c36b229c90371e935d42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c0add6fd0c2c686140c05fc827e067" id="r_ae4c0add6fd0c2c686140c05fc827e067"><td class="memItemLeft" align="right" valign="top"><a id="ae4c0add6fd0c2c686140c05fc827e067" name="ae4c0add6fd0c2c686140c05fc827e067"></a>
+map&lt; string, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAbilityScores</b> () const</td></tr>
+<tr class="separator:ae4c0add6fd0c2c686140c05fc827e067"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af04b63c35ca8541a218c00a97d73682e" id="r_af04b63c35ca8541a218c00a97d73682e"><td class="memItemLeft" align="right" valign="top"><a id="af04b63c35ca8541a218c00a97d73682e" name="af04b63c35ca8541a218c00a97d73682e"></a>
+map&lt; string, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getModifiers</b> () const</td></tr>
+<tr class="separator:af04b63c35ca8541a218c00a97d73682e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1eb09d3616d28076502286cffc49a05" id="r_aa1eb09d3616d28076502286cffc49a05"><td class="memItemLeft" align="right" valign="top"><a id="aa1eb09d3616d28076502286cffc49a05" name="aa1eb09d3616d28076502286cffc49a05"></a>
+map&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getEquipment</b> () const</td></tr>
+<tr class="separator:aa1eb09d3616d28076502286cffc49a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd71abfd91b2d4494389aba65074b99f" id="r_afd71abfd91b2d4494389aba65074b99f"><td class="memItemLeft" align="right" valign="top"><a id="afd71abfd91b2d4494389aba65074b99f" name="afd71abfd91b2d4494389aba65074b99f"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getHitpoints</b> () const</td></tr>
+<tr class="separator:afd71abfd91b2d4494389aba65074b99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6674dec79e4677370162aeb5674084bf" id="r_a6674dec79e4677370162aeb5674084bf"><td class="memItemLeft" align="right" valign="top"><a id="a6674dec79e4677370162aeb5674084bf" name="a6674dec79e4677370162aeb5674084bf"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getArmorClass</b> () const</td></tr>
+<tr class="separator:a6674dec79e4677370162aeb5674084bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d31d79ef0bc5d92cf61076a33a67858" id="r_a5d31d79ef0bc5d92cf61076a33a67858"><td class="memItemLeft" align="right" valign="top"><a id="a5d31d79ef0bc5d92cf61076a33a67858" name="a5d31d79ef0bc5d92cf61076a33a67858"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getAttackBonus</b> () const</td></tr>
+<tr class="separator:a5d31d79ef0bc5d92cf61076a33a67858"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af644db086012065530259e6ba7da2f65" id="r_af644db086012065530259e6ba7da2f65"><td class="memItemLeft" align="right" valign="top"><a id="af644db086012065530259e6ba7da2f65" name="af644db086012065530259e6ba7da2f65"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getDamageBonus</b> () const</td></tr>
+<tr class="separator:af644db086012065530259e6ba7da2f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00f80266f4a017af8f36990740f1c15e" id="r_a00f80266f4a017af8f36990740f1c15e"><td class="memItemLeft" align="right" valign="top"><a id="a00f80266f4a017af8f36990740f1c15e" name="a00f80266f4a017af8f36990740f1c15e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setHitpoints</b> (int hp)</td></tr>
+<tr class="separator:a00f80266f4a017af8f36990740f1c15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b140afcd1870a86eda749a3d4b0c222" id="r_a5b140afcd1870a86eda749a3d4b0c222"><td class="memItemLeft" align="right" valign="top"><a id="a5b140afcd1870a86eda749a3d4b0c222" name="a5b140afcd1870a86eda749a3d4b0c222"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setArmorClass</b> (int ac)</td></tr>
+<tr class="separator:a5b140afcd1870a86eda749a3d4b0c222"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a8200507318aea3bbba193acd0af05c" id="r_a6a8200507318aea3bbba193acd0af05c"><td class="memItemLeft" align="right" valign="top"><a id="a6a8200507318aea3bbba193acd0af05c" name="a6a8200507318aea3bbba193acd0af05c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setAttackBonus</b> (int ab)</td></tr>
+<tr class="separator:a6a8200507318aea3bbba193acd0af05c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25fb3d3568e9d566e42e1383efeb21a0" id="r_a25fb3d3568e9d566e42e1383efeb21a0"><td class="memItemLeft" align="right" valign="top"><a id="a25fb3d3568e9d566e42e1383efeb21a0" name="a25fb3d3568e9d566e42e1383efeb21a0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setDamageBonus</b> (int db)</td></tr>
+<tr class="separator:a25fb3d3568e9d566e42e1383efeb21a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae75891dba0e685a810a87a5c3f2bfc18" id="r_ae75891dba0e685a810a87a5c3f2bfc18"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae75891dba0e685a810a87a5c3f2bfc18">calculateAttributes</a> ()=0</td></tr>
 <tr class="memdesc:ae75891dba0e685a810a87a5c3f2bfc18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual method to calculate derived attributes.  <br /></td></tr>
 <tr class="separator:ae75891dba0e685a810a87a5c3f2bfc18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,6 +146,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a06713215a5850ec92194a1a711fb8cd7" id="r_a06713215a5850ec92194a1a711fb8cd7"><td class="memItemLeft" align="right" valign="top"><a id="a06713215a5850ec92194a1a711fb8cd7" name="a06713215a5850ec92194a1a711fb8cd7"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>getLevel</b> () const</td></tr>
 <tr class="separator:a06713215a5850ec92194a1a711fb8cd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45625b5ce71c8dbdc6f3ac04f7a7624d" id="r_a45625b5ce71c8dbdc6f3ac04f7a7624d"><td class="memItemLeft" align="right" valign="top"><a id="a45625b5ce71c8dbdc6f3ac04f7a7624d" name="a45625b5ce71c8dbdc6f3ac04f7a7624d"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const</td></tr>
+<tr class="separator:a45625b5ce71c8dbdc6f3ac04f7a7624d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_subject"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_subject')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_subject.html">Subject</a></td></tr>
+<tr class="memitem:a4178d3cef008c713370791c6578334de inherit pub_methods_class_subject" id="r_a4178d3cef008c713370791c6578334de"><td class="memItemLeft" align="right" valign="top">
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Attach</b> (<a class="el" href="class_observer.html">Observer</a> *o)</td></tr>
+<tr class="separator:a4178d3cef008c713370791c6578334de inherit pub_methods_class_subject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac839596fe840efb970e36a66554e3095 inherit pub_methods_class_subject" id="r_ac839596fe840efb970e36a66554e3095"><td class="memItemLeft" align="right" valign="top">
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Detach</b> (<a class="el" href="class_observer.html">Observer</a> *o)</td></tr>
+<tr class="separator:ac839596fe840efb970e36a66554e3095 inherit pub_methods_class_subject"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdf01736ff099d286543b450d96215f1 inherit pub_methods_class_subject" id="r_afdf01736ff099d286543b450d96215f1"><td class="memItemLeft" align="right" valign="top">
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Notify</b> ()</td></tr>
+<tr class="separator:afdf01736ff099d286543b450d96215f1 inherit pub_methods_class_subject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>

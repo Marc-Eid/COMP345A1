@@ -3,7 +3,7 @@
 Inheritance diagram for Fighter\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{class_fighter}
+\includegraphics[height=3.000000cm]{class_fighter}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Public Member Functions}
@@ -33,9 +33,42 @@ void \mbox{\hyperlink{class_fighter_aaf5186d05c8829846e7c340451296383}{display\+
 \item 
 virtual \mbox{\hyperlink{class_character_a3333a88ae593c36b229c90371e935d42}{\texorpdfstring{$\sim$}{\string~}\+Character}} ()=default
 \begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{class_character}{Character} class. \end{DoxyCompactList}\item 
+map$<$ string, int $>$ {\bfseries get\+Ability\+Scores} () const
+\item 
+map$<$ string, int $>$ {\bfseries get\+Modifiers} () const
+\item 
+map$<$ string, string $>$ {\bfseries get\+Equipment} () const
+\item 
+int {\bfseries get\+Hitpoints} () const
+\item 
+int {\bfseries get\+Armor\+Class} () const
+\item 
+int {\bfseries get\+Attack\+Bonus} () const
+\item 
+int {\bfseries get\+Damage\+Bonus} () const
+\item 
+void {\bfseries set\+Hitpoints} (int hp)
+\item 
+void {\bfseries set\+Armor\+Class} (int ac)
+\item 
+void {\bfseries set\+Attack\+Bonus} (int ab)
+\item 
+void {\bfseries set\+Damage\+Bonus} (int db)
+\item 
 void \mbox{\hyperlink{class_character_aa6c888ee32bf1611e65ec3a0f472557f}{equip\+Item}} (const std\+::string \&item\+Category, const std\+::string \&item\+Name)
 \begin{DoxyCompactList}\small\item\em Equips an item to the character. \end{DoxyCompactList}\item 
 int {\bfseries get\+Level} () const
+\item 
+string {\bfseries get\+Name} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_subject}{Subject}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries Attach} (\mbox{\hyperlink{class_observer}{Observer}} \texorpdfstring{$\ast$}{*}o)
+\item 
+virtual void {\bfseries Detach} (\mbox{\hyperlink{class_observer}{Observer}} \texorpdfstring{$\ast$}{*}o)
+\item 
+virtual void {\bfseries Notify} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_character}{Character}}}

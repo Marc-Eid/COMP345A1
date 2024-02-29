@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['shield_0',['Shield',['../class_shield.html',1,'']]]
+  ['ring_0',['Ring',['../class_ring.html',1,'']]]
 ];

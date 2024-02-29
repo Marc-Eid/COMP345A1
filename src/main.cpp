@@ -8,6 +8,7 @@
 #include "classes/Shield/Shield.h"
 #include "classes/Boots/Boots.h"
 #include "classes/Ring/Ring.h"
+#include "classes/ObserverPattern/CharacterObserver.h"
 
 void displayCharacter();
 void displayMap();
@@ -15,10 +16,21 @@ void displayItemContainer();
 void displayDice();
 
 int main() {
-    displayCharacter();
-    displayMap();
-    displayItemContainer();
-    displayDice();
+
+    Fighter* fighter = new Fighter("fighter 1", 10);
+    CharacterObserver* characterObserver = new CharacterObserver(fighter);
+
+    cout << "calling the display method of the character to show initial state \n\n";
+    fighter->displayCharacterSheet();
+
+    cout << "\n character sheet updated following a change to hitPoints \n\n";
+    fighter->setHitpoints(20);
+
+
+//    displayCharacter();
+//    displayMap();
+//    displayItemContainer();
+//    displayDice();
     return 0;
 }
 

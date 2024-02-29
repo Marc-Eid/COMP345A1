@@ -45,6 +45,9 @@ int Character::rollDice(int numberOfDice, int diceSides) {
 void Character::equipItem(const string& itemType, const string& itemName) {
     equipment[itemType] = itemName;
     calculateAttributes(); // Recalculate attributes in case the item affects them
+
+    //the Observable object notifies all its registered observers
+    Notify();
 }
 
 void Character::displayCharacterSheet() const {
@@ -80,8 +83,4 @@ int Character::getArmorACValue(const std::string& armorName) {
     } else {
         return 0; // No AC bonus for unrecognized armor
     }
-}
-
-int Character::getLevel() const {
-    return level;
 }
