@@ -7,5 +7,6 @@ var searchData=
   ['calculatehitpoints_4',['calculateHitPoints',['../class_character.html#a1c8040ed1be48d6efc517ae51b5964d1',1,'Character::calculateHitPoints()'],['../class_fighter.html#aaae63f319a0f62001bd27b538a56ab76',1,'Fighter::calculateHitPoints()']]],
   ['calculatemodifier_5',['calculateModifier',['../class_character.html#a8c024f252337e56cc0d1fa5231f1de73',1,'Character']]],
   ['cell_6',['Cell',['../class_cell.html#a394510643e8664cf12b5efaf5cb99f71',1,'Cell::Cell()'],['../class_cell.html#aea8dbcaadc644d6e72f8f34961fca29b',1,'Cell::Cell(State state)']]],
-  ['clear_7',['clear',['../class_item_container.html#a1857d62ad8d772464b445af953e8f9f4',1,'ItemContainer']]]
+  ['characterobserver_7',['CharacterObserver',['../class_character_observer.html#a254ed3594bea4060cebb8f00dcf313b0',1,'CharacterObserver::CharacterObserver()'],['../class_character_observer.html#a31670b18c38b7008d5619cdaaeb05376',1,'CharacterObserver::CharacterObserver(Character *character)']]],
+  ['clear_8',['clear',['../class_item_container.html#a1857d62ad8d772464b445af953e8f9f4',1,'ItemContainer']]]
 ];

@@ -1,9 +1,14 @@
 var searchData=
 [
-  ['_7ecell_0',['~Cell',['../class_cell.html#a246d54ef2e569f97000fe94f5524e7ba',1,'Cell']]],
-  ['_7echaracter_1',['~Character',['../class_character.html#a3333a88ae593c36b229c90371e935d42',1,'Character']]],
-  ['_7efighter_2',['~Fighter',['../class_fighter.html#a97426e5d7ba7fe97f2aaaa9bf185421e',1,'Fighter']]],
-  ['_7eitem_3',['~Item',['../class_item.html#a11663c84075b78c3ae5e30fdfcd7c458',1,'Item']]],
-  ['_7eitemcontainer_4',['~ItemContainer',['../class_item_container.html#af88f67167a5496cd1e830664ef19b268',1,'ItemContainer']]],
-  ['_7emap_5',['~Map',['../class_map.html#aa403fbe09394ccf39747588f5168e3b2',1,'Map']]]
+  ['teardown_0',['tearDown',['../class_test_fighter.html#aa249ae2abf06dae05aeee3b2b25cb17a',1,'TestFighter']]],
+  ['testcalculateattackbonus_1',['testCalculateAttackBonus',['../class_test_fighter.html#af0416368e3bb9436f3feb0a03b1b6c49',1,'TestFighter']]],
+  ['testcalculatehitpoints_2',['testCalculateHitpoints',['../class_test_fighter.html#aeef7afff8a57bb5cb021eba6517b89f1',1,'TestFighter']]],
+  ['testdice_3',['TestDice',['../class_test_dice.html',1,'']]],
+  ['testfighter_4',['TestFighter',['../class_test_fighter.html',1,'']]],
+  ['testfighter_2ecpp_5',['TestFighter.cpp',['../_test_fighter_8cpp.html',1,'']]],
+  ['testfighter_2eh_6',['TestFighter.h',['../_test_fighter_8h.html',1,'']]],
+  ['testitems_7',['TestItems',['../class_test_items.html',1,'']]],
+  ['testmap_8',['TestMap',['../class_test_map.html',1,'']]],
+  ['testrollinvalidinput_9',['testRollInvalidInput',['../class_test_dice.html#a6957d8fb9b09d85823451e217e352d40',1,'TestDice']]],
+  ['testrollvalidinput_10',['testRollValidInput',['../class_test_dice.html#afbde988883963ba835d6a4742b8a426e',1,'TestDice']]]
 ];
