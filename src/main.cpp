@@ -84,6 +84,7 @@ void displayMap(){
     map->TryMove(f1,"down");
 
 
+
 };
 
 void displayItemContainer(){

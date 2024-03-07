@@ -76,14 +76,16 @@ public:
      */
     void startGame(Character* c);
      /**
-      * Try moving
-      *
+      * Takes character pointer, direction and tries it to move on the map
+      * @param c
+      * @param dir
       */
      void TryMove (Character* c,string dir);
 
 private:
     /**
      * A utility function used to determine if the coordinate is the Queue used in Breadth first search
+     *
      * @param q1
      * @param c1
      * @return
@@ -91,22 +93,25 @@ private:
     static bool Contains(queue<Coordinate> q1,Coordinate &c1);
 
     /**
-     * Gets Current Position of the Character
+     * Takes Character Pointer and returns the Current Position Cell
      * @param c
      * @return
      */
     Cell* GetCurrentPositionCell(Character* c);
 
     /**
-     * Gets Current Position Coordinate
-     *
+     * Takes Character Pointer and returns the Coordinate
+     * @param c
+     * @return
      */
      Coordinate getCurrentPositionCoordinate(Character* c);
 
-    /**
-    * Move the Character
-    *
-    */
+     /**
+      * Takes Character pointer and moves it to move Position (X,Y)
+      * @param c
+      * @param x
+      * @param y
+      */
     void move(Character* c,int x ,int y);
 private:
     /**
@@ -133,7 +138,7 @@ private:
     int playerX,playerY;
 
     /**
-     * Stores previous States
+     * Stores state which is been taken by the character
      */
      std::map<Character*,Cell::State> prevStates;
 };

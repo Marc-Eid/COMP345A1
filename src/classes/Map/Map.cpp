@@ -186,44 +186,46 @@ bool Map::Place(int x, int y, char item) {
 
 // Apply BFS to find the Route from Starting to the End
 bool Map::isValid() {
+    // Check if we have start and End point on the Map
     if(startX == -1 || startY == -1 || endX == -1  || endY == -1 ){
         cout << "You must have one Start and End Cell";
         return false;
     }
+    // Create a queue of Not Visited Nodes
     queue<Coordinate> notVisited;
+
+    // Create a queue of Visited Notes
     queue<Coordinate> visited;
 
-    Coordinate end = Coordinate();
-    end.x = endX;
-    end.y = endY;
+    // Create Coordinate of End
+    Coordinate end =  {endX,endY};
 
+    //Create Coordinate to be pushed on the Queue
+    Coordinate c1 = {startX,startY};
 
-    Coordinate c1 = Coordinate();
-    c1.x = startX;
-    c1.y = startY;
-
+    // Push the First Coordinate on the Not Visited Queue
     notVisited.push(c1);
 
+    // Loop through until the queue is Empty
     while(!notVisited.empty()){
         // Pop the first Coordinate
         Coordinate &c2 = notVisited.front();
-
         notVisited.pop();
 
+        // Push the Coordinate to the Visited Queue
         visited.push(c2);
 
-        // Check if it is the Goal
+        // Check if the Popped Coordinate is the Result
         if(c2.equalCoordinates(end)){
             cout << "Valid Map" << endl;
             return true;
         }
-        // If not then
+        // If not then Explore all the Nodes
         else {
             // Walk towards Right
             if(c2.x + 1 < width && !map[c2.x + 1][c2.y].isWall() ){
-                Coordinate c = Coordinate();
-                c.x = c2.x + 1;
-                c.y = c2.y;
+                Coordinate c = {c2.x + 1,c2.y};
+                // Check if it is not in both the Queues
                 if(!Contains(notVisited,c) && !Contains(visited,c)){
                     notVisited.push(c);
                 }
@@ -231,9 +233,8 @@ bool Map::isValid() {
 
             // Walk towards Left
             if(c2.x - 1 >= 0 && !map[c2.x -1][c2.y].isWall()){
-                Coordinate c = Coordinate();
-                c.x = c2.x-1;
-                c.y = c2.y;
+                Coordinate c = {c2.x-1,c2.y};
+                // Check if it is not in both the Queues
                 if(!Contains(notVisited,c) && !Contains(visited,c)){
                     notVisited.push(c);
                 }
@@ -242,18 +243,16 @@ bool Map::isValid() {
 
             // Walk Down
             if(c2.y + 1 < height && !map[c2.x][c2.y + 1].isWall()){
-                Coordinate c = Coordinate();
-                c.x = c2.x;
-                c.y = c2.y + 1;
+                Coordinate c = {c2.x,c2.y + 1};
+                // Check if it is not in both the Queues
                 if(!Contains(notVisited,c) && !Contains(visited,c)){
                     notVisited.push(c);
                 }
             }
             // Walk up
             if(c2.y - 1 >= height && !map[c2.x][c2.y - 1].isWall()){
-                Coordinate c = Coordinate();
-                c.x = c2.x;
-                c.y = c2.y - 1;
+                Coordinate c = {c2.x,c2.y - 1};
+                // Check if it is not in both the Queues
                 if(!Contains(notVisited,c) && !Contains(visited,c)){
                     notVisited.push(c);
                 }
@@ -261,6 +260,7 @@ bool Map::isValid() {
 
         }
     }
+    // If the While Loop finishes without Returning then throw an error and return false
     cout << "Invalid Map ! No Route from starting to ending point" << endl;
     return false;
 
@@ -269,12 +269,11 @@ bool Map::isValid() {
  * Prints the Map
  */
 void Map::printMap() {
-    cout << endl << "---------------MAP------------------" << endl;
+    // Starting messege to print the map
+    cout << "---------------CURRENT MAP ------------------" ;
     for (int j = height - 1 ; j >= 0  ;j--){
-
         string output;
         for (int i = 0;i < width ; i++){
-
             if(map[i][j].getState() == Cell::State::CHARACTER){
                 // It will use first Character to represent on the Map
                 output += map[i][j].getCharacter()->getName()[0];
@@ -307,6 +306,7 @@ void Map::printMap() {
 }
 
 Map::~Map() {
+    // Loop through the 2d array to delete each array
     for (int i = 0; i < height; ++i)
     {
         delete[] map[i];
@@ -314,12 +314,17 @@ Map::~Map() {
     delete map;
 }
 
+// Checks if the Coordinate is in the given Queue
 bool Map::Contains(queue<Coordinate> q1, Coordinate &c1) {
+    // Run until Queue is not Empty
     while(!q1.empty()){
+        // Check and If found then return
         if(q1.front().equalCoordinates(c1))
             return true;
+        // Pop the Coordinate
         q1.pop();
     }
+    // Return False if no match is found
     return false;
 }
 
@@ -330,12 +335,20 @@ void Map::startGame( Character *c) {
         prevStates[c] = map[startX][startY].getState();
         // Change the State
         map[startX][startY].setState(Cell::CHARACTER, (CellContent *) c);
-
+        // Print Success message on the terminal
+        cout << "Successfully Started the Game !" << endl;
+        return;
     }
+    cout << "Error Occurred While Starting the Game "<< endl;
+
 }
 
 void Map::move(Character *c, int x, int y) {
+    // Check if state is stored for the character
     auto it = prevStates.find(c);
+
+
+    // If it is stored
     if(it != prevStates.end()){
         // Find the Current pos
         Cell* oldTile = GetCurrentPositionCell(c);
@@ -349,34 +362,35 @@ void Map::move(Character *c, int x, int y) {
         prevStates[c] = newTile->getState();
         // Set the new Tile State
         newTile->setState(Cell::CHARACTER,c);
-        cout << "Successfully Changed the Position of the character" ;
+        cout << "Successfully Changed the Position of the character" << endl ;
+        return;
 
     }
-    else{
-        cout << "Character Not found Please Start the Game !";
-
-    }
-
-
+    cout << "Character Not found Please Start the Game !" << endl;
 }
 
 void Map::TryMove(Character *c, string dir) {
 
     //This is the current tile the player is on
     Cell* oldTile = GetCurrentPositionCell(c);
+    // If its NullPtr then we have to Start the Game for the character
     if(oldTile == nullptr){
-        cout << "Please Start the Game to Play it";
+        cout << "Please Start the Game to Play it" << endl;
         return;
     }
     //This will be the target tile to move to
     Cell* newTile = NULL;
+
     // Get Current Coordinates
     Coordinate coordinate = getCurrentPositionCoordinate(c);
+
+    cout << "Trying to Move "<< dir << " Direction" << endl;
 
     // Check the Direction in which Character wants to Move
     if(dir == "up"){
         if (coordinate.y + 1 < height){
             // TODO Add Different Cases According to the game
+            // Checks if User can Move to the new Tile
             if(map[coordinate.x][coordinate.y  + 1].canMove()){
                 move(c,coordinate.x,coordinate.y+1);
             }
@@ -387,6 +401,7 @@ void Map::TryMove(Character *c, string dir) {
     if(dir == "down"){
         if (coordinate.y - 1 < height){
             // TODO Add Different Cases According to the game
+            // Checks if User can Move to the new Tile
             if(map[coordinate.x][coordinate.y  - 1].canMove()){
                 move(c,coordinate.x,coordinate.y-1);
             }
@@ -397,7 +412,9 @@ void Map::TryMove(Character *c, string dir) {
     if(dir == "right"){
         if (coordinate.x + 1 < width){
             // TODO add More Cases According to the game
+            // Checks if User can Move to the new Tile
             if(map[coordinate.x + 1][coordinate.y ].canMove()){
+
                 move(c,coordinate.x + 1,coordinate.y);
             }
         }
@@ -405,19 +422,25 @@ void Map::TryMove(Character *c, string dir) {
     // When User tries to go Left
     if(dir == "left"){
         if (coordinate.x - 1 >= 0 ){
-            // TODO add More Cases According to the game
+            // TODO add More Cases According to the
+            // Checks if User can Move to the new Tile
             if(map[coordinate.x - 1][coordinate.y ].canMove()){
                 move(c,coordinate.x - 1,coordinate.y);
             }
         }
 
     }
+
+    // Finally Notify the Observers
     Notify();
 }
 
 Cell* Map::GetCurrentPositionCell(Character *c) {
+    // Loops through the Map to find the Call which contain that character
+    // TODO : Add the Coordinate of Character class to Optimize the Code
     for (int i = 0;i<width;i++){
         for (int j = 0;j<height;j++){
+            // If found return the Cell
             if(map[i][j].getState() == Cell::State::CHARACTER && map[i][j].getCharacter() == c){
                 return &map[i][j];
             }
@@ -428,16 +451,17 @@ Cell* Map::GetCurrentPositionCell(Character *c) {
 
 Coordinate Map::getCurrentPositionCoordinate(Character *c) {
     Coordinate c1 = {-1,-1};
+    // Loops through Map to find the coordinate of the Character
+    // TODO : Add the Coordinate of Character class to Optimize the Code
     for (int i = 0;i<width;i++){
         for (int j = 0;j<height;j++){
             if(map[i][j].getState() == Cell::State::CHARACTER && map[i][j].getCharacter() == c ){
+                // If found then changes the coordinate of the Coordinate Struct
                 c1 = {i,j};
                 return c1;
             }
         }
     }
-    // If not found return Coordinate Struct with -1,-1
-
     return c1;
 }
 
