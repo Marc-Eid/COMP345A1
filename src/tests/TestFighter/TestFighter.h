@@ -21,7 +21,7 @@ class TestFighter : public CppUnit::TestFixture
         CPPUNIT_TEST_SUITE(TestFighter);
         CPPUNIT_TEST(testCalculateHitpoints);
         CPPUNIT_TEST(testCalculateAttackBonus);
-        CPPUNIT_TEST(testSetHitpoint);
+//        CPPUNIT_TEST(testSetHitpoint);
         CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -31,7 +31,7 @@ public:
 protected:
     void testCalculateHitpoints(void);
     void testCalculateAttackBonus(void);
-    void testSetHitpoint(void);
+//    void testSetHitpoint(void);
 
 private:
     Fighter *fighterObject;

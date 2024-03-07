@@ -329,7 +329,7 @@ bool Map::Contains(queue<Coordinate> q1, Coordinate &c1) {
 }
 
 // Place the Character on the Map
-void Map::startGame( Character *c) {
+bool Map::startGame( Character *c) {
     if(startX != -1 && startY != -1){
         // Store the State
         prevStates[c] = map[startX][startY].getState();
@@ -337,13 +337,14 @@ void Map::startGame( Character *c) {
         map[startX][startY].setState(Cell::CHARACTER, (CellContent *) c);
         // Print Success message on the terminal
         cout << "Successfully Started the Game !" << endl;
-        return;
+        return true;
     }
     cout << "Error Occurred While Starting the Game "<< endl;
+    return false;
 
 }
 
-void Map::move(Character *c, int x, int y) {
+bool Map::move(Character *c, int x, int y) {
     // Check if state is stored for the character
     auto it = prevStates.find(c);
 
@@ -363,26 +364,35 @@ void Map::move(Character *c, int x, int y) {
         // Set the new Tile State
         newTile->setState(Cell::CHARACTER,c);
         cout << "Successfully Changed the Position of the character" << endl ;
-        return;
+        return true;
 
     }
     cout << "Character Not found Please Start the Game !" << endl;
+    return false;
 }
 
-void Map::TryMove(Character *c, string dir) {
+bool Map::TryMove(Character *c, string dir) {
+
+    // Boolean value whether the Character was able to move or not
+    bool moved = false;
+
 
     //This is the current tile the player is on
     Cell* oldTile = GetCurrentPositionCell(c);
+
     // If its NullPtr then we have to Start the Game for the character
     if(oldTile == nullptr){
         cout << "Please Start the Game to Play it" << endl;
-        return;
+        return moved;
     }
+
     //This will be the target tile to move to
     Cell* newTile = NULL;
 
     // Get Current Coordinates
     Coordinate coordinate = getCurrentPositionCoordinate(c);
+
+
 
     cout << "Trying to Move "<< dir << " Direction" << endl;
 
@@ -392,7 +402,7 @@ void Map::TryMove(Character *c, string dir) {
             // TODO Add Different Cases According to the game
             // Checks if User can Move to the new Tile
             if(map[coordinate.x][coordinate.y  + 1].canMove()){
-                move(c,coordinate.x,coordinate.y+1);
+                moved = move(c,coordinate.x,coordinate.y+1);
             }
 
         }
@@ -403,7 +413,7 @@ void Map::TryMove(Character *c, string dir) {
             // TODO Add Different Cases According to the game
             // Checks if User can Move to the new Tile
             if(map[coordinate.x][coordinate.y  - 1].canMove()){
-                move(c,coordinate.x,coordinate.y-1);
+                moved = move(c,coordinate.x,coordinate.y-1);
             }
 
         }
@@ -415,7 +425,7 @@ void Map::TryMove(Character *c, string dir) {
             // Checks if User can Move to the new Tile
             if(map[coordinate.x + 1][coordinate.y ].canMove()){
 
-                move(c,coordinate.x + 1,coordinate.y);
+                moved =  move(c,coordinate.x + 1,coordinate.y);
             }
         }
     }
@@ -425,7 +435,7 @@ void Map::TryMove(Character *c, string dir) {
             // TODO add More Cases According to the
             // Checks if User can Move to the new Tile
             if(map[coordinate.x - 1][coordinate.y ].canMove()){
-                move(c,coordinate.x - 1,coordinate.y);
+                moved = move(c,coordinate.x - 1,coordinate.y);
             }
         }
 
@@ -433,6 +443,9 @@ void Map::TryMove(Character *c, string dir) {
 
     // Finally Notify the Observers
     Notify();
+
+    // Return the Value
+    return moved;
 }
 
 Cell* Map::GetCurrentPositionCell(Character *c) {

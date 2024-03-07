@@ -74,13 +74,13 @@ public:
     /**
      * Start the Game
      */
-    void startGame(Character* c);
+    bool startGame(Character* c);
      /**
       * Takes character pointer, direction and tries it to move on the map
       * @param c
       * @param dir
       */
-     void TryMove (Character* c,string dir);
+     bool TryMove (Character* c,string dir);
 
 private:
     /**
@@ -112,7 +112,7 @@ private:
       * @param x
       * @param y
       */
-    void move(Character* c,int x ,int y);
+    bool move(Character* c,int x ,int y);
 private:
     /**
      * Stores 2 dimensional Array
