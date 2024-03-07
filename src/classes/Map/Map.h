@@ -2,8 +2,10 @@
 // Created by hp on 12/02/2024.
 //
 #include "../Cell/Cell.h"
+#include "../ObserverPattern/Subject.h"
 #include <iostream>
 #include <queue>
+#include <map>
 
 
 #ifndef COMP345A1_MAP_H
@@ -32,7 +34,7 @@ struct Coordinate {
  *
  * Libraries: <queue>
  */
-class Map {
+class Map : public Subject{
 public:
     /**
      * @brief Accepts width and height of the map and initializes a two dimensional array with Wall arround
@@ -55,18 +57,29 @@ public:
      */
     bool Place(int x, int y,char item);
 
+    
+
     /**
      * Determines whether there is path from starting point to the Ending point using Breadth first Search
      * @return
      */
-
     bool isValid ();
+
 
     /**
      * Prints the Map on the Terminal
      */
     void printMap();
 
+    /**
+     * Start the Game
+     */
+    void startGame(Character* c);
+     /**
+      * Try moving
+      *
+      */
+     void TryMove (Character* c,string dir);
 
 private:
     /**
@@ -76,6 +89,25 @@ private:
      * @return
      */
     static bool Contains(queue<Coordinate> q1,Coordinate &c1);
+
+    /**
+     * Gets Current Position of the Character
+     * @param c
+     * @return
+     */
+    Cell* GetCurrentPositionCell(Character* c);
+
+    /**
+     * Gets Current Position Coordinate
+     *
+     */
+     Coordinate getCurrentPositionCoordinate(Character* c);
+
+    /**
+    * Move the Character
+    *
+    */
+    void move(Character* c,int x ,int y);
 private:
     /**
      * Stores 2 dimensional Array
@@ -100,7 +132,10 @@ private:
      */
     int playerX,playerY;
 
-
+    /**
+     * Stores previous States
+     */
+     std::map<Character*,Cell::State> prevStates;
 };
 
 

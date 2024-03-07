@@ -9,6 +9,7 @@
 #include "classes/Boots/Boots.h"
 #include "classes/Ring/Ring.h"
 #include "classes/ObserverPattern/CharacterObserver.h"
+#include "classes/ObserverPattern/MapObserver.h"
 
 void displayCharacter();
 void displayMap();
@@ -16,19 +17,19 @@ void displayItemContainer();
 void displayDice();
 
 int main() {
-
-    Fighter* fighter = new Fighter("fighter 1", 10);
-    CharacterObserver* characterObserver = new CharacterObserver(fighter);
-
-    cout << "calling the display method of the character to show initial state \n\n";
-    fighter->displayCharacterSheet();
-
-    cout << "\n character sheet updated following a change to hitPoints \n\n";
-    fighter->setHitpoints(20);
+//
+//    Fighter* fighter = new Fighter("fighter 1", 10);
+//    CharacterObserver* characterObserver = new CharacterObserver(fighter);
+//
+//    cout << "calling the display method of the character to show initial state \n\n";
+//    fighter->displayCharacterSheet();
+//
+//    cout << "\n character sheet updated following a change to hitPoints \n\n";
+//    fighter->setHitpoints(20);
 
 
 //    displayCharacter();
-//    displayMap();
+    displayMap();
 //    displayItemContainer();
 //    displayDice();
     return 0;
@@ -50,18 +51,39 @@ void displayCharacter(){
 
 void displayMap(){
     displayCharacter();
+    // Create Characters
+    Fighter *f1 = new Fighter("mubashir",4);
+    Fighter *f2 = new Fighter("Marc",4);
+    f1->getAbilityScores();
+
+
     // Create a Map
-    Map map = Map(5,5);
-    //map.Place(2,3,'#');
+    Map* map = new Map(5,5);
 
-    map.Place(1,2,'#');
-    map.Place(2,2,'#');
-    map.Place(0,3,'S');
-    map.Place(1,3,'E');
-    map.isValid();
+    //Create an Observer
 
-    // Print the Map
-    map.printMap();
+    MapObserver mapObserver = MapObserver(map);
+
+    // Design the Map
+    map->Place(1,2,'#');
+    map->Place(2,2,'#');
+    map->Place(0,3,'S');
+    map->Place(1,3,'E');
+
+    // Check if the Map is valid or not
+    map->isValid();
+
+    // Start Game for the fighter
+    map->startGame(f1);
+
+    // Try moving the character on the map
+    map->TryMove(f1,"right");
+    map->TryMove(f1,"right");
+    map->TryMove(f1,"right");
+    map->TryMove(f1,"right");
+    map->TryMove(f1,"down");
+
+
 };
 
 void displayItemContainer(){
