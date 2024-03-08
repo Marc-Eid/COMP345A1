@@ -82,6 +82,20 @@ public:
       */
      bool TryMove (Character* c,string dir);
 
+    /**
+        * @brief Returns the width of the Map
+        * @return width of map
+        */
+    int getWidth() const;
+
+    /**
+     * @brief Returns the height of the Map
+     * @return height of map
+     */
+    int getHeight() const;
+
+     
+
 private:
     /**
      * A utility function used to determine if the coordinate is the Queue used in Breadth first search

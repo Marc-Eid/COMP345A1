@@ -478,6 +478,10 @@ Coordinate Map::getCurrentPositionCoordinate(Character *c) {
     return c1;
 }
 
+int Map::getWidth() const {
+    return width;
+}
 
-
-
+int Map::getHeight() const {
+    return height;
+}
