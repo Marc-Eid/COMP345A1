@@ -270,7 +270,7 @@ bool Map::isValid() {
  */
 void Map::printMap() {
     // Starting messege to print the map
-    cout << "---------------CURRENT MAP ------------------" ;
+    cout << "---------------CURRENT MAP ------------------" << endl ;
     for (int j = height - 1 ; j >= 0  ;j--){
         string output;
         for (int i = 0;i < width ; i++){
@@ -299,7 +299,7 @@ void Map::printMap() {
                 }
             }
         }
-        cout << endl << output << endl;
+        cout << output << endl;
     }
     cout << "---------------------------------" << endl;
 
