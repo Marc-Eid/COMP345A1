@@ -2,8 +2,10 @@
 // Created by hp on 12/02/2024.
 //
 #include "../Cell/Cell.h"
+#include "../ObserverPattern/Subject.h"
 #include <iostream>
 #include <queue>
+#include <map>
 
 
 #ifndef COMP345A1_MAP_H
@@ -32,7 +34,7 @@ struct Coordinate {
  *
  * Libraries: <queue>
  */
-class Map {
+class Map : public Subject{
 public:
     /**
      * @brief Accepts width and height of the map and initializes a two dimensional array with Wall arround
@@ -55,27 +57,62 @@ public:
      */
     bool Place(int x, int y,char item);
 
+    
+
     /**
      * Determines whether there is path from starting point to the Ending point using Breadth first Search
      * @return
      */
-
     bool isValid ();
+
 
     /**
      * Prints the Map on the Terminal
      */
     void printMap();
 
+    /**
+     * Start the Game
+     */
+    bool startGame(Character* c);
+     /**
+      * Takes character pointer, direction and tries it to move on the map
+      * @param c
+      * @param dir
+      */
+     bool TryMove (Character* c,string dir);
 
 private:
     /**
      * A utility function used to determine if the coordinate is the Queue used in Breadth first search
+     *
      * @param q1
      * @param c1
      * @return
      */
     static bool Contains(queue<Coordinate> q1,Coordinate &c1);
+
+    /**
+     * Takes Character Pointer and returns the Current Position Cell
+     * @param c
+     * @return
+     */
+    Cell* GetCurrentPositionCell(Character* c);
+
+    /**
+     * Takes Character Pointer and returns the Coordinate
+     * @param c
+     * @return
+     */
+     Coordinate getCurrentPositionCoordinate(Character* c);
+
+     /**
+      * Takes Character pointer and moves it to move Position (X,Y)
+      * @param c
+      * @param x
+      * @param y
+      */
+    bool move(Character* c,int x ,int y);
 private:
     /**
      * Stores 2 dimensional Array
@@ -100,7 +137,10 @@ private:
      */
     int playerX,playerY;
 
-
+    /**
+     * Stores state which is been taken by the character
+     */
+     std::map<Character*,Cell::State> prevStates;
 };
 
 

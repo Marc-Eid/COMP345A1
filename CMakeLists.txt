@@ -25,6 +25,11 @@ add_executable(COMP345A1 src/main.cpp
         src/classes/ObserverPattern/Observer.cpp
         src/classes/ObserverPattern/CharacterObserver.h
         src/classes/ObserverPattern/CharacterObserver.cpp
+        src/classes/CellContent/CellContent.cpp
+        src/classes/CellContent/CellContent.h
+        src/classes/ObserverPattern/MapObserver.cpp
+        src/classes/ObserverPattern/MapObserver.h
+        src/classes/ObserverPattern/MapObserver.h
 )
 
 
@@ -38,13 +43,17 @@ add_executable(UnitTests src/TestRunner.cpp
         src/classes/Item/Item.cpp
         src/classes/Helmet/Helmet.cpp
         src/classes/ItemContainer/ItemContainer.cpp
+        src/classes/CellContent/CellContent.cpp
         src/classes/Armor/Armor.cpp
+        src/classes/ObserverPattern/Subject.cpp
+        src/classes/ObserverPattern/Observer.cpp
         src/classes/Shield/Shield.cpp
         src/classes/Ring/Ring.cpp
         src/classes/Belt/Belt.cpp
         src/classes/Boots/Boots.cpp
         src/classes/Cell/Cell.cpp
         src/classes/Map/Map.cpp
+        src/classes/Fighter/Fighter.cpp
         src/classes/Weapon/Weapon.cpp
         src/tests/TestDice/TestDice.cpp
         src/tests/TestItems/TestItems.cpp
