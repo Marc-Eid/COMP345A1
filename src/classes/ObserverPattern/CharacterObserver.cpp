@@ -1,4 +1,3 @@
-#pragma once
 
 #include "CharacterObserver.h"
 #include "../Character/Character.h"

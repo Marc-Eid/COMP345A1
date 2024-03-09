@@ -10,6 +10,7 @@
 #include "classes/Ring/Ring.h"
 #include "classes/ObserverPattern/CharacterObserver.h"
 #include "classes/ObserverPattern/MapObserver.h"
+#include "classes/MapEditor/MapEditor.h"
 
 void displayCharacter();
 void displayMap();
@@ -26,10 +27,11 @@ int main() {
 //
 //    cout << "\n character sheet updated following a change to hitPoints \n\n";
 //    fighter->setHitpoints(20);
-
+    MapEditor editor;
+    editor.runMapEditor();
 
 //    displayCharacter();
-    displayMap();
+//    displayMap();
 //    displayItemContainer();
 //    displayDice();
     return 0;
@@ -82,9 +84,6 @@ void displayMap(){
     map->TryMove(f1,"right");
     map->TryMove(f1,"right");
     map->TryMove(f1,"down");
-
-
-
 };
 
 void displayItemContainer(){
