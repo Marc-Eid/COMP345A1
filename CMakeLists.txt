@@ -58,6 +58,8 @@ add_executable(UnitTests src/TestRunner.cpp
         src/tests/TestDice/TestDice.cpp
         src/tests/TestItems/TestItems.cpp
         src/tests/TestMap/TestMap.cpp
+        src/classes/MapBuilders/MapBuilder.h src/classes/MapBuilders/MapEditorBuilder.cpp src/classes/MapBuilders/MapEditorBuilder.h src/classes/MapBuilders/GameLevelMapBuilder.cpp src/classes/MapBuilders/GameLevelMapBuilder.h
+
 )
 
 
