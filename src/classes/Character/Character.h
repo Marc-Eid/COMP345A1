@@ -62,6 +62,14 @@ public:
 
 
     /**
+    * @brief method to set the Character's level.
+    *
+    * Implementations should call CalculateAttributes, to update Hitpoints, and Bonuses
+    */
+    void adjustLevel(int level);
+
+
+    /**
     * @brief Pure virtual method to calculate derived attributes.
     *
     * Implementations should calculate attributes specific to the character type, such as attack bonuses and hit points, based on the character's level and ability scores.
