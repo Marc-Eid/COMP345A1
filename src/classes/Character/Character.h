@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include "../ObserverPattern/Subject.h"
+#include "../CellContent/CellContent.h"
 using namespace std;
 
 
@@ -30,7 +31,7 @@ using namespace std;
  *    Chosen for its efficient key-value storage and easy retrieval of character-related data.
  */
 
-class Character: public Subject{
+class Character: public Subject, public CellContent{
 public:
 
     Character(const string& name, int level);

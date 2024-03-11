@@ -9,26 +9,32 @@
 #include "classes/Boots/Boots.h"
 #include "classes/Ring/Ring.h"
 #include "classes/ObserverPattern/CharacterObserver.h"
+#include "classes/ObserverPattern/MapObserver.h"
+#include "classes/MapBuilders/MapEditorBuilder.h"
+#include "classes/MapBuilders/GameLevelMapBuilder.h"
 
 void displayCharacter();
 void displayMap();
 void displayItemContainer();
 void displayDice();
-
+void displayMapBuilder();
+void displayGameLevelMapBuilder();
 int main() {
-
-    Fighter* fighter = new Fighter("fighter 1", 10);
-    CharacterObserver* characterObserver = new CharacterObserver(fighter);
-
-    cout << "calling the display method of the character to show initial state \n\n";
-    fighter->displayCharacterSheet();
-
-    cout << "\n character sheet updated following a change to hitPoints \n\n";
-    fighter->setHitpoints(20);
+//
+//    Fighter* fighter = new Fighter("fighter 1", 10);
+//    CharacterObserver* characterObserver = new CharacterObserver(fighter);
+//
+//    cout << "calling the display method of the character to show initial state \n\n";
+//    fighter->displayCharacterSheet();
+//
+//    cout << "\n character sheet updated following a change to hitPoints \n\n";
+//    fighter->setHitpoints(20);
 
 
 //    displayCharacter();
-//    displayMap();
+    displayMap();
+    displayMapBuilder();
+    displayGameLevelMapBuilder();
 //    displayItemContainer();
 //    displayDice();
     return 0;
@@ -50,18 +56,40 @@ void displayCharacter(){
 
 void displayMap(){
     displayCharacter();
+    // Create Characters
+    Fighter *f1 = new Fighter("mubashir",4);
+    Fighter *f2 = new Fighter("Marc",4);
+    f1->getAbilityScores();
+
+
     // Create a Map
-    Map map = Map(5,5);
-    //map.Place(2,3,'#');
+    Map* map = new Map(5,5);
 
-    map.Place(1,2,'#');
-    map.Place(2,2,'#');
-    map.Place(0,3,'S');
-    map.Place(1,3,'E');
-    map.isValid();
+    //Create an Observer
 
-    // Print the Map
-    map.printMap();
+    MapObserver mapObserver = MapObserver(map);
+
+    // Design the Map
+    map->Place(1,2,'#');
+    map->Place(2,2,'#');
+    map->Place(0,3,'S');
+    map->Place(1,3,'E');
+
+    // Check if the Map is valid or not
+    map->isValid();
+
+    // Start Game for the fighter
+    map->startGame(f1);
+
+    // Try moving the character on the map
+    map->TryMove(f1,"right");
+    map->TryMove(f1,"right");
+    map->TryMove(f1,"right");
+    map->TryMove(f1,"right");
+    map->TryMove(f1,"down");
+
+
+
 };
 
 void displayItemContainer(){
@@ -109,4 +137,85 @@ void displayDice() {
     } catch (const invalid_argument& e) {
         cerr << "Error: " << e.what() << endl;
     }
-};
+
+}
+
+
+void displayFileContent(const std::string& filePath) {
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file for comparison: " << filePath << std::endl;
+        return;
+    }
+
+    std::cout << "Original map content from file:\n";
+    std::string line;
+    while (getline(file, line)) {
+        std::cout << line << std::endl;
+    }
+    std::cout << "---------------------------------" << std::endl;
+    file.close();
+}
+
+void displayMapBuilder() {
+    std::cout << "---------------------------------" << std::endl;
+    std::cout << "Display Map Builder: Part 4.1" << std::endl;
+    std::cout << "---------------------------------" << std::endl;
+    MapEditorBuilder builder;
+    std::string filePath = "../src/map_example.txt";
+    std::cout << "Building the Map from: " <<filePath << std::endl;
+
+    builder.loadMap(filePath);
+    Map* loadedMap = builder.getMap();
+
+    if (loadedMap != nullptr) {
+        std::cout << "Map loaded successfully.\n";
+        loadedMap->printMap(); // This will print the map to the console
+    } else {
+        std::cerr << "Failed to load map.\n";
+    }
+    displayFileContent(filePath);
+
+}
+
+void displayGameLevelMapBuilder() {
+    std::cout << "---------------------------------" << std::endl;
+    std::cout << "Display Map Builder with Level Adjustments: Part 4.2" << std::endl;
+    std::cout << "---------------------------------" << std::endl;
+    GameLevelMapBuilder builder;
+    std::string filePath = "../src/map_example.txt";
+
+    builder.loadMap(filePath);
+    Map* loadedMap = builder.getMap();
+
+    std::cout << "---------------------------------" << std::endl;
+    std::cout << "Displaying the Fighter sheet before entering the game:" << std::endl;
+    std::cout << "---------------------------------" << std::endl;
+
+    Fighter *f1 = new Fighter("teemo",4);
+    loadedMap->startGame(f1);
+    f1->displayCharacterSheet();
+
+    std::cout << "---------------------------------" << std::endl;
+    std::cout << "Building the Map from: " <<filePath << std::endl;
+    std::cout << "---------------------------------" << std::endl;
+
+    if (loadedMap != nullptr) {
+        std::cout << "Map loaded successfully.\n";
+        loadedMap->printMap(); // This will print the map to the console
+    } else {
+        std::cerr << "Failed to load map.\n";
+    }
+    displayFileContent(filePath);
+
+    std::cout << "---------------------------------" << std::endl;
+    std::cout << "Displaying the Fighter sheet after entering the game with level 15:" << std::endl;
+    std::cout << "---------------------------------" << std::endl;
+
+    builder.adaptToLevel(15);
+    f1->displayCharacterSheet();
+
+
+
+
+}
