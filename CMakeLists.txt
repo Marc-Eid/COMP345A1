@@ -55,6 +55,7 @@ add_executable(UnitTests src/TestRunner.cpp
         src/classes/Map/Map.cpp
         src/classes/Fighter/Fighter.cpp
         src/classes/Weapon/Weapon.cpp
+        src/classes/ObserverPattern/Subject.cpp
         src/tests/TestDice/TestDice.cpp
         src/tests/TestItems/TestItems.cpp
         src/tests/TestMap/TestMap.cpp

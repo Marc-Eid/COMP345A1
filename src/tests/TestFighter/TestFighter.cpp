@@ -31,3 +31,22 @@ void TestFighter::testCalculateAttackBonus() {
 
     CPPUNIT_ASSERT(fighterObject->getLevel() + fighterObject->getModifiers()["Strength"] == fighterObject->getAttackBonus());
 }
+
+void TestFighter::testAdjustLevel(void) {
+    int initialLevel = fighterObject->getLevel();
+
+    fighterObject->adjustLevel(20);
+
+    int currentLevel = fighterObject->getLevel();
+
+    CPPUNIT_ASSERT(currentLevel != initialLevel);
+}
+
+void TestFighter::testAdjustLevelAttackBonusChange(void) {
+    int initialAttackBonus = fighterObject->getAttackBonus();
+
+    fighterObject->adjustLevel(20);
+
+    int currentAttackBonus = fighterObject->getAttackBonus();
+    CPPUNIT_ASSERT(currentAttackBonus != initialAttackBonus);
+}
