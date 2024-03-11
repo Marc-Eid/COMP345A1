@@ -270,7 +270,7 @@ bool Map::isValid() {
  */
 void Map::printMap() {
     // Starting messege to print the map
-    cout << "---------------CURRENT MAP ------------------" ;
+    cout << "---------------CURRENT MAP ------------------" << endl ;
     for (int j = height - 1 ; j >= 0  ;j--){
         string output;
         for (int i = 0;i < width ; i++){
@@ -299,7 +299,7 @@ void Map::printMap() {
                 }
             }
         }
-        cout << endl << output << endl;
+        cout << output << endl;
     }
     cout << "---------------------------------" << endl;
 
@@ -478,6 +478,14 @@ Coordinate Map::getCurrentPositionCoordinate(Character *c) {
     return c1;
 }
 
+int Map::getWidth() const {
+    return width;
+}
 
+int Map::getHeight() const {
+    return height;
+}
 
-
+Cell *Map::getCell(int x, int y) {
+    return &map[x][y];
+}
