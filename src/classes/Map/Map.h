@@ -94,7 +94,14 @@ public:
      */
     int getHeight() const;
 
-     
+    /**
+    * @brief Returns Object of a cell given the cooridnate
+    * @param x
+    * @param y
+    * @return Cell - content of the cell
+    */
+    Cell* getCell(int x, int y);
+
 
 private:
     /**

@@ -10,12 +10,13 @@
 #include "classes/Ring/Ring.h"
 #include "classes/ObserverPattern/CharacterObserver.h"
 #include "classes/ObserverPattern/MapObserver.h"
+#include "classes/MapBuilders/MapEditorBuilder.h"
 
 void displayCharacter();
 void displayMap();
 void displayItemContainer();
 void displayDice();
-
+void displayMapBuilder();
 int main() {
 //
 //    Fighter* fighter = new Fighter("fighter 1", 10);
@@ -30,6 +31,7 @@ int main() {
 
 //    displayCharacter();
     displayMap();
+    displayMapBuilder();
 //    displayItemContainer();
 //    displayDice();
     return 0;
@@ -132,4 +134,43 @@ void displayDice() {
     } catch (const invalid_argument& e) {
         cerr << "Error: " << e.what() << endl;
     }
-};
+
+}
+
+
+void displayFileContent(const std::string& filePath) {
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file for comparison: " << filePath << std::endl;
+        return;
+    }
+
+    std::cout << "Original map content from file:\n";
+    std::string line;
+    while (getline(file, line)) {
+        std::cout << line << std::endl;
+    }
+    std::cout << "---------------------------------" << std::endl;
+    file.close();
+}
+
+void displayMapBuilder() {
+    std::cout << "---------------------------------" << std::endl;
+    std::cout << "Display Map Builder" << std::endl;
+    std::cout << "---------------------------------" << std::endl;
+    MapEditorBuilder builder;
+    std::string filePath = "../src/map_example.txt";
+    std::cout << "Building the Map from: " <<filePath << std::endl;
+
+    builder.loadMap(filePath);
+    Map* loadedMap = builder.getMap();
+
+    if (loadedMap != nullptr) {
+        std::cout << "Map loaded successfully.\n";
+        loadedMap->printMap(); // This will print the map to the console
+    } else {
+        std::cerr << "Failed to load map.\n";
+    }
+    displayFileContent(filePath);
+
+}

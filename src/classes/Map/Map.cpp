@@ -485,3 +485,7 @@ int Map::getWidth() const {
 int Map::getHeight() const {
     return height;
 }
+
+Cell *Map::getCell(int x, int y) {
+    return &map[x][y];
+}
