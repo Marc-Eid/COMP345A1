@@ -101,6 +101,9 @@ public:
      */
     void setState(State state,CellContent* pContent);
 
+    friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
+    friend std::istream& operator>>(std::istream& is, Cell& cell);
+
 private:
     /**
      * @brief Stores the State of the Cell

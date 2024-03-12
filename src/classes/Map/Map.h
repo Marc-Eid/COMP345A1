@@ -82,6 +82,11 @@ public:
       */
      bool TryMove (Character* c,string dir);
 
+
+    friend std::ostream& operator<<(std::ostream& os, const Map& map);
+    friend std::istream& operator>>(std::istream& is, Map& map);
+    void updateStartAndEndCoordinates();
+
 private:
     /**
      * A utility function used to determine if the coordinate is the Queue used in Breadth first search

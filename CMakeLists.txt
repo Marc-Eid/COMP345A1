@@ -31,7 +31,7 @@ add_executable(COMP345A1 src/main.cpp
         src/classes/ObserverPattern/MapObserver.h
         src/classes/ObserverPattern/MapObserver.h
         src/classes/MapEditor/MapEditor.cpp
-        src/classes/MapEditor/MapEditor.h
+        src/classes/Campaign/Campaign.cpp
 )
 
 

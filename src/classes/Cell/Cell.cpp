@@ -3,6 +3,7 @@
 //
 
 #include "Cell.h"
+#include <iostream>
 
 Cell::Cell() : currentState(EMPTY),content(nullptr) {
 }
@@ -58,7 +59,17 @@ Character* Cell::getCharacter() {
     }
 }
 
+// Serialization operator for Cell
+std::ostream& operator<<(std::ostream& os, const Cell& cell) {
+    os << static_cast<int>(cell.currentState); // Write current state as an integer
+    return os;
+}
 
-
-
+// Deserialization operator for Cell
+std::istream& operator>>(std::istream& is, Cell& cell) {
+    int state; // Read the state as an integer
+    is >> state;
+    cell.currentState = static_cast<Cell::State>(state); // Convert integer back to State enum
+    return is;
+}
 

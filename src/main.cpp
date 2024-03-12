@@ -11,6 +11,8 @@
 #include "classes/ObserverPattern/CharacterObserver.h"
 #include "classes/ObserverPattern/MapObserver.h"
 #include "classes/MapEditor/MapEditor.h"
+#include "classes/Campaign/Campaign.h"
+
 
 void displayCharacter();
 void displayMap();
@@ -27,8 +29,9 @@ int main() {
 //
 //    cout << "\n character sheet updated following a change to hitPoints \n\n";
 //    fighter->setHitpoints(20);
+
     MapEditor editor;
-    editor.runMapEditor();
+    editor.runEditor();
 
 //    displayCharacter();
 //    displayMap();
