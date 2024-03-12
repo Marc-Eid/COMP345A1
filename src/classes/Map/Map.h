@@ -114,6 +114,26 @@ public:
      */
     void updateStartAndEndCoordinates();
 
+    /**
+    * @brief Returns the width of the Map
+    * @return width of map
+    */
+    int getWidth() const;
+
+    /**
+     * @brief Returns the height of the Map
+     * @return height of map
+     */
+    int getHeight() const;
+
+    /**
+    * @brief Returns Object of a cell given the cooridnate
+    * @param x
+    * @param y
+    * @return Cell - content of the cell
+    */
+    Cell* getCell(int x, int y);
+
 private:
     /**
      * A utility function used to determine if the coordinate is the Queue used in Breadth first search

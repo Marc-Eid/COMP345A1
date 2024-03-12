@@ -32,6 +32,11 @@ add_executable(COMP345A1 src/main.cpp
         src/classes/ObserverPattern/MapObserver.h
         src/classes/MapEditor/MapEditor.cpp
         src/classes/Campaign/Campaign.cpp
+        src/classes/MapBuilders/MapBuilder.h
+        src/classes/MapBuilders/MapEditorBuilder.cpp
+        src/classes/MapBuilders/MapEditorBuilder.h
+        src/classes/MapBuilders/GameLevelMapBuilder.cpp
+        src/classes/MapBuilders/GameLevelMapBuilder.h
 )
 
 
@@ -57,6 +62,7 @@ add_executable(UnitTests src/TestRunner.cpp
         src/classes/Map/Map.cpp
         src/classes/Fighter/Fighter.cpp
         src/classes/Weapon/Weapon.cpp
+        src/classes/ObserverPattern/Subject.cpp
         src/tests/TestDice/TestDice.cpp
         src/tests/TestItems/TestItems.cpp
         src/tests/TestMap/TestMap.cpp
@@ -64,6 +70,11 @@ add_executable(UnitTests src/TestRunner.cpp
         src/classes/MapEditor/MapEditor.cpp
         src/tests/TestMapEditor/TestMapEditor.cpp
         src/tests/TestMapEditor/TestMapEditor.h
+        src/classes/MapBuilders/MapBuilder.h
+        src/classes/MapBuilders/MapEditorBuilder.cpp
+        src/classes/MapBuilders/MapEditorBuilder.h
+        src/classes/MapBuilders/GameLevelMapBuilder.cpp
+        src/classes/MapBuilders/GameLevelMapBuilder.h
 )
 
 

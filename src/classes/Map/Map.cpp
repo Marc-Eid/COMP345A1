@@ -515,3 +515,15 @@ void Map::updateStartAndEndCoordinates() {
         }
     }
 }
+
+int Map::getWidth() const {
+    return width;
+}
+
+int Map::getHeight() const {
+    return height;
+}
+
+Cell *Map::getCell(int x, int y) {
+    return &map[x][y];
+}
