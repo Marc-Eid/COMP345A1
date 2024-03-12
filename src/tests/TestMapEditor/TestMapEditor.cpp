@@ -21,8 +21,8 @@ void TestMapEditor::testMapEditor() {
     CPPUNIT_ASSERT(output.find("3x3 map created.") != std::string::npos);
     CPPUNIT_ASSERT(output.find("Successfully Placed the Starting point") != std::string::npos);
     CPPUNIT_ASSERT(output.find("Successfully set exit") != std::string::npos);
-    CPPUNIT_ASSERT(output.find("Map saved to file: testFileName") != std::string::npos);
-    CPPUNIT_ASSERT(output.find("Map loaded from file: testFileName") != std::string::npos);
+    CPPUNIT_ASSERT(output.find("Map saved to file: testFileName.txt") != std::string::npos);
+    CPPUNIT_ASSERT(output.find("Map loaded from file: testFileName.txt") != std::string::npos);
 }
 
 void TestMapEditor::testCampaignEditor() {
@@ -50,8 +50,8 @@ void TestMapEditor::testCampaignEditor() {
     CPPUNIT_ASSERT(output.find("New map added to the campaign") != std::string::npos);
     CPPUNIT_ASSERT(output.find("Editing Map 2:") != std::string::npos);
     CPPUNIT_ASSERT(output.find("All maps in the campaign are valid.") != std::string::npos);
-    CPPUNIT_ASSERT(output.find("Campaign saved to file: testCampaignName") != std::string::npos);
-    CPPUNIT_ASSERT(output.find("Campaign loaded from file: testCampaignName") != std::string::npos);
+    CPPUNIT_ASSERT(output.find("Campaign saved to file: testCampaignName.txt") != std::string::npos);
+    CPPUNIT_ASSERT(output.find("Campaign loaded from file: testCampaignName.txt") != std::string::npos);
 
 }
 

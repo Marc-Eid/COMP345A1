@@ -255,6 +255,8 @@ void MapEditor::saveMapToFile() {
     cout << "Enter filename to save the map: ";
     cin >> filename;
 
+    filename += ".txt"; // Append .txt extension
+
     ofstream file(filename);
     if (file.is_open()) {
         file << *map; // Dereference the map pointer to access the Map object and serialize it
@@ -268,8 +270,10 @@ void MapEditor::loadMapFromFile() {
     clearMap(); // Clear the current map if it exists
 
     string filename;
-    cout << "Enter filename to load the map: ";
+    cout << "Enter filename to load the map (without the file extension): ";
     cin >> filename;
+
+    filename += ".txt"; // Append .txt extension
 
     ifstream file(filename);
     if (file.is_open()) {
@@ -406,6 +410,7 @@ void MapEditor::saveCampaignToFile() {
     string filename;
     cout << "Enter filename to save the campaign: ";
     cin >> filename;
+    filename += ".txt"; // Append .txt extension
 
     ofstream file(filename);
     if (file.is_open()) {
@@ -420,8 +425,9 @@ void MapEditor::loadCampaignFromFile() {
     clearCampaign(); // Clear the current campaign if it exists
 
     string filename;
-    cout << "Enter filename to load the campaign: ";
+    cout << "Enter filename to load the campaign (without the file extension): ";
     cin >> filename;
+    filename += ".txt"; // Append .txt extension
 
     ifstream file(filename);
     if (file.is_open()) {
