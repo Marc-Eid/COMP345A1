@@ -164,7 +164,7 @@ void displayMapBuilder() {
     std::cout << "Display Map Builder: Part 4.1" << std::endl;
     std::cout << "---------------------------------" << std::endl;
     MapEditorBuilder builder;
-    std::string filePath = "../src/map_example.txt";
+    std::string filePath = "src/map_example.txt";
     std::cout << "Building the Map from: " <<filePath << std::endl;
 
     builder.loadMap(filePath);
@@ -185,7 +185,7 @@ void displayGameLevelMapBuilder() {
     std::cout << "Display Map Builder with Level Adjustments: Part 4.2" << std::endl;
     std::cout << "---------------------------------" << std::endl;
     GameLevelMapBuilder builder;
-    std::string filePath = "../src/map_example.txt";
+    std::string filePath = "src/map_example.txt";
 
     builder.loadMap(filePath);
     Map* loadedMap = builder.getMap();
