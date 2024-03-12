@@ -24,15 +24,17 @@ void displayGameLevelMapBuilder();
 void displayMapEditor();
 
 int main() {
-//
-//    Fighter* fighter = new Fighter("fighter 1", 10);
-//    CharacterObserver* characterObserver = new CharacterObserver(fighter);
-//
-//    cout << "calling the display method of the character to show initial state \n\n";
-//    fighter->displayCharacterSheet();
-//
-//    cout << "\n character sheet updated following a change to hitPoints \n\n";
-//    fighter->setHitpoints(20);
+
+    Fighter* fighter = new Fighter("fighter 1", 10);
+    CharacterObserver* characterObserver = new CharacterObserver(fighter);
+
+    cout << "calling the display method of the character to show initial state \n\n";
+    fighter->displayCharacterSheet();
+
+    cout << "\ncharacter sheet updated following a change to hitPoints \n\n";
+    fighter->setHitpoints(20);
+
+    cout << "\n";
 
 //    displayCharacter();
 
@@ -60,7 +62,6 @@ void displayCharacter(){
 };
 
 void displayMap(){
-    displayCharacter();
     // Create Characters
     Fighter *f1 = new Fighter("mubashir",4);
     Fighter *f2 = new Fighter("Marc",4);

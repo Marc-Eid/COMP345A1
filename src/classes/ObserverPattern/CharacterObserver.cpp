@@ -47,4 +47,6 @@ void CharacterObserver::display() {
     for (const auto& item : equipment) {
         cout << "\n" + item.first << ": " << item.second << "\n";
     }
+
+    cout << typeid(*_subject).name() << endl;
 }
