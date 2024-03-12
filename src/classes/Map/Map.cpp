@@ -500,6 +500,7 @@ std::istream& operator>>(std::istream& is, Map& map) {
     return is;
 }
 
+//When a map is loaded, it updates the start and exit coordinates
 void Map::updateStartAndEndCoordinates() {
     // Loop through the map to find the coordinates of start and end points
     for (int x = 0; x < width; ++x) {

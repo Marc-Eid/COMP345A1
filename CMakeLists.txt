@@ -60,6 +60,8 @@ add_executable(UnitTests src/TestRunner.cpp
         src/tests/TestDice/TestDice.cpp
         src/tests/TestItems/TestItems.cpp
         src/tests/TestMap/TestMap.cpp
+        src/tests/TestMapEditor/TestMapEditor.cpp
+        src/tests/TestMapEditor/TestMapEditor.h
 )
 
 

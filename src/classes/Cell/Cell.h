@@ -11,6 +11,10 @@
 /**
  * This file implements the Cell class which holds the State of each cell on the Map
  * Other than it provides basic Getters and setters
+ *
+ * * @par Libraries Used:
+ * - <iostream>: Ensures that the serialization and deserialization operators have access to the necessary stream classes and functions,
+ *                allowing seamless integration of stream-based operations within the Cell class.
  */
 class Cell {
 public:
@@ -101,7 +105,29 @@ public:
      */
     void setState(State state,CellContent* pContent);
 
+
+    /**
+     * @brief Serialization operator for Cell.
+     *
+     * Writes the current state of the cell as an integer to the output stream.
+     *
+     * @param os The output stream to write to.
+     * @param cell The cell object to serialize.
+     * @return The output stream after serialization.
+     */
     friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
+
+
+    /**
+     * @brief Deserialization operator for Cell.
+     *
+     * Reads the state of the cell as an integer from the input stream and converts it
+     * back to the State enum, updating the cell's state accordingly.
+     *
+     * @param is The input stream to read from.
+     * @param cell The cell object to deserialize into.
+     * @return The input stream after deserialization.
+     */
     friend std::istream& operator>>(std::istream& is, Cell& cell);
 
 private:
