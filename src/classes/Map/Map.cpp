@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 Map::Map(int widthX, int heightY) {
 
     width = widthX;
@@ -41,7 +40,7 @@ Map::Map(int widthX, int heightY) {
     }
     for (int i =0;i<height;i++){
         map[0][i].setState(Cell::State::WALL, nullptr);
-        map[height -1][i].setState(Cell::State::WALL, nullptr);
+        map[width -1][i].setState(Cell::State::WALL, nullptr);
     }
 
 }
@@ -63,6 +62,7 @@ bool Map::Place(int x, int y, char item) {
     // If Placing Start
     if(item  == 'S'){
         cout << "Successfully Placed the Starting point" <<  endl;
+        map[x][y].setState(Cell::State::START, nullptr);
         startX = x;
         startY = y;
         return true;
@@ -70,6 +70,7 @@ bool Map::Place(int x, int y, char item) {
     // If Placing Exit
     if(item == 'E') {
         cout << "Successfully set exit" << endl;
+        map[x][y].setState(Cell::State::EXIT, nullptr);
         endX = x;
         endY = y;
         return  true;
@@ -217,7 +218,7 @@ bool Map::isValid() {
 
         // Check if the Popped Coordinate is the Result
         if(c2.equalCoordinates(end)){
-            cout << "Valid Map" << endl;
+            cout << "Map is valid" << endl;
             return true;
         }
         // If not then Explore all the Nodes
@@ -250,7 +251,7 @@ bool Map::isValid() {
                 }
             }
             // Walk up
-            if(c2.y - 1 >= height && !map[c2.x][c2.y - 1].isWall()){
+            if(c2.y - 1 >= 0 && !map[c2.x][c2.y - 1].isWall()){
                 Coordinate c = {c2.x,c2.y - 1};
                 // Check if it is not in both the Queues
                 if(!Contains(notVisited,c) && !Contains(visited,c)){
@@ -263,46 +264,41 @@ bool Map::isValid() {
     // If the While Loop finishes without Returning then throw an error and return false
     cout << "Invalid Map ! No Route from starting to ending point" << endl;
     return false;
-
 }
+
 /**
  * Prints the Map
  */
 void Map::printMap() {
-    // Starting messege to print the map
-    cout << "---------------CURRENT MAP ------------------" << endl ;
-    for (int j = height - 1 ; j >= 0  ;j--){
-        string output;
-        for (int i = 0;i < width ; i++){
-            if(map[i][j].getState() == Cell::State::CHARACTER){
-                // It will use first Character to represent on the Map
-                output += map[i][j].getCharacter()->getName()[0];
-            }
-            else{
-                if(map[i][j].getState() == Cell::State::WALL){
-                    output += "#";
-
-                }
-                if(map[i][j].getState() == Cell::State::EMPTY){
-                    output += " ";
-                }
-                if(map[i][j].getState() == Cell::State::OPPONENT){
-                    output += "O";
-                }
-
-                if(map[i][j].getState() == Cell::State::CHEST){
-                    output += "C";
-                }
-
-                if(map[i][j].getState() == Cell::State::DOOR){
-                    output += "D";
-                }
+    cout << "---------------------------------------------" << endl;
+    for (int j = height - 1; j >= 0; j--) {
+        cout << j << "\t";
+        for (int i = 0; i < width; i++) {
+            if (map[i][j].getState() == Cell::State::CHARACTER) {
+                cout << map[i][j].getCharacter()->getName()[0] << " ";
+            } else if (map[i][j].getState() == Cell::State::WALL) {
+                cout << "# ";
+            } else if (map[i][j].getState() == Cell::State::EMPTY) {
+                cout << ". ";
+            } else if (map[i][j].getState() == Cell::State::START) {
+                cout << "S ";
+            } else if (map[i][j].getState() == Cell::State::EXIT) {
+                cout << "E ";
+            } else if (map[i][j].getState() == Cell::State::OPPONENT) {
+                cout << "O ";
+            } else if (map[i][j].getState() == Cell::State::CHEST) {
+                cout << "C ";
+            } else if (map[i][j].getState() == Cell::State::DOOR) {
+                cout << "D ";
             }
         }
-        cout << output << endl;
+        cout << endl;
     }
-    cout << "---------------------------------" << endl;
-
+    cout << "\t";
+    for (int i = 0; i < width; i++) {
+        cout << i << " ";
+    }
+    cout << "\n---------------------------------------------" << endl;
 }
 
 Map::~Map() {
@@ -341,7 +337,6 @@ bool Map::startGame( Character *c) {
     }
     cout << "Error Occurred While Starting the Game "<< endl;
     return false;
-
 }
 
 bool Map::move(Character *c, int x, int y) {
@@ -404,7 +399,6 @@ bool Map::TryMove(Character *c, string dir) {
             if(map[coordinate.x][coordinate.y  + 1].canMove()){
                 moved = move(c,coordinate.x,coordinate.y+1);
             }
-
         }
     }
     // When users tries to GO down
@@ -440,7 +434,6 @@ bool Map::TryMove(Character *c, string dir) {
         }
 
     }
-
     // Finally Notify the Observers
     Notify();
 
@@ -476,6 +469,51 @@ Coordinate Map::getCurrentPositionCoordinate(Character *c) {
         }
     }
     return c1;
+}
+
+// Serialization method for Map
+std::ostream& operator<<(std::ostream& os, const Map& map) {
+    os << map.width << " " << map.height << " "; // Serialize map dimensions
+    // Serialize each cell in the map
+    for (int i = 0; i < map.width; ++i) {
+        for (int j = 0; j < map.height; ++j) {
+            os << map.map[i][j] << " "; // Serialize cell
+        }
+    }
+    return os;
+}
+
+// Deserialization method for Map
+std::istream& operator>>(std::istream& is, Map& map) {
+    is >> map.width >> map.height; // Deserialize map dimensions
+    // Resize map
+    map.map = new Cell*[map.width];
+    for (int i = 0; i < map.width; ++i) {
+        map.map[i] = new Cell[map.height];
+    }
+    // Deserialize each cell in the map
+    for (int i = 0; i < map.width; ++i) {
+        for (int j = 0; j < map.height; ++j) {
+            is >> map.map[i][j]; // Deserialize cell
+        }
+    }
+    return is;
+}
+
+//When a map is loaded, it updates the start and exit coordinates
+void Map::updateStartAndEndCoordinates() {
+    // Loop through the map to find the coordinates of start and end points
+    for (int x = 0; x < width; ++x) {
+        for (int y = 0; y < height; ++y) {
+            if (map[x][y].getState() == Cell::State::START) {
+                startX = x;
+                startY = y;
+            } else if (map[x][y].getState() == Cell::State::EXIT) {
+                endX = x;
+                endY = y;
+            }
+        }
+    }
 }
 
 int Map::getWidth() const {

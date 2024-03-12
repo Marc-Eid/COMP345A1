@@ -30,7 +30,14 @@ add_executable(COMP345A1 src/main.cpp
         src/classes/ObserverPattern/MapObserver.cpp
         src/classes/ObserverPattern/MapObserver.h
         src/classes/ObserverPattern/MapObserver.h
-        src/classes/MapBuilders/MapBuilder.h src/classes/MapBuilders/MapEditorBuilder.cpp src/classes/MapBuilders/MapEditorBuilder.h src/classes/MapBuilders/GameLevelMapBuilder.cpp src/classes/MapBuilders/GameLevelMapBuilder.h)
+        src/classes/MapEditor/MapEditor.cpp
+        src/classes/Campaign/Campaign.cpp
+        src/classes/MapBuilders/MapBuilder.h
+        src/classes/MapBuilders/MapEditorBuilder.cpp
+        src/classes/MapBuilders/MapEditorBuilder.h
+        src/classes/MapBuilders/GameLevelMapBuilder.cpp
+        src/classes/MapBuilders/GameLevelMapBuilder.h
+)
 
 
 # Test suite
@@ -59,8 +66,15 @@ add_executable(UnitTests src/TestRunner.cpp
         src/tests/TestDice/TestDice.cpp
         src/tests/TestItems/TestItems.cpp
         src/tests/TestMap/TestMap.cpp
-        src/classes/MapBuilders/MapBuilder.h src/classes/MapBuilders/MapEditorBuilder.cpp src/classes/MapBuilders/MapEditorBuilder.h src/classes/MapBuilders/GameLevelMapBuilder.cpp src/classes/MapBuilders/GameLevelMapBuilder.h
-
+        src/classes/Campaign/Campaign.cpp
+        src/classes/MapEditor/MapEditor.cpp
+        src/tests/TestMapEditor/TestMapEditor.cpp
+        src/tests/TestMapEditor/TestMapEditor.h
+        src/classes/MapBuilders/MapBuilder.h
+        src/classes/MapBuilders/MapEditorBuilder.cpp
+        src/classes/MapBuilders/MapEditorBuilder.h
+        src/classes/MapBuilders/GameLevelMapBuilder.cpp
+        src/classes/MapBuilders/GameLevelMapBuilder.h
 )
 
 

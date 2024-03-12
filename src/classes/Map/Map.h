@@ -32,7 +32,11 @@ struct Coordinate {
  * Game Rules: Creates a Map with walls around, dungeon master can place Starting point,Ending point,Opponent,etc
  * and design the map
  *
- * Libraries: <queue>
+ * Libraries:
+ * <iostream>: Included for standard input/output operations such as printing messages to the terminal and reading user input.
+ * <queue>: Used for implementing queues, which are utilized in BFS (Breadth First Search) algorithm for pathfinding in the map.
+ * <map>: Utilized for storing the previous states of characters, facilitating the ability to revert their positions when necessary.
+ *
  */
 class Map : public Subject{
 public:
@@ -57,8 +61,6 @@ public:
      */
     bool Place(int x, int y,char item);
 
-    
-
     /**
      * Determines whether there is path from starting point to the Ending point using Breadth first Search
      * @return
@@ -75,6 +77,7 @@ public:
      * Start the Game
      */
     bool startGame(Character* c);
+
      /**
       * Takes character pointer, direction and tries it to move on the map
       * @param c
@@ -83,9 +86,38 @@ public:
      bool TryMove (Character* c,string dir);
 
     /**
-        * @brief Returns the width of the Map
-        * @return width of map
-        */
+    * @brief Serialize the Map object.
+    *
+    * This method serializes the Map object to an output stream. It writes the map dimensions followed by the state of each cell in the map.
+    *
+    * @param os The output stream to serialize the Map object to.
+    * @param map The Map object to be serialized.
+    * @return A reference to the output stream after serialization.
+    */
+    friend std::ostream& operator<<(std::ostream& os, const Map& map);
+
+    /**
+     * @brief Deserialize the Map object.
+     *
+     * This method deserializes the Map object from an input stream. It reads the map dimensions followed by the state of each cell in the map.
+     *
+     * @param is The input stream to deserialize the Map object from.
+     * @param map The Map object to be deserialized.
+     * @return A reference to the input stream after deserialization.
+     */
+    friend std::istream& operator>>(std::istream& is, Map& map);
+
+    /**
+     * @brief Update the start and end coordinates of the map.
+     *
+     * This method updates the start and end coordinates of the map based on the current state of the map cells. It iterates through the map to find the coordinates of the starting and ending points.
+     */
+    void updateStartAndEndCoordinates();
+
+    /**
+    * @brief Returns the width of the Map
+    * @return width of map
+    */
     int getWidth() const;
 
     /**
@@ -101,7 +133,6 @@ public:
     * @return Cell - content of the cell
     */
     Cell* getCell(int x, int y);
-
 
 private:
     /**

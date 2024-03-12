@@ -10,6 +10,8 @@
 #include "classes/Ring/Ring.h"
 #include "classes/ObserverPattern/CharacterObserver.h"
 #include "classes/ObserverPattern/MapObserver.h"
+#include "classes/MapEditor/MapEditor.h"
+#include "classes/Campaign/Campaign.h"
 #include "classes/MapBuilders/MapEditorBuilder.h"
 #include "classes/MapBuilders/GameLevelMapBuilder.h"
 
@@ -19,6 +21,8 @@ void displayItemContainer();
 void displayDice();
 void displayMapBuilder();
 void displayGameLevelMapBuilder();
+void displayMapEditor();
+
 int main() {
 //
 //    Fighter* fighter = new Fighter("fighter 1", 10);
@@ -30,11 +34,12 @@ int main() {
 //    cout << "\n character sheet updated following a change to hitPoints \n\n";
 //    fighter->setHitpoints(20);
 
-
 //    displayCharacter();
+
     displayMap();
     displayMapBuilder();
     displayGameLevelMapBuilder();
+    displayMapEditor();
 //    displayItemContainer();
 //    displayDice();
     return 0;
@@ -87,9 +92,6 @@ void displayMap(){
     map->TryMove(f1,"right");
     map->TryMove(f1,"right");
     map->TryMove(f1,"down");
-
-
-
 };
 
 void displayItemContainer(){
@@ -214,8 +216,12 @@ void displayGameLevelMapBuilder() {
 
     builder.adaptToLevel(15);
     f1->displayCharacterSheet();
+}
 
-
-
-
+void displayMapEditor() {
+    std::cout << "\n\n-----------------------------------------------" << std::endl;
+    std::cout << "\tWemcome to the Map/Campaign Editor" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    MapEditor editor;
+    editor.runEditor();
 }
