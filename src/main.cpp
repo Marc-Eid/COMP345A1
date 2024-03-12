@@ -219,9 +219,9 @@ void displayGameLevelMapBuilder() {
 }
 
 void displayMapEditor() {
-    std::cout << "---------------------------------" << std::endl;
-    std::cout << "\t\tThe Map/Campaign Editor" << std::endl;
-    std::cout << "---------------------------------" << std::endl;
+    std::cout << "\n\n-----------------------------------------------" << std::endl;
+    std::cout << "\tWemcome to the Map/Campaign Editor" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
     MapEditor editor;
     editor.runEditor();
 }
