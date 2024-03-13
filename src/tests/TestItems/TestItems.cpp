@@ -34,7 +34,7 @@ void TestItems::testGetItem() {
 
 void TestItems::testMapEditorBuilder() {
     MapEditorBuilder editorBuilder;
-    std::string testFilePath = "../../src/map_example.txt"; // Ensure this points to a valid test map file
+    std::string testFilePath = "../src/map_example.txt"; // Ensure this points to a valid test map file
 
     // Test loadMap
     editorBuilder.loadMap(testFilePath);
@@ -48,7 +48,7 @@ void TestItems::testMapEditorBuilder() {
 
 void TestItems::testGameLevelMapBuilder() {
     GameLevelMapBuilder levelBuilder;
-    std::string testFilePath = "../../src/map_example.txt"; // Ensure this points to a valid test level map file
+    std::string testFilePath = "../src/map_example.txt"; // Ensure this points to a valid test level map file
 
     // Test loadMap
     levelBuilder.loadMap(testFilePath);
