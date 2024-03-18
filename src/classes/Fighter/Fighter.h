@@ -1,5 +1,6 @@
 #pragma once
 #include "../Character/Character.h"
+#include "../Dice/Dice.h"
 
 /**
  * @file Fighter.h
@@ -69,14 +70,6 @@ public:
     void calculateArmorClass() override;
 
     /**
-    * @brief Calculates and updates the fighter's attack bonus.
-    *
-    * Overrides the base class method to provide a higher attack bonus calculation for fighters,
-    * based on their level and strength modifier.
-    */
-    void calculateAttackBonus() override;
-
-    /**
     * @brief Calculates and sets the damage bonus for the Fighter.
     *
     * Reflects the fighter's ability to inflict more damage in combat due to their strength and mastery of weapons.
@@ -89,6 +82,13 @@ public:
     * Outputs all relevant information about the fighter, including their enhanced combat statistics.
     */
     void displayCharacterSheet() const override;
+
+    /**
+     * Override Level Up function in character
+     *
+     * @return
+     */
+    virtual bool levelUp() override;
 };
 
 

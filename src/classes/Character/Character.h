@@ -2,6 +2,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 #include "../ObserverPattern/Subject.h"
 #include "../CellContent/CellContent.h"
 using namespace std;
@@ -44,12 +45,12 @@ public:
     virtual ~Character() = default;
 
     // getter methods
-    map<string, int> getAbilityScores() const { return abilityScores; };
+    map<string, int> getAbilityScores()  { return abilityScores; };
     map<string, int> getModifiers() const { return modifiers; };
     map<string, string> getEquipment() const { return equipment; };
     int getHitpoints() const { return hitPoints; };
     int getArmorClass() const { return armorClass; };
-    int getAttackBonus() const { return attackBonus; };
+    vector<int> getAttackBonus() const { return attackBonus; };
     int getDamageBonus() const { return damageBonus; };
     int getLevel() const { return level; };
     string getName() const { return name; };
@@ -57,8 +58,9 @@ public:
     // setter methods
     void setHitpoints(int hp) {  hitPoints = hp; Notify();};
     void setArmorClass(int ac) {  armorClass = ac; Notify();};
-    void setAttackBonus(int ab) {  attackBonus = ab; Notify();};
     void setDamageBonus(int db) {  damageBonus = db; Notify();};
+
+    void setAbilityScores(const string& ability,int score){abilityScores[ability] = score;}
 
 
     /**
@@ -111,7 +113,8 @@ protected:
 
     map<string, int> abilityScores; // Basic Attributes
     map<string, int> modifiers;
-    int hitPoints, armorClass, attackBonus, damageBonus; // Derived Attributes
+    vector<int> attackBonus;
+    int hitPoints, armorClass, damageBonus; // Derived Attributes
     map<string, string> equipment; // Equipment Slots
 
     /**
@@ -143,12 +146,6 @@ protected:
     */
     virtual void calculateArmorClass() = 0;
 
-    /**
-    * @brief Pure virtual method to calculate the character's attack bonus.
-    *
-    * Implementations should calculate the attack bonus based on the character's level, class, and relevant ability score modifiers.
-    */
-    virtual void calculateAttackBonus() = 0;
 
     /**
     * @brief Pure virtual method to calculate the character's damage bonus.
@@ -165,7 +162,31 @@ protected:
     */
     static int getArmorACValue(const string& armorName);
 
+
+    /**
+     * @brief Level Up a character by One
+     *
+     * @param void
+     * @return Confirmation whether the Level is increased or not
+     */
+     virtual bool levelUp() = 0;
+
 private:
+    /**
+     * @brief Rolls Dice according to game rules
+     *
+     * @return Score calculated
+     */
+    int generateScore();
+
+    /**
+     * @brief Updates Bonus when new character is made
+     *
+     * @return void
+     */
+    void UpdateAttackBonus();
+
+
 
 
 };

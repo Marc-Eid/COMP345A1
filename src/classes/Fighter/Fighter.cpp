@@ -9,7 +9,6 @@ Fighter::Fighter(const string& name, int level) : Character(name,level) {
 void Fighter::calculateAttributes() {
     calculateHitPoints();
     calculateArmorClass();
-    calculateAttackBonus();
     calculateDamageBonus();
 }
 
@@ -28,12 +27,6 @@ void Fighter::calculateArmorClass() {
     armorClass = baseArmorClass + modifiers["Dexterity"];
 }
 
-void Fighter::calculateAttackBonus() {
-    int baseAttackBonus = level;
-
-    // Assume melee focus for Fighters, using Strength modifier
-    attackBonus = baseAttackBonus + modifiers["Strength"];
-}
 
 void Fighter::calculateDamageBonus() {
     damageBonus = modifiers["Strength"];
@@ -43,6 +36,25 @@ void Fighter::displayCharacterSheet() const {
     Character::displayCharacterSheet(); // Use base class implementation for common details
     // Add any fighter-specific details here
     std::cout << "Class: Fighter\n";
+}
+
+bool Fighter::levelUp() {
+
+    cout << "Leveling Up the Fighter";
+    Dice dice = Dice();
+    hitPoints = dice.roll("1d6") + abilityScores["Constitution"];
+
+    for (int & attackBonu : attackBonus)
+    {
+        attackBonu += 1;
+    }
+    if (level == 6 || level == 11 || level == 16)
+    {
+        attackBonus.push_back(1);
+    }
+    level++;
+    return true;
+
 }
 
 

@@ -28,8 +28,8 @@ void CharacterObserver::display() {
     map<string, int> modifiers = _subject->getModifiers();
     int hitPoints = _subject ->getHitpoints();
     int armorClass = _subject ->getArmorClass();
-    int attackBonus = _subject ->getAttackBonus();
     int damageBonus = _subject ->getDamageBonus();
+    vector<int> attackBonus = _subject->getAttackBonus();
     map<string, string> equipment = _subject->getEquipment();
 
     cout << "Character Name: " << name << "\nLevel: " << level << "\n";
@@ -38,7 +38,11 @@ void CharacterObserver::display() {
         cout << score.first << ": " << score.second << " (Modifier: " << modifiers.at(score.first) << ")\n";
     }
     cout << "Hit Points: " << hitPoints << "\nArmor Class: " << armorClass
-         << "\nAttack Bonus: " << attackBonus << "\nDamage Bonus: " << damageBonus << "\n";
+         << "\nAttack Bonus per round: ";
+    for (const int& attackBonu : attackBonus){
+        cout << attackBonu + modifiers.at("Strength")<< " ";
+    }
+         cout << "\nDamage Bonus: " << damageBonus << "\n";
 
     cout << "Equipment:";
     if(equipment.empty()){

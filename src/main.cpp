@@ -14,6 +14,7 @@
 #include "classes/Campaign/Campaign.h"
 #include "classes/MapBuilders/MapEditorBuilder.h"
 #include "classes/MapBuilders/GameLevelMapBuilder.h"
+#include "classes/Builder/BullyBuilder.h"
 
 void displayCharacter();
 void displayMap();
@@ -22,6 +23,8 @@ void displayDice();
 void displayMapBuilder();
 void displayGameLevelMapBuilder();
 void displayMapEditor();
+
+void displayCharacterBuilder();
 
 int main() {
 
@@ -36,16 +39,19 @@ int main() {
 
     cout << "\n";
 
-//    displayCharacter();
-
+    displayCharacter();
     displayMap();
     displayMapBuilder();
     displayGameLevelMapBuilder();
     displayMapEditor();
-//    displayItemContainer();
-//    displayDice();
+    displayItemContainer();
+    displayDice();
+    displayCharacterBuilder();
+
     return 0;
 }
+
+
 
 void displayCharacter(){
     Fighter f1("test1", 5);
@@ -55,6 +61,10 @@ void displayCharacter(){
 
     Fighter f2("test2", 5);
     f2.displayCharacterSheet();
+    cout << "\n Leveling Up the fighter";
+
+    f1.levelUp();
+    f1.displayCharacterSheet();
 
     // Demonstrate utility function usage
     int diceRoll = Character::rollDice(1, 20); // Simulating a d20 roll
@@ -165,7 +175,7 @@ void displayMapBuilder() {
     std::cout << "Display Map Builder: Part 4.1" << std::endl;
     std::cout << "---------------------------------" << std::endl;
     MapEditorBuilder builder;
-    std::string filePath = "src/map_example.txt";
+    std::string filePath = ".";
     std::cout << "Building the Map from: " <<filePath << std::endl;
 
     builder.loadMap(filePath);
@@ -225,4 +235,16 @@ void displayMapEditor() {
     std::cout << "-----------------------------------------------" << std::endl;
     MapEditor editor;
     editor.runEditor();
+}
+void displayCharacterBuilder() {
+    std::cout << "\n\n-----------------------------------------------" << std::endl;
+    std::cout << "\tWelcome to Character Builder" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+
+
+    BullyBuilder* b1 = new BullyBuilder();
+    b1->createFighter("mubashir",2);
+    b1->setAbilityScores();
+    b1->getFighter()->displayCharacterSheet();
+
 }

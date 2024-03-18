@@ -37,6 +37,15 @@ add_executable(COMP345A1 src/main.cpp
         src/classes/MapBuilders/MapEditorBuilder.h
         src/classes/MapBuilders/GameLevelMapBuilder.cpp
         src/classes/MapBuilders/GameLevelMapBuilder.h
+        src/classes/Builder/BullyBuilder.cpp
+        src/classes/Builder/BullyBuilder.h
+        src/classes/Builder/BullyBuilder.h
+        src/classes/Builder/FighterBuilder.h
+        src/classes/Builder/NimbleBuilder.cpp
+        src/classes/Builder/NimbleBuilder.h
+        src/classes/Builder/TankBuilder.cpp
+        src/classes/Builder/TankBuilder.h
+        src/classes/Builder/TankBuilder.h
 )
 
 
