@@ -13,6 +13,7 @@ Shield::Shield(const std::string& name, const Enchantment& enchantment) : Item(n
     if (std::find(allowedEnhancements.begin(), allowedEnhancements.end(), enchantment.type) == allowedEnhancements.end()) {
         throw std::runtime_error("Invalid enchantment type for Shield.");
     }
+    CalculateAttributes();
 }
 
 string Shield::getType() const {
@@ -20,5 +21,6 @@ string Shield::getType() const {
 }
 
 void Shield::CalculateAttributes() {
+
     armorClass = rollDice();
 }

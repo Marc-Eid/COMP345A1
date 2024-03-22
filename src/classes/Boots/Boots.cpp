@@ -12,6 +12,7 @@ Boots::Boots(const std::string& name, const Enchantment& enchantment) : Item(nam
     if (std::find(allowedEnhancements.begin(), allowedEnhancements.end(), enchantment.type) == allowedEnhancements.end()) {
         throw std::runtime_error("Invalid enchantment type for Boots.");
     }
+    CalculateAttributes();
 }
 
 string Boots::getType() const {
