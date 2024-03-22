@@ -8,6 +8,7 @@ Character::Character(const string& name, int level) : name(name), level(level) {
     hitPoints = 0;
     armorClass = 0;
     damageBonus = 0;
+    wornItem = nullptr;
     UpdateAttackBonus();
 }
 
@@ -101,13 +102,6 @@ int Character::rollDice(int numberOfDice, int diceSides) {
 }
 
 
-void Character::equipItem(const string& itemType, const string& itemName) {
-    equipment[itemType] = itemName;
-    calculateAttributes(); // Recalculate attributes in case the item affects them
-
-    //the Observable object notifies all its registered observers
-    Notify();
-}
 
 void Character::displayCharacterSheet() const {
     cout << "Character Name: " << name << "\nLevel: " << level << "\n";
@@ -122,13 +116,19 @@ void Character::displayCharacterSheet() const {
     }
     cout << "\nDamage Bonus: " << damageBonus << "\n";
 
-    cout << "Equipment:";
-    if(equipment.empty()){
-        cout << " N/A\n";
+    // print the worn Item
+
+    if(wornItem != nullptr){
+
+        cout << "Worn Equipment :" << endl;
+        wornItem->printWeapon();
     }
-    for (const auto& item : equipment) {
-        cout << "\n" + item.first << ": " << item.second << "\n";
-    }
+
+    // print the available equipment
+    cout << "Available Equipment: " << endl;
+    equipment.printContainer();
+
+
 }
 
 int Character::getArmorACValue(const std::string& armorName) {
@@ -153,4 +153,129 @@ void Character::adjustLevel(int level) {
     UpdateAttackBonus();
     calculateAttributes();
 }
+
+bool Character::equip(Item *item) {
+    // Check is equipment is already equipped
+    if(item->getEquipped()){
+        cout << "This weapon is already equipped";
+        return false;
+    }
+    // If item Exist in the container
+    if(equipment.itemExist(item)){
+       cout << "Item Already Exist in the Container";
+       return false;
+
+    }
+    // Adds Item to the Container
+    item->setEquipped(true);
+    equipment.addItem(item);
+    return true;
+}
+
+bool Character::unequip(int index) {
+    Item *item  = equipment.getItem(index);
+    if(wornItem == item){
+        cout << "In order to remove the item from the equipment container please first remove it ";
+        return false;
+    }
+
+    return equipment.removeItem(index);
+}
+
+bool Character::wearItem(int index) {
+    Item *item  = equipment.getItem(index);
+
+    // Logic to change the Ability scores according to the worn item
+    if(wornItem != nullptr ){
+        cout << "In order to wear the Item please remove the Worn Item";
+        return false;
+    }
+
+    // If the Item does not exist in the equipment container
+    if(item == nullptr){
+        cout << "Error Occured";
+        return false;
+    }
+
+    // If everything is good then change the ability scores
+
+    switch (item->getEnchantment().type) {
+        case EnhancementType::Strength:
+            modifiers["Strength"] += item->getEnchantment().bonus;
+            break;
+        case EnhancementType::Dexterity:
+            modifiers["Dexterity"] += item->getEnchantment().bonus;
+            break;
+        case EnhancementType::Constitution:
+            modifiers["Constitution"] += item->getEnchantment().bonus;
+            break;
+        case EnhancementType::Intelligence:
+            modifiers["Intelligence"] += item->getEnchantment().bonus;
+            break;
+        case EnhancementType::Wisdom:
+            modifiers["Wisdom"] += item->getEnchantment().bonus;
+            break;
+        case EnhancementType::Charisma:
+            modifiers["Charisma"] += item->getEnchantment().bonus;
+            break;
+        case EnhancementType::ArmorClass:
+            armorClass += item->getEnchantment().bonus;
+            break;
+        case EnhancementType::AttackBonus:
+            for (int & attackBonu : attackBonus) {
+                attackBonu += item->getEnchantment().bonus;
+            }
+            break;
+        case EnhancementType::DamageBonus:
+            damageBonus += item->getEnchantment().bonus;
+            break;
+    }
+    return true;
+}
+
+bool Character::remove() {
+    if(wornItem == nullptr){
+        cout << "Please First Wear to remove";
+        return false;
+    }
+    // If all is good then reverse the ability scores
+
+    switch (wornItem->getEnchantment().type) {
+        case EnhancementType::Strength:
+            modifiers["Strength"] -= wornItem->getEnchantment().bonus;
+            break;
+        case EnhancementType::Dexterity:
+            modifiers["Dexterity"] -= wornItem->getEnchantment().bonus;
+            break;
+        case EnhancementType::Constitution:
+            modifiers["Constitution"] -= wornItem->getEnchantment().bonus;
+            break;
+        case EnhancementType::Intelligence:
+            modifiers["Intelligence"] -= wornItem->getEnchantment().bonus;
+            break;
+        case EnhancementType::Wisdom:
+            modifiers["Wisdom"] -= wornItem->getEnchantment().bonus;
+            break;
+        case EnhancementType::Charisma:
+            modifiers["Charisma"] -= wornItem->getEnchantment().bonus;
+            break;
+        case EnhancementType::ArmorClass:
+            armorClass -= wornItem->getEnchantment().bonus;
+            break;
+        case EnhancementType::AttackBonus:
+            for (int & attackBonu : attackBonus) {
+                attackBonu -= wornItem->getEnchantment().bonus;
+            }
+            break;
+        case EnhancementType::DamageBonus:
+            damageBonus += wornItem->getEnchantment().bonus;
+            break;
+    }
+    wornItem = nullptr;
+    return true;
+}
+
+
+
+
 

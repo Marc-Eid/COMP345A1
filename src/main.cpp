@@ -40,13 +40,13 @@ int main() {
     cout << "\n";
 
     displayCharacter();
-    displayMap();
-    displayMapBuilder();
-    displayGameLevelMapBuilder();
-    displayMapEditor();
-    displayItemContainer();
-    displayDice();
-    displayCharacterBuilder();
+//    displayMap();
+//    displayMapBuilder();
+//    displayGameLevelMapBuilder();
+//    displayMapEditor();
+//    displayItemContainer();
+//    displayDice();
+//    displayCharacterBuilder();
 
     return 0;
 }
@@ -55,16 +55,25 @@ int main() {
 
 void displayCharacter(){
     Fighter f1("test1", 5);
-    f1.displayCharacterSheet();
 
     cout << "\nShowing that the initialization of the two fighter is generated randomly. \n\n";
 
     Fighter f2("test2", 5);
-    f2.displayCharacterSheet();
+
     cout << "\n Leveling Up the fighter";
 
-    f1.levelUp();
+    Item* shield = new Shield("Defender's Shield", Enchantment{3, EnhancementType::ArmorClass});
+    Item* ring = new Ring("Ring of Strength", Enchantment{1, EnhancementType::Strength});
+
+
+    f1.equip(shield);
+    f1.equip(ring);
+
+
     f1.displayCharacterSheet();
+    f2.displayCharacterSheet();
+
+
 
     // Demonstrate utility function usage
     int diceRoll = Character::rollDice(1, 20); // Simulating a d20 roll
@@ -113,7 +122,7 @@ void displayItemContainer(){
     Item* armor(new Armor("Warrior's Armor", Enchantment{2, EnhancementType::ArmorClass}));
     Item* shield(new Shield("Defender's Shield", Enchantment{3, EnhancementType::ArmorClass}));
     Item* ring(new Ring("Ring of Strength", Enchantment{1, EnhancementType::Strength}));
-    Item* boots = new Boots("Swiftstride Boots", Enchantment{4, EnhancementType::Dexterity});
+    Item* boots(new Boots("Swiftstride Boots", Enchantment{4, EnhancementType::Dexterity}));
 
     container.addItem(helmet);
     container.addItem(armor);

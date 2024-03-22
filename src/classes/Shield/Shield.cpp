@@ -18,3 +18,7 @@ Shield::Shield(const std::string& name, const Enchantment& enchantment) : Item(n
 string Shield::getType() const {
     return "Shield";
 }
+
+void Shield::CalculateAttributes() {
+    armorClass = rollDice();
+}

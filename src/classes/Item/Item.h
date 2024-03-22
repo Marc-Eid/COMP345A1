@@ -7,6 +7,9 @@
 
 #include <string>
 #include <stdexcept>
+#include <map>
+#include <iostream>
+#include "../Dice/Dice.h"
 
 using namespace std;
 
@@ -42,6 +45,9 @@ class Item {
 protected:
     string name;
     Enchantment enchantment;
+    map<string, int> abilityScores; // Basic Attributes
+    bool equipped;
+    int hitPoints, armorClass, damageBonus, attackBonus; // Derived Attributes
 
 public:
     /**
@@ -84,6 +90,52 @@ public:
      * @return string Returns Enhancement Type in String
      */
     static std::string enchantmentTypeToString(EnhancementType type);
+
+    /**
+     * @brief Will set Attributes for each type of Weapon
+     *
+     */
+    void virtual CalculateAttributes() = 0 ;
+
+    /**
+     * Custom Roll for the item ability
+     *
+     * @return
+     */
+     int rollDice();
+
+     /**
+      * @brief print weapon on the console
+      *
+      */
+      void printWeapon();
+
+      /**
+       * @brief gets armor class
+       *
+       * @return
+       */
+      int getArmorClass(){return armorClass;};
+
+      /**
+       * @brief getter and setters for equipped
+       */
+       bool getEquipped() {return equipped;};
+
+       /**
+        * @brief set Equipped
+        */
+        void setEquipped(bool value){equipped = value; };
+
+private:
+    /**
+     * @brief Initializes attributes
+     *
+     *
+     */
+    void initializeAttributes();
+
+
 
 };
 

@@ -16,8 +16,13 @@ Armor::Armor(const std::string& name, const Enchantment& enchantment) : Item(nam
     if (enchantment.bonus < 1 || enchantment.bonus > 5) {
         throw std::runtime_error("Enchantment bonus must be between 1 and 5.");
     }
+    CalculateAttributes();
 }
 
 std::string Armor::getType() const {
     return "Armor";
+}
+
+void Armor::CalculateAttributes() {
+    armorClass = rollDice();
 }

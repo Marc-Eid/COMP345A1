@@ -40,6 +40,13 @@ public:
      */
     string getType() const override;
 
+    /**
+     * @brief Changes attributes according to the class
+     *
+     *
+     */
+    void CalculateAttributes() override;
+
 };
 
 #endif //COMP345A1_ARMOR_H

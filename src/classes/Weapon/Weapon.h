@@ -39,6 +39,12 @@ public:
      * @return std::string Returns the type of the item as a string.
      */
     string getType() const override;
+
+    /**
+    * Calculates attribute
+    *
+    */
+    void CalculateAttributes() override;
 };
 
 

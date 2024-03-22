@@ -5,6 +5,7 @@
 #include <vector>
 #include "../ObserverPattern/Subject.h"
 #include "../CellContent/CellContent.h"
+#include "../ItemContainer/ItemContainer.h"
 using namespace std;
 
 
@@ -47,7 +48,7 @@ public:
     // getter methods
     map<string, int> getAbilityScores()  { return abilityScores; };
     map<string, int> getModifiers() const { return modifiers; };
-    map<string, string> getEquipment() const { return equipment; };
+    ItemContainer getEquipment() const { return equipment; };
     int getHitpoints() const { return hitPoints; };
     int getArmorClass() const { return armorClass; };
     vector<int> getAttackBonus() const { return attackBonus; };
@@ -79,16 +80,6 @@ public:
     virtual void calculateAttributes() = 0;
 
 
-    /**
-    * @brief Equips an item to the character.
-    *
-    * This method assigns an item to the specified equipment slot. If an item is already equipped in the slot,
-    * it will be replaced by the new item.
-    *
-    * @param itemCategory The category of the item (e.g., "weapon", "armor").
-    * @param itemName The name of the item to be equipped.
-    */
-    void equipItem(const std::string& itemCategory, const std::string& itemName);
 
     /**
     * @brief Simulates rolling dice to generate random numbers.
@@ -107,6 +98,46 @@ public:
     virtual void displayCharacterSheet() const;
 
 
+    /**
+     * @brief Adds Item to the Item Container
+     *
+     * @param item
+     * @return
+     */
+    bool equip(Item *item);
+
+    /**
+     * @brief Removes the Item from the Container
+     *
+     * @param item
+     * @return
+     */
+    bool unequip(int index);
+
+    /**
+     * @brief wears and Item from the container
+     *
+     * @param index
+     * @return
+     */
+    bool wearItem(int index);
+
+    /**
+     * @brief remove the worn Item and add it to the container
+     *
+     * @return
+     */
+    bool remove();
+
+    /**
+     * @brief Level Up a character by One
+     *
+     * @param void
+     * @return Confirmation whether the Level is increased or not
+     */
+    virtual bool levelUp() = 0;
+
+
 protected:
     string name;
     int level;
@@ -115,7 +146,8 @@ protected:
     map<string, int> modifiers;
     vector<int> attackBonus;
     int hitPoints, armorClass, damageBonus; // Derived Attributes
-    map<string, string> equipment; // Equipment Slots
+    Item* wornItem ;// Worn Items
+    ItemContainer equipment; // Equipment
 
     /**
     * @brief Generates random ability scores for the character.
@@ -162,14 +194,6 @@ protected:
     */
     static int getArmorACValue(const string& armorName);
 
-
-    /**
-     * @brief Level Up a character by One
-     *
-     * @param void
-     * @return Confirmation whether the Level is increased or not
-     */
-     virtual bool levelUp() = 0;
 
 private:
     /**

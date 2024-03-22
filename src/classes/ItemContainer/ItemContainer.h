@@ -72,6 +72,35 @@ public:
      */
     int getItemCount() const;
 
+    /**
+     * Remove Item from the Container
+     *
+     * @param index
+     * @return
+     */
+    bool removeItem(int index);
+
+    /**
+     * Check if item exist in the armory
+     *
+     * @param item
+     * @return
+     */
+    bool itemExist(Item *item);
+
+    /**
+     * @brief Print Container
+     *
+     */
+    void printContainer() const;
+
+    /**
+     * @brief will get all the items by type
+     *
+     * @return
+     */
+    vector<Item*> getItemsByType(const string& type);
+
 private:
     std::vector<Item*> items; ///< Vector storing pointers to items.
 };

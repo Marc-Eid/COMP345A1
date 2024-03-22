@@ -14,8 +14,17 @@ Ring::Ring(const std::string& name, const Enchantment& enchantment) : Item(name,
     if (std::find(allowedEnhancements.begin(), allowedEnhancements.end(), enchantment.type) == allowedEnhancements.end()) {
         throw std::runtime_error("Invalid enchantment type for Ring.");
     }
+    CalculateAttributes();
 }
 
 string Ring::getType() const {
     return "Ring";
+}
+
+void Ring::CalculateAttributes() {
+    armorClass = rollDice();
+    abilityScores["Strength"]  = rollDice();
+    abilityScores["Constitution"] = rollDice();
+    abilityScores["Wisdom"] = rollDice();
+    abilityScores["Strength"] = rollDice();
 }

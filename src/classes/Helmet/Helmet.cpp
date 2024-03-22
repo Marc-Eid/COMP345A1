@@ -12,8 +12,15 @@ Helmet::Helmet(const std::string& name, const Enchantment& enchantment) : Item(n
     if (std::find(allowedEnhancements.begin(), allowedEnhancements.end(), enchantment.type) == allowedEnhancements.end()) {
         throw std::runtime_error("Invalid enchantment type for Helmet.");
     }
+    CalculateAttributes();
 }
 
 string Helmet::getType() const {
     return "Helmet";
+}
+
+void Helmet::CalculateAttributes() {
+    abilityScores["Wisdom"] = rollDice();
+    abilityScores["Intelligence"] = rollDice();
+    armorClass = rollDice();
 }

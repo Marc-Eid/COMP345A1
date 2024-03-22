@@ -17,3 +17,8 @@ Weapon::Weapon(const std::string& name, const Enchantment& enchantment) : Item(n
 std::string Weapon::getType() const {
     return "Weapon";
 }
+
+void Weapon::CalculateAttributes() {
+    attackBonus = rollDice();
+    damageBonus = rollDice();
+}

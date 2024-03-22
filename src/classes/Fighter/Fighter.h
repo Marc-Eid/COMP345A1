@@ -1,6 +1,7 @@
 #pragma once
 #include "../Character/Character.h"
 #include "../Dice/Dice.h"
+#include "../Item/Item.h"
 
 /**
  * @file Fighter.h

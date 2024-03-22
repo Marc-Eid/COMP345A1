@@ -8,8 +8,14 @@ Belt::Belt(const std::string& name, const Enchantment& enchantment) : Item(name,
     if (std::find(allowedEnhancements.begin(), allowedEnhancements.end(), enchantment.type) == allowedEnhancements.end()) {
         throw std::runtime_error("Invalid enchantment type for Belt.");
     }
+    CalculateAttributes();
 }
 
 std::string Belt::getType() const {
     return "Belt";
+}
+
+void Belt::CalculateAttributes() {
+    abilityScores["Strength"] = rollDice();
+    abilityScores["Constitution"] = rollDice();
 }

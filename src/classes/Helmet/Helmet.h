@@ -39,6 +39,12 @@ public:
      */
     string getType() const override;
 
+    /**
+     * Calculates attribute
+     *
+     */
+    void CalculateAttributes() override;
+
 };
 
 

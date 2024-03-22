@@ -17,3 +17,8 @@ Boots::Boots(const std::string& name, const Enchantment& enchantment) : Item(nam
 string Boots::getType() const {
     return "Boots";
 }
+
+void Boots::CalculateAttributes() {
+    armorClass = rollDice();
+    abilityScores["Dexterity"] = rollDice();
+}

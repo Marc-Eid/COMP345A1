@@ -17,11 +17,12 @@ void Fighter::calculateHitPoints() {
 }
 
 void Fighter::calculateArmorClass() {
-    int baseArmorClass = 10;
+    int baseArmorClass = armorClass;
     // Check for equipped armor and adjust base AC accordingly
-    auto armorIt = equipment.find("armor");
-    if (armorIt != equipment.end() && !armorIt->second.empty()) {
-        baseArmorClass += getArmorACValue(equipment["armor"]);
+    vector<Item*> item = equipment.getItemsByType("Armor");
+
+    for(auto & i : item){
+        baseArmorClass += i->getArmorClass();
     }
 
     armorClass = baseArmorClass + modifiers["Dexterity"];
