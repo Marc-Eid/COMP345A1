@@ -156,12 +156,12 @@ void Character::adjustLevel(int level) {
 bool Character::equip(Item *item) {
     // Check is equipment is already equipped
     if(item->getEquipped()){
-        cout << "This weapon is already equipped";
+        cout << "This weapon is already equipped\n";
         return false;
     }
     // If item Exist in the container
     if(equipment.itemExist(item)){
-       cout << "Item Already Exist in the Container";
+       cout << "Item Already Exist in the Container \n";
        return false;
 
     }
@@ -174,7 +174,7 @@ bool Character::equip(Item *item) {
 bool Character::unequip(int index) {
     Item *item  = equipment.getItem(index);
     if(wornItem == item){
-        cout << "In order to remove the item from the equipment container please first remove it ";
+        cout << "In order to remove the item from the equipment container please first remove it \n";
         return false;
     }
 
@@ -186,13 +186,13 @@ bool Character::wearItem(int index) {
 
     // Logic to change the Ability scores according to the worn item
     if(wornItem != nullptr ){
-        cout << "In order to wear the Item please remove the Worn Item";
+        cout << "In order to wear the Item please remove the Worn Item \n";
         return false;
     }
 
     // If the Item does not exist in the equipment container
     if(item == nullptr){
-        cout << "Error Occured";
+        cout << "Error Occured\n";
         return false;
     }
 

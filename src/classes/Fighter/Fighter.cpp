@@ -39,7 +39,7 @@ void Fighter::displayCharacterSheet() const {
 
 bool Fighter::levelUp() {
 
-    cout << "Leveling Up the Fighter";
+    cout << "Leveling Up the Fighter \n";
     Dice dice = Dice();
     hitPoints = dice.roll("1d6") + abilityScores["Constitution"];
 

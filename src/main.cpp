@@ -59,6 +59,8 @@ void displayCharacter(){
     f1.equip(shield);
     f1.equip(ring);
     f1.wearItem(0);
+    f1.wearItem(0);
+    f1.remove();
 
     f1.displayCharacterSheet();
     f2.displayCharacterSheet();
