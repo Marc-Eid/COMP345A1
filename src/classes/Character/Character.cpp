@@ -118,9 +118,9 @@ void Character::displayCharacterSheet() const {
 
     // print the worn Item
 
-    if(wornItem != nullptr){
 
-        cout << "Worn Equipment :" << endl;
+    if(wornItem != nullptr){
+        cout << " ----------------Worn Equipment-----------------" << endl;
         wornItem->printWeapon();
     }
 
@@ -230,6 +230,7 @@ bool Character::wearItem(int index) {
             damageBonus += item->getEnchantment().bonus;
             break;
     }
+    wornItem = item;
     return true;
 }
 
@@ -274,6 +275,8 @@ bool Character::remove() {
     wornItem = nullptr;
     return true;
 }
+
+
 
 
 

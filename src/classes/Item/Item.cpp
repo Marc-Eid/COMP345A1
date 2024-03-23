@@ -65,7 +65,7 @@ void Item::printWeapon() {
     cout << "Item :"<< getType() << "\n";
     cout << "Item Name:"<< name << "\n";
 
-    cout << "Enhancement Type : "<<enchantmentTypeToString(enchantment.type) << "Bonus "<< enchantment.bonus << "\n";
+    cout << "Enhancement Type : "<<enchantmentTypeToString(enchantment.type) << "   Bonus "<< enchantment.bonus << "\n";
     cout << "Armor Class :" << armorClass << "\n";
     cout << "Hit Points :"<< hitPoints << "\n";
     cout << "damage Bonus  :"<<damageBonus << "\n";

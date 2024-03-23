@@ -35,6 +35,7 @@ using namespace std;
 
 class Character: public Subject, public CellContent{
 public:
+    Character()  = default;
 
     Character(const string& name, int level);
 
@@ -47,12 +48,27 @@ public:
 
     // getter methods
     map<string, int> getAbilityScores()  { return abilityScores; };
-    map<string, int> getModifiers() const { return modifiers; };
-    ItemContainer getEquipment() const { return equipment; };
-    int getHitpoints() const { return hitPoints; };
-    int getArmorClass() const { return armorClass; };
+    map<string, int> getModifiers()  { return modifiers; };
     vector<int> getAttackBonus() const { return attackBonus; };
-    int getDamageBonus() const { return damageBonus; };
+
+
+    int getWisdom() { return  abilityScores["Wisdom"];};
+    int getConstitution() {return abilityScores["Constitution"];};
+    int getIntelligence() {return abilityScores["Intelligence"];};
+    int getCharisma(){return abilityScores["Charisma"];};
+    int getDexterity(){return abilityScores["Dexterity"];};
+    int getStrength() {return abilityScores["Strength"];};
+
+
+    int getDamageBonus() { return damageBonus; };
+    int getArmorClass() { return armorClass; };
+    int getHitPoints()  {return hitPoints;};
+
+
+    ItemContainer getEquipment() const { return equipment; };
+
+
+    int getHitpoints() const { return hitPoints; };
     int getLevel() const { return level; };
     string getName() const { return name; };
 

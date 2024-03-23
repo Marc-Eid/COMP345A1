@@ -57,10 +57,7 @@ void displayCharacter(){
     Fighter f1("test1", 5);
 
     cout << "\nShowing that the initialization of the two fighter is generated randomly. \n\n";
-
-    Fighter f2("test2", 5);
-
-    cout << "\n Leveling Up the fighter";
+    Fighter f2("test2", 10);
 
     Item* shield = new Shield("Defender's Shield", Enchantment{3, EnhancementType::ArmorClass});
     Item* ring = new Ring("Ring of Strength", Enchantment{1, EnhancementType::Strength});
@@ -69,11 +66,10 @@ void displayCharacter(){
     f1.equip(shield);
     f1.equip(ring);
 
+    f1.wearItem(0);
 
     f1.displayCharacterSheet();
     f2.displayCharacterSheet();
-
-
 
     // Demonstrate utility function usage
     int diceRoll = Character::rollDice(1, 20); // Simulating a d20 roll
@@ -132,7 +128,7 @@ void displayItemContainer(){
 
     cout << endl;
     cout << "Printing elements in the Item Container: " << endl;
-    container.printItems();
+    container.printContainer();
     cout << endl;
 }
 
@@ -184,7 +180,7 @@ void displayMapBuilder() {
     std::cout << "Display Map Builder: Part 4.1" << std::endl;
     std::cout << "---------------------------------" << std::endl;
     MapEditorBuilder builder;
-    std::string filePath = ".";
+    std::string filePath = "src/map_example.txt";
     std::cout << "Building the Map from: " <<filePath << std::endl;
 
     builder.loadMap(filePath);
