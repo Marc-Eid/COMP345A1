@@ -46,6 +46,9 @@ add_executable(COMP345A1 src/main.cpp
         src/classes/Builder/TankBuilder.cpp
         src/classes/Builder/TankBuilder.h
         src/classes/Builder/TankBuilder.h
+        src/classes/CharacterStrategy/CharacterStrategy.h
+        src/classes/CharacterStrategy/CharacterStrategy.cpp
+        src/classes/GameLogger/GameLogger.h
 )
 
 

@@ -6,8 +6,12 @@
 #include "../ObserverPattern/Subject.h"
 #include "../CellContent/CellContent.h"
 #include "../ItemContainer/ItemContainer.h"
+#include "../CharacterStrategy/CharacterStrategy.h"
+
 using namespace std;
 
+class Map;
+class  CharacterStrategy;
 
 /**
  * @file Character.h
@@ -38,6 +42,18 @@ public:
     Character()  = default;
 
     Character(const string& name, int level);
+
+    CharacterStrategy* strategy = nullptr;
+
+    // Method to set the strategy
+    void setStrategy(CharacterStrategy* newStrategy);
+    // Delegating move and attack actions to the strategy
+    void move(Map* map);
+
+    void attack(Map* map);
+
+    void freeAction();
+
 
     /**
     * @brief Virtual destructor for the Character class.
@@ -152,6 +168,10 @@ public:
      * @return Confirmation whether the Level is increased or not
      */
     virtual bool levelUp() = 0;
+
+    bool attack(Character* target, int attackRoll);
+
+    void onAttacked();
 
 
 protected:

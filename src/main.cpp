@@ -15,85 +15,18 @@
 #include "classes/MapBuilders/MapEditorBuilder.h"
 #include "classes/MapBuilders/GameLevelMapBuilder.h"
 #include "classes/Builder/BullyBuilder.h"
-
-void displayCharacter();
-//void characterObserver();
-//void displayMap();
-//void displayItemContainer();
-//void displayDice();
-//void displayMapBuilder();
-//void displayGameLevelMapBuilder();
-//void displayMapEditor();
-//void displayCharacterBuilder();
+#include "classes/CharacterStrategy/CharacterStrategy.h"
 
 int main() {
-
-
-
-    displayCharacter();
-
-//    displayMap();
-//    displayMapBuilder();
-//    displayGameLevelMapBuilder();
-//    displayMapEditor();
-//    displayItemContainer();
-//    displayDice();
-//    displayCharacterBuilder();
-
-    return 0;
-}
-
-
-
-void displayCharacter(){
-    Fighter f1("test1", 5);
-
-    cout << "\nShowing that the initialization of the two fighter is generated randomly. \n\n";
-    Fighter f2("test2", 10);
-
-    Item* shield = new Shield("Defender's Shield", Enchantment{3, EnhancementType::ArmorClass});
-    Item* ring = new Ring("Ring of Strength", Enchantment{1, EnhancementType::Strength});
-
-    f1.levelUp();
-    f1.levelUp();
-    f1.equip(shield);
-    f1.equip(ring);
-    f1.wearItem(0);
-
-    f1.displayCharacterSheet();
-    f2.displayCharacterSheet();
-
-    // Demonstrate utility function usage
-    int diceRoll = Character::rollDice(1, 20); // Simulating a d20 roll
-    std::cout << "\nSimulating a d20 roll: " << diceRoll << std::endl;
-};
-
-void characterObserver(){
-    Fighter* fighter = new Fighter("fighter 1", 10);
-    CharacterObserver* characterObserver = new CharacterObserver(fighter);
-
-    cout << "calling the display method of the character to show initial state \n\n";
-    fighter->displayCharacterSheet();
-
-    cout << "\ncharacter sheet updated following a change to hitPoints \n\n";
-    fighter->setHitpoints(20);
-
-    cout << "\n";
-
-}
-
-void displayMap(){
-    // Create Characters
-    Fighter *f1 = new Fighter("mubashir",4);
-    Fighter *f2 = new Fighter("Marc",4);
-    f1->getAbilityScores();
-
+    Fighter *p1 = new Fighter("mubashir",4);
+    Fighter *npc = new Fighter("x",4);
+    p1->getAbilityScores();
+    npc->getAbilityScores();
 
     // Create a Map
-    Map* map = new Map(5,5);
+    Map* map = new Map(10,5);
 
     //Create an Observer
-
     MapObserver mapObserver = MapObserver(map);
 
     // Design the Map
@@ -105,157 +38,31 @@ void displayMap(){
     // Check if the Map is valid or not
     map->isValid();
 
-    // Start Game for the fighter
-    map->startGame(f1);
+    // Start Game for the fighters
+    map->startGame(p1, 1, 3);
+    map->startGame(npc, 8, 2);
+    map->printMap();
 
-    // Try moving the character on the map
-    map->TryMove(f1,"right");
-    map->TryMove(f1,"right");
-    map->TryMove(f1,"right");
-    map->TryMove(f1,"right");
-    map->TryMove(f1,"down");
-};
+    // Human Player Strategy
+    HumanPlayerStrategy* humanStrategy = new HumanPlayerStrategy();
+    p1->setStrategy(humanStrategy);
+    p1->move(map);
+    p1->attack(map);
+    p1->freeAction();
 
-void displayItemContainer(){
-    ItemContainer container;
+    // Friendly Strategy
+    FriendlyStrategy* friendlyStrategy = new FriendlyStrategy();
+    npc->setStrategy(friendlyStrategy);
+    npc->move(map);
+    npc->attack(map);
 
-    // Create items and add them to the container
-    Item* helmet(new Helmet("Knight's Helmet", Enchantment{5, EnhancementType::ArmorClass}));
-    Item* armor(new Armor("Warrior's Armor", Enchantment{2, EnhancementType::ArmorClass}));
-    Item* shield(new Shield("Defender's Shield", Enchantment{3, EnhancementType::ArmorClass}));
-    Item* ring(new Ring("Ring of Strength", Enchantment{1, EnhancementType::Strength}));
-    Item* boots(new Boots("Swiftstride Boots", Enchantment{4, EnhancementType::Dexterity}));
+    // Human Player Strategy
+    p1->attack(map);
 
-    container.addItem(helmet);
-    container.addItem(armor);
-    container.addItem(shield);
-    container.addItem(ring);
-    container.addItem(boots);
-
-    cout << endl;
-    cout << "Printing elements in the Item Container: " << endl;
-    container.printContainer();
-    cout << endl;
-}
-
-void displayDice() {
-    Dice dice;
-    string diceInput;
-    cout << "Enter a string of the form xdy[+z], where:\n"
-            "\tx is the number of dice,\n"
-            "\tdy the kind of dice (d4, d6, d8, d10, d12, d20 or d100),\n"
-            "\tz is a negative of positive number added after all the dice results have been added (optional).\n"
-            "\nDice Input: ";
-    cin >> diceInput;
-    try {
-        int diceResult = dice.roll(diceInput);
-        cout << "\tRolled: " << diceInput << ", Result: " << diceResult << endl;
-        cout << "\nMore Dice Roll Examples:"<< endl;
-        cout << "\tRolled: " << "55d100-26" << ", Result: " << dice.roll("55d100-26") << endl;
-        cout << "\tRolled: " << "3d20" << ", Result: " << dice.roll("3d20") << endl;
-        cout << "\tRolled: " << "3d8-0" << ", Result: " << dice.roll("3d8-0") << endl;
-        cout << "\tRolled: " << "3d4+15" << ", Result: " << dice.roll("3d4+15") << endl;
-        cout << "\tRolled: " << "9d20+1" << ", Result: " << dice.roll("9d20+1") << endl;
-        cout << "\tRolled: " << "7d6" << ", Result: " << dice.roll("7d6") << endl;
-        cout << "\tRolled: " << "1d6-100" << ", Result: " << dice.roll("1d6-100") << endl;
-    } catch (const invalid_argument& e) {
-        cerr << "Error: " << e.what() << endl;
-    }
-
-}
+    // Aggressor Strategy
+    npc->move(map);
+    npc->attack(map);
 
 
-void displayFileContent(const std::string& filePath) {
-    std::ifstream file(filePath);
-    if (!file.is_open()) {
-        std::cerr << "Failed to open file for comparison: " << filePath << std::endl;
-        return;
-    }
-
-    std::cout << "Original map content from file:\n";
-    std::string line;
-    while (getline(file, line)) {
-        std::cout << line << std::endl;
-    }
-    std::cout << "---------------------------------" << std::endl;
-    file.close();
-}
-
-void displayMapBuilder() {
-    std::cout << "---------------------------------" << std::endl;
-    std::cout << "Display Map Builder: Part 4.1" << std::endl;
-    std::cout << "---------------------------------" << std::endl;
-    MapEditorBuilder builder;
-    std::string filePath = "src/map_example.txt";
-    std::cout << "Building the Map from: " <<filePath << std::endl;
-
-    builder.loadMap(filePath);
-    Map* loadedMap = builder.getMap();
-
-    if (loadedMap != nullptr) {
-        std::cout << "Map loaded successfully.\n";
-        loadedMap->printMap(); // This will print the map to the console
-    } else {
-        std::cerr << "Failed to load map.\n";
-    }
-    displayFileContent(filePath);
-
-}
-
-void displayGameLevelMapBuilder() {
-    std::cout << "---------------------------------" << std::endl;
-    std::cout << "Display Map Builder with Level Adjustments: Part 4.2" << std::endl;
-    std::cout << "---------------------------------" << std::endl;
-    GameLevelMapBuilder builder;
-    std::string filePath = "src/map_example.txt";
-
-    builder.loadMap(filePath);
-    Map* loadedMap = builder.getMap();
-
-    std::cout << "---------------------------------" << std::endl;
-    std::cout << "Displaying the Fighter sheet before entering the game:" << std::endl;
-    std::cout << "---------------------------------" << std::endl;
-
-    Fighter *f1 = new Fighter("teemo",4);
-    loadedMap->startGame(f1);
-    f1->displayCharacterSheet();
-
-    std::cout << "---------------------------------" << std::endl;
-    std::cout << "Building the Map from: " <<filePath << std::endl;
-    std::cout << "---------------------------------" << std::endl;
-
-    if (loadedMap != nullptr) {
-        std::cout << "Map loaded successfully.\n";
-        loadedMap->printMap(); // This will print the map to the console
-    } else {
-        std::cerr << "Failed to load map.\n";
-    }
-    displayFileContent(filePath);
-
-    std::cout << "---------------------------------" << std::endl;
-    std::cout << "Displaying the Fighter sheet after entering the game with level 15:" << std::endl;
-    std::cout << "---------------------------------" << std::endl;
-
-    builder.adaptToLevel(15);
-    f1->displayCharacterSheet();
-}
-
-void displayMapEditor() {
-    std::cout << "\n\n-----------------------------------------------" << std::endl;
-    std::cout << "\tWemcome to the Map/Campaign Editor" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
-    MapEditor editor;
-    editor.runEditor();
-}
-void displayCharacterBuilder() {
-    std::cout << "\n\n-----------------------------------------------" << std::endl;
-    std::cout << "\tWelcome to Character Builder" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
-
-
-    BullyBuilder* b1 = new BullyBuilder();
-    b1->createFighter("mubashir",2);
-    b1->setAbilityScores();
-    b1->getFighter()->displayCharacterSheet();
-
+    return 0;
 }

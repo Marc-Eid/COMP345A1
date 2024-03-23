@@ -6,6 +6,7 @@
 #include <iostream>
 #include <queue>
 #include <map>
+#include <vector>
 
 
 #ifndef COMP345A1_MAP_H
@@ -13,6 +14,8 @@
 
 using namespace std;
 
+class Character;
+class Cell;
 
 struct Coordinate {
     int x;
@@ -76,14 +79,14 @@ public:
     /**
      * Start the Game
      */
-    bool startGame(Character* c);
+    bool startGame(Character* c, int x, int y);
 
      /**
       * Takes character pointer, direction and tries it to move on the map
       * @param c
       * @param dir
       */
-     bool TryMove (Character* c,string dir);
+     bool tryMove (Character *c,string dir);
 
     /**
     * @brief Serialize the Map object.
@@ -134,6 +137,10 @@ public:
     */
     Cell* getCell(int x, int y);
 
+    bool moveNextTo(Character *characterToMove);
+
+    vector<Character*> findAdjacentCharacters(Character* character);
+
 private:
     /**
      * A utility function used to determine if the coordinate is the Queue used in Breadth first search
@@ -156,7 +163,7 @@ private:
      * @param c
      * @return
      */
-     Coordinate getCurrentPositionCoordinate(Character* c);
+     Coordinate getCurrentPosition(Character* c);
 
      /**
       * Takes Character pointer and moves it to move Position (X,Y)
@@ -192,7 +199,8 @@ private:
     /**
      * Stores state which is been taken by the character
      */
-     std::map<Character*,Cell::State> prevStates;
+    std::unordered_map<Character*, Coordinate> characterPositions;
+
 };
 
 
