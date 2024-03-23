@@ -52,7 +52,6 @@ void Character::UpdateAttackBonus() {
     }
     else
     {
-
         attackBonus.push_back(level);
     }
 }
@@ -112,7 +111,7 @@ void Character::displayCharacterSheet() const {
     cout << "Hit Points: " << hitPoints << "\nArmor Class: " << armorClass
               << "\nAttack Bonus Per Round: ";
     for (const int& attackBonu : attackBonus){
-        cout << attackBonu + modifiers.at("Strength")<< " ";
+        cout << attackBonu << " ";
     }
     cout << "\nDamage Bonus: " << damageBonus << "\n";
 

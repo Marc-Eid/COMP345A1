@@ -17,29 +17,21 @@
 #include "classes/Builder/BullyBuilder.h"
 
 void displayCharacter();
-void displayMap();
-void displayItemContainer();
-void displayDice();
-void displayMapBuilder();
-void displayGameLevelMapBuilder();
-void displayMapEditor();
-
-void displayCharacterBuilder();
+//void characterObserver();
+//void displayMap();
+//void displayItemContainer();
+//void displayDice();
+//void displayMapBuilder();
+//void displayGameLevelMapBuilder();
+//void displayMapEditor();
+//void displayCharacterBuilder();
 
 int main() {
 
-    Fighter* fighter = new Fighter("fighter 1", 10);
-    CharacterObserver* characterObserver = new CharacterObserver(fighter);
 
-    cout << "calling the display method of the character to show initial state \n\n";
-    fighter->displayCharacterSheet();
-
-    cout << "\ncharacter sheet updated following a change to hitPoints \n\n";
-    fighter->setHitpoints(20);
-
-    cout << "\n";
 
     displayCharacter();
+
 //    displayMap();
 //    displayMapBuilder();
 //    displayGameLevelMapBuilder();
@@ -62,10 +54,10 @@ void displayCharacter(){
     Item* shield = new Shield("Defender's Shield", Enchantment{3, EnhancementType::ArmorClass});
     Item* ring = new Ring("Ring of Strength", Enchantment{1, EnhancementType::Strength});
 
-
+    f1.levelUp();
+    f1.levelUp();
     f1.equip(shield);
     f1.equip(ring);
-
     f1.wearItem(0);
 
     f1.displayCharacterSheet();
@@ -75,6 +67,20 @@ void displayCharacter(){
     int diceRoll = Character::rollDice(1, 20); // Simulating a d20 roll
     std::cout << "\nSimulating a d20 roll: " << diceRoll << std::endl;
 };
+
+void characterObserver(){
+    Fighter* fighter = new Fighter("fighter 1", 10);
+    CharacterObserver* characterObserver = new CharacterObserver(fighter);
+
+    cout << "calling the display method of the character to show initial state \n\n";
+    fighter->displayCharacterSheet();
+
+    cout << "\ncharacter sheet updated following a change to hitPoints \n\n";
+    fighter->setHitpoints(20);
+
+    cout << "\n";
+
+}
 
 void displayMap(){
     // Create Characters

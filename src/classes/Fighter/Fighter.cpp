@@ -20,11 +20,9 @@ void Fighter::calculateArmorClass() {
     int baseArmorClass = armorClass;
     // Check for equipped armor and adjust base AC accordingly
     vector<Item*> item = equipment.getItemsByType("Armor");
-
     for(auto & i : item){
         baseArmorClass += i->getArmorClass();
     }
-
     armorClass = baseArmorClass + modifiers["Dexterity"];
 }
 
@@ -49,11 +47,12 @@ bool Fighter::levelUp() {
     {
         attackBonu += 1;
     }
+    level++;
     if (level == 6 || level == 11 || level == 16)
     {
         attackBonus.push_back(1);
     }
-    level++;
+
     return true;
 
 }
