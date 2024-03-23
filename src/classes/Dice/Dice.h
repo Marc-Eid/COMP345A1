@@ -6,6 +6,9 @@
 #include <random>
 #include <unordered_set>
 #include <regex>
+#include <list>
+
+#include "../GameLogger/GameLogger.h"
 
 /**
  * @brief Represents a class for rolling dice in a tabletop role-playing game (RPG) context.
@@ -39,7 +42,8 @@
  * - <unordered_set>: Used for storing valid dice types in a set data structure for efficient lookup during validation.
  * - <regex>: Used for input string validation using regular expressions.
  */
-class Dice {
+
+class Dice : public IObservable {
 private:
     std::mt19937 generator; /**< Mersenne Twister random number generator */
     std::regex inputPattern; /**< Regular expression pattern for input validation */
@@ -59,6 +63,8 @@ private:
      * @return true if the number of sides is a valid dice type, false otherwise.
      */
     bool isValidDiceType(int numSides) const;
+
+    std::list<IObserver*> observers;
 
 public:
     /**
@@ -81,5 +87,11 @@ public:
      *        or if the dice type is invalid.
      */
     int roll(const std::string& input);
+
+    void attach(IObserver* observer) override;
+
+    void detach(IObserver* observer) override;
+
+    void notify(const std::string& message) override;
 };
 #endif //COMP345A1_DICE_H

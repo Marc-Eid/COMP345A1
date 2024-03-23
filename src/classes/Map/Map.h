@@ -7,6 +7,11 @@
 #include <queue>
 #include <map>
 #include <vector>
+#include <list>
+
+
+#include "../GameLogger/GameLogger.h"
+
 
 
 #ifndef COMP345A1_MAP_H
@@ -41,7 +46,7 @@ struct Coordinate {
  * <map>: Utilized for storing the previous states of characters, facilitating the ability to revert their positions when necessary.
  *
  */
-class Map : public Subject{
+class Map : public Subject, IObservable{
 public:
     /**
      * @brief Accepts width and height of the map and initializes a two dimensional array with Wall arround
@@ -141,6 +146,12 @@ public:
 
     vector<Character*> findAdjacentCharacters(Character* character);
 
+    void attach(IObserver* observer) override;
+
+    void detach(IObserver* observer) override;
+
+    void notify(const std::string& message) override;
+
 private:
     /**
      * A utility function used to determine if the coordinate is the Queue used in Breadth first search
@@ -172,6 +183,7 @@ private:
       * @param y
       */
     bool move(Character* c,int x ,int y);
+
 private:
     /**
      * Stores 2 dimensional Array
@@ -200,6 +212,8 @@ private:
      * Stores state which is been taken by the character
      */
     std::unordered_map<Character*, Coordinate> characterPositions;
+
+    std::list<IObserver*> observers;
 
 };
 

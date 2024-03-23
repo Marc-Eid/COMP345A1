@@ -7,6 +7,8 @@
 #include "../CellContent/CellContent.h"
 #include "../ItemContainer/ItemContainer.h"
 #include "../CharacterStrategy/CharacterStrategy.h"
+#include <list>
+#include "../GameLogger/GameLogger.h"
 
 using namespace std;
 
@@ -37,9 +39,15 @@ class  CharacterStrategy;
  *    Chosen for its efficient key-value storage and easy retrieval of character-related data.
  */
 
-class Character: public Subject, public CellContent{
+class Character: public Subject, public CellContent, public IObservable{
 public:
     Character()  = default;
+
+    void attach(IObserver* observer) override;
+
+    void detach(IObserver* observer) override;
+
+    void notify(const std::string& message) override;
 
     Character(const string& name, int level);
 
@@ -246,8 +254,7 @@ private:
      */
     void UpdateAttackBonus();
 
-
-
+    std::list<IObserver*> observers;
 
 };
 

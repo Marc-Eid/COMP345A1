@@ -281,6 +281,7 @@ bool Character::remove() {
 void Character::onAttacked() {
     if(dynamic_cast<FriendlyStrategy*>(strategy)) { // If current strategy is FriendlyStrategy
         setStrategy(new AggressorStrategy()); // Switch to AggressorStrategy
+        notify(name + " now seeks revenge for being attacked and is switching to the dark side  (Aggressor Strategy)");
     }
 }
 
@@ -290,15 +291,17 @@ bool Character::attack(Character* target, int attackRoll) {
 
     cout << target->name << " currently has " << target->hitPoints << " hit points.\n";
 
-    cout << name << " rolls an attack: " << attackRoll << " + bonus: " << attackBonus[0] << " = total: " << totalAttack << "\n";
+    notify(name + " rolls the dice to attack: " + std::to_string(attackRoll) + " + " + std::to_string(attackBonus[0]) + " (bonus) => total = " + std::to_string(totalAttack) + "\n");
 
     if (totalAttack >= target->armorClass) {
-        target->onAttacked(); // Notify the target that it's being attacked
         // The attack hits
-        cout << name << " hits " << target->name << " for " << totalAttack << " damage!\n";
+        notify("The attack Hits!");
+        cout << name << " hits " << target->name << " for a total of " << totalAttack << " damage!\n";
 
         target->hitPoints -= totalAttack; // Apply damage
         cout << target->name << " now has " << target->hitPoints << " hit points.\n";
+
+        target->onAttacked(); // Notify the target that it's being attacked
 
         // Additional logic could be added here, such as checking if the target is defeated
         return true; // Attack was successful
@@ -333,6 +336,22 @@ void Character::freeAction() {
         humanStrategy->freeAction();
     } else {
         std::cout << name << " has no free actions to perform." << std::endl;
+    }
+}
+
+void Character::attach(IObserver* observer) {
+    observers.push_back(observer);
+}
+
+void Character::detach(IObserver* observer) {
+    observers.remove(observer);
+}
+
+void Character::notify(const std::string& message) {
+    if (loggingEnabled){
+        for(auto observer : observers) {
+            observer->update(message);
+        }
     }
 }
 

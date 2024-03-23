@@ -2,32 +2,27 @@
 #include "classes/Fighter/Fighter.h"
 #include "classes/Map/Map.h"
 #include "classes/Dice/Dice.h"
-#include "classes/ItemContainer/ItemContainer.h"
 #include "classes/Helmet/Helmet.h"
-#include "classes/Armor/Armor.h"
-#include "classes/Shield/Shield.h"
-#include "classes/Boots/Boots.h"
-#include "classes/Ring/Ring.h"
-#include "classes/ObserverPattern/CharacterObserver.h"
-#include "classes/ObserverPattern/MapObserver.h"
-#include "classes/MapEditor/MapEditor.h"
-#include "classes/Campaign/Campaign.h"
-#include "classes/MapBuilders/MapEditorBuilder.h"
-#include "classes/MapBuilders/GameLevelMapBuilder.h"
-#include "classes/Builder/BullyBuilder.h"
 #include "classes/CharacterStrategy/CharacterStrategy.h"
+#include "classes/GameLogger/GameLogger.h"
+
 
 int main() {
-    Fighter *p1 = new Fighter("mubashir",4);
-    Fighter *npc = new Fighter("x",4);
+    auto *p1 = new Fighter("Player1",4);
+    auto *npc = new Fighter("NPC",4);
     p1->getAbilityScores();
     npc->getAbilityScores();
 
-    // Create a Map
+    // Create a Map and a Dice
     Map* map = new Map(10,5);
+    Dice* dice = new Dice();
 
-    //Create an Observer
-    MapObserver mapObserver = MapObserver(map);
+    //Create a Game Logger
+    auto* log = new GameLogger();
+    dice->attach(log);
+    map->attach(log);
+    p1->attach(log);
+    npc->attach(log);
 
     // Design the Map
     map->Place(1,2,'#');
@@ -43,26 +38,31 @@ int main() {
     map->startGame(npc, 8, 2);
     map->printMap();
 
-    // Human Player Strategy
-    HumanPlayerStrategy* humanStrategy = new HumanPlayerStrategy();
+    // Player1's turn (Human Strategy)
+    auto* humanStrategy = new HumanPlayerStrategy();
     p1->setStrategy(humanStrategy);
     p1->move(map);
     p1->attack(map);
     p1->freeAction();
 
-    // Friendly Strategy
-    FriendlyStrategy* friendlyStrategy = new FriendlyStrategy();
+    // NPC's turn (Friendly Strategy)
+    auto* friendlyStrategy = new FriendlyStrategy();
     npc->setStrategy(friendlyStrategy);
     npc->move(map);
     npc->attack(map);
 
-    // Human Player Strategy
+    // Player1's turn (Human Strategy)
+    p1->move(map);
     p1->attack(map);
+    p1->freeAction();
 
-    // Aggressor Strategy
+
+    // NPC's turn (Aggressor Strategy)
     npc->move(map);
     npc->attack(map);
 
+    // switch on/off logging sources
+    npc->setLogging(false);
 
     return 0;
 }

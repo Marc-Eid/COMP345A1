@@ -2,6 +2,7 @@
 #define COMP345A1_GAMELOGGER_H
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -16,7 +17,14 @@ class IObservable {
 public:
     virtual void attach(IObserver* observer) = 0;
     virtual void detach(IObserver* observer) = 0;
-    virtual void notify(const string& message) = 0;
+    bool loggingEnabled = true;
+
+    void setLogging(bool enabled) {
+        loggingEnabled = enabled;
+    }
+
+    virtual void notify(const std::string& message) = 0;
+
     virtual ~IObservable() = default;
 };
 
@@ -25,7 +33,7 @@ public:
 class GameLogger : public IObserver {
 public:
     void update(const string& message) override {
-        cout << message << endl; // Log to console or file
+        cout << message << endl;
     }
 };
 

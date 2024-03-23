@@ -342,7 +342,9 @@ bool Map::startGame(Character *c, int startX, int startY) {
     map[startX][startY].setState(Cell::State::CHARACTER, c);
     characterPositions[c] = {startX, startY}; // Update character position
 
-    cout << "Successfully started the game for character at (" << startX << ", " << startY << ")" << endl;
+    notify("Successfully started the game for " + c->getName() + " at (" + std::to_string(startX) + "," + std::to_string(startY) + ")");
+
+    //cout << "Successfully started the game for character at (" << startX << ", " << startY << ")" << endl;
     return true;
 }
 
@@ -359,8 +361,8 @@ bool Map::move(Character *c, int x, int y) {
         // Update character position
         characterPositions[c] = {x, y};
 
-        cout << "Successfully moved character to (" << x << ", " << y << ")" << endl;
-        Notify();
+        notify("Successfully moved character " + c->getName() + " to (" + std::to_string(x) + "," + std::to_string(y) + ")");
+        printMap();
         return true;
     }
     cout << "Character not found on the map" << endl;
@@ -532,4 +534,20 @@ std::vector<Character*> Map::findAdjacentCharacters(Character* character) {
     }
 
     return adjacentCharacters;
+}
+
+void Map::attach(IObserver* observer) {
+    observers.push_back(observer);
+}
+
+void Map::detach(IObserver* observer) {
+    observers.remove(observer);
+}
+
+void Map::notify(const std::string& message) {
+    if (loggingEnabled){
+        for(auto observer : observers) {
+            observer->update(message);
+        }
+    }
 }
