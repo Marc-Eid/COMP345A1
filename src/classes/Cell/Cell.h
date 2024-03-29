@@ -8,6 +8,8 @@
 #include "../Character/Character.h"
 #include "../CellContent/CellContent.h"
 
+class Character;
+
 /**
  * This file implements the Cell class which holds the State of each cell on the Map
  * Other than it provides basic Getters and setters
@@ -129,6 +131,8 @@ public:
      * @return The input stream after deserialization.
      */
     friend std::istream& operator>>(std::istream& is, Cell& cell);
+
+
 
 private:
     /**

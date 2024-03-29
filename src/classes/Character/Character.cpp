@@ -1,6 +1,9 @@
 #include "Character.h"
 #include <iostream>
 #include <random>
+#include <algorithm>
+
+#include "../CharacterStrategy/CharacterStrategy.h"
 
 
 Character::Character(const string& name, int level) : name(name), level(level) {
@@ -275,8 +278,82 @@ bool Character::remove() {
     return true;
 }
 
+void Character::onAttacked() {
+    if(dynamic_cast<FriendlyStrategy*>(strategy)) { // If current strategy is FriendlyStrategy
+        setStrategy(new AggressorStrategy()); // Switch to AggressorStrategy
+        notify(name + " now seeks revenge for being attacked and is switching to the dark side  (Aggressor Strategy)");
+    }
+}
 
+// Define the attack method in the Character class
+bool Character::attack(Character* target, int attackRoll) {
+    int totalAttack = attackRoll + attackBonus[0]; // Assume first attack bonus is used. You might want to choose based on context.
 
+    cout << target->name << " currently has " << target->hitPoints << " hit points.\n";
+
+    notify(name + " rolls the dice to attack: " + std::to_string(attackRoll) + " + " + std::to_string(attackBonus[0]) + " (bonus) => total = " + std::to_string(totalAttack) + "\n");
+
+    if (totalAttack >= target->armorClass) {
+        // The attack hits
+        notify("The attack Hits!");
+        cout << name << " hits " << target->name << " for a total of " << totalAttack << " damage!\n";
+
+        target->hitPoints -= totalAttack; // Apply damage
+        cout << target->name << " now has " << target->hitPoints << " hit points.\n";
+
+        target->onAttacked(); // Notify the target that it's being attacked
+
+        // Additional logic could be added here, such as checking if the target is defeated
+        return true; // Attack was successful
+    } else {
+        // The attack misses
+        cout << name << " misses " << target->name << ".\n";
+        return false; // Attack missed
+    }
+}
+
+// Method to set the strategy
+void Character::setStrategy(CharacterStrategy* newStrategy) {
+    strategy = newStrategy;
+}
+
+// Delegating move and attack actions to the strategy
+void Character::move(Map* map) {
+    if (strategy) strategy->move(this, map);
+    else std::cout << name << " has no strategy for moving." << std::endl;
+}
+
+void Character::attack(Map* map) {
+    if (strategy) strategy->attack(this, map);
+    else std::cout << name << " has no strategy for attacking." << std::endl;
+}
+
+// Optional: a method for actions not defined in all strategies
+void Character::freeAction() {
+    // Check if the strategy is of type HumanPlayerStrategy and cast it
+    HumanPlayerStrategy* humanStrategy = dynamic_cast<HumanPlayerStrategy*>(strategy);
+    if (humanStrategy) {
+        humanStrategy->freeAction();
+    } else {
+        std::cout << name << " has no free actions to perform." << std::endl;
+    }
+}
+
+void Character::attach(IObserver* observer) {
+    observers.push_back(observer);
+}
+
+void Character::detach(IObserver* observer) {
+    observers.remove(observer);
+}
+
+void Character::notify(const std::string& message) {
+    if (loggingEnabled){
+        for(auto observer : observers) {
+            observer->update(message);
+        }
+    }
+}
 
 
 

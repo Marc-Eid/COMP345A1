@@ -3,6 +3,7 @@
 //
 
 #include "Map.h"
+#include "../Character/Character.h"
 
 using namespace std;
 
@@ -324,151 +325,83 @@ bool Map::Contains(queue<Coordinate> q1, Coordinate &c1) {
     return false;
 }
 
-// Place the Character on the Map
-bool Map::startGame( Character *c) {
-    if(startX != -1 && startY != -1){
-        // Store the State
-        prevStates[c] = map[startX][startY].getState();
-        // Change the State
-        map[startX][startY].setState(Cell::CHARACTER, (CellContent *) c);
-        // Print Success message on the terminal
-        cout << "Successfully Started the Game !" << endl;
-        return true;
+bool Map::startGame(Character *c, int startX, int startY) {
+    // Check if the specified starting coordinates are within the map boundaries
+    if (startX < 0 || startX >= width || startY < 0 || startY >= height) {
+        cout << "Error: Specified starting coordinates are out of the map boundaries" << endl;
+        return false;
     }
-    cout << "Error Occurred While Starting the Game "<< endl;
-    return false;
+
+    // Check if the specified starting cell is empty
+    if (map[startX][startY].getState() != Cell::State::EMPTY) {
+        cout << "Error: Specified starting coordinates are occupied" << endl;
+        return false;
+    }
+
+    // Place the character at the specified starting position
+    map[startX][startY].setState(Cell::State::CHARACTER, c);
+    characterPositions[c] = {startX, startY}; // Update character position
+
+    notify("Successfully started the game for " + c->getName() + " at (" + std::to_string(startX) + "," + std::to_string(startY) + ")");
+
+    //cout << "Successfully started the game for character at (" << startX << ", " << startY << ")" << endl;
+    return true;
 }
 
 bool Map::move(Character *c, int x, int y) {
-    // Check if state is stored for the character
-    auto it = prevStates.find(c);
+    auto it = characterPositions.find(c);
+    if (it != characterPositions.end()) {
+        // Get the current position of the character
+        Coordinate currentPos = it->second;
 
+        // Update the cell state
+        map[currentPos.x][currentPos.y].setState(Cell::State::EMPTY, nullptr);
+        map[x][y].setState(Cell::State::CHARACTER, c);
 
-    // If it is stored
-    if(it != prevStates.end()){
-        // Find the Current pos
-        Cell* oldTile = GetCurrentPositionCell(c);
-        // Find the Destination tile
-        Cell* newTile = &map[x][y];
-        // Store the Old tile state
-        Cell::State oldStateTemp = prevStates[c];
-        //Change the Old tile state
-        oldTile->setState(oldStateTemp,NULL);
-        // Store the new tile state in the map
-        prevStates[c] = newTile->getState();
-        // Set the new Tile State
-        newTile->setState(Cell::CHARACTER,c);
-        cout << "Successfully Changed the Position of the character" << endl ;
+        // Update character position
+        characterPositions[c] = {x, y};
+
+        notify("Successfully moved character " + c->getName() + " to (" + std::to_string(x) + "," + std::to_string(y) + ")");
+        printMap();
         return true;
-
     }
-    cout << "Character Not found Please Start the Game !" << endl;
+    cout << "Character not found on the map" << endl;
     return false;
 }
 
-bool Map::TryMove(Character *c, string dir) {
+bool Map::tryMove(Character *c, string dir) {
+    auto it = characterPositions.find(c);
+    if (it != characterPositions.end()) {
+        Coordinate currentPos = it->second;
 
-    // Boolean value whether the Character was able to move or not
-    bool moved = false;
-
-
-    //This is the current tile the player is on
-    Cell* oldTile = GetCurrentPositionCell(c);
-
-    // If its NullPtr then we have to Start the Game for the character
-    if(oldTile == nullptr){
-        cout << "Please Start the Game to Play it" << endl;
-        return moved;
-    }
-
-    //This will be the target tile to move to
-    Cell* newTile = NULL;
-
-    // Get Current Coordinates
-    Coordinate coordinate = getCurrentPositionCoordinate(c);
-
-
-
-    cout << "Trying to Move "<< dir << " Direction" << endl;
-
-    // Check the Direction in which Character wants to Move
-    if(dir == "up"){
-        if (coordinate.y + 1 < height){
-            // TODO Add Different Cases According to the game
-            // Checks if User can Move to the new Tile
-            if(map[coordinate.x][coordinate.y  + 1].canMove()){
-                moved = move(c,coordinate.x,coordinate.y+1);
-            }
-        }
-    }
-    // When users tries to GO down
-    if(dir == "down"){
-        if (coordinate.y - 1 < height){
-            // TODO Add Different Cases According to the game
-            // Checks if User can Move to the new Tile
-            if(map[coordinate.x][coordinate.y  - 1].canMove()){
-                moved = move(c,coordinate.x,coordinate.y-1);
-            }
-
-        }
-    }
-    // When User tries to go down right
-    if(dir == "right"){
-        if (coordinate.x + 1 < width){
-            // TODO add More Cases According to the game
-            // Checks if User can Move to the new Tile
-            if(map[coordinate.x + 1][coordinate.y ].canMove()){
-
-                moved =  move(c,coordinate.x + 1,coordinate.y);
-            }
-        }
-    }
-    // When User tries to go Left
-    if(dir == "left"){
-        if (coordinate.x - 1 >= 0 ){
-            // TODO add More Cases According to the
-            // Checks if User can Move to the new Tile
-            if(map[coordinate.x - 1][coordinate.y ].canMove()){
-                moved = move(c,coordinate.x - 1,coordinate.y);
-            }
+        // Calculate the new position based on the direction
+        int x = currentPos.x, y = currentPos.y;
+        if (dir == "up") {
+            y += 1;
+        } else if (dir == "down") {
+            y -= 1;
+        } else if (dir == "right") {
+            x += 1;
+        } else if (dir == "left") {
+            x -= 1;
+        } else {
+            cout << "Invalid direction" << endl;
+            return false;
         }
 
+        // Attempt to move the character to the new position
+        return move(c, x, y);
     }
-    // Finally Notify the Observers
-    Notify();
-
-    // Return the Value
-    return moved;
+    cout << "Character not found on the map" << endl;
+    return false;
 }
 
-Cell* Map::GetCurrentPositionCell(Character *c) {
-    // Loops through the Map to find the Call which contain that character
-    // TODO : Add the Coordinate of Character class to Optimize the Code
-    for (int i = 0;i<width;i++){
-        for (int j = 0;j<height;j++){
-            // If found return the Cell
-            if(map[i][j].getState() == Cell::State::CHARACTER && map[i][j].getCharacter() == c){
-                return &map[i][j];
-            }
-        }
+Coordinate Map::getCurrentPosition(Character *c) {
+    auto it = characterPositions.find(c);
+    if (it != characterPositions.end()) {
+        return it->second;
     }
-    return nullptr;
-}
-
-Coordinate Map::getCurrentPositionCoordinate(Character *c) {
-    Coordinate c1 = {-1,-1};
-    // Loops through Map to find the coordinate of the Character
-    // TODO : Add the Coordinate of Character class to Optimize the Code
-    for (int i = 0;i<width;i++){
-        for (int j = 0;j<height;j++){
-            if(map[i][j].getState() == Cell::State::CHARACTER && map[i][j].getCharacter() == c ){
-                // If found then changes the coordinate of the Coordinate Struct
-                c1 = {i,j};
-                return c1;
-            }
-        }
-    }
-    return c1;
+    return {-1, -1}; // Character not found
 }
 
 // Serialization method for Map
@@ -526,4 +459,95 @@ int Map::getHeight() const {
 
 Cell *Map::getCell(int x, int y) {
     return &map[x][y];
+}
+
+
+// Move a character next to the first character found on the map
+bool Map::moveNextTo(Character *characterToMove) {
+    // Get the current position of the character to move
+    Coordinate currentCoord = getCurrentPosition(characterToMove);
+
+    // Check if the character was found on the map
+    if (currentCoord.x == -1) {
+        cout << "Error: Character not found on the map." << endl;
+        return false;
+    }
+
+    //TODO MAKE SURE THERE EXISTS A PATH OF EMPTY CELLS TO THE TARGET CELL
+
+    // Iterate over all cells to find the first character on the map
+    for (int x = 0; x < width; ++x) {
+        for (int y = 0; y < height; ++y) {
+            if (map[x][y].getState() == Cell::State::CHARACTER && map[x][y].getCharacter() != characterToMove) {
+                // Check all adjacent cells around the found character
+                for (int dx = -1; dx <= 1; ++dx) {
+                    for (int dy = -1; dy <= 1; ++dy) {
+                        // Calculate the target position
+                        int targetX = x + dx;
+                        int targetY = y + dy;
+
+                        // Check if the target position is within the map boundaries and empty
+                        if (targetX >= 0 && targetX < width && targetY >= 0 && targetY < height &&
+                            (targetX != x || targetY != y) && map[targetX][targetY].getState() == Cell::State::EMPTY) {
+                            // Move the character to the target position
+                            return move(characterToMove, targetX, targetY);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    cout << "Error: No empty cell adjacent to the other characters found on the map." << endl;
+    return false;
+}
+
+// Method to find characters adjacent to the given character's position
+std::vector<Character*> Map::findAdjacentCharacters(Character* character) {
+    std::vector<Character*> adjacentCharacters;
+
+    Coordinate pos = getCurrentPosition(character);
+
+    if (pos.x == -1 && pos.y == -1) {
+        std::cout << "Character not found on the map." << std::endl;
+        return adjacentCharacters; // Character is not on the map
+    }
+
+    // Check all eight adjacent positions
+    for (int dx = -1; dx <= 1; ++dx) {
+        for (int dy = -1; dy <= 1; ++dy) {
+            // Skip the character's current position
+            if (dx == 0 && dy == 0) continue;
+
+            int newX = pos.x + dx;
+            int newY = pos.y + dy;
+
+            // Check boundaries
+            if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
+                Cell& cell = *getCell(newX, newY);
+                // If there's a character in the cell, add it to the list
+                if (cell.getState() == Cell::State::CHARACTER && cell.getCharacter() != nullptr) {
+                    adjacentCharacters.push_back(cell.getCharacter());
+                }
+            }
+        }
+    }
+
+    return adjacentCharacters;
+}
+
+void Map::attach(IObserver* observer) {
+    observers.push_back(observer);
+}
+
+void Map::detach(IObserver* observer) {
+    observers.remove(observer);
+}
+
+void Map::notify(const std::string& message) {
+    if (loggingEnabled){
+        for(auto observer : observers) {
+            observer->update(message);
+        }
+    }
 }

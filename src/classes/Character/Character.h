@@ -6,8 +6,14 @@
 #include "../ObserverPattern/Subject.h"
 #include "../CellContent/CellContent.h"
 #include "../ItemContainer/ItemContainer.h"
+#include "../CharacterStrategy/CharacterStrategy.h"
+#include <list>
+#include "../GameLogger/GameLogger.h"
+
 using namespace std;
 
+class Map;
+class  CharacterStrategy;
 
 /**
  * @file Character.h
@@ -33,11 +39,29 @@ using namespace std;
  *    Chosen for its efficient key-value storage and easy retrieval of character-related data.
  */
 
-class Character: public Subject, public CellContent{
+class Character: public Subject, public CellContent, public IObservable{
 public:
     Character()  = default;
 
+    void attach(IObserver* observer) override;
+
+    void detach(IObserver* observer) override;
+
+    void notify(const std::string& message) override;
+
     Character(const string& name, int level);
+
+    CharacterStrategy* strategy = nullptr;
+
+    // Method to set the strategy
+    void setStrategy(CharacterStrategy* newStrategy);
+    // Delegating move and attack actions to the strategy
+    void move(Map* map);
+
+    void attack(Map* map);
+
+    void freeAction();
+
 
     /**
     * @brief Virtual destructor for the Character class.
@@ -153,6 +177,10 @@ public:
      */
     virtual bool levelUp() = 0;
 
+    bool attack(Character* target, int attackRoll);
+
+    void onAttacked();
+
 
 protected:
     string name;
@@ -226,8 +254,7 @@ private:
      */
     void UpdateAttackBonus();
 
-
-
+    std::list<IObserver*> observers;
 
 };
 
