@@ -7,11 +7,14 @@
 #include "classes/CharacterStrategy/CharacterStrategy.h"
 #include "classes/GameLogger/GameLogger.h"
 #include "classes/Shield/Shield.h"
+#include "classes/ItemContainer/ItemContainer.h"
 #include "classes/Ring/Ring.h"
 #include "classes/ObserverPattern/CharacterObserver.h"
 #include "classes/MapBuilders/MapEditorBuilder.h"
 #include "classes/MapBuilders/GameLevelMapBuilder.h"
 #include "classes/MapEditor/MapEditor.h"
+#include "classes/CharacterEditor/CharacterEditor.h"
+#include "classes/ItemContainerEditor/ItemContainerEditor.h"
 
 
 void displayCharacter();
@@ -19,28 +22,34 @@ void displayStretegy();
 void displayMapBuilder();
 //void characterObserver();
 //void displayMap();
-void displayMapEditor();
+//void displayMapEditor();
 //void displayItemContainer();
 //void displayDice();
 //void displayMapBuilder();
-void displayGameLevelMapBuilder();
+//void displayGameLevelMapBuilder();
 //void displayMapEditor();
 //void displayCharacterBuilder();
-void displayFileContent(const std::string& filePath);
+//void displayFileContent(const std::string& filePath);
+//void displayCharacterEditor();
+//void  displayChestEditor();
+void displayNpcEditor();
 
 int main() {
 
 
-    displayCharacter();
-    displayFileContent("../src/map_example.txt");
+//    displayCharacter();
+//    displayFileContent("../src/map_example.txt");
 //    displayStretegy();
 //    displayMap();
 //    displayMapBuilder();
 //    displayGameLevelMapBuilder();
-    displayMapEditor();
+//    displayMapEditor();
 //    displayItemContainer();
 //    displayDice();
 //    displayCharacterBuilder();
+//    displayCharacterEditor();
+//    displayChestEditor();
+displayNpcEditor();
 
     return 0;
 
@@ -116,8 +125,8 @@ void displayCharacter(){
     cout << "\nShowing that the initialization of the two fighter is generated randomly. \n\n";
     Fighter f2("test2", 10);
 
-    Item* shield = new Shield("Defender's Shield", Enchantment{3, EnhancementType::ArmorClass});
-    Item* ring = new Ring("Ring of Strength", Enchantment{1, EnhancementType::Strength});
+    Item* shield = new Shield("Defender's Shield");
+    Item* ring = new Ring("Ring of Strength");
 
     f1.levelUp();
     f1.levelUp();
@@ -125,7 +134,7 @@ void displayCharacter(){
     f1.equip(ring);
     f1.wearItem(0);
     f1.wearItem(0);
-    f1.remove();
+//    f1.remove();
 
     f1.displayCharacterSheet();
     f2.displayCharacterSheet();
@@ -253,3 +262,31 @@ void displayMapEditor() {
     MapEditor editor;
     editor.runEditor();
 }
+
+void displayCharacterEditor(){
+    std::cout << "\n\n-----------------------------------------------" << std::endl;
+    std::cout << "\tWemcome to the Character Editor" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    CharacterEditor characterEditor;
+    characterEditor.runCharacterEditor();
+
+}
+
+void displayChestEditor(){
+    std::cout << "\n\n-----------------------------------------------" << std::endl;
+    std::cout << "\tWemcome to the Chest Editor" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+    ItemContainerEditor itemContainerEditor;
+    itemContainerEditor.run();
+
+}
+
+void displayNpcEditor() {
+    std::cout << "\n\n-----------------------------------------------" << std::endl;
+    std::cout << "\tWemcome to the Chest Editor" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+
+    CharacterEditor *characterEditor;
+    characterEditor->runNpcEditor();
+
+};

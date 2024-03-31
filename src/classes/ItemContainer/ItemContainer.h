@@ -57,13 +57,7 @@ public:
      */
     void clear();
 
-    /**
-     * @brief Prints details of all items in the container.
-     *
-     * This function iterates over all items in the container and prints their details. It's useful
-     * for debugging or providing a textual representation of the container's contents.
-     */
-    void printItems() const;
+
 
     /**
      * @brief Gets the number of items in the container.

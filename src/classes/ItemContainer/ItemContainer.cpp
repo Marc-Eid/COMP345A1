@@ -29,24 +29,6 @@ void ItemContainer::clear() {
 }
 
 
-void ItemContainer::printItems() const {
-    std::cout << std::left; // Align text to the left
-    std::cout << std::setw(28) << "Name"
-              << std::setw(10) << "Type"
-              << std::setw(15) << "Enchantment"
-              << std::setw(6) << "Bonus" << std::endl;
-    std::cout << "-------------------------------------------------------------" << std::endl;
-    for (const auto& item : items) {
-        Enchantment enchantment = item->getEnchantment();
-        std::string enchantmentType;
-        enchantmentType = Item::enchantmentTypeToString(enchantment.type);
-
-        std::cout << std::setw(20)<< item->getName() << "\t\t"
-                  << std::setw(10) << item->getType() << "\t"
-                  << std::setw(15) << enchantmentType << "\t\t"
-                  << std::setw(6) << enchantment.bonus << "\n";
-    }
-}
 
 int ItemContainer::getItemCount() const {
     return items.size(); // Return the number of items in the container
@@ -93,4 +75,6 @@ vector<Item *> ItemContainer::getItemsByType(const string& type) {
     }
     return list;
 }
+
+
 

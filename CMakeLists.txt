@@ -49,6 +49,12 @@ add_executable(COMP345A1 src/main.cpp
         src/classes/CharacterStrategy/CharacterStrategy.h
         src/classes/CharacterStrategy/CharacterStrategy.cpp
         src/classes/GameLogger/GameLogger.h
+        src/classes/CharacterEditor/CharacterEditor.cpp
+        src/classes/CharacterEditor/CharacterEditor.h
+        src/classes/ItemContainerEditor/ItemContainerEditor.cpp
+        src/classes/ItemContainerEditor/ItemContainerEditor.h
+
+
 )
 
 

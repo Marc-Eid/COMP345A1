@@ -18,20 +18,27 @@
  * Design: Inherits from Item and specifies Weapon-related functionality.
  * Libraries: Inherits <string> from Item.h.
  */
-class Weapon: public Item {
-private:
-    /**
-     * Static const member that defines the allowedEnhancements of the item
-     */
-    static const std::vector<EnhancementType> allowedEnhancements;
+class Weapon : public Item{
+
 public:
+    /**
+     * Types of Weapon
+     */
+     enum WeaponType {
+        BOW,
+        SWORD
+    };
+    /**
+     *
+     */
+     WeaponType getWeaponType();
     /**
      * @brief Construct a new Weapon object.
      *
      * @param name The name of the weapon.
      * @param enchantment The enchantment applied to the weapon.
      */
-    Weapon(const std::string& name, const Enchantment& enchantment);
+    Weapon(const std::string& name,const WeaponType& weaponType);
     
     /**
      * @brief Get the type of the item.
@@ -45,6 +52,8 @@ public:
     *
     */
     void CalculateAttributes() override;
+private:
+    WeaponType weaponType;
 };
 
 

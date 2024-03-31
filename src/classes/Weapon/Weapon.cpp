@@ -4,14 +4,10 @@
 
 #include "Weapon.h"
 
-const std::vector<EnhancementType> Weapon::allowedEnhancements = {
-        EnhancementType::AttackBonus, EnhancementType::DamageBonus
-};
 
-Weapon::Weapon(const std::string& name, const Enchantment& enchantment) : Item(name, enchantment) {
-    if (std::find(allowedEnhancements.begin(), allowedEnhancements.end(), enchantment.type) == allowedEnhancements.end()) {
-        throw std::runtime_error("Invalid enchantment type for Weapon.");
-    }
+
+Weapon::Weapon(const std::string& name,const WeaponType& weaponType) : Item(name) {
+    this->weaponType = weaponType;
     CalculateAttributes();
 }
 
@@ -23,3 +19,9 @@ void Weapon::CalculateAttributes() {
     attackBonus = rollDice();
     damageBonus = rollDice();
 }
+
+Weapon::WeaponType Weapon::getWeaponType() {
+    return weaponType;
+}
+
+

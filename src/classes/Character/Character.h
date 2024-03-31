@@ -89,17 +89,20 @@ public:
     int getHitPoints()  {return hitPoints;};
 
 
-    ItemContainer getEquipment() const { return equipment; };
+    ItemContainer* getEquipment() { return equipment; };
 
 
     int getHitpoints() const { return hitPoints; };
     int getLevel() const { return level; };
+    ItemContainer* getItemContainer() { return equipment;};
     string getName() const { return name; };
 
     // setter methods
     void setHitpoints(int hp) {  hitPoints = hp; Notify();};
     void setArmorClass(int ac) {  armorClass = ac; Notify();};
     void setDamageBonus(int db) {  damageBonus = db; Notify();};
+
+    void setItemContainer(ItemContainer *itemContainer) {itemContainer = itemContainer;};
 
     void setAbilityScores(const string& ability,int score){abilityScores[ability] = score;}
 
@@ -167,7 +170,7 @@ public:
      *
      * @return
      */
-    bool remove();
+    bool remove(string type);
 
     /**
      * @brief Level Up a character by One
@@ -180,8 +183,6 @@ public:
     bool attack(Character* target, int attackRoll);
 
     void onAttacked();
-
-
 protected:
     string name;
     int level;
@@ -190,8 +191,8 @@ protected:
     map<string, int> modifiers;
     vector<int> attackBonus;
     int hitPoints, armorClass, damageBonus; // Derived Attributes
-    Item* wornItem ;// Worn Items
-    ItemContainer equipment; // Equipment
+    map<string,Item*> wornEquipment;
+    ItemContainer* equipment; // Equipment
 
     /**
     * @brief Generates random ability scores for the character.
@@ -237,6 +238,8 @@ protected:
     * @return The armor class (AC) value of the specified armor.
     */
     static int getArmorACValue(const string& armorName);
+
+
 
 
 private:

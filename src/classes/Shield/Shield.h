@@ -19,11 +19,7 @@
  * Libraries: Inherits <string> from Item.h.
  */
 class Shield: public Item {
-private:
-    /**
-     * Static const member that defines the allowedEnhancements of the item
-     */
-    static const std::vector<EnhancementType> allowedEnhancements;
+
 public:
     /**
      * @brief Construct a new Shield object.
@@ -31,7 +27,7 @@ public:
      * @param name The name of the shield.
      * @param enchantment The enchantment applied to the shield.
      */
-    Shield(const std::string& name, const Enchantment& enchantment);
+    Shield(const std::string& name);
     
     /**
      * @brief Get the type of the item.
