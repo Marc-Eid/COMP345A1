@@ -10,10 +10,10 @@
 #include "../Weapon/Weapon.h"
 #include "../Belt/Belt.h"
 
-void ItemContainerEditor::run() {
+ItemContainer* ItemContainerEditor::run(ItemContainer *container) {
     int input;
     while(true){
-        cout << "What Type of Item You want to add to the Chest" << endl;
+        cout << "What Type of Item You want to Add :" << endl;
         cout << "\nChoose an option:" << endl;
         cout << "1: Armor" << endl;
         cout << "2: Belt" << endl;
@@ -24,12 +24,12 @@ void ItemContainerEditor::run() {
         cout << "7: Weapon" << endl;
         cout << "8 : Quit" << endl;
         cout << "Enter option: ";
-        cin >> input;
+        cin >> input ;
         switch(input){
             case 1 : {
                 string name;
                 cout << "\nGive the item an identifier :";
-                cin >> name;
+                cin >>name;
                 Item *item = new Armor(name);
                 abilityMenu(item);
                 container->addItem(item);
@@ -83,22 +83,18 @@ void ItemContainerEditor::run() {
                 break;
             }
             case 7 : {
-                weaponSelector();
+                weaponSelector(container);
                 break;
             }
             case 8 : {
-                return;
+                return container;
             }
         }
     }
-
 }
 
-ItemContainer* ItemContainerEditor::getItemContainer() {
-    return container;
-}
 
-void ItemContainerEditor::weaponSelector() {
+void ItemContainerEditor::weaponSelector(ItemContainer* container) {
     while(true) {
         int option;
         cout << "\nWhat Type of Weapons" << endl;
@@ -150,7 +146,7 @@ void ItemContainerEditor::abilityMenu(Item* item) {
         cout << "9 :Hit Points" << endl;
         cout << "10:Armor Class" << endl;
         cout << "11:Quit" << endl;
-        cin >>input;
+        cin >> input;
 
         switch (input) {
             case 1 : {

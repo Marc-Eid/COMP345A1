@@ -11,14 +11,11 @@
 
 class ItemContainerEditor {
 public:
-    ItemContainerEditor() {container = new ItemContainer();};
-    void run();
-    ItemContainer* getItemContainer();
-
+    ItemContainerEditor() = default;
+    ItemContainer* run(ItemContainer *container);
 private:
-    void weaponSelector();
+    void weaponSelector(ItemContainer* container);
     void abilityMenu(Item *item);
-    ItemContainer *container;
 
 };
 

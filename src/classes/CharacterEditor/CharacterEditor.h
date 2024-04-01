@@ -18,16 +18,17 @@ class CharacterEditor {
 
 public:
     CharacterEditor() = default;
-    void runNpcEditor();
-    void runCharacterEditor();
-    void loadCharacter();
-    void loadNpc();
-    void createNpc();
+    Character* runNpcEditor();
+    Character* runCharacterEditor();
+    Character* loadNpc();
+    Character* createNpc();
+    Character* createCharacter();
+    bool saveNPC(Character *pCharacter);
 private:
-    void createCharacter();
     void abilityMenu(Character *pCharacter);
+
     // Pointer to character which we are currently editing
-    Character* character;
+//    Character* character;
 
 };
 

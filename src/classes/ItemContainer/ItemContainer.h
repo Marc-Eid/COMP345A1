@@ -9,6 +9,7 @@
 #define COMP345A1_ITEMCONTAINER_H
 
 #include "../Item/Item.h"
+#include "../Weapon/Weapon.h"
 #include <vector>
 #include <iostream>
 #include <iomanip>
@@ -94,6 +95,31 @@ public:
      * @return
      */
     vector<Item*> getItemsByType(const string& type);
+
+    /**
+     * gets item index
+     * @param item
+     * @return
+     */
+    int getItemIndex (const Item* item);
+
+    /**
+     * Serialization operator for Item Container
+     * @param os
+     * @param itemContainer
+     * @return
+     */
+    friend std::ostream& operator<<(std::ostream& os, const ItemContainer& ItemContainer);
+
+    /**
+     *  Deserialization operator for Item Container.
+     * @param is
+     * @param ItemContainer
+     * @return
+     */
+    friend std::istream& operator>>(std::istream& is, ItemContainer& ItemContainer);
+
+
 
 private:
     std::vector<Item*> items; ///< Vector storing pointers to items.

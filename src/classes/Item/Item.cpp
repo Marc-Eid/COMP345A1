@@ -53,3 +53,17 @@ void Item::printWeapon() {
     }
 
 }
+
+std::ostream &operator<<(ostream &os, const Item &Item) {
+    os <<  Item.name << " " << Item.equipped << " "<<Item.hitPoints<< " " <<Item.attackBonus<<" "<<Item.armorClass<< " "<<Item.damageBonus << " ";
+    os << Item.abilityScores.at("Strength") << " " <<  Item.abilityScores.at("Dexterity") << " " <<  Item.abilityScores.at("Constitution") << " ";
+    os << Item.abilityScores.at("Intelligence") << " "<< Item.abilityScores.at("Wisdom") << " " << Item.abilityScores.at("Charisma") << " ";
+    return os;
+}
+
+std::istream& operator>>(std::istream& is, Item& item) {
+    is >> item.name >> item.equipped >> item.hitPoints >> item.attackBonus >> item.armorClass >> item.damageBonus;
+    is >> item.abilityScores["Strength"] >> item.abilityScores["Dexterity"] >> item.abilityScores["Constitution"];
+    is >> item.abilityScores["Intelligence"] >> item.abilityScores["Wisdom"] >> item.abilityScores["Charisma"];
+    return is;
+}

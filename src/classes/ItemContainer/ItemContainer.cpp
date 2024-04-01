@@ -3,6 +3,13 @@
 //
 
 #include "ItemContainer.h"
+#include "../Weapon/Weapon.h"
+#include "../Armor/Armor.h"
+#include "../Belt/Belt.h"
+#include "../Boots/Boots.h"
+#include "../Ring/Ring.h"
+#include "../Shield/Shield.h"
+
 
 ItemContainer::ItemContainer()= default;
 
@@ -74,6 +81,85 @@ vector<Item *> ItemContainer::getItemsByType(const string& type) {
         }
     }
     return list;
+}
+
+std::ostream &operator<<(ostream &os, const ItemContainer &ItemContainer) {
+    // Print Item to file
+    os << ItemContainer.getItemCount() << " ";
+    for(int i =0;i<ItemContainer.getItemCount();i++){
+        if(ItemContainer.items[i]->getType() == "Weapon"){
+            Weapon *weapon = dynamic_cast<Weapon*>(ItemContainer.items[i]);
+            os <<ItemContainer.items[i]->getType()<< " " << weapon->getWeaponType() << " " <<  *ItemContainer.items[i] << " " ;
+        }
+        else {
+            os <<ItemContainer.items[i]->getType() << " " <<  *ItemContainer.items[i] << " ";
+        }
+
+    }
+    return os;
+}
+
+std::istream &operator>>(istream &is, ItemContainer &ItemContainer) {
+    int size;
+    is >> size;
+
+    for(int i = 0;i <size;i++){
+        string type;
+        is >> type;
+        cout << "Type " << size;
+        if(type == "Weapon") {
+            int Type;
+            is >> Type;
+            if(Type == 0) {
+                Item *weapon = new Weapon("sample",Weapon::WeaponType::BOW);
+                ItemContainer.addItem(weapon);
+                is >> *weapon;
+            }
+            else {
+                Item *weapon = new Weapon("sample",Weapon::WeaponType::SWORD);
+                ItemContainer.addItem(weapon);
+                is >> *weapon;
+            }
+        }
+        else if (type == "Armor") {
+            Item *armor = new Armor("sample");
+            ItemContainer.addItem(armor);
+            is >> *armor;
+
+        }
+        else if (type == "Belt") {
+            Item *belt = new Belt("sample");
+            ItemContainer.addItem(belt);
+            is >> *belt;
+        }
+        else if (type == "Boots") {
+            Item *boots = new Boots("sample");
+
+            ItemContainer.addItem(boots);
+            is >> *boots;
+        }
+        else if (type == "Ring") {
+            Item* ring = new Ring("sample");
+            ItemContainer.addItem(ring);
+            is >> *ring;
+
+        }
+        else if (type == "Shield"){
+            Item* shield = new Shield("sample");
+            ItemContainer.addItem(shield);
+            is >> *shield;
+        }
+    }
+    return is;
+}
+
+int ItemContainer::getItemIndex(const Item *item) {
+    for(int i = 0;i<items.size();i++){
+        if(items[i] == item){
+            return i;
+        }
+    }
+    return -1;
 }
 
 

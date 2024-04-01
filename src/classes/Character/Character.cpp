@@ -14,11 +14,16 @@ Character::Character(const string& name, int level) : name(name), level(level) {
     wornEquipment["Armor"] = nullptr;
     wornEquipment["Belt"] = nullptr;
     wornEquipment["Boots"] = nullptr;
+    wornEquipment["Ring"] = nullptr;
     wornEquipment["Helmet"] = nullptr;
     wornEquipment["Shield"] = nullptr;
     wornEquipment["Weapon"] = nullptr;
+    equipment = new ItemContainer();
     UpdateAttackBonus();
 }
+
+
+
 
 
 
@@ -37,11 +42,12 @@ void Character::generateAbilityScores() {
     }
 }
 
+
+
 void Character::UpdateAttackBonus() {
     attackBonus.clear();
     if (level >= 16)
     {
-
         attackBonus.push_back(level);
         attackBonus.push_back(level - 5);
         attackBonus.push_back(level - 10);
@@ -130,12 +136,16 @@ void Character::displayCharacterSheet() const {
     cout << " ----------------Worn Equipment-----------------" << endl;
 
     for (const auto& equipments : wornEquipment) {
-        equipments.second->printWeapon();
+        if(equipments.second != nullptr){
+            equipments.second->printWeapon();
+        }
     }
 
 
     // print the available equipment
     cout << "Available Equipment: " << endl;
+
+
     equipment->printContainer();
 
 
@@ -325,6 +335,69 @@ void Character::notify(const std::string& message) {
             observer->update(message);
         }
     }
+}
+
+
+std::istream& operator>>(std::istream& is, Character& character) {
+    // Reading character
+    is >> character.name >> character.level ;
+    is >> character.armorClass >> character.damageBonus >> character.hitPoints;
+    is >> character.abilityScores.at("Strength");
+    is >> character.abilityScores.at("Dexterity");
+    is >> character.abilityScores.at("Constitution");
+    is >> character.abilityScores.at("Intelligence");
+    is >> character.abilityScores.at("Wisdom");
+    is >> character.abilityScores.at("Charisma");
+    is >> *character.equipment;
+
+    int input;
+    is >> input;
+    if(input != -1){
+        character.wearItem(input);
+    }
+    is >> input;
+    if(input != -1){
+        character.wearItem(input);
+    }
+    is >> input;
+    if(input != -1){
+        character.wearItem(input);
+    }
+    is >> input;
+    if(input != -1){
+        character.wearItem(input);
+    }
+    is >> input;
+    if(input != -1){
+        character.wearItem(input);
+    }
+    is >> input;
+    if(input != -1){
+        character.wearItem(input);
+    }
+    return is;
+
+}
+std::ostream &operator<<(ostream &os, const Character &character) {
+    // Writing Character
+    os << character.name << " " << character.level << " ";
+
+    os << character.armorClass << " " << character.damageBonus << " " << character.hitPoints << " ";
+    os << character.abilityScores.at("Strength") << " ";
+    os << character.abilityScores.at("Dexterity") << " ";
+    os << character.abilityScores.at("Constitution") << " ";
+    os << character.abilityScores.at("Intelligence") << " ";
+    os << character.abilityScores.at("Wisdom") << " ";
+    os << character.abilityScores.at("Charisma") << " ";
+    os << *character.equipment ;
+    os << character.equipment->getItemIndex(character.wornEquipment.at("Armor")) << " ";
+    os << character.equipment->getItemIndex(character.wornEquipment.at("Belt")) << " ";
+    os << character.equipment->getItemIndex(character.wornEquipment.at("Boots")) << " ";
+    os << character.equipment->getItemIndex(character.wornEquipment.at("Helmet")) << " ";
+    os << character.equipment->getItemIndex(character.wornEquipment.at("Ring")) << " ";
+    os << character.equipment->getItemIndex(character.wornEquipment.at("Shield")) << " ";
+    os << character.equipment->getItemIndex(character.wornEquipment.at("Weapon")) << " ";
+    return os;
 }
 
 

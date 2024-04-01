@@ -15,6 +15,7 @@
 #include "classes/MapEditor/MapEditor.h"
 #include "classes/CharacterEditor/CharacterEditor.h"
 #include "classes/ItemContainerEditor/ItemContainerEditor.h"
+#include "classes/Armor/Armor.h"
 
 
 void displayCharacter();
@@ -272,21 +273,21 @@ void displayCharacterEditor(){
 
 }
 
-void displayChestEditor(){
-    std::cout << "\n\n-----------------------------------------------" << std::endl;
-    std::cout << "\tWemcome to the Chest Editor" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
-    ItemContainerEditor itemContainerEditor;
-    itemContainerEditor.run();
-
-}
+//void displayChestEditor(){
+//    std::cout << "\n\n-----------------------------------------------" << std::endl;
+//    std::cout << "\tWemcome to the Chest Editor" << std::endl;
+//    std::cout << "-----------------------------------------------" << std::endl;
+//
+//    ItemContainerEditor itemContainerEditor;
+//    itemContainerEditor.run();
+//
+//}
 
 void displayNpcEditor() {
     std::cout << "\n\n-----------------------------------------------" << std::endl;
-    std::cout << "\tWemcome to the Chest Editor" << std::endl;
+    std::cout << "\tWemcome to the NPC Editor" << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
 
-    CharacterEditor *characterEditor;
-    characterEditor->runNpcEditor();
-
+    CharacterEditor *editor = new CharacterEditor();
+    editor->runNpcEditor();
 };

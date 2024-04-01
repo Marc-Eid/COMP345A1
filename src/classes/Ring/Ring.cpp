@@ -23,3 +23,12 @@ void Ring::CalculateAttributes() {
     abilityScores["Wisdom"] = rollDice();
     abilityScores["Strength"] = rollDice();
 }
+
+std::ostream &operator<<(ostream &os, const Ring &Item) {
+    os <<"Ring";
+    return os;
+}
+
+std::istream &operator>>(istream &is, Ring &item) {
+    return is;
+}

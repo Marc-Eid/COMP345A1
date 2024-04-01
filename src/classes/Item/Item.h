@@ -114,7 +114,21 @@ public:
 
     int getDamageBonus(){return damageBonus;};
 
+    /**
+    * Serialization operator for
+    * @param os
+    * @param itemContainer
+    * @return
+    */
+    friend std::ostream& operator<<(std::ostream& os, const Item& Item);
 
+    /**
+     *  Deserialization operator for Item.
+     * @param is
+     * @param ItemContainer
+     * @return
+     */
+    friend std::istream& operator>>(std::istream& is, Item& item);
 
 private:
     /**

@@ -239,8 +239,9 @@ protected:
     */
     static int getArmorACValue(const string& armorName);
 
+    friend std::ostream& operator<<(std::ostream& os, const Character& character);
 
-
+    friend std::istream& operator>>(std::istream& is, Character& character);
 
 private:
     /**

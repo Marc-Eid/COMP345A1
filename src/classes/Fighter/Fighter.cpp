@@ -18,10 +18,15 @@ void Fighter::calculateHitPoints() {
 
 void Fighter::calculateArmorClass() {
     int baseArmorClass = armorClass;
-    // Check for equipped armor and adjust base AC accordingly
-    for(auto & i : wornEquipment){
-        baseArmorClass += i.second->getArmorClass();
+
+    for (auto const& [key, val] : wornEquipment)
+    {
+        if(val != nullptr){
+            baseArmorClass += val->getArmorClass();
+        }
+
     }
+
     armorClass = baseArmorClass + modifiers["Dexterity"];
 }
 

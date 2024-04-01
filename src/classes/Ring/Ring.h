@@ -40,6 +40,22 @@ public:
     *
     */
     void CalculateAttributes() override;
+
+    /**
+* Serialization operator for
+* @param os
+* @param itemContainer
+* @return
+*/
+    friend std::ostream& operator<<(std::ostream& os, const Ring& Item);
+
+    /**
+     *  Deserialization operator for Item.
+     * @param is
+     * @param ItemContainer
+     * @return
+     */
+    friend std::istream& operator>>(std::istream& is, Ring& item);
 };
 
 

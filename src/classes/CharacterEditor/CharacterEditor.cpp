@@ -2,10 +2,13 @@
 // Created by hp on 30/03/2024.
 //
 
+#include <fstream>
 #include "CharacterEditor.h"
 
 
-void CharacterEditor::runCharacterEditor() {
+
+Character* CharacterEditor::runCharacterEditor() {
+    Character *character;
     int input;
     while (true) {
         cout << "\nChoose an option:" << endl;
@@ -16,11 +19,11 @@ void CharacterEditor::runCharacterEditor() {
 
         switch (input) {
             case 1: {
-                createCharacter();
+                character = createCharacter();
                 break;
             }
             case 2: {
-                return;
+                return nullptr;
             }
         }
         if(character == nullptr){
@@ -30,17 +33,25 @@ void CharacterEditor::runCharacterEditor() {
             break;
         }
     }
+    return character;
 }
 /**
  * Initially Character are created with level One with no Wepons
  */
-void CharacterEditor::createCharacter() {
+Character* CharacterEditor::createCharacter() {
+
+    Character* character;
     string name ;
     int level = 1;
     int typeOfCharacter;
     // get the name of the character from the User
+
     cout << "Enter the Name of the New Character :" << endl;
-    cin >> name;
+    getline(cin, name);
+
+
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     while(true){
         cout << "What Type of Fighter You want to Make" << endl;
         cout << "\nChoose an option:" << endl;
@@ -71,13 +82,13 @@ void CharacterEditor::createCharacter() {
                 break;
             }
             case 4:{
-                return;
+                return nullptr;
             }
         }
         if(character != nullptr){
             HumanPlayerStrategy *humanPlayerStrategy = new HumanPlayerStrategy();
             character->setStrategy(humanPlayerStrategy);
-            break;
+            return character;
         }
     }
 
@@ -89,52 +100,79 @@ void CharacterEditor::createCharacter() {
  * NPC RELATED CODE
  *
  */
-void CharacterEditor::runNpcEditor() {
+Character* CharacterEditor::runNpcEditor() {
     int input;
+    Character* character;
     while (true) {
         cout << "\nChoose an option:" << endl;
         cout << "1: Create new NPC" << endl;
         cout << "2: Load from a file" << endl;
         cout << "3: Quit" << endl;
         cout << "Enter option: ";
-        cin >> input;
+        cin >> input ;
 
         switch (input) {
             case 1: {
-                createNpc();
+                character = createNpc();
                 break;
             }
-            case 3 : {
-                loadNpc();
+            case 2 : {
+                character = loadNpc();
                 break;
             }
-            case 2: {
-                return;
+            case 3: {
+                return nullptr;
             }
         }
         if(character == nullptr){
             continue;
         }
         else {
-            break;
+            return nullptr;
         }
     }
 }
 
-void CharacterEditor::loadNpc() {
+Character* CharacterEditor::loadNpc() {
+    Character* character = nullptr;
+    string filename;
+    cout << "Enter filename to load the map (without the file extension): ";
+    cin >> filename;
+
+    filename += ".txt"; // Append .txt extension
+
+    ifstream file(filename);
+    if (file.is_open()) {
+        character = new Fighter("defaultName",1);
+
+        // Dynamically allocate memory for map and deserialize the map from the file
+        file >> *character;
+
+        cout << "Map loaded from file: " << filename << endl;
+
+        character->displayCharacterSheet();
+
+        return character;
+    } else {
+        cout << "Error: Unable to open file." << endl;
+        return character;
+    }
+
 
 }
 
-void CharacterEditor::createNpc() {
+Character* CharacterEditor::createNpc() {
+    Character *character;
     string name ;
     int typeOfNPC;
     int level = 1;
     int typeOfCharacter;
     // get the name of the character from the User
     cout << "Enter the Name of the New Character :" << endl;
-    cin >> name;
 
+    cin >>name;
 
+    cout << "Name ----- "<< name;
     while(true){
         // Loop for level
         while(true){
@@ -184,7 +222,7 @@ void CharacterEditor::createNpc() {
                 break;
             }
             case 4:{
-                return;
+                return nullptr;
             }
         }
         // For Ability Menu
@@ -198,7 +236,21 @@ void CharacterEditor::createNpc() {
             break;
         }
 
-        character->getItemContainer()->printContainer();
+
+
+        while(true) {
+            int input;
+            cout << "Do you want to Equip NPC  : Input 1 to Equip" << endl;
+            cin >> input;
+
+            if(input == 1){
+                ItemContainerEditor itemContainerEditor;
+                itemContainerEditor.run(character->getItemContainer());
+            }
+            break;
+        }
+
+        character->displayCharacterSheet();
 
         while (true){
            int input;
@@ -210,19 +262,7 @@ void CharacterEditor::createNpc() {
            character->wearItem(input);
         }
 
-        while(true) {
-            int input;
-            cout << "Do you want to Equip NPC  : Input 1 to Equip" << endl;
-            cin >> input;
 
-            if(input == 1){
-                ItemContainerEditor itemContainerEditor;
-                itemContainerEditor.run();
-                ItemContainer* container = itemContainerEditor.getItemContainer();
-                character->setItemContainer(container);
-            }
-            break;
-        }
 
 
         if(character != nullptr && (typeOfNPC == 1 || typeOfNPC == 2)){
@@ -234,10 +274,21 @@ void CharacterEditor::createNpc() {
                 FriendlyStrategy *friendlyStrategy = new FriendlyStrategy();
                 character->setStrategy(friendlyStrategy);
             }
-            break;
+
+
+            // Prompt user to save the character
+            int input;
+            cout << "Do you want to Save Character : Input 1 to save Character" << endl;
+            cin >> input;
+            if(input == 1 ){
+                saveNPC(character);
+            }
+            return character;
         }
 
     }
+
+
 
 }
 
@@ -373,6 +424,23 @@ void CharacterEditor::abilityMenu(Character *pCharacter) {
                 return;
             }
         }
+    }
+}
+
+bool CharacterEditor::saveNPC(Character *pCharacter) {
+    string filename;
+    cout << "Enter filename to save the map: ";
+    cin >> filename;
+
+    filename += ".txt"; // Append .txt extension
+    ofstream file(filename);
+    if (file.is_open()) {
+        file << *pCharacter << " "; // Dereference the map pointer to access the Map object and serialize it
+        cout << "Character saved to file: " << filename << endl;
+        return true;
+    } else {
+        cout << "Error: Unable to open file." << endl;
+        return false;
     }
 }
 
