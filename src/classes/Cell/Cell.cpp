@@ -20,6 +20,9 @@ void Cell::setState(State state,CellContent* pContent) {
     content =  pContent;
 }
 
+bool Cell::isChest(){
+    return currentState == CHEST;
+}
 bool Cell::isWall() {
     return currentState == WALL;
 }
@@ -59,6 +62,7 @@ Character* Cell::getCharacter() {
     }
 }
 
+
 // Serialization operator for Cell
 std::ostream& operator<<(std::ostream& os, const Cell& cell) {
     os << static_cast<int>(cell.currentState); // Write current state as an integer
@@ -71,5 +75,18 @@ std::istream& operator>>(std::istream& is, Cell& cell) {
     is >> state;
     cell.currentState = static_cast<Cell::State>(state); // Convert integer back to State enum
     return is;
+}
+
+ItemContainer *Cell::getChest() {
+    if (isChest())
+    {
+
+        return dynamic_cast<ItemContainer*>(content);
+    }
+    else
+    {
+        return nullptr;
+    }
+
 }
 

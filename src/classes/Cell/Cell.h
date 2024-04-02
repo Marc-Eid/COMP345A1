@@ -48,7 +48,11 @@ public:
      * @brief Destructor
      */
     virtual ~Cell() = default;
-
+    /**
+     * is chest
+     * @return
+     */
+    bool isChest();
     /**
      * @brief Check whether the Cell is a Wall or not
      * @return
@@ -99,6 +103,12 @@ public:
      * @return
      */
     Character* getCharacter();
+
+    /**
+     * @brief gets chest on the map
+     * @return
+     */
+    ItemContainer* getChest();
 
 
     /**

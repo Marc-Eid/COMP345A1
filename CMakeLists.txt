@@ -53,6 +53,9 @@ add_executable(COMP345A1 src/main.cpp
         src/classes/CharacterEditor/CharacterEditor.h
         src/classes/ItemContainerEditor/ItemContainerEditor.cpp
         src/classes/ItemContainerEditor/ItemContainerEditor.h
+        src/classes/Game/Game.cpp
+        src/classes/Game/Game.h
+        src/classes/Map/Map.h
 
 
 )

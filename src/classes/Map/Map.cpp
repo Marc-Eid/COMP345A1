@@ -3,7 +3,6 @@
 //
 
 #include "Map.h"
-#include "../Character/Character.h"
 
 using namespace std;
 
@@ -44,7 +43,16 @@ Map::Map(int widthX, int heightY) {
         map[width -1][i].setState(Cell::State::WALL, nullptr);
     }
 
+    nextMap = nullptr;
+    prevMap = nullptr;
+
+
+    noOfEnemies = 0;
 }
+
+
+
+
 
 
 bool Map::Place(int x, int y, char item) {
@@ -115,9 +123,7 @@ bool Map::Place(int x, int y, char item) {
             cout << "Invalid ! You can only place wall ,Starting point, ending point on the wall " << endl;
             return false;
         }
-
     }
-
     if(item  == '#'){
         if(startX == x && startY == y){
             startX = -1;
@@ -354,6 +360,7 @@ bool Map::move(Character *c, int x, int y) {
         // Get the current position of the character
         Coordinate currentPos = it->second;
 
+
         // Update the cell state
         map[currentPos.x][currentPos.y].setState(Cell::State::EMPTY, nullptr);
         map[x][y].setState(Cell::State::CHARACTER, c);
@@ -550,4 +557,83 @@ void Map::notify(const std::string& message) {
             observer->update(message);
         }
     }
+}
+
+
+// takes map as input and set it as next map
+bool Map::setNextMap(Map *map) {
+    if(endX != -1 && endY != -1 ){
+        nextMap = map;
+        return true;
+    }
+    return false;
+}
+// take map as input and set it as previous map
+bool Map::setPrevMap(Map *map) {
+    if(startX != -1 && startY != -1 ){
+        prevMap = map;
+        return true;
+    }
+    return false;
+}
+
+Map* Map::hasCompleted(Character *character) {
+    Coordinate c = getCurrentPosition(character);
+
+    vector<Coordinate> list = {Coordinate {c.x +1,c.y},Coordinate {c.x -1,c.y}, Coordinate{c.x,c.y +1},Coordinate {c.x,c.y -1 }};
+
+    for(auto & i : list){
+        if (i.x >= 0 && i.x < width && i.y >= 0 && i.y < height) {
+            if (c.x == i.x && c.y == i.y && noOfEnemies == 0) {
+                map[c.x][c.y].setState(Cell::State::EMPTY, nullptr);
+                return nextMap;
+            }
+        }
+    }
+    // Check if the target position is within the map boundaries and empty
+    return nullptr;
+}
+
+Map* Map::goPreviousMap(Character *character){
+    Coordinate c = getCurrentPosition(character);
+    vector<Coordinate> list = {Coordinate {c.x +1,c.y},Coordinate {c.x -1,c.y}, Coordinate{c.x,c.y +1},Coordinate {c.x,c.y -1 }};
+    for(auto & i : list){
+        if (i.x >= 0 && i.x < width && i.y >= 0 && i.y < height) {
+            if (c.x == i.x && c.y == i.y) {
+                // Change the location
+                map[c.x][c.y].setState(Cell::State::EMPTY, nullptr);
+                return prevMap;
+            }
+        }
+    }
+    // Check if the target position is within the map boundaries and empty
+    return nullptr;
+}
+
+
+bool Map::placeOpponent(Character *character,int x,int y) {
+    if(x < 0 && x > width - 1 || y < 0 && y > height - 1){
+        cout << "The input Coordinates are out of bound";
+        return false;
+    }
+    if(map[x][y].isEmpty()){
+        characterPositions[character] = {x,y};
+        map[x][y].setState(Cell::State::OPPONENT,character);
+
+        noOfEnemies ++;
+        return true;
+    }
+    return false;
+}
+
+vector<Character*> Map::getAllCharacters() {
+    vector<Character*> list;
+    for (int x = 0; x < width; ++x) {
+        for (int y = 0; y < height; ++y) {
+            if(map[x][y].getState() == Cell::CHARACTER || map[x][y].getState() == Cell::OPPONENT){
+                list.push_back(map[x][y].getCharacter());
+            }
+        }
+    }
+    return list;
 }

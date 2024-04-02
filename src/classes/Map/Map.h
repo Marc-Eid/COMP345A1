@@ -1,11 +1,6 @@
 //
 // Created by hp on 12/02/2024.
 //
-
-
-
-
-
 #include "../Cell/Cell.h"
 #include "../ObserverPattern/Subject.h"
 #include <iostream>
@@ -13,12 +8,14 @@
 #include <map>
 #include <vector>
 #include <list>
-
-
 #include "../GameLogger/GameLogger.h"
+
 
 #ifndef COMP345A1_MAP_H
 #define COMP345A1_MAP_H
+
+
+
 
 
 
@@ -151,6 +148,8 @@ public:
 
     vector<Character*> findAdjacentCharacters(Character* character);
 
+    vector <Character*> getAllCharacters();
+
     void attach(IObserver* observer) override;
 
     void detach(IObserver* observer) override;
@@ -189,8 +188,52 @@ private:
       */
     bool move(Character* c,int x ,int y);
 
+    /**
+     * Connect the Map to Another Map
+     * @param map
+     * @return
+     */
+    bool setNextMap(Map* map);
+
+    /**
+     * set previous map
+     * @param map
+     * @return
+     */
+     bool setPrevMap(Map* map);
+
+    /**
+     * Place Opponnent on the Map
+     */
+    bool placeOpponent(Character *character,int x,int y);
+
+    /**
+     * has User achieved all the objectives
+     */
+    Map* hasCompleted(Character *character);
+
+    /**
+     * can user go back to previous map
+     */
+    Map* goPreviousMap(Character *character);
+
+
 private:
     /**
+     * No of enemies left on the map
+     */
+    int noOfEnemies;
+    /**
+     * Map which Open through the Exit
+     */
+    Map *nextMap;
+
+    /**
+     * the previous map in the compaign
+     */
+     Map *prevMap;
+    /**
+     *
      * Stores 2 dimensional Array
      */
     Cell** map;
@@ -218,6 +261,10 @@ private:
      */
     std::map<Character*, Coordinate> characterPositions;
 
+
+    /**
+     * list of observer
+     */
     std::list<IObserver*> observers;
 
 };

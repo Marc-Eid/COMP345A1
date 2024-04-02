@@ -50,7 +50,7 @@ int main() {
 //    displayCharacterBuilder();
 //    displayCharacterEditor();
 //    displayChestEditor();
-displayNpcEditor();
+displayStretegy();
 
     return 0;
 
@@ -208,7 +208,6 @@ void displayStretegy(){
     p1->attack(map);
     p1->freeAction();
 
-
     // NPC's turn (Aggressor Strategy)
     npc->move(map);
     npc->attack(map);
@@ -282,12 +281,13 @@ void displayCharacterEditor(){
 //    itemContainerEditor.run();
 //
 //}
+//
+//void displayNpcEditor() {
+//    std::cout << "\n\n-----------------------------------------------" << std::endl;
+//    std::cout << "\tWemcome to the NPC Editor" << std::endl;
+//    std::cout << "-----------------------------------------------" << std::endl;
+//
+//    CharacterEditor *editor = new CharacterEditor();
+//    editor->runNpcEditor();
+//};
 
-void displayNpcEditor() {
-    std::cout << "\n\n-----------------------------------------------" << std::endl;
-    std::cout << "\tWemcome to the NPC Editor" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
-
-    CharacterEditor *editor = new CharacterEditor();
-    editor->runNpcEditor();
-};
