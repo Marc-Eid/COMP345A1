@@ -18,12 +18,12 @@
 #include "classes/Armor/Armor.h"
 
 
-void displayCharacter();
-void displayStretegy();
-void displayMapBuilder();
+//void displayCharacter();
+//void displayStretegy();
+//void displayMapBuilder();
 //void characterObserver();
 //void displayMap();
-//void displayMapEditor();
+void displayMapEditor();
 //void displayItemContainer();
 //void displayDice();
 //void displayMapBuilder();
@@ -33,7 +33,7 @@ void displayMapBuilder();
 //void displayFileContent(const std::string& filePath);
 //void displayCharacterEditor();
 //void  displayChestEditor();
-void displayNpcEditor();
+//void displayNpcEditor();
 
 int main() {
 
@@ -44,13 +44,13 @@ int main() {
 //    displayMap();
 //    displayMapBuilder();
 //    displayGameLevelMapBuilder();
-//    displayMapEditor();
+    displayMapEditor();
 //    displayItemContainer();
 //    displayDice();
 //    displayCharacterBuilder();
 //    displayCharacterEditor();
 //    displayChestEditor();
-displayStretegy();
+//displayStretegy();
 
     return 0;
 

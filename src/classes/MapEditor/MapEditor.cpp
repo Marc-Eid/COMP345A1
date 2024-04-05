@@ -2,6 +2,7 @@
 #include <sstream>
 #include <fstream>
 
+
 using namespace std;
 
 MapEditor::MapEditor() : map(nullptr), campaign(nullptr) {} // Constructor initializes map and campaign pointers to nullptr
@@ -230,6 +231,22 @@ void MapEditor::editMap() {
         char item;
         if (parseInput(input, x, y, item)) {
             // Place or replace the item on the map
+            if(item == 'C') {
+                ItemContainer* container = new ItemContainer();
+                ItemContainerEditor editor;
+                editor.run(container);
+                map->placeChest(container,x,y);
+            }
+            else if(item == 'O'){
+                CharacterEditor characterEditor;
+                Character* npc = characterEditor.runNpcEditor();
+                if(npc != nullptr ){
+                    map->placeOpponent(npc,x,y);
+                    cout << "No Character was Created or Loaded" << endl;
+                }
+
+            }
+            // Place or replace the item on the map
             map->Place(x, y, item);
             map->printMap();
         } else {
@@ -242,6 +259,8 @@ bool MapEditor::parseInput(const string& input, int& x, int& y, char& item) {
     // Assuming input format is "(x,y)item"
     if (input.size() != 6 || input[0] != '(' || input[2] != ',' || input[4] != ')')
         return false;
+
+
 
     x = input[1] - '0';
     y = input[3] - '0';
@@ -393,7 +412,26 @@ void MapEditor::editMapInCampaign(int mapIndex) {
         char item;
         if (parseInput(input, x, y, item)) {
             // Place or replace the item on the map
-            map->Place(x, y, item);
+            if(item == 'C') {
+                ItemContainer* container = new ItemContainer();
+                ItemContainerEditor editor;
+                editor.run(container);
+                map->placeChest(container,x,y);
+            }
+            else if(item == 'O'){
+                CharacterEditor characterEditor;
+                Character* npc = characterEditor.runNpcEditor();
+
+                if(npc != nullptr ){
+                    map->placeOpponent(npc,x,y);
+                    cout << "No Character was Created or Loaded" << endl;
+                }
+
+            }
+            else {
+                map->Place(x, y, item);
+            }
+
             map->printMap();
         } else {
             cout << "Invalid input. Please try again." << endl;

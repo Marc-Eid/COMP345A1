@@ -637,3 +637,16 @@ vector<Character*> Map::getAllCharacters() {
     }
     return list;
 }
+
+bool Map::placeChest(ItemContainer *container, int x, int y) {
+    if(x < 0 && x > width - 1 || y < 0 && y > height - 1){
+        cout << "The input Coordinates are out of bound";
+        return false;
+    }
+    if(map[x][y].isEmpty()){
+        map[x][y].setState(Cell::State::CHEST,container);
+        return true;
+    }
+    return false;
+
+}

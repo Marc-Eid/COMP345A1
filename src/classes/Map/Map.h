@@ -156,6 +156,28 @@ public:
 
     void notify(const std::string& message) override;
 
+    /**
+     * place a chest on the map
+     */
+    bool placeChest(ItemContainer *container,int x,int y);
+
+
+    /**
+     * Place Opponnent on the Map
+     */
+    bool placeOpponent(Character *character,int x,int y);
+
+    /**
+     * has User achieved all the objectives
+     */
+    Map* hasCompleted(Character *character);
+
+    /**
+     * can user go back to previous map
+     */
+    Map* goPreviousMap(Character *character);
+
+
 private:
     /**
      * A utility function used to determine if the coordinate is the Queue used in Breadth first search
@@ -202,20 +224,7 @@ private:
      */
      bool setPrevMap(Map* map);
 
-    /**
-     * Place Opponnent on the Map
-     */
-    bool placeOpponent(Character *character,int x,int y);
 
-    /**
-     * has User achieved all the objectives
-     */
-    Map* hasCompleted(Character *character);
-
-    /**
-     * can user go back to previous map
-     */
-    Map* goPreviousMap(Character *character);
 
 
 private:

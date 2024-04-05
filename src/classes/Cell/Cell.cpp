@@ -3,6 +3,7 @@
 //
 
 #include "Cell.h"
+#include "../Fighter/Fighter.h"
 #include <iostream>
 
 Cell::Cell() : currentState(EMPTY),content(nullptr) {
@@ -65,7 +66,13 @@ Character* Cell::getCharacter() {
 
 // Serialization operator for Cell
 std::ostream& operator<<(std::ostream& os, const Cell& cell) {
-    os << static_cast<int>(cell.currentState); // Write current state as an integer
+    os << static_cast<int>(cell.currentState) << " "; // Write current state as an integer
+    if(cell.currentState == Cell::State::CHEST){
+        os << dynamic_cast<ItemContainer*>(cell.content) ;
+    }
+    else if(cell.currentState == Cell::State::OPPONENT){
+        os << dynamic_cast<Character*>(cell.content) ;
+    }
     return os;
 }
 
@@ -74,13 +81,22 @@ std::istream& operator>>(std::istream& is, Cell& cell) {
     int state; // Read the state as an integer
     is >> state;
     cell.currentState = static_cast<Cell::State>(state); // Convert integer back to State enum
+    if(cell.currentState == Cell::State::CHEST){
+        ItemContainer* itemContainer = new ItemContainer();
+        is >> *itemContainer;
+        cell.content = itemContainer;
+    }
+    else if(cell.currentState == Cell::State::OPPONENT){
+        Character* character = new Fighter("sample",5);
+        is >> *character;
+        cell.content = character;
+    }
     return is;
 }
 
 ItemContainer *Cell::getChest() {
     if (isChest())
     {
-
         return dynamic_cast<ItemContainer*>(content);
     }
     else

@@ -57,7 +57,7 @@ Character* CharacterEditor::createCharacter() {
         cout << "\nChoose an option:" << endl;
         cout << "1: Nimble" << endl;
         cout << "2: Bully" << endl;
-        cout << "3: Fighter" << endl;
+        cout << "3: Tank" << endl;
         cout << "4: Quit" << endl;
         cout << "Enter option: ";
         cin >> typeOfCharacter;
@@ -128,7 +128,7 @@ Character* CharacterEditor::runNpcEditor() {
             continue;
         }
         else {
-            return nullptr;
+            return character;
         }
     }
 }
@@ -172,7 +172,6 @@ Character* CharacterEditor::createNpc() {
 
     cin >>name;
 
-    cout << "Name ----- "<< name;
     while(true){
         // Loop for level
         while(true){
@@ -197,7 +196,7 @@ Character* CharacterEditor::createNpc() {
         cout << "\nChoose an option:" << endl;
         cout << "1: Nimble" << endl;
         cout << "2: Bully" << endl;
-        cout << "3: Fighter" << endl;
+        cout << "3: Tank" << endl;
         cout << "4: Quit" << endl;
         cout << "Enter option: ";
         cin >> typeOfCharacter;
@@ -225,6 +224,8 @@ Character* CharacterEditor::createNpc() {
                 return nullptr;
             }
         }
+
+
         // For Ability Menu
         while(true){
             int input ;
@@ -232,6 +233,7 @@ Character* CharacterEditor::createNpc() {
             cin >> input;
             if(input == 1){
                 abilityMenu(character);
+                break;
             }
             break;
         }
@@ -246,6 +248,7 @@ Character* CharacterEditor::createNpc() {
             if(input == 1){
                 ItemContainerEditor itemContainerEditor;
                 itemContainerEditor.run(character->getItemContainer());
+                break;
             }
             break;
         }
@@ -266,6 +269,7 @@ Character* CharacterEditor::createNpc() {
 
 
         if(character != nullptr && (typeOfNPC == 1 || typeOfNPC == 2)){
+
             if(typeOfNPC == 1){
                 AggressorStrategy *aggressorStrategy = new AggressorStrategy();
                 character->setStrategy(aggressorStrategy);
@@ -274,7 +278,6 @@ Character* CharacterEditor::createNpc() {
                 FriendlyStrategy *friendlyStrategy = new FriendlyStrategy();
                 character->setStrategy(friendlyStrategy);
             }
-
 
             // Prompt user to save the character
             int input;
@@ -287,9 +290,6 @@ Character* CharacterEditor::createNpc() {
         }
 
     }
-
-
-
 }
 
 void CharacterEditor::abilityMenu(Character *pCharacter) {

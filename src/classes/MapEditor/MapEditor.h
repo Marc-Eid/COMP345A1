@@ -4,6 +4,8 @@
 #include <iostream>
 #include "../Map/Map.h"
 #include "../Campaign/Campaign.h"
+#include "../ItemContainerEditor/ItemContainerEditor.h"
+#include "../CharacterEditor/CharacterEditor.h"
 
 /**
  * @brief Represents a map editor for a simple d20 game.

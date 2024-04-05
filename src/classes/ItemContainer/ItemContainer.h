@@ -10,6 +10,7 @@
 
 #include "../Item/Item.h"
 #include "../Weapon/Weapon.h"
+#include "../CellContent/CellContent.h"
 #include <vector>
 #include <iostream>
 #include <iomanip>
@@ -22,7 +23,7 @@
  * storage units like backpacks, chests, etc. It demonstrates polymorphism by managing a collection
  * of Item pointers.
  */
-class ItemContainer {
+class ItemContainer : public CellContent {
 public:
     /**
      * @brief Default constructor for ItemContainer.
