@@ -1,4 +1,3 @@
-#include <iostream>
 #include "classes/Fighter/Fighter.h"
 #include "classes/Map/Map.h"
 #include "classes/Dice/Dice.h"
@@ -8,6 +7,7 @@
 
 
 int main() {
+    // Initialize the Characters
     auto *p1 = new Fighter("Player1",4);
     auto *npc = new Fighter("NPC",4);
     p1->getAbilityScores();
@@ -36,6 +36,7 @@ int main() {
     // Start Game for the fighters
     map->startGame(p1, 1, 3);
     map->startGame(npc, 8, 2);
+
     map->printMap();
 
     // Player1's turn (Human Strategy)
@@ -55,7 +56,6 @@ int main() {
     p1->move(map);
     p1->attack(map);
     p1->freeAction();
-
 
     // NPC's turn (Aggressor Strategy)
     npc->move(map);
