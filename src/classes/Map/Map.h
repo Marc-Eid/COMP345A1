@@ -27,6 +27,9 @@ class Cell;
 struct Coordinate {
     int x;
     int y;
+    Coordinate() : x(0), y(0) {}
+    Coordinate(int x, int y) : x(x), y(y) {}
+
     bool equalCoordinates(const Coordinate& c1) {
         if(x == c1.x && y == c1.y ){
             return true;
@@ -146,9 +149,13 @@ public:
     */
     Cell* getCell(int x, int y);
 
-    bool moveNextTo(Character *characterToMove);
+    bool moveNextTo(Character *characterToMove, int distance);
+
+    vector<Coordinate> findPathBFS(const Coordinate& start);
 
     vector<Character*> findAdjacentCharacters(Character* character);
+
+    void removeCharacterFromMap(Character* character);
 
     vector <Character*> getAllCharacters();
 

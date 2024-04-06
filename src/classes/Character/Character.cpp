@@ -25,8 +25,6 @@ Character::Character(const string& name, int level) : name(name), level(level) {
 
 
 
-
-
 void Character::generateAbilityScores() {
 
     abilityScores["Strength"] = generateScore();
@@ -281,7 +279,7 @@ bool Character::attack(Character* target, int attackRoll) {
         cout << name << " hits " << target->name << " for a total of " << totalAttack << " damage!\n";
 
         target->hitPoints -= totalAttack; // Apply damage
-        cout << target->name << " now has " << target->hitPoints << " hit points.\n";
+        cout << target->name << " now has " << std::max(0, target->hitPoints) << " hit points.\n";
 
         target->onAttacked(); // Notify the target that it's being attacked
 

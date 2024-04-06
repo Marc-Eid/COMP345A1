@@ -43,6 +43,8 @@ class Character: public Subject, public CellContent, public IObservable{
 public:
     Character()  = default;
 
+    int hitPoints;
+
     void attach(IObserver* observer) override;
 
     void detach(IObserver* observer) override;
@@ -190,7 +192,7 @@ protected:
     map<string, int> abilityScores; // Basic Attributes
     map<string, int> modifiers;
     vector<int> attackBonus;
-    int hitPoints, armorClass, damageBonus; // Derived Attributes
+    int armorClass, damageBonus; // Derived Attributes
     map<string,Item*> wornEquipment;
     ItemContainer* equipment; // Equipment
 

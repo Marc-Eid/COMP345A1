@@ -28,7 +28,7 @@ bool Cell::isWall() {
     return currentState == WALL;
 }
 bool Cell::isCharacter() {
-    return currentState == CHARACTER;
+    return currentState == CHARACTER || currentState == OPPONENT;
 }
 
 bool Cell::isStart() {

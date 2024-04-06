@@ -381,8 +381,12 @@ bool Map::move(Character *c, int x, int y) {
         Coordinate currentPos = it->second;
 
         // Update the cell state
+        if (map[currentPos.x][currentPos.y].getState() == Cell::State::CHARACTER) {
+            map[x][y].setState(Cell::State::CHARACTER, c);
+        } else {
+            map[x][y].setState(Cell::State::OPPONENT, c);
+        }
         map[currentPos.x][currentPos.y].setState(Cell::State::EMPTY, nullptr);
-        map[x][y].setState(Cell::State::CHARACTER, c);
 
         if (currentPos.x == startX && currentPos.y == startY){
             map[startX][startY].setState(Cell::State::START, nullptr);
@@ -394,14 +398,7 @@ bool Map::move(Character *c, int x, int y) {
 
         // Update character position
         characterPositions[c] = {x, y};
-        if (x == endX && y == endY){
-            if (nextMap != nullptr) {
-                nextMap->placeCharacter(c);
-                nextMap->printMap();
-                c->move(nextMap);
-                return true;
-            }
-        }
+        hasCompleted(c);
 
         notify("Successfully moved character " + c->getName() + " to (" + std::to_string(x) + "," + std::to_string(y) + ")");
         printMap();
@@ -525,45 +522,98 @@ Cell *Map::getCell(int x, int y) {
     return &map[x][y];
 }
 
+vector<Coordinate> Map::findPathBFS(const Coordinate& start) {
+    Coordinate target(-1, -1);
+    vector<vector<bool>> visited(width, vector<bool>(height, false));
+    queue<pair<Coordinate, vector<Coordinate>>> q;
+
+    // Find the target character's location during the BFS initialization
+    for (int x = 0; x < width; ++x) {
+        for (int y = 0; y < height; ++y) {
+            if (map[x][y].getState() == Cell::State::CHARACTER && !(x == start.x && y == start.y)) {
+                target = Coordinate(x, y); // Found the target character
+                goto foundTarget; // Use goto for simplicity, to break out of nested loop
+            }
+        }
+    }
+    foundTarget:
+    // Early exit if no target character was found
+    if (target.x == -1) {
+        cout << "No character found on the map." << endl;
+        return {};
+    }
+
+    q.push({start, {start}}); // Start position included in initial path for clarity
+    visited[start.x][start.y] = true;
+
+    vector<Coordinate> directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}}; // Cardinal directions
+
+    while (!q.empty()) {
+        auto front = q.front(); q.pop();
+        Coordinate currentPos = front.first;
+        vector<Coordinate> path = front.second;
+
+        // Check if the current position is next to a character
+        for (const auto& dir : directions) {
+            int adjacentX = currentPos.x + dir.x;
+            int adjacentY = currentPos.y + dir.y;
+
+            if (adjacentX >= 0 && adjacentX < width && adjacentY >= 0 && adjacentY < height) {
+                if (map[adjacentX][adjacentY].getState() == Cell::State::CHARACTER) {
+                    return path; // Return the current path if next to a character
+                }
+            }
+        }
+
+        // Explore only cardinal neighbors
+        for (const auto& dir : directions) {
+            int newX = currentPos.x + dir.x;
+            int newY = currentPos.y + dir.y;
+
+            if (newX >= 0 && newX < width && newY >= 0 && newY < height && !visited[newX][newY] && map[newX][newY].getState() == Cell::State::EMPTY) {
+                visited[newX][newY] = true;
+                vector<Coordinate> newPath = path;
+                newPath.push_back(Coordinate(newX, newY)); // Add the new position to the path
+                q.push({Coordinate(newX, newY), newPath});
+            }
+        }
+    }
+
+    cout << "Character is unreachable or no space next to character." << endl;
+    return {}; // Return empty path if the target is unreachable or there's no space next to the character
+}
+
 
 // Move a character next to the first character found on the map
-bool Map::moveNextTo(Character *characterToMove) {
-    // Get the current position of the character to move
+bool Map::moveNextTo(Character *characterToMove, int distance) {
     Coordinate currentCoord = getCurrentPosition(characterToMove);
 
-    // Check if the character was found on the map
     if (currentCoord.x == -1) {
         cout << "Error: Character not found on the map." << endl;
         return false;
     }
 
-    //TODO MAKE SURE THERE EXISTS A PATH OF EMPTY CELLS TO THE TARGET CELL
-
-    // Iterate over all cells to find the first character on the map
-    for (int x = 0; x < width; ++x) {
-        for (int y = 0; y < height; ++y) {
-            if (map[x][y].getState() == Cell::State::CHARACTER && map[x][y].getCharacter() != characterToMove) {
-                // Check all adjacent cells around the found character
-                for (int dx = -1; dx <= 1; ++dx) {
-                    for (int dy = -1; dy <= 1; ++dy) {
-                        // Calculate the target position
-                        int targetX = x + dx;
-                        int targetY = y + dy;
-
-                        // Check if the target position is within the map boundaries and empty
-                        if (targetX >= 0 && targetX < width && targetY >= 0 && targetY < height &&
-                            (targetX != x || targetY != y) && map[targetX][targetY].getState() == Cell::State::EMPTY) {
-                            // Move the character to the target position
-                            return move(characterToMove, targetX, targetY);
-                        }
-                    }
-                }
-            }
-        }
+    std::vector<Coordinate> path = findPathBFS(currentCoord);
+    if (path.empty()) {
+        cout << "No path to any character found." << endl;
+        return false;
     }
 
-    cout << "Error: No empty cell adjacent to the other characters found on the map." << endl;
-    return false;
+    // Ensure we don't try to move beyond the available path
+    // -1 to ensure we stop before moving onto the CHARACTER cell itself
+    int moveSteps = std::min(distance, static_cast<int>(path.size()));
+
+    // Correcting an off-by-one error by adjusting moveSteps to properly index into the path
+    // Given the path includes the start cell, we need to account for this in our indexing
+    moveSteps = std::max(0, moveSteps - 1); // Ensure moveSteps is not negative
+
+    Coordinate targetCoord = path[moveSteps];
+
+    // Perform the move if the target position is different from the current position
+    if (!(targetCoord.x == currentCoord.x && targetCoord.y == currentCoord.y)) {
+        return move(characterToMove, targetCoord.x, targetCoord.y);
+    }
+    return true; // If the target position is the current position, treat as successful move
 }
 
 // Method to find characters adjacent to the given character's position
@@ -590,8 +640,15 @@ std::vector<Character*> Map::findAdjacentCharacters(Character* character) {
             if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
                 Cell& cell = *getCell(newX, newY);
                 // If there's a character in the cell, add it to the list
-                if (cell.getState() == Cell::State::CHARACTER && cell.getCharacter() != nullptr) {
-                    adjacentCharacters.push_back(cell.getCharacter());
+                if (map[pos.x][pos.y].getState() == Cell::State::CHARACTER){
+                    if (cell.getState() == Cell::State::OPPONENT && cell.getCharacter() != nullptr) {
+                        adjacentCharacters.push_back(cell.getCharacter());
+                    }
+                }
+                else if (map[pos.x][pos.y].getState() == Cell::State::OPPONENT){
+                    if (cell.getState() == Cell::State::CHARACTER && cell.getCharacter() != nullptr) {
+                        adjacentCharacters.push_back(cell.getCharacter());
+                    }
                 }
             }
         }
@@ -637,16 +694,21 @@ bool Map::setPrevMap(Map *map) {
 Map* Map::hasCompleted(Character *character) {
     Coordinate c = getCurrentPosition(character);
 
-    vector<Coordinate> list = {Coordinate {c.x +1,c.y},Coordinate {c.x -1,c.y}, Coordinate{c.x,c.y +1},Coordinate {c.x,c.y -1 }};
-
-    for(auto & i : list){
-        if (i.x >= 0 && i.x < width && i.y >= 0 && i.y < height) {
-            if (c.x == i.x && c.y == i.y && noOfEnemies == 0) {
-                map[c.x][c.y].setState(Cell::State::EMPTY, nullptr);
+    if (c.x == endX && c.y == endY){
+        if (noOfEnemies == 0) {
+            cout << "Congartulations! You have successfully cleared the dungeon.\n";
+            if (nextMap != nullptr) {
+                cout << "Would you like to enter the next dungeon?\n";
+                nextMap->placeCharacter(character);
+                nextMap->printMap();
+                character->move(nextMap);
                 return nextMap;
             }
+        } else {
+            cout << "There are still enemies to kill. Destroy them and the exit might open.\n";
         }
     }
+
     // Check if the target position is within the map boundaries and empty
     return nullptr;
 }
@@ -705,5 +767,16 @@ bool Map::placeChest(ItemContainer *container, int x, int y) {
         return true;
     }
     return false;
+
+}
+
+void Map::removeCharacterFromMap(Character *character) {
+    auto it = characterPositions.find(character);
+    if (it != characterPositions.end()) {
+        map[it->second.x][it->second.y].setState(Cell::State::EMPTY, nullptr);
+        characterPositions.erase(it);
+        noOfEnemies--;
+        cout << "You have defeated: " <<  character->getName()  <<  endl;
+    }
 
 }
