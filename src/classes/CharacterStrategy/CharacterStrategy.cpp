@@ -3,12 +3,65 @@
 
 //--------------------HumanPlayerStrategy--------------------
 
-void HumanPlayerStrategy::move(Character* c, Map* map){
-    int input;
 
+string HumanPlayerStrategy::round(Character *c, Map *map) {
+
+    int input;
     cout << "\n------------------------------" << endl;
     cout << c->getName() << "'s play turn" << endl;
     cout << "------------------------------" << endl;
+
+    /// TODO ALLOW USER to both move and attack both in one turn
+    while (true){
+
+        cout << "\nChoose an option:" << endl;
+        cout << "1: Move" << endl;
+        cout << "2: Attack" << endl;
+        cout << "3: Free Action" << endl;
+        cout << "4: Go to Next Map"<<endl;
+        cout << "5: Go to Previous Map"<< endl;
+        cout << "Enter option: ";
+        cin >> input;
+
+        switch (input) {
+            case 1: {
+                this->move(c,map);
+                return "Movement";
+            }
+            case 2: {
+                this->attack(c,map);
+                return "Attack";
+            }
+            case 3 : {
+                this->freeAction();
+                return "Action";
+            }
+            case 4 : {
+                Map* mp = map->hasCompleted(c);
+                if(mp == nullptr){
+                    if(mp->CanComplete(c)){
+                        return "COMPLETED";
+                    }
+                    else{
+                        return "NOTCOMPLETED";
+                    }
+                }
+                return "COMPLETED";
+            }
+            case 5 : {
+                Map* mp = map->goPreviousMap(c);
+                if(mp == nullptr){
+                    return "NOTEXITED";
+                }
+                return "EXITED";
+            }
+        }
+    }
+
+}
+void HumanPlayerStrategy::move(Character* c, Map* map){
+    int input;
+
 
     int moveDistance = 5;
     while (moveDistance > 0) {
@@ -136,6 +189,22 @@ void HumanPlayerStrategy::freeAction() {
 
 //--------------------AggressorStrategy--------------------
 
+
+string AggressorStrategy::round(Character *c, Map *map) {
+    std::vector<Character*> adjacentEnemies = map->findAdjacentCharacters(c);
+
+    if(adjacentEnemies.empty()){
+        this->move(c,map);
+        return "MOVE";
+    }
+    else{
+        this->attack(c,map);
+        return "ATTACK";
+    }
+}
+
+
+
 void AggressorStrategy::move(Character* c, Map* map){
     cout << "\n------------------------------" << endl;
     cout << c->getName() << "'s play turn" << endl;
@@ -155,6 +224,19 @@ void AggressorStrategy::attack(Character* source, Map* map) {
 
 
 //--------------------FriendlyStrategy--------------------
+
+string FriendlyStrategy::round(Character *c, Map *map) {
+    std::vector<Character*> adjacentEnemies = map->findAdjacentCharacters(c);
+
+    if(adjacentEnemies.empty()){
+        this->move(c,map);
+        return "MOVE";
+    }
+    else{
+        this->attack(c,map);
+        return "ATTACK";
+    }
+}
 
 void FriendlyStrategy::move(Character* c, Map* map){
     cout << "\n------------------------------" << endl;

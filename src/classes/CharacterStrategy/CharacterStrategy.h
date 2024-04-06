@@ -14,6 +14,7 @@ class Character;
 class CharacterStrategy {
 
 public:
+    virtual string round(Character* c,Map* map) = 0;
     virtual void move(Character* c, Map* map) = 0;
     virtual void attack(Character* source, Map* map) = 0;
     virtual ~CharacterStrategy() {}
@@ -24,6 +25,7 @@ public:
 class HumanPlayerStrategy : public CharacterStrategy {
 
 public:
+    string round(Character *c, Map *map) override;
     void move(Character* c, Map* map) override;
     void attack(Character* source, Map* map) override;
     void freeAction();
@@ -34,6 +36,7 @@ public:
 class AggressorStrategy : public CharacterStrategy {
 
 public:
+    string round(Character *c, Map *map) override;
     void move(Character* c, Map* map) override;
     void attack(Character* source, Map* map) override;
 };
@@ -41,6 +44,7 @@ public:
 class FriendlyStrategy : public CharacterStrategy {
 
 public:
+    string round(Character *c, Map *map) override;
     void move(Character* c, Map* map) override;
     void attack(Character* source, Map* map) override;
 };

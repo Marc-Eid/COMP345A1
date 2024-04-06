@@ -83,18 +83,24 @@ public:
      * @return Reference to the input stream.
      */
     friend std::istream& operator>>(std::istream& is, Campaign& campaign);
-
+    //regular array of maps
     Map** maps;
 
+    // Which map the user is currently on
+    int currentMapIndex;
+
+    // Regular array to store maps
+    // num of maps
+    int numMaps;
+
+
+    void playCampaign();
 
 private:
     // user Character
     Character* character;
-    // Which map the user is currently on
-    int currentMapIndex;
-    // Regular array to store maps
-    // num of maps
-    int numMaps;
+
+
 };
 
 #endif //COMP345A1_CAMPAIGN_H

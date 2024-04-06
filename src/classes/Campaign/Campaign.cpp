@@ -4,6 +4,7 @@
 Campaign::Campaign(int initialWidth, int initialHeight) : numMaps(1) {
     maps = new Map*[numMaps];
     maps[0] = new Map(initialWidth, initialHeight); // Create the first map
+    currentMapIndex = 0;
 }
 
 Campaign::~Campaign() {
@@ -87,4 +88,14 @@ std::istream& operator>>(std::istream& is, Campaign& campaign) {
         is >> *(campaign.maps[i]); // Deserialize map
     }
     return is;
+}
+
+void Campaign::playCampaign() {
+    /// TODO add Defeat condition
+    while(currentMapIndex < numMaps){
+        maps[currentMapIndex]->playMap(this);
+    }
+    cout << "Game Completed";
+
+
 }

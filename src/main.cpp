@@ -25,7 +25,7 @@
 //void displayMapBuilder();
 //void characterObserver();
 //void displayMap();
-//void displayMapEditor();
+void displayMapEditor();
 //void displayItemContainer();
 //void displayDice();
 //void displayMapBuilder();
@@ -45,7 +45,7 @@ int main() {
 //    displayMap();
 //    displayMapBuilder();
 //    displayGameLevelMapBuilder();
-//    displayMapEditor();
+    displayMapEditor();
 //    displayItemContainer();
 //    displayDice();
 //    displayCharacterBuilder();
@@ -53,62 +53,64 @@ int main() {
 //    displayChestEditor();
 //    displayStrategy();
 
-    auto *p1 = new Fighter("Player1",4);
-    p1->getAbilityScores();
-
-    auto *npc = new Fighter("NPC",4);
-    npc->getAbilityScores();
-
-    Map* map1 = new Map(10,5);
-
-    auto* log = new GameLogger();
-    map1->attach(log);
-    p1->attach(log);
-
-    map1->placeOpponent(npc, 8, 2);
-
-    auto* campaign = new Campaign(10,10);
-
-    campaign->maps[0]->Place(1,2,'#');
-    campaign->maps[0]->Place(2,2,'#');
-    campaign->maps[0]->Place(0,3,'S');
-    campaign->maps[0]->Place(0,1,'E');
-
-    auto* humanStrategy = new HumanPlayerStrategy();
-    p1->setStrategy(humanStrategy);
-    campaign->maps[0]->placeCharacter(p1);
-
-    auto* agressorStrategy = new AggressorStrategy();
-    npc->setStrategy(agressorStrategy);
-    campaign->maps[0]->placeOpponent(npc, 8, 2);
-
-    campaign->addMap(map1);
-
-    campaign->maps[1]->Place(1,2,'#');
-    campaign->maps[1]->Place(2,2,'#');
-    campaign->maps[1]->Place(0,3,'S');
-    campaign->maps[1]->Place(0,1,'E');
-
-    // Player1's turn (Human Strategy)
-    campaign->maps[0]->printMap();
-    p1->move(campaign->maps[0]);
-    p1->attack(campaign->maps[0]);
-
-    // NPC's turn (Agressor Strategy)
-    npc->move(campaign->maps[0]);
-    npc->attack(campaign->maps[0]);
-
-    // Player1's turn (Human Strategy)
-    p1->move(campaign->maps[0]);
-    p1->attack(campaign->maps[0]);
-
-    // NPC's turn (Agressor Strategy)
-    npc->move(campaign->maps[0]);
-    npc->attack(campaign->maps[0]);
-
-    // Player1's turn (Human Strategy)
-    p1->move(campaign->maps[0]);
-    p1->attack(campaign->maps[0]);
+//    auto *p1 = new Fighter("Player1",4);
+//    p1->getAbilityScores();
+//
+//    auto *npc = new Fighter("NPC",4);
+//    npc->getAbilityScores();
+//
+//    Map* map1 = new Map(10,5);
+//
+//    auto* log = new GameLogger();
+//    map1->attach(log);
+//    p1->attach(log);
+//
+//    map1->placeOpponent(npc, 8, 2);
+//
+//    auto* campaign = new Campaign(10,10);
+//
+//    campaign->maps[0]->Place(1,2,'#');
+//    campaign->maps[0]->Place(2,2,'#');
+//    campaign->maps[0]->Place(0,3,'S');
+//    campaign->maps[0]->Place(0,1,'E');
+//
+//
+//
+//    auto* humanStrategy = new HumanPlayerStrategy();
+//    p1->setStrategy(humanStrategy);
+//    campaign->maps[0]->placeCharacter(p1);
+//
+//    auto* agressorStrategy = new AggressorStrategy();
+//    npc->setStrategy(agressorStrategy);
+//    campaign->maps[0]->placeOpponent(npc, 8, 2);
+//
+//    campaign->addMap(map1);
+//
+//    campaign->maps[1]->Place(1,2,'#');
+//    campaign->maps[1]->Place(2,2,'#');
+//    campaign->maps[1]->Place(0,3,'S');
+//    campaign->maps[1]->Place(0,1,'E');
+//
+//    // Player1's turn (Human Strategy)
+//    campaign->maps[0]->printMap();
+//    p1->move(campaign->maps[0]);
+//    p1->attack(campaign->maps[0]);
+//
+//    // NPC's turn (Agressor Strategy)
+//    npc->move(campaign->maps[0]);
+//    npc->attack(campaign->maps[0]);
+//
+//    // Player1's turn (Human Strategy)
+//    p1->move(campaign->maps[0]);
+//    p1->attack(campaign->maps[0]);
+//
+//    // NPC's turn (Agressor Strategy)
+//    npc->move(campaign->maps[0]);
+//    npc->attack(campaign->maps[0]);
+//
+//    // Player1's turn (Human Strategy)
+//    p1->move(campaign->maps[0]);
+//    p1->attack(campaign->maps[0]);
 
     return 0;
 }

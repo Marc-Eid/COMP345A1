@@ -494,6 +494,7 @@ void MapEditor::loadCampaignFromFile() {
             clearCampaign(); // Clear the invalid campaign
         } else{
             campaign->printCampaign();
+
         }
     } else {
         cout << "Error: Unable to open file." << endl;

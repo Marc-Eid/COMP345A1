@@ -1,8 +1,10 @@
 //
 // Created by hp on 12/02/2024.
 //
+
 #include "../Cell/Cell.h"
 #include "../ObserverPattern/Subject.h"
+#include "../Campaign/Campaign.h"
 #include <iostream>
 #include <queue>
 #include <map>
@@ -14,13 +16,9 @@
 #ifndef COMP345A1_MAP_H
 #define COMP345A1_MAP_H
 
-
-
-
-
-
 using namespace std;
 
+class Campaign;
 class Character;
 class Cell;
 
@@ -53,6 +51,7 @@ struct Coordinate {
  */
 class Map : public Subject, IObservable{
 public:
+
     /**
      * @brief Accepts width and height of the map and initializes a two dimensional array with Wall arround
      * @param width
@@ -73,6 +72,10 @@ public:
      * @return
      */
     bool Place(int x, int y,char item);
+
+    bool CanComplete(Character* character);
+
+    bool playMap(Campaign* campaign);
 
     /**
      * Determines whether there is path from starting point to the Ending point using Breadth first Search
@@ -199,6 +202,13 @@ public:
      * @return
      */
      bool setPrevMap(Map* map);
+
+
+
+     Character* getHumanCharacter();
+
+     vector<Character*> getAllOpponents();
+
 
 
 private:

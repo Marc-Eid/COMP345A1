@@ -67,7 +67,19 @@ void Game::play()
             cout << "-----------------------------------------------\n";
             cout << "Welcome DND WORLD\n";
             cout << "-----------------------------------------------";
+
+            cout << "camp";
+            campaign->printCampaign();
+            cout << "camp1";
+            // placing the character on the game
+            campaign->maps[0]->placeCharacter(pCharacter);
+
+
+            campaign->playCampaign();
+
         }
+
+
     }
     else{
         cout << "Thank you for Playing !";

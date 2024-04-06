@@ -692,9 +692,18 @@ bool Map::setPrevMap(Map *map) {
     }
     return false;
 }
-
+bool Map::CanComplete(Character* character){
+    Coordinate c = getCurrentPosition(character);
+    if (c.x == endX && c.y == endY){
+        if (noOfEnemies == 0) {
+            return true;
+        }
+    }
+    return  false;
+}
 Map* Map::hasCompleted(Character *character) {
     Coordinate c = getCurrentPosition(character);
+
 
     if (c.x == endX && c.y == endY){
         if (noOfEnemies == 0) {
@@ -703,14 +712,17 @@ Map* Map::hasCompleted(Character *character) {
                 cout << "Would you like to enter the next dungeon?\n";
                 nextMap->placeCharacter(character);
                 nextMap->printMap();
+                // Erase it from the previous map
+                map[c.x][c.y].setState(Cell::State::EMPTY, nullptr);
+
                 character->move(nextMap);
                 return nextMap;
             }
+
         } else {
             cout << "There are still enemies to kill. Destroy them and the exit might open.\n";
         }
     }
-
     // Check if the target position is within the map boundaries and empty
     return nullptr;
 }
@@ -782,3 +794,64 @@ void Map::removeCharacterFromMap(Character *character) {
     }
 
 }
+
+vector<Character*> Map::getAllOpponents(){
+    vector<Character*> list;
+    for (int x = 0; x < width; ++x) {
+        for (int y = 0; y < height; ++y) {
+            if(map[x][y].getState() == Cell::OPPONENT){
+                list.push_back(map[x][y].getCharacter());
+            }
+        }
+    }
+    return list;
+}
+
+
+Character* Map::getHumanCharacter(){
+    for (int x = 0; x < width; ++x) {
+        for (int y = 0; y < height; ++y) {
+            if(map[x][y].getState() == Cell::CHARACTER){
+                return map[x][y].getCharacter();
+            }
+        }
+    }
+    return nullptr;
+}
+
+bool Map::playMap(Campaign* campaign) {
+    // get the human character
+    Character* getHumanCharacter = this->getHumanCharacter();
+    // get all the opponent
+    vector<Character*> getAllOpponents = this->getAllOpponents();
+    // get ALl the character
+    vector<Character*> getALlCharacter = this->getAllCharacters();
+    // sorted Map
+    std::map<int,Character*,std::greater<>> characterRolls;
+    // Roll for every character
+    for(int i =0 ;i<getALlCharacter.size();i++){
+        Dice d1;
+        int roll =  d1.roll("1d20");
+        characterRolls[roll] = getALlCharacter[i];
+    }
+
+    while(this->getHumanCharacter() != nullptr){
+
+        // give each character a chance to move
+        for (auto it = characterRolls.begin(); it != characterRolls.end(); ++it) {
+
+            // play round for each player
+            string command = it->second->strategy->round(it->second,this);
+
+            if(command == "COMPLETED"){
+                // GO NEXT OTHER MAP
+                campaign->currentMapIndex++;
+                return true;
+            }
+            std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
+        }
+    }
+    return true;
+}
+
+
