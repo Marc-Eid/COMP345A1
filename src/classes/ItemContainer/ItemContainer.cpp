@@ -89,10 +89,10 @@ std::ostream &operator<<(ostream &os, const ItemContainer &ItemContainer) {
     for(int i =0;i<ItemContainer.getItemCount();i++){
         if(ItemContainer.items[i]->getType() == "Weapon"){
             Weapon *weapon = dynamic_cast<Weapon*>(ItemContainer.items[i]);
-            os <<ItemContainer.items[i]->getType()<< " " << weapon->getWeaponType() << " " <<  *ItemContainer.items[i] << " " ;
+            os <<ItemContainer.items[i]->getType()<< " " << weapon->getWeaponType() << " " <<  *ItemContainer.items[i];
         }
         else {
-            os <<ItemContainer.items[i]->getType() << " " <<  *ItemContainer.items[i] << " ";
+            os << ItemContainer.items[i]->getType() << " " <<  *ItemContainer.items[i] ;
         }
 
     }
@@ -106,7 +106,6 @@ std::istream &operator>>(istream &is, ItemContainer &ItemContainer) {
     for(int i = 0;i <size;i++){
         string type;
         is >> type;
-        cout << "Type " << size;
         if(type == "Weapon") {
             int Type;
             is >> Type;

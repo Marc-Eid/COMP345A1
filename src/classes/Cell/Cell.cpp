@@ -68,7 +68,7 @@ Character* Cell::getCharacter() {
 std::ostream& operator<<(std::ostream& os, const Cell& cell) {
     os << static_cast<int>(cell.currentState) <<" "; // Write current state as an integer
     if(cell.currentState == Cell::State::CHEST){
-        ItemContainer* pContainer = dynamic_cast<ItemContainer*>(cell.content);
+        ItemContainer *pContainer = dynamic_cast<ItemContainer*>(cell.content);
         os << *pContainer ;
     }
     else if(cell.currentState == Cell::State::OPPONENT){

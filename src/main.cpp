@@ -17,6 +17,7 @@
 #include "classes/ItemContainerEditor/ItemContainerEditor.h"
 #include "classes/Armor/Armor.h"
 #include "classes/Game/Game.h"
+#include "classes/Weapon/Weapon.h"
 
 
 //void displayCharacter();
@@ -259,6 +260,29 @@ void displayGameLevelMapBuilder() {
 void displayMapEditor() {
     Game game;
     game.play();
+//    Character *f1 = new Fighter("abc",4);
+//    Character *f2 = new Fighter("cde",4);
+//    Item* w1 = new Armor("armor");
+//    Item* w2 = new Weapon("armorhello",Weapon::WeaponType::BOW);
+//    f1->equip(w1);
+//    f1->equip(w2);
+//    cout << *f1;
+//    cin >> *f2;
+//    f2->displayCharacterSheet();
+//
+//    ItemContainer *itemContainer = new ItemContainer();
+//    itemContainer->addItem(w1);
+//    itemContainer->addItem(w2);
+//
+//    ItemContainer *itemContainer1 = new ItemContainer();
+//    cout << *itemContainer;
+//    cin >> *itemContainer1;
+//
+//
+//    itemContainer->printContainer();
+//
+//    itemContainer1->printContainer();
+
 }
 
 void displayCharacterEditor(){

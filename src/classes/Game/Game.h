@@ -11,7 +11,7 @@
 
 class Game {
 public:
-    Game() = default;
+    Game() {campaign = nullptr;};
     void play();
 private:
     bool loadPregeneratedCampaign();

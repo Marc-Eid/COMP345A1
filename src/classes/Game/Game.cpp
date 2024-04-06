@@ -25,26 +25,30 @@ bool Game::getCampaign() {
             case 2: {
                 MapEditor mapEditor;
                 Campaign* campaign1 = mapEditor.runCampaignEditor();
-                campaign1->printCampaign();
-                campaign = campaign1;
-                break;
+                if(campaign1 != nullptr){
+                    campaign = campaign1;
+                    continue;
+                }
             }
             case 3: {
                 if(campaign == nullptr){
                     cout << "You haven't selected any Campaign Yet" << endl;
+                    continue;
                 }
-                return false;
+                else{
+                    return true;
+                }
+
             }
             case 4 : {
                 return false;
             }
             default: {
                 cout << "Invalid option. Please try again." << endl;
-                break;
+                continue;
             }
         }
-        // If map is not initialized, continue to the next iteration
-        return true;
+
     }
 }
 
@@ -54,10 +58,16 @@ void Game::play()
     cout << "Welcome to the Dungeon and Dragon : Basic Fantasy RPG\n";
     cout << "-----------------------------------------------";
     bool campaignSet = getCampaign();
-    if(campaignSet == true){
+    if(campaignSet){
         // ALL THE LOGIC OF SELECTING THE CHARACTER
-
-
+        CharacterEditor characterEditor;
+        Character* pCharacter = characterEditor.runCharacterEditor();
+        if(pCharacter != nullptr){
+            // Gameplay Logic
+            cout << "-----------------------------------------------\n";
+            cout << "Welcome DND WORLD\n";
+            cout << "-----------------------------------------------";
+        }
     }
     else{
         cout << "Thank you for Playing !";
@@ -66,5 +76,7 @@ void Game::play()
 }
 
 bool Game::loadPregeneratedCampaign() {
+
+    // Load Pre-generated Campaing
     return true ;
 }

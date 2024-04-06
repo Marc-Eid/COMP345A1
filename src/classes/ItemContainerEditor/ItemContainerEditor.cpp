@@ -112,15 +112,17 @@ void ItemContainerEditor::weaponSelector(ItemContainer* container) {
                 weapon = new Weapon(name,Weapon::WeaponType::SWORD);
                 abilityMenu(weapon);
                 container->addItem(weapon);
+                break;
 
             }
             case 2: {
                 string name;
                 cout << "\nGive the item an identifier :";
                 cin >> name;
-                weapon = new Weapon(name,Weapon::WeaponType::SWORD);
+                weapon = new Weapon(name,Weapon::WeaponType::BOW);
                 abilityMenu(weapon);
                 container->addItem(weapon);
+                break;
             }
         }
         if(weapon != nullptr){
