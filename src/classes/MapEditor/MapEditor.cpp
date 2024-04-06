@@ -116,7 +116,7 @@ void MapEditor::runMapEditor() {
     }
 }
 
-void MapEditor::runCampaignEditor() {
+Campaign* MapEditor::runCampaignEditor() {
     int input;
 
     while (true) {
@@ -138,7 +138,7 @@ void MapEditor::runCampaignEditor() {
             }
             case 3: {
                 clearCampaign(); // Clear the current campaign if it exists
-                return;
+                return nullptr;
             }
             default: {
                 cout << "Invalid option. Please try again." << endl;
@@ -149,6 +149,7 @@ void MapEditor::runCampaignEditor() {
         // If map is not initialized, continue to the next iteration
         if (campaign == nullptr)
             continue;
+
 
         // If map is initialized, provide options to edit or save the map
         while (true) {
@@ -173,7 +174,6 @@ void MapEditor::runCampaignEditor() {
                     break;
                 }
                 case 3: {
-                    clearCampaign(); // Reset or clear the current map
                     break;
                 }
                 default: {
@@ -185,7 +185,12 @@ void MapEditor::runCampaignEditor() {
             if (input == 3) // Return to main menu
                 break;
         }
+
+
+
+        return campaign;
     }
+
 }
 
 void MapEditor::createNewMap() {

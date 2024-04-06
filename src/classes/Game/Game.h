@@ -6,12 +6,16 @@
 #define COMP345A1_GAME_H
 
 #include "../Campaign/Campaign.h"
+#include "../MapEditor/MapEditor.h"
 
 
 class Game {
-    Game(Campaign* compaign);
+public:
+    Game() = default;
     void play();
 private:
+    bool loadPregeneratedCampaign();
+    bool getCampaign();
     Campaign *campaign;
 };
 

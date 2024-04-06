@@ -16,6 +16,7 @@
 #include "classes/CharacterEditor/CharacterEditor.h"
 #include "classes/ItemContainerEditor/ItemContainerEditor.h"
 #include "classes/Armor/Armor.h"
+#include "classes/Game/Game.h"
 
 
 //void displayCharacter();
@@ -256,19 +257,22 @@ void displayGameLevelMapBuilder() {
 }
 
 void displayMapEditor() {
-    std::cout << "\n\n-----------------------------------------------" << std::endl;
-    std::cout << "\tWemcome to the Map/Campaign Editor" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
-    MapEditor editor;
-    editor.runEditor();
+    Game game;
+    game.play();
 }
 
 void displayCharacterEditor(){
-    std::cout << "\n\n-----------------------------------------------" << std::endl;
-    std::cout << "\tWemcome to the Character Editor" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
-    CharacterEditor characterEditor;
-    characterEditor.runCharacterEditor();
+//    std::cout << "\n\n-----------------------------------------------" << std::endl;
+//    std::cout << "\tWemcome to the Character Editor" << std::endl;
+//    std::cout << "-----------------------------------------------" << std::endl;
+//    CharacterEditor characterEditor;
+//    characterEditor.runCharacterEditor();
+//    Campaign* c1 = new Campaign(5,5);
+//    cout << *c1;
+//    Campaign* c2 = new Campaign(6,6);
+//    cin >> *c2;
+//    c2->printCampaign();
+
 
 }
 

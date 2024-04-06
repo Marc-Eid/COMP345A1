@@ -59,7 +59,7 @@ public:
      *
      * Allows users to create, load, edit, and save campaigns consisting of multiple maps.
      */
-    void runCampaignEditor();
+    Campaign* runCampaignEditor();
 
 private:
     Map* map; ///< Pointer to a Map object for current editing.

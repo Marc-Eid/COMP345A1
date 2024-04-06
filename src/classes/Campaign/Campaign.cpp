@@ -66,7 +66,7 @@ std::ostream& operator<<(std::ostream& os, const Campaign& campaign) {
     os << campaign.numMaps << " "; // Serialize number of maps
     // Serialize each map in the campaign
     for (int i = 0; i < campaign.numMaps; ++i) {
-        os << *(campaign.maps[i]) << " "; // Serialize map
+        os << *(campaign.maps[i]) ; // Serialize map
     }
     return os;
 }
