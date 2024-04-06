@@ -71,9 +71,12 @@ void Game::play()
             campaign->printCampaign();
             campaign->maps[pCharacter->currentMap]->placeCharacter(pCharacter);
                 while(gameIsRunning){
-                    pCharacter->move(campaign->maps[pCharacter->currentMap]);
-                    pCharacter->attack(campaign->maps[pCharacter->currentMap]);
-
+                    campaign->maps[pCharacter->currentMap]->getAllCharacters();
+                    auto characters = campaign->maps[pCharacter->currentMap]->getAllCharacters();
+                    for(auto* character : characters) {
+                        character->move(campaign->maps[pCharacter->currentMap]);
+                        character->attack(campaign->maps[pCharacter->currentMap]);
+                    }
                 }
         }
     }
