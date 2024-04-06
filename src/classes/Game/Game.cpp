@@ -60,8 +60,8 @@ void Game::play()
         // ALL THE LOGIC OF SELECTING THE CHARACTER
         CharacterEditor characterEditor;
         Character* pCharacter = characterEditor.runCharacterEditor();
-        Character* npc1 =characterEditor.runNpcEditor();
-        campaign->maps[pCharacter->currentMap]->placeOpponent(npc1, 5, 5);
+        //Character* npc1 =characterEditor.runNpcEditor();
+        //campaign->maps[pCharacter->currentMap]->placeOpponent(npc1, 5, 5);
         if(pCharacter != nullptr){
             // Gameplay Logic
             cout << "-----------------------------------------------\n";
