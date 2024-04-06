@@ -23,12 +23,10 @@ bool Game::getCampaign() {
                 break;
             }
             case 2: {
-                MapEditor mapEditor;
-                Campaign* campaign1 = mapEditor.runCampaignEditor();
-                if(campaign1 != nullptr){
-                    campaign = campaign1;
-                    continue;
-                }
+                MapEditor *mapEditor = new MapEditor();
+                campaign = mapEditor->runCampaignEditor();
+                campaign->printCampaign();
+                return true;
             }
             case 3: {
                 if(campaign == nullptr){
@@ -62,11 +60,21 @@ void Game::play()
         // ALL THE LOGIC OF SELECTING THE CHARACTER
         CharacterEditor characterEditor;
         Character* pCharacter = characterEditor.runCharacterEditor();
+        Character* npc1 =characterEditor.runNpcEditor();
+        campaign->maps[pCharacter->currentMap]->placeOpponent(npc1, 5, 5);
         if(pCharacter != nullptr){
             // Gameplay Logic
             cout << "-----------------------------------------------\n";
-            cout << "Welcome DND WORLD\n";
+            cout << "Welcome to DND WORLD\n";
             cout << "-----------------------------------------------";
+            bool gameIsRunning = true;
+            campaign->printCampaign();
+            campaign->maps[pCharacter->currentMap]->placeCharacter(pCharacter);
+                while(gameIsRunning){
+                    pCharacter->move(campaign->maps[pCharacter->currentMap]);
+                    pCharacter->attack(campaign->maps[pCharacter->currentMap]);
+
+                }
         }
     }
     else{

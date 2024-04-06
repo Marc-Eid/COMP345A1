@@ -43,6 +43,8 @@ class Character: public Subject, public CellContent, public IObservable{
 public:
     Character()  = default;
 
+    int currentMap = 0;
+
     int hitPoints;
 
     void attach(IObserver* observer) override;

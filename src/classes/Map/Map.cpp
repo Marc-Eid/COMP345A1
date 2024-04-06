@@ -3,6 +3,7 @@
 //
 
 #include "Map.h"
+#include <cstdlib>
 
 using namespace std;
 
@@ -398,10 +399,11 @@ bool Map::move(Character *c, int x, int y) {
 
         // Update character position
         characterPositions[c] = {x, y};
-        hasCompleted(c);
+        if (!hasCompleted(c)){
+            printMap();
+        }
 
         notify("Successfully moved character " + c->getName() + " to (" + std::to_string(x) + "," + std::to_string(y) + ")");
-        printMap();
         return true;
     }
     cout << "Character not found on the map" << endl;
@@ -700,11 +702,14 @@ Map* Map::hasCompleted(Character *character) {
         if (noOfEnemies == 0) {
             cout << "Congartulations! You have successfully cleared the dungeon.\n";
             if (nextMap != nullptr) {
-                cout << "Would you like to enter the next dungeon?\n";
+                cout << "You are now entering the next dungeon level.\n";
                 nextMap->placeCharacter(character);
                 nextMap->printMap();
-                character->move(nextMap);
+                character->currentMap++;
                 return nextMap;
+            } else{
+                cout << "\n\nCONGRATULATIONS BRAVE WARRIOR! YOU HAVE WON THE GAME!.\n";
+                exit(0);
             }
         } else {
             cout << "There are still enemies to kill. Destroy them and the exit might open.\n";

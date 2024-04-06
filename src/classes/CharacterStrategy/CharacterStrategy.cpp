@@ -9,9 +9,13 @@ void HumanPlayerStrategy::move(Character* c, Map* map){
     cout << "\n------------------------------" << endl;
     cout << c->getName() << "'s play turn" << endl;
     cout << "------------------------------" << endl;
-
+    map->printMap();
+    int initialMap = c->currentMap;
     int moveDistance = 5;
     while (moveDistance > 0) {
+        if (c->currentMap != initialMap){
+            return;
+        }
         cout << "\nChoose a movement option:" << endl;
         cout << "1: Up" << endl;
         cout << "2: Down" << endl;
@@ -140,6 +144,7 @@ void AggressorStrategy::move(Character* c, Map* map){
     cout << "\n------------------------------" << endl;
     cout << c->getName() << "'s play turn" << endl;
     cout << "------------------------------\n" << endl;
+    map->printMap();
     cout << "Automatically moving towards player character." << endl;
     map->moveNextTo(c, 5);
 }
@@ -160,6 +165,7 @@ void FriendlyStrategy::move(Character* c, Map* map){
     cout << "\n------------------------------" << endl;
     cout << c->getName() << "'s play turn" << endl;
     cout << "------------------------------\n" << endl;
+    map->printMap();
     cout << "Automatically moving towards player character." << endl;
     map->moveNextTo(c, 5);
 }

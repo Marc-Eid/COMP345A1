@@ -187,7 +187,6 @@ Campaign* MapEditor::runCampaignEditor() {
         }
 
 
-
         return campaign;
     }
 
@@ -485,6 +484,15 @@ void MapEditor::loadCampaignFromFile() {
                 map->updateStartAndEndCoordinates();
             } else {
                 cout << "Error: Map at index " << i << " is null." << endl;
+            }
+        }
+
+        for (int i = 0; i < campaign->getNumMaps(); ++i) {
+            if (i > 0){
+                campaign->maps[i]->setPrevMap(campaign->maps[i-1]);
+            }
+            if (i < campaign->getNumMaps() - 1) {
+                campaign->maps[i]->setNextMap(campaign->maps[i+1]);
             }
         }
 

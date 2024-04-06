@@ -39,6 +39,8 @@
 
 int main() {
 
+    Game * game = new Game();
+    game->play();
 
 //    displayCharacter();
 //    displayFileContent("../src/map_example.txt");

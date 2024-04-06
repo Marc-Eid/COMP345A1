@@ -47,10 +47,11 @@ Character* CharacterEditor::createCharacter() {
     // get the name of the character from the User
 
     cout << "Enter the Name of the New Character :" << endl;
-    getline(cin, name);
+    cin >> name;
+    //getline(cin, name);
 
 
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     while(true){
         cout << "What Type of Fighter You want to Make" << endl;
@@ -148,7 +149,7 @@ Character* CharacterEditor::loadNpc() {
         // Dynamically allocate memory for map and deserialize the map from the file
         file >> *character;
 
-        cout << "Map loaded from file: " << filename << endl;
+        cout << "Character loaded from file: " << filename << endl;
 
         character->displayCharacterSheet();
 
