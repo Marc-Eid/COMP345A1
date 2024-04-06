@@ -349,6 +349,8 @@ bool Map::placeCharacter(Character *c) {
     map[startX][startY].setState(Cell::State::CHARACTER, c);
     characterPositions[c] = {startX, startY}; // Update character position
 
+    noOfEnemies = getAllCharacters().size() - 1;
+
     notify("Starting level for " + c->getName() + " at (" + std::to_string(startX) + "," + std::to_string(startY) + ")");
     return true;
 }

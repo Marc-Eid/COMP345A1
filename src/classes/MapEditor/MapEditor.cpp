@@ -156,7 +156,7 @@ Campaign* MapEditor::runCampaignEditor() {
             cout << "\nChoose an option:" << endl;
             cout << "1: Edit campaign" << endl;
             cout << "2: Save campaign to file" << endl;
-            cout << "3: Return to main menu" << endl;
+            cout << "3: Go to player character creation" << endl;
             cout << "Enter option: ";
             cin >> input;
 
@@ -208,22 +208,21 @@ void MapEditor::createNewMap() {
 }
 
 void MapEditor::editMap() {
-    cout << "To edit the map, enter coordinates (x,y) followed by the item:\n"
-            "\t(x,y)item\n"
-            "\n"
-            "Items:\n"
-            "\tS - Start point\n"
-            "\tE - End point\n"
-            "\t# - Wall\n"
-            "\tD - Door\n"
-            "\tO - Opponent\n"
-            "\tC - Chest\n"
-            "\t. - Empty cell\n"
-            "\n"
-            "Type 'q' to quit." << endl;
-
     string input;
     while (input != "q") {
+        cout << "To edit the map, enter coordinates (x,y) followed by the item:\n"
+                "\t(x,y)item\n"
+                "\n"
+                "Items:\n"
+                "\tS - Start point\n"
+                "\tE - End point\n"
+                "\t# - Wall\n"
+                "\tD - Door\n"
+                "\tO - Opponent\n"
+                "\tC - Chest\n"
+                "\t. - Empty cell\n"
+                "\n"
+                "Type 'q' to quit." << endl;
         cout << "Enter input: ";
         cin >> input;
 
@@ -389,22 +388,22 @@ void MapEditor::editMapInCampaign(int mapIndex) {
 
     cout << "Editing Map " << mapIndex + 1 << ":" << endl;
     map->printMap();
-    cout << "To edit the map, enter coordinates (x,y) followed by the item:\n"
-            "\t(x,y)item\n"
-            "\n"
-            "Items:\n"
-            "\tS - Start point\n"
-            "\tE - End point\n"
-            "\t# - Wall\n"
-            "\tD - Door\n"
-            "\tO - Opponent\n"
-            "\tC - Chest\n"
-            "\t. - Empty cell\n"
-            "\n"
-            "Type 'q' to quit." << endl;
 
     string input;
     while (input != "q") {
+        cout << "To edit the map, enter coordinates (x,y) followed by the item:\n"
+                "\t(x,y)item\n"
+                "\n"
+                "Items:\n"
+                "\tS - Start point\n"
+                "\tE - End point\n"
+                "\t# - Wall\n"
+                "\tD - Door\n"
+                "\tO - Opponent\n"
+                "\tC - Chest\n"
+                "\t. - Empty cell\n"
+                "\n"
+                "Type 'q' to quit." << endl;
         cout << "Enter input: ";
         cin >> input;
 
@@ -428,7 +427,6 @@ void MapEditor::editMapInCampaign(int mapIndex) {
 
                 if(npc != nullptr ){
                     map->placeOpponent(npc,x,y);
-                    cout << "No Character was Created or Loaded" << endl;
                 }
 
             }

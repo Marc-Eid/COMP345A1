@@ -46,7 +46,7 @@ Character* CharacterEditor::createCharacter() {
     int typeOfCharacter;
     // get the name of the character from the User
 
-    cout << "Enter the Name of the New Character :" << endl;
+    cout << "Enter the Name of the New Character :";
     cin >> name;
     //getline(cin, name);
 
@@ -169,7 +169,7 @@ Character* CharacterEditor::createNpc() {
     int level = 1;
     int typeOfCharacter;
     // get the name of the character from the User
-    cout << "Enter the Name of the New Character :" << endl;
+    cout << "Enter the Name of the New Character :";
 
     cin >>name;
 

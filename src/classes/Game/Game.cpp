@@ -80,7 +80,6 @@ void Game::play()
     else{
         cout << "Thank you for Playing !";
     }
-
 }
 
 bool Game::loadPregeneratedCampaign() {
