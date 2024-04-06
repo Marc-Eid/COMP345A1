@@ -47,10 +47,7 @@ Character* CharacterEditor::createCharacter() {
     // get the name of the character from the User
 
     cout << "Enter the Name of the New Character :" << endl;
-    getline(cin, name);
-
-
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin >>name;
 
     while(true){
         cout << "What Type of Fighter You want to Make" << endl;

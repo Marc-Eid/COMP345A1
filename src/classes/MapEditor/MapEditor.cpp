@@ -65,7 +65,7 @@ void MapEditor::runMapEditor() {
                 break;
             }
             case 3: {
-                clearMap(); // Clear the current map if it exists
+//                clearMap(); // Clear the current map if it exists
                 return;
             }
             default: {
@@ -101,7 +101,7 @@ void MapEditor::runMapEditor() {
                     break;
                 }
                 case 3: {
-                    clearMap(); // Reset or clear the current map
+//                    clearMap(); // Reset or clear the current map
                     break;
                 }
                 default: {
@@ -137,7 +137,7 @@ Campaign* MapEditor::runCampaignEditor() {
                 break;
             }
             case 3: {
-                clearCampaign(); // Clear the current campaign if it exists
+//                clearCampaign(); // Clear the current campaign if it exists
                 return nullptr;
             }
             default: {
@@ -149,7 +149,6 @@ Campaign* MapEditor::runCampaignEditor() {
         // If map is not initialized, continue to the next iteration
         if (campaign == nullptr)
             continue;
-
 
         // If map is initialized, provide options to edit or save the map
         while (true) {
@@ -185,16 +184,13 @@ Campaign* MapEditor::runCampaignEditor() {
             if (input == 3) // Return to main menu
                 break;
         }
-
-
-
         return campaign;
     }
 
 }
 
 void MapEditor::createNewMap() {
-    clearMap(); // Clear the current map if it exists
+//    clearMap(); // Clear the current map if it exists
 
     cout << "What size map would you like to create?" << endl;
     int mapWidth, mapHeight;
@@ -291,7 +287,7 @@ void MapEditor::saveMapToFile() {
 }
 
 void MapEditor::loadMapFromFile() {
-    clearMap(); // Clear the current map if it exists
+//    clearMap(); // Clear the current map if it exists
 
     string filename;
     cout << "Enter filename to load the map (without the file extension): ";
@@ -494,7 +490,6 @@ void MapEditor::loadCampaignFromFile() {
             clearCampaign(); // Clear the invalid campaign
         } else{
             campaign->printCampaign();
-
         }
     } else {
         cout << "Error: Unable to open file." << endl;

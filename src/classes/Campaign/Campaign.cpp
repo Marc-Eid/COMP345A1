@@ -4,6 +4,7 @@
 Campaign::Campaign(int initialWidth, int initialHeight) : numMaps(1) {
     maps = new Map*[numMaps];
     maps[0] = new Map(initialWidth, initialHeight); // Create the first map
+    character = nullptr;
     currentMapIndex = 0;
 }
 

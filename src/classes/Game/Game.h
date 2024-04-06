@@ -13,10 +13,12 @@ class Game {
 public:
     Game() {campaign = nullptr;};
     void play();
-private:
+    Campaign* campaign;
     bool loadPregeneratedCampaign();
-    bool getCampaign();
-    Campaign *campaign;
+    Campaign* getCampaign();
+private:
+
+
 };
 
 

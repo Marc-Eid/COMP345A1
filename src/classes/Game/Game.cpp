@@ -4,7 +4,7 @@
 
 #include "Game.h"
 
-bool Game::getCampaign() {
+Campaign* Game::getCampaign() {
 
     while (true) {
         int input;
@@ -18,17 +18,20 @@ bool Game::getCampaign() {
 
         switch (input) {
             case 1: {
-                // TBD Load Pre-generated Campaign
+                // TODO Load Pre-generated Campaign
                 loadPregeneratedCampaign();
                 break;
             }
             case 2: {
-                MapEditor mapEditor;
-                Campaign* campaign1 = mapEditor.runCampaignEditor();
+                MapEditor *mapEditor = new MapEditor();
+                Campaign* campaign1 = mapEditor->runCampaignEditor();
                 if(campaign1 != nullptr){
-                    campaign = campaign1;
-                    continue;
+                    campaign1->printCampaign();
+                    this->campaign = campaign1;
+                    this->campaign->printCampaign();
+                    return campaign1;
                 }
+                break;
             }
             case 3: {
                 if(campaign == nullptr){
@@ -36,12 +39,13 @@ bool Game::getCampaign() {
                     continue;
                 }
                 else{
-                    return true;
+                    this->campaign->printCampaign();
+                    return campaign;
                 }
 
             }
             case 4 : {
-                return false;
+                return nullptr;
             }
             default: {
                 cout << "Invalid option. Please try again." << endl;
@@ -57,25 +61,28 @@ void Game::play()
     cout << "-----------------------------------------------\n";
     cout << "Welcome to the Dungeon and Dragon : Basic Fantasy RPG\n";
     cout << "-----------------------------------------------";
-    bool campaignSet = getCampaign();
-    if(campaignSet){
+    Campaign* campaignSet = getCampaign();
+    campaignSet->printCampaign();
+    if(campaignSet != nullptr){
         // ALL THE LOGIC OF SELECTING THE CHARACTER
-        CharacterEditor characterEditor;
-        Character* pCharacter = characterEditor.runCharacterEditor();
+        CharacterEditor *characterEditor = new CharacterEditor();
+        Character* pCharacter = characterEditor->runCharacterEditor();
         if(pCharacter != nullptr){
             // Gameplay Logic
             cout << "-----------------------------------------------\n";
             cout << "Welcome DND WORLD\n";
             cout << "-----------------------------------------------";
+            // Display the Map
+            campaignSet->maps[0]->printMap();
 
-            cout << "camp";
-            campaign->printCampaign();
-            cout << "camp1";
+            // Display Character Sheet
+            pCharacter->displayCharacterSheet();
+
             // placing the character on the game
-            campaign->maps[0]->placeCharacter(pCharacter);
+            campaignSet->maps[0]->placeCharacter(pCharacter);
 
 
-            campaign->playCampaign();
+            campaignSet->playCampaign();
 
         }
 
