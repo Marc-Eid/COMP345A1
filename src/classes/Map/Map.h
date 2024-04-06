@@ -84,9 +84,11 @@ public:
     void printMap();
 
     /**
-     * Start the Game
+     * Start the Game by placing a character on the map
      */
-    bool startGame(Character* c, int x, int y);
+    bool placeCharacter(Character* c);
+
+    bool placeNPC(Character* c, int x, int y);
 
      /**
       * Takes character pointer, direction and tries it to move on the map
@@ -177,6 +179,20 @@ public:
      */
     Map* goPreviousMap(Character *character);
 
+    /**
+     * Connect the Map to Another Map
+     * @param map
+     * @return
+     */
+    bool setNextMap(Map* map);
+
+    /**
+     * set previous map
+     * @param map
+     * @return
+     */
+     bool setPrevMap(Map* map);
+
 
 private:
     /**
@@ -210,19 +226,6 @@ private:
       */
     bool move(Character* c,int x ,int y);
 
-    /**
-     * Connect the Map to Another Map
-     * @param map
-     * @return
-     */
-    bool setNextMap(Map* map);
-
-    /**
-     * set previous map
-     * @param map
-     * @return
-     */
-     bool setPrevMap(Map* map);
 
 
 

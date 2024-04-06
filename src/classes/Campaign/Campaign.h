@@ -84,6 +84,8 @@ public:
      */
     friend std::istream& operator>>(std::istream& is, Campaign& campaign);
 
+    Map** maps;
+
 
 private:
     // user Character
@@ -91,7 +93,6 @@ private:
     // Which map the user is currently on
     int currentMapIndex;
     // Regular array to store maps
-    Map** maps;
     // num of maps
     int numMaps;
 };

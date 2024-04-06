@@ -19,11 +19,11 @@
 
 
 //void displayCharacter();
-//void displayStretegy();
+//void displayStrategy();
 //void displayMapBuilder();
 //void characterObserver();
 //void displayMap();
-void displayMapEditor();
+//void displayMapEditor();
 //void displayItemContainer();
 //void displayDice();
 //void displayMapBuilder();
@@ -40,17 +40,53 @@ int main() {
 
 //    displayCharacter();
 //    displayFileContent("../src/map_example.txt");
-//    displayStretegy();
 //    displayMap();
 //    displayMapBuilder();
 //    displayGameLevelMapBuilder();
-    displayMapEditor();
+//    displayMapEditor();
 //    displayItemContainer();
 //    displayDice();
 //    displayCharacterBuilder();
 //    displayCharacterEditor();
 //    displayChestEditor();
-//displayStretegy();
+//    displayStrategy();
+
+    auto *p1 = new Fighter("Player1",4);
+    p1->getAbilityScores();
+
+    // Create a Map and a Dice
+    Map* map1 = new Map(10,5);
+
+    //Create a Game Logger
+    auto* log = new GameLogger();
+    map1->attach(log);
+    p1->attach(log);
+
+    // Start Game for the fighters
+    map1->placeCharacter(p1);
+
+    Campaign* campaign = new Campaign(10,10);
+
+    campaign->maps[0]->Place(1,2,'#');
+    campaign->maps[0]->Place(2,2,'#');
+    campaign->maps[0]->Place(0,3,'S');
+    campaign->maps[0]->Place(0,1,'E');
+
+    campaign->maps[0]->placeCharacter(p1);
+    campaign->addMap(map1);
+
+    campaign->maps[1]->Place(1,2,'#');
+    campaign->maps[1]->Place(2,2,'#');
+    campaign->maps[1]->Place(0,3,'S');
+    campaign->maps[1]->Place(0,1,'E');
+
+    // Player1's turn (Human Strategy)
+    auto* humanStrategy = new HumanPlayerStrategy();
+    p1->setStrategy(humanStrategy);
+    campaign->maps[0]->printMap();
+    p1->move(campaign->maps[0]);
+    campaign->maps[1]->printMap();
+
 
     return 0;
 
@@ -159,7 +195,7 @@ void characterObserver(){
 
 }
 
-void displayStretegy(){
+void displayStrategy(){
     auto *p1 = new Fighter("Player1",4);
     auto *npc = new Fighter("NPC",4);
     p1->getAbilityScores();
@@ -186,8 +222,8 @@ void displayStretegy(){
     map->isValid();
 
     // Start Game for the fighters
-    map->startGame(p1, 1, 3);
-    map->startGame(npc, 8, 2);
+    map->placeCharacter(p1);
+    map->placeNPC(npc, 8, 2);
     map->printMap();
 
     // Player1's turn (Human Strategy)
@@ -232,7 +268,7 @@ void displayGameLevelMapBuilder() {
     std::cout << "---------------------------------" << std::endl;
 
     Fighter *f1 = new Fighter("teemo",4);
-    loadedMap->startGame(f1,2,2);
+    loadedMap->placeCharacter(f1);
     f1->displayCharacterSheet();
 
     std::cout << "---------------------------------" << std::endl;

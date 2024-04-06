@@ -331,16 +331,16 @@ bool Map::Contains(queue<Coordinate> q1, Coordinate &c1) {
     return false;
 }
 
-bool Map::startGame(Character *c, int startX, int startY) {
+bool Map::placeCharacter(Character *c) {
     // Check if the specified starting coordinates are within the map boundaries
-    if (startX < 0 || startX >= width || startY < 0 || startY >= height) {
-        cout << "Error: Specified starting coordinates are out of the map boundaries" << endl;
+    if (startX == -1 || startY == -1) {
+        cout << "Error: No specified starting coordinates" << endl;
         return false;
     }
 
     // Check if the specified starting cell is empty
-    if (map[startX][startY].getState() != Cell::State::EMPTY) {
-        cout << "Error: Specified starting coordinates are occupied" << endl;
+    if (map[startX][startY].getState() != Cell::State::START) {
+        cout << "Error: Starting coordinates is not a START cell" << endl;
         return false;
     }
 
@@ -348,11 +348,31 @@ bool Map::startGame(Character *c, int startX, int startY) {
     map[startX][startY].setState(Cell::State::CHARACTER, c);
     characterPositions[c] = {startX, startY}; // Update character position
 
-    notify("Successfully started the game for " + c->getName() + " at (" + std::to_string(startX) + "," + std::to_string(startY) + ")");
-
-    //cout << "Successfully started the game for character at (" << startX << ", " << startY << ")" << endl;
+    notify("Starting level for " + c->getName() + " at (" + std::to_string(startX) + "," + std::to_string(startY) + ")");
     return true;
 }
+
+bool Map::placeNPC(Character *npc, int startingX, int startingY) {
+    // Check if the specified starting coordinates are within the map boundaries
+    if (startingX < 0 || startingX >= width || startingY < 0 || startingY >= height) {
+        cout << "Error: Specified NPC starting coordinates are out of the map boundaries" << endl;
+        return false;
+    }
+
+    // Check if the specified starting cell is empty
+    if (map[startingX][startingY].getState() != Cell::State::EMPTY) {
+        cout << "Error: Specified NPC starting coordinates are occupied" << endl;
+        return false;
+    }
+
+    // Place the character at the specified starting position
+    map[startingX][startingY].setState(Cell::State::CHARACTER, npc);
+    characterPositions[npc] = {startingX, startingY}; // Update character position
+
+    notify("Successfully placed npc " + npc->getName() + " at (" + std::to_string(startX) + "," + std::to_string(startY) + ")");
+    return true;
+}
+
 
 bool Map::move(Character *c, int x, int y) {
     auto it = characterPositions.find(c);
@@ -360,13 +380,28 @@ bool Map::move(Character *c, int x, int y) {
         // Get the current position of the character
         Coordinate currentPos = it->second;
 
-
         // Update the cell state
         map[currentPos.x][currentPos.y].setState(Cell::State::EMPTY, nullptr);
         map[x][y].setState(Cell::State::CHARACTER, c);
 
+        if (currentPos.x == startX && currentPos.y == startY){
+            map[startX][startY].setState(Cell::State::START, nullptr);
+        }
+
+        if (currentPos.x == endX && currentPos.y == endY){
+            map[endX][endY].setState(Cell::State::EXIT, nullptr);
+        }
+
         // Update character position
         characterPositions[c] = {x, y};
+        if (x == endX && y == endY){
+            if (nextMap != nullptr) {
+                nextMap->placeCharacter(c);
+                nextMap->printMap();
+                c->move(nextMap);
+                return true;
+            }
+        }
 
         notify("Successfully moved character " + c->getName() + " to (" + std::to_string(x) + "," + std::to_string(y) + ")");
         printMap();
@@ -383,14 +418,35 @@ bool Map::tryMove(Character *c, string dir) {
 
         // Calculate the new position based on the direction
         int x = currentPos.x, y = currentPos.y;
+
         if (dir == "up") {
-            y += 1;
+            if (y + 1 < height && map[x][y + 1].canMove()) {
+                y += 1;
+            } else {
+                cout << "Invalid move: outside map bounds or blocked." << endl;
+                return false;
+            }
         } else if (dir == "down") {
-            y -= 1;
+            if (y - 1 >= 0 && map[x][y - 1].canMove()) {
+                y -= 1;
+            } else {
+                cout << "Invalid move: outside map bounds or blocked." << endl;
+                return false;
+            }
         } else if (dir == "right") {
-            x += 1;
+            if (x + 1 < width && map[x + 1][y].canMove()) {
+                x += 1;
+            } else {
+                cout << "Invalid move: outside map bounds or blocked." << endl;
+                return false;
+            }
         } else if (dir == "left") {
-            x -= 1;
+            if (x - 1 >= 0 && map[x - 1][y].canMove()) {
+                x -= 1;
+            } else {
+                cout << "Invalid move: outside map bounds or blocked." << endl;
+                return false;
+            }
         } else {
             cout << "Invalid direction" << endl;
             return false;
@@ -402,6 +458,7 @@ bool Map::tryMove(Character *c, string dir) {
     cout << "Character not found on the map" << endl;
     return false;
 }
+
 
 Coordinate Map::getCurrentPosition(Character *c) {
     auto it = characterPositions.find(c);

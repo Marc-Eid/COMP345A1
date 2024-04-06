@@ -25,6 +25,11 @@ void Campaign::addMap(Map* map) {
     // Delete the old array and update the pointers
     delete[] maps;
     maps = newMaps;
+
+    if (numMaps > 1) { // If there's more than one map, link them
+        maps[numMaps - 2]->setNextMap(maps[numMaps - 1]); // Set the previous map's nextMap to newMap
+        maps[numMaps - 1]->setPrevMap(maps[numMaps - 2]); // Set newMap's prevMap to the previous map
+    }
 }
 
 void Campaign::printCampaign() {
