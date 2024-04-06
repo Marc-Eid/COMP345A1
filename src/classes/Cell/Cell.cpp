@@ -66,12 +66,14 @@ Character* Cell::getCharacter() {
 
 // Serialization operator for Cell
 std::ostream& operator<<(std::ostream& os, const Cell& cell) {
-    os << static_cast<int>(cell.currentState) << " "; // Write current state as an integer
+    os << static_cast<int>(cell.currentState) <<" "; // Write current state as an integer
     if(cell.currentState == Cell::State::CHEST){
-        os << dynamic_cast<ItemContainer*>(cell.content) ;
+        ItemContainer *pContainer = dynamic_cast<ItemContainer*>(cell.content);
+        os << *pContainer ;
     }
     else if(cell.currentState == Cell::State::OPPONENT){
-        os << dynamic_cast<Character*>(cell.content) ;
+        Character *pCharacter = dynamic_cast<Character*>(cell.content);
+        os << *pCharacter ;
     }
     return os;
 }
@@ -85,11 +87,13 @@ std::istream& operator>>(std::istream& is, Cell& cell) {
         ItemContainer* itemContainer = new ItemContainer();
         is >> *itemContainer;
         cell.content = itemContainer;
+        itemContainer->printContainer();
     }
     else if(cell.currentState == Cell::State::OPPONENT){
         Character* character = new Fighter("sample",5);
         is >> *character;
         cell.content = character;
+        character->displayCharacterSheet();
     }
     return is;
 }

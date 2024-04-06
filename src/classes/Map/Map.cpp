@@ -471,7 +471,8 @@ std::ostream& operator<<(std::ostream& os, const Map& map) {
     // Serialize each cell in the map
     for (int i = 0; i < map.width; ++i) {
         for (int j = 0; j < map.height; ++j) {
-            os << map.map[i][j] << " "; // Serialize cell
+            cout << map.map[i][j] << endl;
+            os << map.map[i][j]; // Serialize cell
         }
     }
     return os;
@@ -485,6 +486,7 @@ std::istream& operator>>(std::istream& is, Map& map) {
     for (int i = 0; i < map.width; ++i) {
         map.map[i] = new Cell[map.height];
     }
+    string empty;
     // Deserialize each cell in the map
     for (int i = 0; i < map.width; ++i) {
         for (int j = 0; j < map.height; ++j) {

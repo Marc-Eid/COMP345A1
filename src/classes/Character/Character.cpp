@@ -373,6 +373,10 @@ std::istream& operator>>(std::istream& is, Character& character) {
     if(input != -1){
         character.wearItem(input);
     }
+    is >> input;
+    if(input != -1){
+        character.wearItem(input);
+    }
     return is;
 
 }
