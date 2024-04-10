@@ -93,6 +93,7 @@ std::istream& operator>>(std::istream& is, Cell& cell) {
         Character* character = new Fighter("sample",5);
         is >> *character;
         cell.content = character;
+        cout << cell.content;
         character->displayCharacterSheet();
     }
     return is;

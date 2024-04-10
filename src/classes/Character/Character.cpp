@@ -3,8 +3,6 @@
 #include <random>
 #include <algorithm>
 
-#include "../CharacterStrategy/CharacterStrategy.h"
-
 
 Character::Character(const string& name, int level) : name(name), level(level) {
     generateAbilityScores(); // General ability score generation
@@ -338,7 +336,23 @@ void Character::notify(const std::string& message) {
 
 std::istream& operator>>(std::istream& is, Character& character) {
     // Reading character
+    string strategy;
     is >> character.name >> character.level ;
+    is >> strategy;
+    // Get Strategy
+    if(strategy == "Human"){
+        HumanPlayerStrategy* humanPlayerStrategy = new HumanPlayerStrategy();
+        character.setStrategy(humanPlayerStrategy);
+    }
+    else if (strategy == "Aggressor"){
+        AggressorStrategy* aggressorStrategy = new AggressorStrategy();
+        character.setStrategy(aggressorStrategy);
+    }
+    else if(strategy == "Friendly"){
+        FriendlyStrategy* friendlyStrategy = new FriendlyStrategy();
+        character.setStrategy(friendlyStrategy);
+    }
+
     is >> character.armorClass >> character.damageBonus >> character.hitPoints;
     is >> character.abilityScores.at("Strength");
     is >> character.abilityScores.at("Dexterity");
@@ -383,7 +397,7 @@ std::istream& operator>>(std::istream& is, Character& character) {
 std::ostream &operator<<(ostream &os, const Character &character) {
     // Writing Character
     os << character.name << " " << character.level << " ";
-
+    os << character.strategy->getStrategyType() << " ";
     os << character.armorClass << " " << character.damageBonus << " " << character.hitPoints << " ";
     os << character.abilityScores.at("Strength") << " ";
     os << character.abilityScores.at("Dexterity") << " ";

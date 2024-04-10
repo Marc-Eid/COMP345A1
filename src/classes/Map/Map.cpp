@@ -472,10 +472,10 @@ Coordinate Map::getCurrentPosition(Character *c) {
 // Serialization method for Map
 std::ostream& operator<<(std::ostream& os, const Map& map) {
     os << map.width << " " << map.height << " "; // Serialize map dimensions
+    os << map.noOfEnemies << " ";
     // Serialize each cell in the map
     for (int i = 0; i < map.width; ++i) {
         for (int j = 0; j < map.height; ++j) {
-            cout << map.map[i][j] << endl;
             os << map.map[i][j]; // Serialize cell
         }
     }
@@ -486,6 +486,7 @@ std::ostream& operator<<(std::ostream& os, const Map& map) {
 std::istream& operator>>(std::istream& is, Map& map) {
     is >> map.width >> map.height; // Deserialize map dimensions
     // Resize map
+    is >> map.noOfEnemies;
     map.map = new Cell*[map.width];
     for (int i = 0; i < map.width; ++i) {
         map.map[i] = new Cell[map.height];
@@ -495,8 +496,12 @@ std::istream& operator>>(std::istream& is, Map& map) {
     for (int i = 0; i < map.width; ++i) {
         for (int j = 0; j < map.height; ++j) {
             is >> map.map[i][j]; // Deserialize cell
+            if(map.map[i][j].getState() == Cell::State::OPPONENT || map.map[i][j].getState() == Cell::State::CHARACTER ){
+                map.characterPositions[map.map[i][j].getCharacter()] = {i,j};
+            }
         }
     }
+
     return is;
 }
 
@@ -592,6 +597,7 @@ vector<Coordinate> Map::findPathBFS(const Coordinate& start) {
 
 // Move a character next to the first character found on the map
 bool Map::moveNextTo(Character *characterToMove, int distance) {
+
     Coordinate currentCoord = getCurrentPosition(characterToMove);
 
     if (currentCoord.x == -1) {
