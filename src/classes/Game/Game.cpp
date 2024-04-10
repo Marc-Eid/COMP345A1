@@ -50,6 +50,8 @@ bool Game::getCampaign() {
     }
 }
 
+
+
 void Game::play()
 {
     cout << "-----------------------------------------------\n";
@@ -72,7 +74,8 @@ void Game::play()
             campaign->maps[pCharacter->currentMap]->placeCharacter(pCharacter);
                 while(gameIsRunning){
                     campaign->maps[pCharacter->currentMap]->getAllCharacters();
-                    auto characters = campaign->maps[pCharacter->currentMap]->getAllCharacters();
+                    vector<Character*> characters = campaign->maps[pCharacter->currentMap]->getAllCharacters();
+                    characters = initiativeRoll(characters);
                     for(auto* character : characters) {
                         character->move(campaign->maps[pCharacter->currentMap]);
                         character->attack(campaign->maps[pCharacter->currentMap]);
@@ -89,4 +92,27 @@ bool Game::loadPregeneratedCampaign() {
 
     // Load Pre-generated Campaing
     return true ;
+}
+
+vector<Character*> Game::initiativeRoll(vector<Character*> chars) {
+    cout << "Initiative Roll for the all the players" << endl;
+
+    std::map<int,Character*> map ;
+    vector<Character*> sorted_array;
+    Dice dice;
+    for(auto & i : chars){
+        map[dice.roll("1d20")] =i ;
+    }
+
+    for (auto it = map.rbegin(); it != map.rend(); ++it) {
+        sorted_array.push_back(it->second);
+    }
+
+
+    cout << "Order of Characters :";
+    for(auto & i : sorted_array){
+     cout << i->getName() << ", ";
+    }
+    return sorted_array;
+
 }

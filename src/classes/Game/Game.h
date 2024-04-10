@@ -13,6 +13,7 @@ class Game {
 public:
     Game() {campaign = nullptr;};
     void play();
+    vector<Character*> initiativeRoll(vector<Character*> chars);
 private:
     bool loadPregeneratedCampaign();
     bool getCampaign();
