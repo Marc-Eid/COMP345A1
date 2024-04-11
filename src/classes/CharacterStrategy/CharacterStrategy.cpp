@@ -153,7 +153,7 @@ void AggressorStrategy::attack(Character* source, Map* map) {
     std::vector<Character*> adjacentEnemies = map->findAdjacentCharacters(source);
     Dice dice;
     for (Character* enemy : adjacentEnemies) {
-        int damage = dice.roll("1d6"); // Roll for damage
+        int damage = dice.roll("1d20"); // Roll for damage
         source->attack(enemy, damage);
     }
 }

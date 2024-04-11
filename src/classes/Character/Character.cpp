@@ -264,30 +264,42 @@ void Character::onAttacked() {
 }
 
 // Define the attack method in the Character class
-bool Character::attack(Character* target, int attackRoll) {
-    int totalAttack = attackRoll + attackBonus[0]; // Assume first attack bonus is used. You might want to choose based on context.
+bool Character::attack(Character* target, int attackRoll){
+   // depending on the level the user is attack
+   Dice dice;
+   for(int attackBonu : attackBonus) {
 
-    cout << target->name << " currently has " << target->hitPoints << " hit points.\n";
+       int totalAttack = attackRoll + attackBonu + modifiers["Strength"]; // Assume first attack bonus is used. You might want to choose based on context.
 
-    notify(name + " rolls the dice to attack: " + std::to_string(attackRoll) + " + " + std::to_string(attackBonus[0]) + " (bonus) => total = " + std::to_string(totalAttack) + "\n");
+       cout << target->name << " currently has " << target->hitPoints << " hit points.\n";
 
-    if (totalAttack >= target->armorClass) {
-        // The attack hits
-        notify("The attack Hits!");
-        cout << name << " hits " << target->name << " for a total of " << totalAttack << " damage!\n";
+       notify(name + " rolls the dice to attack: " + std::to_string(attackRoll) + " + " + std::to_string(attackBonus[0]) + " (bonus) => total = " + std::to_string(totalAttack) + "\n");
 
-        target->hitPoints -= totalAttack; // Apply damage
-        cout << target->name << " now has " << std::max(0, target->hitPoints) << " hit points.\n";
+       if (totalAttack >= target->armorClass) {
+           // roll to get the amount of damage
+           int r = dice.roll("1d8") + modifiers["Strength"];
 
-        target->onAttacked(); // Notify the target that it's being attacked
+           // The attack hits
+           notify("The attack Hits!");
+           cout << name << " hits " << target->name << " for a total of " << r << " damage!\n";
 
-        // Additional logic could be added here, such as checking if the target is defeated
-        return true; // Attack was successful
-    } else {
-        // The attack misses
-        cout << name << " misses " << target->name << ".\n";
-        return false; // Attack missed
-    }
+           target->hitPoints -= r; // Apply damage
+           cout << target->name << " now has " << std::max(0, target->hitPoints) << " hit points.\n";
+
+           target->onAttacked(); // Notify the target that it's being attacked
+
+           if(target->hitPoints <= 0 ){
+               return true;
+           }
+           // Additional logic could be added here, such as checking if the target is defeated
+       } else {
+           // The attack misses
+           cout << name << " misses " << target->name << ".\n";
+       }
+       return false; // Attack missed
+
+   }
+
 }
 
 // Method to set the strategy
@@ -352,6 +364,9 @@ std::istream& operator>>(std::istream& is, Character& character) {
         FriendlyStrategy* friendlyStrategy = new FriendlyStrategy();
         character.setStrategy(friendlyStrategy);
     }
+    // Update Attack Bonus
+    character.UpdateAttackBonus();
+
 
     is >> character.armorClass >> character.damageBonus >> character.hitPoints;
     is >> character.abilityScores.at("Strength");
