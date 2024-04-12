@@ -155,6 +155,10 @@ void AggressorStrategy::attack(Character* source, Map* map) {
     for (Character* enemy : adjacentEnemies) {
         int damage = dice.roll("1d20"); // Roll for damage
         source->attack(enemy, damage);
+        if (enemy->hitPoints <= 0) {
+            cout << "\n\nYOU HAVE BEEN DEFEATED, GAME OVER!.\n";
+            exit(0);
+        }
     }
 }
 
