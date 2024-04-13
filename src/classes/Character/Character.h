@@ -8,6 +8,7 @@
 #include "../ItemContainer/ItemContainer.h"
 #include "../CharacterStrategy/CharacterStrategy.h"
 #include <list>
+#include "../Weapon/Weapon.h"
 #include "../GameLogger/GameLogger.h"
 
 using namespace std;
@@ -16,6 +17,7 @@ class Map;
 class  CharacterStrategy;
 class ItemContainer;
 class Item;
+class Weapon;
 
 /**
  * @file Character.h

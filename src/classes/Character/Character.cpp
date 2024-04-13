@@ -281,6 +281,7 @@ bool Character::attack(Character* target, int attackRoll){
 
            // The attack hits
            notify("The attack Hits!");
+           notify("The attack Hits!");
            cout << name << " hits " << target->name << " for a total of " << r << " damage!\n";
 
            target->hitPoints -= r; // Apply damage
@@ -295,11 +296,9 @@ bool Character::attack(Character* target, int attackRoll){
        } else {
            // The attack misses
            cout << name << " misses " << target->name << ".\n";
-
        }
-       return false; // Attack missed
-
    }
+   return false; // Attack missed
 
 }
 
@@ -432,6 +431,7 @@ std::ostream &operator<<(ostream &os, const Character &character) {
     os << character.equipment->getItemIndex(character.wornEquipment.at("Weapon")) << " ";
     return os;
 }
+
 
 
 
