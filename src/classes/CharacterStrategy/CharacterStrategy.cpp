@@ -11,7 +11,7 @@ void HumanPlayerStrategy::move(Character* c, Map* map){
     cout << "------------------------------" << endl;
     map->printMap();
     int initialMap = c->currentMap;
-    int moveDistance = 5;
+    int moveDistance = 4 + c->getLevel();
     while (moveDistance > 0) {
         if (c->currentMap != initialMap){
             return;
@@ -29,23 +29,27 @@ void HumanPlayerStrategy::move(Character* c, Map* map){
 
         switch (input) {
             case 1: {
-                map->tryMove(c, "up");
-                moveDistance--;
+                if (map->tryMove(c, "up")) {
+                    moveDistance--;
+                }
                 break;
             }
             case 2: {
-                map->tryMove(c, "down");
-                moveDistance--;
+                if (map->tryMove(c, "down")) {
+                    moveDistance--;
+                }
                 break;
             }
             case 3: {
-                map->tryMove(c, "left");
-                moveDistance--;
+                if (map->tryMove(c, "left")) {
+                    moveDistance--;
+                }
                 break;
             }
             case 4: {
-                map->tryMove(c, "right");
-                moveDistance--;
+                if (map->tryMove(c, "right")) {
+                    moveDistance--;
+                }
                 break;
             }
             case 5: {
@@ -145,8 +149,10 @@ void AggressorStrategy::move(Character* c, Map* map){
     cout << c->getName() << "'s play turn" << endl;
     cout << "------------------------------\n" << endl;
     map->printMap();
-    cout << "Automatically moving towards player character." << endl;
-    map->moveNextTo(c, 5);
+    int movementRange = 2 + c->getLevel();
+    if (map->moveNextTo(c, movementRange)){
+        cout << c->getName() << " advances towards you." << endl;
+    }
 }
 
 void AggressorStrategy::attack(Character* source, Map* map) {
@@ -170,8 +176,10 @@ void FriendlyStrategy::move(Character* c, Map* map){
     cout << c->getName() << "'s play turn" << endl;
     cout << "------------------------------\n" << endl;
     map->printMap();
-    cout << "Automatically moving towards player character." << endl;
-    map->moveNextTo(c, 5);
+    int movementRange = 2 + c->getLevel();
+    if (map->moveNextTo(c, movementRange)){
+        cout << c->getName() << " advances towards you." << endl;
+    }
 }
 
 void FriendlyStrategy::attack(Character* source, Map* map) {

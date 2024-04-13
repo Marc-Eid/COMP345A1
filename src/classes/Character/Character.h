@@ -101,6 +101,15 @@ public:
     ItemContainer* getItemContainer() { return equipment;};
     string getName() const { return name; };
 
+    // Accessor method to get the weapon
+    Weapon* getWeapon() const {
+        auto it = wornEquipment.find("Weapon");
+        if (it != wornEquipment.end()) {
+            return dynamic_cast<Weapon*>(it->second);  // Return the weapon if found
+        }
+        return nullptr;  // Return nullptr if no weapon is equipped
+    }
+
     // setter methods
     void setHitpoints(int hp) {  hitPoints = hp; Notify();};
     void setArmorClass(int ac) {  armorClass = ac; Notify();};

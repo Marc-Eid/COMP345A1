@@ -396,7 +396,7 @@ void MapEditor::editMapInCampaign(int mapIndex) {
                 "\n"
                 "Items:\n"
                 "\tS - Start point\n"
-                "\tE - End point\n"
+                "\tE - Exit Door\n"
                 "\t# - Wall\n"
                 "\tD - Door\n"
                 "\tO - Opponent\n"
