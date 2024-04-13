@@ -114,6 +114,9 @@ public:
         return nullptr;  // Return nullptr if no weapon is equipped
     }
 
+    map<string,Item*> getWornEquipment() const {
+        return wornEquipment;
+    }
     // setter methods
     void setHitpoints(int hp) {  hitPoints = hp; Notify();};
     void setArmorClass(int ac) {  armorClass = ac; Notify();};

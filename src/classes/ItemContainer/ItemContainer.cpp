@@ -22,7 +22,7 @@ void ItemContainer::addItem(Item *item) {
 }
 
 Item* ItemContainer::getItem(int index) const {
-    if (index < items.size()){
+    if (index >=0 && index < items.size()){
         return items[index];
     }
     return nullptr;

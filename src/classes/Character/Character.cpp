@@ -252,7 +252,7 @@ bool Character::remove(string type) {
         attackBonu -= wornItem->getAttackBonus();
     }
     damageBonus -= wornItem->getDamageBonus();
-    wornItem = nullptr;
+    wornEquipment[type] = nullptr;
     return true;
 }
 

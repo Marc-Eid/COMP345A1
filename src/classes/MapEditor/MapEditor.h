@@ -59,7 +59,7 @@ public:
      *
      * Allows users to create, load, edit, and save campaigns consisting of multiple maps.
      */
-    Campaign* runCampaignEditor();
+    Campaign* runCampaignEditor(string filename="");
 
 private:
     Map* map; ///< Pointer to a Map object for current editing.
@@ -129,7 +129,7 @@ private:
     /**
      * @brief Loads a campaign from a file based on user input.
      */
-    void loadCampaignFromFile();
+    void loadCampaignFromFile(string pregen="");
 
     /**
      * @brief Clears the current map.

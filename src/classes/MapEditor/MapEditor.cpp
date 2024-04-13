@@ -116,10 +116,15 @@ void MapEditor::runMapEditor() {
     }
 }
 
-Campaign* MapEditor::runCampaignEditor() {
+Campaign* MapEditor::runCampaignEditor(string filename) {
     int input;
 
     while (true) {
+        //handle when filename is not empty
+        if(!filename.empty()){
+            loadCampaignFromFile(filename);
+            return campaign;
+        }
         cout << "\nChoose an option:" << endl;
         cout << "1: Create a new campaign" << endl;
         cout << "2: Load an existing campaign" << endl;
@@ -145,6 +150,7 @@ Campaign* MapEditor::runCampaignEditor() {
                 break;
             }
         }
+
 
         // If map is not initialized, continue to the next iteration
         if (campaign == nullptr)
@@ -461,14 +467,19 @@ void MapEditor::saveCampaignToFile() {
     }
 }
 
-void MapEditor::loadCampaignFromFile() {
+void MapEditor::loadCampaignFromFile(string pregen) {
     clearCampaign(); // Clear the current campaign if it exists
-
     string filename;
-    cout << "Enter filename to load the campaign (without the file extension): ";
-    cin >> filename;
-    filename += ".txt"; // Append .txt extension
 
+    if(pregen.empty()){
+        cout << "Enter filename to load the campaign (without the file extension): ";
+        cin >> filename;
+
+    }
+    else{
+        filename = pregen;
+    }
+    filename += ".txt"; // Append .txt extension
     ifstream file(filename);
     if (file.is_open()) {
         campaign = new Campaign(0, 0); // Initialize with default dimensions

@@ -24,8 +24,11 @@ public:
     Character* createNpc();
     Character* createCharacter();
     bool saveNPC(Character *pCharacter);
+    void updateWornItemEditor(Character* pCharacter);
 private:
     void abilityMenu(Character *pCharacter);
+    void removeItem(Character* pCharacter);
+
 
     // Pointer to character which we are currently editing
 //    Character* character;

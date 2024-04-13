@@ -19,7 +19,8 @@ bool Game::getCampaign() {
         switch (input) {
             case 1: {
                 // TBD Load Pre-generated Campaign
-                loadPregeneratedCampaign();
+                campaign =loadPregeneratedCampaign();
+                campaign->printCampaign();
                 break;
             }
             case 2: {
@@ -90,7 +91,9 @@ void Game::play()
                                 cout << "1: Move" << endl;
                                 cout << "2: Attack" << endl;
                                 cout << "3: Perform Action" << endl;
-                                cout << "4: Quit" << endl;
+                                cout << "4: Wear Items" << endl;
+                                cout << "5: Check Your Character Sheet"<< endl;
+                                cout << "6: Quit" << endl;
                                 cout << "Enter option: ";
                                 cin >> input;
 
@@ -119,7 +122,16 @@ void Game::play()
                                         character->freeAction(campaign->maps[pCharacter->currentMap]);
                                         break;
                                     }
-                                    case 4: {
+                                    case 4 : {
+                                        characterEditor.updateWornItemEditor(pCharacter);
+                                        break;
+                                    }
+                                    case 5 : {
+                                        character->displayCharacterSheet();
+                                        break;
+                                    }
+                                    case 6: {
+
                                         playerTurn = false;
                                         break;
                                     }
@@ -143,10 +155,32 @@ void Game::play()
     }
 }
 
-bool Game::loadPregeneratedCampaign() {
+Campaign* Game::loadPregeneratedCampaign() {
 
-    // Load Pre-generated Campaing
-    return true ;
+    while (true){
+        int input;
+        cout << "\nChoose the Campaign You want to Play: -1 to exit" << endl;
+        cout << "1: The Kingdoms of Thaloria" << endl;
+        cin >>input;
+        switch (input) {
+            case 1 : {
+                MapEditor* mapEditor = new MapEditor();
+                Campaign* camp = mapEditor->runCampaignEditor("pre-generated");
+                camp->printCampaign();
+                return camp;
+            }
+            case -1 : {
+                return nullptr;
+            }
+            default: {
+                cout << "Error";
+                continue;
+            };
+        }
+
+
+    }
+    return nullptr ;
 }
 
 vector<Character*> Game::initiativeRoll(vector<Character*> chars) {

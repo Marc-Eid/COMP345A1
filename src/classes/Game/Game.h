@@ -15,7 +15,7 @@ public:
     void play();
     vector<Character*> initiativeRoll(vector<Character*> chars);
 private:
-    bool loadPregeneratedCampaign();
+    Campaign* loadPregeneratedCampaign();
     bool getCampaign();
     Campaign *campaign;
 };

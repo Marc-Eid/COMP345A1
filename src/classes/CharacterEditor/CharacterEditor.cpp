@@ -158,9 +158,9 @@ Character* CharacterEditor::loadNpc() {
         cout << "Error: Unable to open file." << endl;
         return character;
     }
-
-
 }
+
+
 
 Character* CharacterEditor::createNpc() {
     Character *character;
@@ -444,4 +444,120 @@ bool CharacterEditor::saveNPC(Character *pCharacter) {
         return false;
     }
 }
+
+
+
+void CharacterEditor::updateWornItemEditor(Character *pCharacter) {
+    cout << " ----------------Worn Equipment-----------------" << endl;
+    map<string,Item*> wornEquipment = pCharacter->getWornEquipment() ;
+    for (const auto& equipments : wornEquipment) {
+        if(equipments.second != nullptr){
+            equipments.second->printWeapon();
+        }
+    }
+    // print the available equipment
+    cout << "Available Equipment: " << endl;
+    pCharacter->getEquipment()->printContainer();
+
+    int input;
+    while(true){
+        cout << "What Action you want to Perform" << endl;
+        cout << "\nChoose an option:" << endl;
+        cout << "1: Wear Item" << endl;
+        cout << "2: Remove" << endl;
+        cout << "3: Quit" << endl;
+        cin >> input;
+        switch (input){
+            case 1 : {
+                // Logic for wearing items
+                while(true) {
+                    int index;
+                    cout << "Input the Index which you want to Wear ? -1 to Quit" << endl;
+                    cin >> index;
+                    if(index == -1 ){
+                        break;
+                    }
+                    bool worn = pCharacter->wearItem(index);
+                    if(worn){
+                        break;
+                    }
+                }
+            }
+            case 2 : {
+                removeItem(pCharacter);
+                break;
+                // Login removing items
+            }
+            case 3 : {
+                return;
+            }
+            default: {
+                cout << "Invalid option. Please try again." << endl;
+                continue;
+            }
+        }
+
+
+    }
+
+}
+
+void CharacterEditor::removeItem(Character* pCharacter) {
+
+    while(true) {
+        int index;
+        cout << "The type of weapon which you want to Remove ? -1 to Quit" << endl;
+        cout << "\nChoose an option:" << endl;
+        cout << "1: Armor" << endl;
+        cout << "2: Belt" << endl;
+        cout << "3: Boots" << endl;
+        cout << "4: Helmet" << endl;
+        cout << "5: Ring" << endl;
+        cout << "6: Shield" << endl;
+        cout << "7: Weapon" << endl;
+        cout << "8: Quit" << endl;
+        cin >> index;
+        switch (index) {
+            case 1 : {
+                pCharacter->remove("Armor");
+                break;
+
+            }
+            case 2 : {
+                pCharacter->remove("Belt");
+                break;
+            }
+            case 3 :{
+                pCharacter->remove("Boots");
+                break;
+            }
+            case 4 : {
+                pCharacter->remove("Helmet");
+                break;
+            }
+            case 5 : {
+                pCharacter->remove("Ring");
+                break;
+            }
+            case 6 : {
+                pCharacter->remove("Shield");
+                break;
+
+            }
+            case 7 : {
+                pCharacter->remove("Weapons");
+                break;
+            }
+            case 8 : {
+                return;
+            }
+            default:{
+                cout << "Invalid option. Please try again." << endl;
+                continue;
+            }
+        }
+    }
+
+}
+
 
