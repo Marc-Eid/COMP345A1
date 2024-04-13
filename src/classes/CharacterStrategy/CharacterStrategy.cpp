@@ -7,10 +7,6 @@
 
 void HumanPlayerStrategy::move(Character* c, Map* map){
     int input;
-
-    cout << "\n------------------------------" << endl;
-    cout << c->getName() << "'s play turn" << endl;
-    cout << "------------------------------" << endl;
     map->printMap();
     int initialMap = c->currentMap;
     int moveDistance = 4 + c->getLevel();
@@ -217,9 +213,6 @@ void HumanPlayerStrategy::pickupItemFromChest(Character* character,Map* map) {
 //--------------------AggressorStrategy--------------------
 
 void AggressorStrategy::move(Character* c, Map* map){
-    cout << "\n------------------------------" << endl;
-    cout << c->getName() << "'s play turn" << endl;
-    cout << "------------------------------\n" << endl;
     map->printMap();
     int movementRange = 2 + c->getLevel();
     if (map->moveNextTo(c, movementRange)){
@@ -244,9 +237,6 @@ void AggressorStrategy::attack(Character* source, Map* map) {
 //--------------------FriendlyStrategy--------------------
 
 void FriendlyStrategy::move(Character* c, Map* map){
-    cout << "\n------------------------------" << endl;
-    cout << c->getName() << "'s play turn" << endl;
-    cout << "------------------------------\n" << endl;
     map->printMap();
     int movementRange = 2 + c->getLevel();
     if (map->moveNextTo(c, movementRange)){

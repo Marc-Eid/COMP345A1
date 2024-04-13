@@ -77,9 +77,63 @@ void Game::play()
                     vector<Character*> characters = campaign->maps[pCharacter->currentMap]->getAllCharacters();
                     characters = initiativeRoll(characters);
                     for(auto* character : characters) {
-                        character->freeAction(campaign->maps[pCharacter->currentMap]);
-                        character->move(campaign->maps[pCharacter->currentMap]);
-                        character->attack(campaign->maps[pCharacter->currentMap]);
+                        cout << "\n------------------------------" << endl;
+                        cout << character->getName() << "'s play turn" << endl;
+                        cout << "------------------------------" << endl;
+                        if (character->strategy->getStrategyType() == "Human"){
+                            bool playerTurn = true;
+                            bool moved = false;
+                            bool attacked = false;
+                            while (playerTurn) {
+                                int input;
+                                cout << "\nChoose an option:" << endl;
+                                cout << "1: Move" << endl;
+                                cout << "2: Attack" << endl;
+                                cout << "3: Perform Action" << endl;
+                                cout << "4: Quit" << endl;
+                                cout << "Enter option: ";
+                                cin >> input;
+
+                                switch (input) {
+                                    case 1: {
+                                        if (!moved) {
+                                            character->move(campaign->maps[pCharacter->currentMap]);
+                                            moved = true;
+                                        }
+                                        else{
+                                            cout << "You have already moved this round.\n";
+                                        }
+                                        break;
+                                    }
+                                    case 2: {
+                                        if (!attacked) {
+                                            character->attack(campaign->maps[pCharacter->currentMap]);
+                                            attacked = true;
+                                        }
+                                        else{
+                                            cout << "You have already attacked this round.\n";
+                                        }
+                                        break;
+                                    }
+                                    case 3: {
+                                        character->freeAction(campaign->maps[pCharacter->currentMap]);
+                                        break;
+                                    }
+                                    case 4: {
+                                        playerTurn = false;
+                                        break;
+                                    }
+                                    default: {
+                                        cout << "Invalid option. Please try again." << endl;
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                        else{
+                            character->move(campaign->maps[pCharacter->currentMap]);
+                            character->attack(campaign->maps[pCharacter->currentMap]);
+                        }
                     }
                 }
         }
