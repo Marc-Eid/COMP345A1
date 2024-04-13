@@ -199,14 +199,15 @@ Campaign* Game::loadPregeneratedCampaign() {
         cout << "\nChoose the Campaign You want to Play: -1 to exit" << endl;
         cout << "1: The Kingdoms of Thaloria" << endl;
         cout << "2: The Impossible Single Dungeon" << endl;
-        cout << "3: map3" << endl;
-        cout << "4: RANDOM MAP ?" << endl;
+        cout << "3: The Tales of the White Dragon" << endl;
+        cout << "4: The Double Trouble" << endl;
+        cout << "5: ??? RANDOM MAP ???" << endl;
         cout << "Enter Option: ";
         cin >>input;
         cout << endl;
-        if (input == 4){
+        if (input == 5){
             srand(time(0)); // Use current time as seed for random generator
-            input = 1 + rand() % 3; // rand() % 3 gives a range of 0 to 2; adding 1 changes it to 1 to 3
+            input = 1 + rand() % 4; // rand() % 3 gives a range of 0 to 2; adding 1 changes it to 1 to 3
         }
         switch (input) {
             case 1 : {
@@ -221,7 +222,12 @@ Campaign* Game::loadPregeneratedCampaign() {
             }
             case 3 : {
                 MapEditor* mapEditor = new MapEditor();
-                Campaign* camp = mapEditor->runCampaignEditor("pre-generated");
+                Campaign* camp = mapEditor->runCampaignEditor("pre-generated3");
+                return camp;
+            }
+            case 4 : {
+                MapEditor* mapEditor = new MapEditor();
+                Campaign* camp = mapEditor->runCampaignEditor("pre-gen2");
                 return camp;
             }
             case -1 : {
