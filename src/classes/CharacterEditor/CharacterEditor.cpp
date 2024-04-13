@@ -61,6 +61,7 @@ Character* CharacterEditor::createCharacter() {
         cout << "4: Quit" << endl;
         cout << "Enter option: ";
         cin >> typeOfCharacter;
+        cout << endl;
 
         switch (typeOfCharacter) {
             case 1: {
@@ -88,11 +89,38 @@ Character* CharacterEditor::createCharacter() {
         if(character != nullptr){
             HumanPlayerStrategy *humanPlayerStrategy = new HumanPlayerStrategy();
             character->setStrategy(humanPlayerStrategy);
-            character->setHitpoints(100);
-            return character;
+            int difficulty;
+            while(true) {
+                cout << "What difficulty would you like the game to be?" << endl;
+                cout << "1: Easy" << endl;
+                cout << "2: Medium" << endl;
+                cout << "3: Hard" << endl;
+                cout << "Enter option: ";
+                cin >> difficulty;
+                cout << endl;
+
+                switch (difficulty) {
+                    case 1: {
+                        character->setHitpoints(100);
+                        break;
+                    }
+                    case 2:{
+                        character->setHitpoints(50);
+                        break;
+                    }
+                    case 3: {
+                        character->setHitpoints(20);
+                        break;
+                    }
+                    default:{
+                        cout << "Invalid option. Please try again.\n" << endl;
+                        continue;
+                    }
+                }
+                return character;
+            }
         }
     }
-
 }
 
 
@@ -430,7 +458,7 @@ void CharacterEditor::abilityMenu(Character *pCharacter) {
 
 bool CharacterEditor::saveNPC(Character *pCharacter) {
     string filename;
-    cout << "Enter filename to save the map: ";
+    cout << "Enter filename to save the NPC: ";
     cin >> filename;
 
     filename += ".txt"; // Append .txt extension
@@ -453,7 +481,7 @@ void CharacterEditor::updateWornItemEditor(Character *pCharacter) {
     for (const auto& equipments : wornEquipment) {
         if(equipments.second != nullptr){
             equipments.second->printWeapon();
-            cout << "---------------------------" << endl;
+            cout << "\t\t---------------------------" << endl;
         }
     }
     // print the available equipment
@@ -489,8 +517,8 @@ void CharacterEditor::updateWornItemEditor(Character *pCharacter) {
                 map<string,Item*> wornEquipment = pCharacter->getWornEquipment() ;
                 for (const auto& equipments : wornEquipment) {
                     if(equipments.second != nullptr){
-                        cout << "---------------------------" << endl;
                         equipments.second->printWeapon();
+                        cout << "\t\t---------------------------" << endl;
                     }
                 }
                 // print the available equipment
@@ -505,7 +533,7 @@ void CharacterEditor::updateWornItemEditor(Character *pCharacter) {
                 for (const auto& equipments : wornEquipment) {
                     if(equipments.second != nullptr){
                         equipments.second->printWeapon();
-                        cout << "---------------------------" << endl;
+                        cout << "\t\t---------------------------" << endl;
                     }
                 }
                 // print the available equipment

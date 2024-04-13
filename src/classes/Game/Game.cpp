@@ -13,7 +13,7 @@ bool Game::getCampaign() {
         cout << "\nChoose an option:" << endl;
         cout << "1: Use Pre-generated Campaigns" << endl;
         cout << "2: Create/Load campaign" << endl;
-        cout << "3: Continue" << endl;
+        cout << "3: Continue to Character Creation" << endl;
         cout << "4: Quit" << endl;
         cout << "Enter option: ";
         cin >> input;
@@ -66,7 +66,7 @@ void Game::play()
         Character* pCharacter = characterEditor.runCharacterEditor();
         if(pCharacter != nullptr){
             cout << "\n\n----------------------------------------------------------------------------------------------\n";
-            cout << "\t\t\t\t\t\t\t\t\t\t1WELCOME TO DND WORLD\n";
+            cout << "\t\t\t\t\t\t\t\t\t\tWELCOME TO DND WORLD\n";
             cout << "----------------------------------------------------------------------------------------------\n\n";
 
             cout << "\tTHE GAME RULES:\n";
@@ -198,13 +198,13 @@ Campaign* Game::loadPregeneratedCampaign() {
         int input;
         cout << "\nChoose the Campaign You want to Play: -1 to exit" << endl;
         cout << "1: The Kingdoms of Thaloria" << endl;
-        cout << "2: map2" << endl;
+        cout << "2: The Impossible Single Dungeon" << endl;
         cout << "3: map3" << endl;
         cout << "4: RANDOM MAP ?" << endl;
         cout << "Enter Option: ";
         cin >>input;
         cout << endl;
-        if (input = 4){
+        if (input == 4){
             srand(time(0)); // Use current time as seed for random generator
             input = 1 + rand() % 3; // rand() % 3 gives a range of 0 to 2; adding 1 changes it to 1 to 3
         }
@@ -216,7 +216,7 @@ Campaign* Game::loadPregeneratedCampaign() {
             }
             case 2 : {
                 MapEditor* mapEditor = new MapEditor();
-                Campaign* camp = mapEditor->runCampaignEditor("pre-generated");
+                Campaign* camp = mapEditor->runCampaignEditor("pre-generated2");
                 return camp;
             }
             case 3 : {
