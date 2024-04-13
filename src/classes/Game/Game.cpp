@@ -54,21 +54,58 @@ bool Game::getCampaign() {
 
 void Game::play()
 {
-    cout << "-----------------------------------------------\n";
-    cout << "Welcome to the Dungeon and Dragon : Basic Fantasy RPG\n";
-    cout << "-----------------------------------------------";
+    cout << "----------------------------------------------------------------------------------------------\n";
+    cout << "\t\t\t\t\tWelcome to the Dungeon and Dragon : Basic Fantasy RPG\n";
+    cout << "----------------------------------------------------------------------------------------------";
+
     bool campaignSet = getCampaign();
     if(campaignSet){
         // ALL THE LOGIC OF SELECTING THE CHARACTER
         CharacterEditor characterEditor;
         Character* pCharacter = characterEditor.runCharacterEditor();
-        //Character* npc1 =characterEditor.runNpcEditor();
-        //campaign->maps[pCharacter->currentMap]->placeOpponent(npc1, 5, 5);
         if(pCharacter != nullptr){
-            // Gameplay Logic
-            cout << "-----------------------------------------------\n";
-            cout << "Welcome to DND WORLD\n";
-            cout << "-----------------------------------------------";
+            cout << "\n\n-----------------------------------------------\n";
+            cout << "\t\tWelcome to DND WORLD\n";
+            cout << "-----------------------------------------------\n\n";
+
+            cout << "THE GAME RULES:\n";
+
+            cout << "Objective:\n"
+                      << " - Defeat all enemies on each level to unlock the door to the next level.\n"
+                      << " - Clear all levels to win the game.\n\n";
+
+            cout << "Gameplay Mechanics:\n"
+                      << " - Character Setup: You control a single player character.\n"
+                      << " - Levels: Progress through each level by defeating all enemies to unlock the next level.\n"
+                      << " - Dice Rolls: Each round begins with a dice roll to determine the turn order for all characters on the map.\n"
+                      << " - Movement: Move your character around the map each turn.\n"
+                      << " - Attack: Engage enemies in combat when they are within range.\n"
+                      << " - Interactions:\n"
+                      << "     - Open chests to find items.\n"
+                      << "     - Pick up items dropped by defeated enemies.\n"
+                      << "     - Access your inventory to switch equipped items or use items.\n"
+                      << " - Enemy Behavior: Enemies will move towards your character and may attack if you are within their attack range.\n\n";
+
+            cout << "Progression and Leveling:\n"
+                      << " - Experience and Leveling:\n"
+                      << "     - Gain experience and level up by defeating enemies.\n"
+                      << "     - Leveling up improves your character’s strength and increases health points (HP).\n"
+                      << " - Inventory Management:\n"
+                      << "     - Manage your inventory to optimize equipment and item usage.\n"
+                      << "     - Utilize dropped items from enemies to enhance your character's capabilities.\n\n";
+
+            cout << "Winning and Losing:\n"
+                      << " - Winning the Game: Successfully clear all campaign levels to win the game.\n"
+                      << " - Losing the Game: If your character dies, it's game over, and you must start over from the beginning.\n\n";
+
+            cout << "Tips for Success:\n"
+                      << " - Plan your moves and attacks strategically.\n"
+                      << " - Keep an eye on your health.\n"
+                      << " - Regularly update and manage your equipment to match your play style and challenges.\n"
+                      << " - Learn enemy patterns to anticipate attacks and counter effectively.\n\n";
+
+            cout << "Enjoy the game and good luck!\n\n";
+
             bool gameIsRunning = true;
             campaign->printCampaign();
             campaign->maps[pCharacter->currentMap]->placeCharacter(pCharacter);
@@ -77,9 +114,9 @@ void Game::play()
                     vector<Character*> characters = campaign->maps[pCharacter->currentMap]->getAllCharacters();
                     characters = initiativeRoll(characters);
                     for(auto* character : characters) {
-                        cout << "\n------------------------------" << endl;
-                        cout << character->getName() << "'s play turn" << endl;
-                        cout << "------------------------------" << endl;
+                        cout << "\n---------------------------------------------" << endl;
+                        cout << "\t\t\t" <<character->getName() << "'s play turn" << endl;
+                        cout << "---------------------------------------------" << endl;
                         if (character->strategy->getStrategyType() == "Human"){
                             bool playerTurn = true;
                             bool moved = false;
@@ -150,7 +187,9 @@ bool Game::loadPregeneratedCampaign() {
 }
 
 vector<Character*> Game::initiativeRoll(vector<Character*> chars) {
-    cout << "Initiative Roll for the all the players" << endl;
+    cout << "\n========================= STARTING NEW ROUND =========================\n";
+
+    cout << "\n\tInitiative dice roll to determine turn order..." << endl;
 
     std::map<int,Character*> map ;
     vector<Character*> sorted_array;
@@ -163,10 +202,11 @@ vector<Character*> Game::initiativeRoll(vector<Character*> chars) {
         sorted_array.push_back(it->second);
     }
 
-
-    cout << "Order of Characters :";
+    cout << "\tThis round's turn order = ";
+    std::string separator = "";
     for(auto & i : sorted_array){
-     cout << i->getName() << ", ";
+     cout << separator << i->getName();
+        separator = ", ";
     }
     return sorted_array;
 

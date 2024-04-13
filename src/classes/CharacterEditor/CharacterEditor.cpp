@@ -54,8 +54,8 @@ Character* CharacterEditor::createCharacter() {
     //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     while(true){
-        cout << "What Type of Fighter You want to Make" << endl;
-        cout << "\nChoose an option:" << endl;
+        cout << "\nWhat Type of Fighter You want to Make" << endl;
+        cout << "Choose an option:" << endl;
         cout << "1: Nimble" << endl;
         cout << "2: Bully" << endl;
         cout << "3: Tank" << endl;

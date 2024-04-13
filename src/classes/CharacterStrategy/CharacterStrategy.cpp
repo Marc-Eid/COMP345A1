@@ -217,7 +217,7 @@ void AggressorStrategy::move(Character* c, Map* map){
     map->printMap();
     int movementRange = 2 + c->getLevel();
     if (map->moveNextTo(c, movementRange)){
-        cout << c->getName() << " advances towards you." << endl;
+        cout << c->getName() << " advanced towards you." << endl;
     }
 }
 
@@ -241,7 +241,7 @@ void FriendlyStrategy::move(Character* c, Map* map){
     map->printMap();
     int movementRange = 2 + c->getLevel();
     if (map->moveNextTo(c, movementRange)){
-        cout << c->getName() << " advances towards you." << endl;
+        cout << c->getName() << " advanced towards you." << endl;
     }
 }
 
