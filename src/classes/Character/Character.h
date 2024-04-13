@@ -6,6 +6,7 @@
 #include "../ObserverPattern/Subject.h"
 #include "../CellContent/CellContent.h"
 #include "../ItemContainer/ItemContainer.h"
+#include "../Weapon/Weapon.h"
 #include "../CharacterStrategy/CharacterStrategy.h"
 #include <list>
 #include "../GameLogger/GameLogger.h"
@@ -13,9 +14,10 @@
 using namespace std;
 
 class Map;
-class  CharacterStrategy;
+class CharacterStrategy;
 class ItemContainer;
 class Item;
+class Weapon;
 
 /**
  * @file Character.h
