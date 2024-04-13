@@ -77,6 +77,7 @@ void Game::play()
                     vector<Character*> characters = campaign->maps[pCharacter->currentMap]->getAllCharacters();
                     characters = initiativeRoll(characters);
                     for(auto* character : characters) {
+                        character->freeAction(campaign->maps[pCharacter->currentMap]);
                         character->move(campaign->maps[pCharacter->currentMap]);
                         character->attack(campaign->maps[pCharacter->currentMap]);
                     }

@@ -241,17 +241,17 @@ bool Character::remove(string type) {
         return false;
     }
     // If all is good then reverse the ability scores
-    modifiers["Strength"] += wornItem->getAbilityScores()["Strength"];
-    modifiers["Dexterity"] += wornItem->getAbilityScores()["Dexterity"] ;
-    modifiers["Constitution"] += wornItem->getAbilityScores()["Constitution"];
-    modifiers["Intelligence"] += wornItem->getAbilityScores()["Intelligence"];
-    modifiers["Wisdom"] += wornItem->getAbilityScores()["Wisdom"];
-    modifiers["Charisma"] += wornItem->getAbilityScores()["Charisma"];
+    modifiers["Strength"] -= wornItem->getAbilityScores()["Strength"];
+    modifiers["Dexterity"] -= wornItem->getAbilityScores()["Dexterity"] ;
+    modifiers["Constitution"] -= wornItem->getAbilityScores()["Constitution"];
+    modifiers["Intelligence"] -= wornItem->getAbilityScores()["Intelligence"];
+    modifiers["Wisdom"] -= wornItem->getAbilityScores()["Wisdom"];
+    modifiers["Charisma"] -= wornItem->getAbilityScores()["Charisma"];
     armorClass += wornItem->getArmorClass();
     for (int & attackBonu : attackBonus) {
-        attackBonu += wornItem->getAttackBonus();
+        attackBonu -= wornItem->getAttackBonus();
     }
-    damageBonus += wornItem->getDamageBonus();
+    damageBonus -= wornItem->getDamageBonus();
     wornItem = nullptr;
     return true;
 }
@@ -295,6 +295,7 @@ bool Character::attack(Character* target, int attackRoll){
        } else {
            // The attack misses
            cout << name << " misses " << target->name << ".\n";
+
        }
        return false; // Attack missed
 
@@ -313,17 +314,19 @@ void Character::move(Map* map) {
     else std::cout << name << " has no strategy for moving." << std::endl;
 }
 
+
+
 void Character::attack(Map* map) {
     if (strategy) strategy->attack(this, map);
     else std::cout << name << " has no strategy for attacking." << std::endl;
 }
 
 // Optional: a method for actions not defined in all strategies
-void Character::freeAction() {
+void Character::freeAction(Map* map){
     // Check if the strategy is of type HumanPlayerStrategy and cast it
     HumanPlayerStrategy* humanStrategy = dynamic_cast<HumanPlayerStrategy*>(strategy);
     if (humanStrategy) {
-        humanStrategy->freeAction();
+        humanStrategy->freeAction(this,map);
     } else {
         std::cout << name << " has no free actions to perform." << std::endl;
     }
@@ -366,7 +369,6 @@ std::istream& operator>>(std::istream& is, Character& character) {
     }
     // Update Attack Bonus
     character.UpdateAttackBonus();
-
 
     is >> character.armorClass >> character.damageBonus >> character.hitPoints;
     is >> character.abilityScores.at("Strength");

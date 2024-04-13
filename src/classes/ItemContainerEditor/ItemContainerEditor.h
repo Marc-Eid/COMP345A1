@@ -8,7 +8,8 @@
 #include "../ItemContainer/ItemContainer.h"
 #include "../Item/Item.h"
 
-
+class ItemContainer;
+class Item;
 class ItemContainerEditor {
 public:
     ItemContainerEditor() = default;

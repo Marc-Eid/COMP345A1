@@ -6,10 +6,11 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(COMP345A1 src/main.cpp
         src/classes/Character/Character.cpp
+        src/classes/Character/Character.h
         src/classes/Fighter/Fighter.cpp
         src/classes/Item/Item.cpp
         src/classes/Helmet/Helmet.cpp
-        src/classes/ItemContainer/ItemContainer.cpp
+
         src/classes/Armor/Armor.cpp
         src/classes/Shield/Shield.cpp
         src/classes/Ring/Ring.cpp
@@ -56,6 +57,8 @@ add_executable(COMP345A1 src/main.cpp
         src/classes/Game/Game.cpp
         src/classes/Game/Game.h
         src/classes/Map/Map.h
+        src/classes/ItemContainer/ItemContainer.h
+        src/classes/ItemContainer/ItemContainer.cpp
 
 
 )

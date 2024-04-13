@@ -14,6 +14,8 @@ using namespace std;
 
 class Map;
 class  CharacterStrategy;
+class ItemContainer;
+class Item;
 
 /**
  * @file Character.h
@@ -64,8 +66,7 @@ public:
 
     void attack(Map* map);
 
-    void freeAction();
-
+    void freeAction(Map* map);
 
     /**
     * @brief Virtual destructor for the Character class.

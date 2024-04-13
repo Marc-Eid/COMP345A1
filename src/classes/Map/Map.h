@@ -16,14 +16,11 @@
 
 
 
-
-
-
 using namespace std;
 
 class Character;
 class Cell;
-
+class ItemContainer;
 struct Coordinate {
     int x;
     int y;
@@ -199,6 +196,12 @@ public:
      * @return
      */
      bool setPrevMap(Map* map);
+
+
+     /**
+      * Get all the ajacent itemContainer Present
+      */
+     std::map<string,ItemContainer*> getAdjacentChest(Character* character);
 
 
 private:

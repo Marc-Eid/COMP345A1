@@ -793,5 +793,47 @@ void Map::removeCharacterFromMap(Character *character) {
         noOfEnemies--;
         cout << "You have defeated: " <<  character->getName()  <<  endl;
     }
+}
+std::map<string,ItemContainer*> Map::getAdjacentChest(Character* character){
+    std::map<string,ItemContainer*> adjacentChest;
+    Coordinate c1 = getCurrentPosition(character);
+    // check for adjacent cells for the chest;
+    if (c1.x == -1 && c1.y == -1) {
+        std::cout << "Character not not found on the map." << std::endl;
+        return adjacentChest; // Character is not on the map
+    }
+    // Check all eight adjacent positions
+    for (int dx = -1; dx <= 1; ++dx) {
+        for (int dy = -1; dy <= 1; ++dy) {
+            // Skip the character's current position
+            if (dx == 0 && dy == 0) continue;
 
+            int newX = c1.x + dx;
+            int newY = c1.y + dy;
+            // Check boundaries
+            if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
+                Cell& cell = *getCell(newX, newY);
+                // If there's a character in the cell, add it to the list
+                if (map[newX][newY].getState() == Cell::State::CHEST){
+
+                    if(newX == c1.x + 1 && newY == c1.y ){
+                        cout << "chest found";
+                        adjacentChest["Right"] = map[newX][newY].getChest();
+                    }
+                    if(newX == c1.x - 1 && newY == c1.y ){
+                        cout << "chest found";
+                        adjacentChest["Left"] = map[newX][newY].getChest();
+                    }
+                    if(newX == c1.x  && newY == c1.y + 1){
+                        adjacentChest["Up"] = map[newX][newY].getChest();
+                    }
+                    if(newX == c1.x + 1 && newY == c1.y -1 ){
+                        adjacentChest["Down"] = map[newX][newY].getChest();
+                    }
+                }
+
+            }
+        }
+    }
+    return adjacentChest;
 }

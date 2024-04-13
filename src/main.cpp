@@ -254,7 +254,7 @@ void displayStrategy(){
     p1->setStrategy(humanStrategy);
     p1->move(map);
     p1->attack(map);
-    p1->freeAction();
+    p1->freeAction(map);
 
     // NPC's turn (Friendly Strategy)
     auto* friendlyStrategy = new FriendlyStrategy();
@@ -265,7 +265,7 @@ void displayStrategy(){
     // Player1's turn (Human Strategy)
     p1->move(map);
     p1->attack(map);
-    p1->freeAction();
+    p1->freeAction(map);
 
     // NPC's turn (Aggressor Strategy)
     npc->move(map);
