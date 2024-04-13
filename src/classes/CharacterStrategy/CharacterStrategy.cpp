@@ -3,6 +3,8 @@
 
 //--------------------HumanPlayerStrategy--------------------
 
+
+
 void HumanPlayerStrategy::move(Character* c, Map* map){
     int input;
     map->printMap();
@@ -106,21 +108,19 @@ void HumanPlayerStrategy::attack(Character* source, Map* map) {
     }
 }
 
-void HumanPlayerStrategy::freeAction() {
+void HumanPlayerStrategy::freeAction(Character* character,Map* map) {
     int input;
 
     while (true) {
         cout << "\nChoose a free action:" << endl;
-        cout << "1: Say hello" << endl;
-        cout << "2: Say a cool quote" << endl;
+        cout << "1: Pickup Item from Chest" << endl;
+        cout << "2: Search Body" << endl;
         cout << "3: Quit" << endl;
-
         cout << "Enter option: ";
         cin >> input;
-
         switch (input) {
             case 1: {
-                cout << "Hey, loosers!" << endl;
+                pickupItemFromChest(character,map);
                 break;
             }
             case 2: {
@@ -136,6 +136,71 @@ void HumanPlayerStrategy::freeAction() {
             }
         }
     }
+}
+
+
+void HumanPlayerStrategy::pickupItemFromChest(Character* character,Map* map) {
+    std::map<string,ItemContainer*> chests = map->getAdjacentChest(character);
+    int input;
+
+    while (true) {
+        cout << "\nWhich direction you want to search Chest:" << endl;
+        cout << "1: Up" << endl;
+        cout << "2: Down" << endl;
+        cout << "3: Right" << endl;
+        cout << "4: Left" << endl;
+        cout << "5: Quit" << endl;
+        cout << "Enter option: ";
+        cin >> input;
+
+        // Checks the input
+        switch (input) {
+            case 1: {
+                if(chests["Up"] != nullptr){
+                    chests.at("Up")->itemPickupMenu(character);
+                }
+                else{
+                    cout << "No chest Found";
+                }
+                break;
+            }
+            case 2: {
+                if(chests["Down"] != nullptr){
+                    chests.at("Up")->itemPickupMenu(character);
+                }
+                else{
+                    cout << "No chest Found";
+                }
+                break;
+            }
+            case 3: {
+                if(chests["Right"] != nullptr){
+                    chests.at("Up")->itemPickupMenu(character);
+                }
+                else{
+                    cout << "No chest Found";
+                }
+                break;
+            }
+            case 4: {
+                if(chests["Left"] != nullptr){
+                    chests.at("Up")->itemPickupMenu(character);
+                }
+                else{
+                    cout << "No chest Found";
+                }
+                break;
+            }
+            case 5: {
+                return;
+            }
+            default: {
+                cout << "Invalid option. Please try again." << endl;
+                break;
+            }
+        }
+    }
+
 }
 
 //--------------------AggressorStrategy--------------------

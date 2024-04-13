@@ -116,7 +116,7 @@ void Game::play()
                                         break;
                                     }
                                     case 3: {
-                                        character->freeAction();
+                                        character->freeAction(campaign->maps[pCharacter->currentMap]);
                                         break;
                                     }
                                     case 4: {

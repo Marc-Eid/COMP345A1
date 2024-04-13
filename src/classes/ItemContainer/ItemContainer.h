@@ -8,13 +8,17 @@
 #ifndef COMP345A1_ITEMCONTAINER_H
 #define COMP345A1_ITEMCONTAINER_H
 
-#include "../Item/Item.h"
-#include "../Weapon/Weapon.h"
-#include "../CellContent/CellContent.h"
+#include "../Character/Character.h"
 #include <vector>
 #include <iostream>
 #include <iomanip>
+#include "../Item/Item.h"
+#include "../Weapon/Weapon.h"
+#include "../CellContent/CellContent.h"
 
+
+
+class Character;
 /**
  * @class ItemContainer
  * @brief A container class for storing items.
@@ -59,7 +63,11 @@ public:
      */
     void clear();
 
-
+    /**
+     *
+     * @param character
+     */
+    void itemPickupMenu(Character *character);
 
     /**
      * @brief Gets the number of items in the container.
@@ -75,6 +83,13 @@ public:
      * @return
      */
     bool removeItem(int index);
+
+
+    /**
+     * Pickup item from the conatiner
+     */
+    Item* pickupItemFromContainer(int index);
+
 
     /**
      * Check if item exist in the armory
@@ -105,6 +120,13 @@ public:
     int getItemIndex (const Item* item);
 
     /**
+     * Picks up item for character
+     * @param character
+     */
+
+
+
+    /**
      * Serialization operator for Item Container
      * @param os
      * @param itemContainer
@@ -119,6 +141,8 @@ public:
      * @return
      */
     friend std::istream& operator>>(std::istream& is, ItemContainer& ItemContainer);
+
+
 
 
 

@@ -9,6 +9,7 @@
 #include "../CellContent/CellContent.h"
 
 class Character;
+class ItemContainer;
 
 /**
  * This file implements the Cell class which holds the State of each cell on the Map
@@ -109,8 +110,6 @@ public:
      * @return
      */
     ItemContainer* getChest();
-
-
     /**
      * @brief Sets the State of the Cell
      * @param state

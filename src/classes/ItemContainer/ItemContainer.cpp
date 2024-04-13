@@ -4,12 +4,12 @@
 
 #include "ItemContainer.h"
 #include "../Weapon/Weapon.h"
+#include "../Character/Character.h"
 #include "../Armor/Armor.h"
 #include "../Belt/Belt.h"
 #include "../Boots/Boots.h"
 #include "../Ring/Ring.h"
 #include "../Shield/Shield.h"
-
 
 ItemContainer::ItemContainer()= default;
 
@@ -72,6 +72,8 @@ void ItemContainer::printContainer() const {
     }
     cout << "------------------------------------\n";
 }
+
+
 
 vector<Item *> ItemContainer::getItemsByType(const string& type) {
     vector<Item*> list = {};
@@ -159,6 +161,57 @@ int ItemContainer::getItemIndex(const Item *item) {
         }
     }
     return -1;
+}
+
+Item *ItemContainer::pickupItemFromContainer(int index) {
+    if(index< 0 || index > items.size() - 1){
+        return nullptr;
+    }
+    // check for the item in the chest
+    Item* item = items[index];
+    for(int i = 0; i< items.size(); i++){
+        if(i == index){
+            // if yes then erase its reference from the chest
+            items.erase(items.begin() + index);
+        }
+    }
+    return item;
+
+}
+
+
+
+void ItemContainer::itemPickupMenu(Character *character) {
+    while(true){
+        if(items.empty()){
+            cout << "The chest is empty nothing to pickup" << endl;
+            return;
+        }
+        int input;
+        printContainer();
+        cout << "Input the Index of the Weapon you want to equip: -1 to Quit" << endl;
+
+        cin >> input;
+
+        if(input == -1){
+            return;
+        }
+
+        Item * item = pickupItemFromContainer(input);
+
+        if(item == nullptr){
+            continue;
+        }
+        cout << "Adding to the inventory" << endl;
+        bool equipped = character->equip(item);
+        if(equipped){
+            cout << "Successfully Added to the inventory";
+            continue;
+        }
+        else{
+            cout << "Error While Equipping the item";
+        }
+    }
 }
 
 

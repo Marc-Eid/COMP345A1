@@ -28,7 +28,8 @@ class HumanPlayerStrategy : public CharacterStrategy {
 public:
     void move(Character* c, Map* map) override;
     void attack(Character* source, Map* map) override;
-    void freeAction();
+    void freeAction(Character* character,Map* map);
+    void pickupItemFromChest(Character* character,Map* map);
     string getStrategyType() override {return  "Human";};
 };
 
