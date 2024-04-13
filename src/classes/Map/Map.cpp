@@ -831,7 +831,7 @@ std::map<string,ItemContainer*> Map::getAdjacentChest(Character* character){
                     if(newX == c1.x  && newY == c1.y + 1){
                         adjacentChest["Up"] = map[newX][newY].getChest();
                     }
-                    if(newX == c1.x + 1 && newY == c1.y -1 ){
+                    if(newX == c1.x && newY == c1.y -1 ){
                         adjacentChest["Down"] = map[newX][newY].getChest();
                     }
                 }
