@@ -291,7 +291,7 @@ void Map::printMap() {
             } else if (map[i][j].getState() == Cell::State::START) {
                 cout << "S ";
             } else if (map[i][j].getState() == Cell::State::EXIT) {
-                cout << "E ";
+                cout << "D ";
             } else if (map[i][j].getState() == Cell::State::OPPONENT) {
                 cout << "O ";
             } else if (map[i][j].getState() == Cell::State::CHEST) {
@@ -625,7 +625,7 @@ bool Map::moveNextTo(Character *characterToMove, int distance) {
     if (!(targetCoord.x == currentCoord.x && targetCoord.y == currentCoord.y)) {
         return move(characterToMove, targetCoord.x, targetCoord.y);
     }
-    return true; // If the target position is the current position, treat as successful move
+    return false; // If the target position is the current position, treat as successful move
 }
 
 // Method to find characters adjacent to the given character's position
@@ -636,14 +636,19 @@ std::vector<Character*> Map::findAdjacentCharacters(Character* character) {
 
     if (pos.x == -1 && pos.y == -1) {
         std::cout << "Character not found on the map." << std::endl;
-        return adjacentCharacters; // Character is not on the map
+        return adjacentCharacters;
     }
 
-    // Check all eight adjacent positions
-    for (int dx = -1; dx <= 1; ++dx) {
-        for (int dy = -1; dy <= 1; ++dy) {
-            // Skip the character's current position
-            if (dx == 0 && dy == 0) continue;
+    int radius = 1; // Default radius for melee weapons
+    auto weapon = character->getWeapon();
+    if (weapon && weapon->getWeaponType() == Weapon::WeaponType::BOW) {
+        radius = 5; // Larger radius for bow
+    }
+
+    // Check positions within the defined radius
+    for (int dx = -radius; dx <= radius; ++dx) {
+        for (int dy = -radius; dy <= radius; ++dy) {
+            if (dx == 0 && dy == 0) continue; // Skip the character's own position
 
             int newX = pos.x + dx;
             int newY = pos.y + dy;
@@ -651,7 +656,6 @@ std::vector<Character*> Map::findAdjacentCharacters(Character* character) {
             // Check boundaries
             if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
                 Cell& cell = *getCell(newX, newY);
-                // If there's a character in the cell, add it to the list
                 if (map[pos.x][pos.y].getState() == Cell::State::CHARACTER){
                     if (cell.getState() == Cell::State::OPPONENT && cell.getCharacter() != nullptr) {
                         adjacentCharacters.push_back(cell.getCharacter());

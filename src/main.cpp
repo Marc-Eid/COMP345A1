@@ -55,7 +55,7 @@ int main() {
 //    displayChestEditor();
 //    displayStrategy();
 
-    auto *p1 = new Fighter("Player1",4);
+    /*auto *p1 = new Fighter("Player1",4);
     p1->getAbilityScores();
 
     auto *npc = new Fighter("NPC",4);
@@ -110,7 +110,7 @@ int main() {
 
     // Player1's turn (Human Strategy)
     p1->move(campaign->maps[0]);
-    p1->attack(campaign->maps[0]);
+    p1->attack(campaign->maps[0]);*/
 
     return 0;
 }

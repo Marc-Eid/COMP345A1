@@ -99,8 +99,8 @@ void ItemContainerEditor::weaponSelector(ItemContainer* container) {
         int option;
         cout << "\nWhat Type of Weapons" << endl;
         cout << "Enter an Option: " << endl;
-        cout << "1: Bow" << endl;
-        cout << "2: Sword" << endl;
+        cout << "1: Sword" << endl;
+        cout << "2: Bow" << endl;
         cout << "Choose an Option :" << endl;
         cin >> option;
         Weapon *weapon = nullptr;
