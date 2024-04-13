@@ -89,6 +89,7 @@ Character* CharacterEditor::createCharacter() {
         if(character != nullptr){
             HumanPlayerStrategy *humanPlayerStrategy = new HumanPlayerStrategy();
             character->setStrategy(humanPlayerStrategy);
+            character->setHitpoints(100);
             return character;
         }
     }

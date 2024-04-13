@@ -103,6 +103,7 @@ void HumanPlayerStrategy::attack(Character* source, Map* map) {
     int damage = dice.roll("1d6"); // Roll for damage
     source->attack(target, damage); // Perform the attack
     if (target->hitPoints <= 0) {
+        source->levelUp();
         int input;
         cout << "Do You want to search the Body : Input 0 to search the Body" << endl;
         cin >> input;
