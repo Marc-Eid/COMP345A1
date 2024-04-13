@@ -291,7 +291,7 @@ Character* CharacterEditor::createNpc() {
            if(input == -1 ){
                break;
            }
-           character->wearItem(input);
+           character->wearItem(input - 1);
         }
 
 

@@ -212,7 +212,7 @@ Campaign* Game::loadPregeneratedCampaign() {
         switch (input) {
             case 1 : {
                 MapEditor* mapEditor = new MapEditor();
-                Campaign* camp = mapEditor->runCampaignEditor("pre-generated");
+                Campaign* camp = mapEditor->runCampaignEditor("pre-gen2");
                 return camp;
             }
             case 2 : {
