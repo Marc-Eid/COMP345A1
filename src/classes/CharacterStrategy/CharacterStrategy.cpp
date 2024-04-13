@@ -173,7 +173,7 @@ void HumanPlayerStrategy::pickupItemFromChest(Character* character,Map* map) {
             }
             case 2: {
                 if(chests["Down"] != nullptr){
-                    chests.at("Up")->itemPickupMenu(character);
+                    chests.at("Down")->itemPickupMenu(character);
                 }
                 else{
                     cout << "No chest Found";
@@ -182,7 +182,7 @@ void HumanPlayerStrategy::pickupItemFromChest(Character* character,Map* map) {
             }
             case 3: {
                 if(chests["Right"] != nullptr){
-                    chests.at("Up")->itemPickupMenu(character);
+                    chests.at("Right")->itemPickupMenu(character);
                 }
                 else{
                     cout << "No chest Found";
@@ -191,7 +191,7 @@ void HumanPlayerStrategy::pickupItemFromChest(Character* character,Map* map) {
             }
             case 4: {
                 if(chests["Left"] != nullptr){
-                    chests.at("Up")->itemPickupMenu(character);
+                    chests.at("Left")->itemPickupMenu(character);
                 }
                 else{
                     cout << "No chest Found";
