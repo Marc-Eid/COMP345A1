@@ -115,12 +115,13 @@ int Character::rollDice(int numberOfDice, int diceSides) {
 
 
 void Character::displayCharacterSheet() const {
-    cout << "Character Name: " << name << "\nLevel: " << level << "\n";
+    cout << "---------------------------------------------\n";
+    cout << "Name: " << name << "\nLevel: " << level << "\n";
 
     for (const auto& score : abilityScores) {
         cout << score.first << ": " << score.second << " (Modifier: " << modifiers.at(score.first) << ")\n";
     }
-    cout << "Hit Points: " << hitPoints << "\nArmor Class: " << armorClass
+    cout << "Hit Points: " << hitPoints << "\nArmor: " << armorClass
               << "\nAttack Bonus Per Round: ";
     for (const int& attackBonu : attackBonus){
         cout << attackBonu << " ";
@@ -129,17 +130,18 @@ void Character::displayCharacterSheet() const {
 
     // print the worn Item
 
-    cout << " ----------------Worn Equipment-----------------" << endl;
+    cout << "------------- Equipped Items: --------------" << endl;
 
     for (const auto& equipments : wornEquipment) {
         if(equipments.second != nullptr){
             equipments.second->printWeapon();
+            cout << "---------------------------" << endl;
         }
     }
 
 
     // print the available equipment
-    cout << "Available Equipment: " << endl;
+    cout << "------------- Items Inventory: --------------" << endl;
 
 
     equipment->printContainer();
@@ -213,7 +215,7 @@ bool Character::wearItem(int index) {
 
     // Logic to change the Ability scores according to the worn item
     if(wornEquipment[item->getType()] != nullptr ){
-        cout << "You have already worn this type of equipment \n";
+        cout << "You are already wearing this type of equipment\n";
         return false;
     }
 
@@ -231,13 +233,14 @@ bool Character::wearItem(int index) {
     }
     damageBonus += item->getDamageBonus();
     wornEquipment[item->getType()] = item;
+    cout << "Successfully equipped item.\n";
     return true;
 }
 
 bool Character::remove(string type) {
     Item* wornItem = wornEquipment[type];
     if(wornItem == nullptr){
-        cout << "Please First Wear to remove";
+        cout << "No item equipped to remove\n";
         return false;
     }
     // If all is good then reverse the ability scores
@@ -253,6 +256,7 @@ bool Character::remove(string type) {
     }
     damageBonus -= wornItem->getDamageBonus();
     wornEquipment[type] = nullptr;
+    cout << "Successfully removed item and placed it in inventory.\n";
     return true;
 }
 
@@ -260,6 +264,7 @@ void Character::onAttacked() {
     if(dynamic_cast<FriendlyStrategy*>(strategy)) { // If current strategy is FriendlyStrategy
         setStrategy(new AggressorStrategy()); // Switch to AggressorStrategy
         notify(name + " now seeks revenge for being attacked and is switching to the dark side  (Aggressor Strategy)");
+        cout << name << " now seeks revenge for being attacked and is switching to the dark side  (Aggressor Strategy)";
     }
 }
 
@@ -280,7 +285,6 @@ bool Character::attack(Character* target, int attackRoll){
            int r = dice.roll("1d8") + modifiers["Strength"];
 
            // The attack hits
-           notify("The attack Hits!");
            notify("The attack Hits!");
            cout << name << " hits " << target->name << " for a total of " << r << " damage!\n";
 

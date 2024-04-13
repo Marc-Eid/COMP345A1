@@ -42,12 +42,12 @@ void Item::initializeAttributes() {
 }
 
 void Item::printWeapon() {
-    cout << "Item :"<< getType() << "\n";
-    cout << "Item Name:"<< name << "\n";
+    cout << "Item: "<< getType() << "\n";
+    cout << "Item Name: "<< name << "\n";
 
-    cout << "Armor Class :" << armorClass << "\n";
-    cout << "Hit Points :"<< hitPoints << "\n";
-    cout << "damage Bonus  :"<<damageBonus << "\n";
+    cout << "Armor: " << armorClass << "\n";
+    cout << "Hit Points: "<< hitPoints << "\n";
+    cout << "damage Bonus: "<<damageBonus << "\n";
     for (const auto& score : abilityScores) {
         cout << score.first << ": " << score.second << "s\n";
     }

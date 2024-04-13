@@ -121,7 +121,7 @@ void HumanPlayerStrategy::freeAction(Character* character,Map* map) {
 
     while (true) {
         cout << "\nChoose a free action:" << endl;
-        cout << "1: Pickup Item from Chest" << endl;
+        cout << "1: Open Chest" << endl;
         cout << "2: Search Body" << endl;
         cout << "3: Quit" << endl;
         cout << "Enter option: ";

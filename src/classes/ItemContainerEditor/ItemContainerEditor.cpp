@@ -101,13 +101,13 @@ void ItemContainerEditor::weaponSelector(ItemContainer* container) {
         cout << "Enter an Option: " << endl;
         cout << "1: Sword" << endl;
         cout << "2: Bow" << endl;
-        cout << "Choose an Option :" << endl;
+        cout << "Enter Option : ";
         cin >> option;
         Weapon *weapon = nullptr;
         switch (option){
             case 1 : {
                 string name;
-                cout << "\nGive the item an identifier :";
+                cout << "\nGive the item an identifier : ";
                 cin >> name;
                 weapon = new Weapon(name,Weapon::WeaponType::SWORD);
                 abilityMenu(weapon);
@@ -117,7 +117,7 @@ void ItemContainerEditor::weaponSelector(ItemContainer* container) {
             }
             case 2: {
                 string name;
-                cout << "\nGive the item an identifier :";
+                cout << "\nGive the item an identifier : ";
                 cin >> name;
                 weapon = new Weapon(name,Weapon::WeaponType::BOW);
                 abilityMenu(weapon);
@@ -135,7 +135,7 @@ void ItemContainerEditor::abilityMenu(Item* item) {
     int input;
 
     while(true){
-        cout << "What Modifiers Do you want to Edit (Value should be not greater then 5)" << endl;
+        cout << "What Modifiers Do you want to Edit (Value must be less than 5)" << endl;
         cout << "\nChoose an option:" << endl;
         cout << "1: Strength" << endl;
         cout << "2: Dexterity" << endl;
@@ -146,8 +146,8 @@ void ItemContainerEditor::abilityMenu(Item* item) {
         cout << "7: Attack Bonus" << endl;
         cout << "8 :Damage Bonus" << endl;
         cout << "9 :Hit Points" << endl;
-        cout << "10:Armor Class" << endl;
-        cout << "11:Quit" << endl;
+        cout << "10 :Armor" << endl;
+        cout << "11 :Quit" << endl;
         cin >> input;
 
         switch (input) {

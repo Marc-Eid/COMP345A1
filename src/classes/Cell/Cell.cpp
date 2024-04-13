@@ -87,14 +87,12 @@ std::istream& operator>>(std::istream& is, Cell& cell) {
         ItemContainer* itemContainer = new ItemContainer();
         is >> *itemContainer;
         cell.content = itemContainer;
-        itemContainer->printContainer();
     }
     else if(cell.currentState == Cell::State::OPPONENT){
         Character* character = new Fighter("sample",5);
         is >> *character;
         cell.content = character;
         cout << cell.content;
-        character->displayCharacterSheet();
     }
     return is;
 }

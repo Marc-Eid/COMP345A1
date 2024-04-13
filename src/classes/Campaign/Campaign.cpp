@@ -33,9 +33,9 @@ void Campaign::addMap(Map* map) {
 }
 
 void Campaign::printCampaign() {
-    std::cout << "Campaign:" << std::endl;
+    std::cout << "\nCampaign:" << std::endl;
     cout << "\tNumber of maps = " << numMaps << endl;
-    std::cout << "\n------------------------------------------------------------------------------------------\n";
+    std::cout << "------------------------------------------------------------------------------------------\n";
     for (int i = 0; i < numMaps; ++i) {
         std::cout << "\tMap " << i + 1 << ":" << std::endl;
         if (maps[i]) {

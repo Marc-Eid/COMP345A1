@@ -12,7 +12,7 @@ Character* CharacterEditor::runCharacterEditor() {
     int input;
     while (true) {
         cout << "\nChoose an option:" << endl;
-        cout << "1: Create new Character" << endl;
+        cout << "1: Create new Player Character" << endl;
         cout << "2: Quit" << endl;
         cout << "Enter option: ";
         cin >> input;
@@ -46,7 +46,7 @@ Character* CharacterEditor::createCharacter() {
     int typeOfCharacter;
     // get the name of the character from the User
 
-    cout << "Enter the Name of the New Character :";
+    cout << "Enter the name of your character :";
     cin >> name;
     //getline(cin, name);
 
@@ -54,8 +54,7 @@ Character* CharacterEditor::createCharacter() {
     //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     while(true){
-        cout << "\nWhat Type of Fighter You want to Make" << endl;
-        cout << "Choose an option:" << endl;
+        cout << "\nWhat type of fighter do you want to be?" << endl;
         cout << "1: Nimble" << endl;
         cout << "2: Bully" << endl;
         cout << "3: Tank" << endl;
@@ -297,7 +296,7 @@ Character* CharacterEditor::createNpc() {
 void CharacterEditor::abilityMenu(Character *pCharacter) {
     int input;
     while(true){
-        cout << "What Scores do you want Edit for the NPC (Value should be not greater then 5)" << endl;
+        cout << "What Scores do you want Edit for the NPC (Value cannot be greater then 5)" << endl;
         cout << "\nChoose an option:" << endl;
         cout << "1: Strength" << endl;
         cout << "2: Dexterity" << endl;
@@ -307,8 +306,8 @@ void CharacterEditor::abilityMenu(Character *pCharacter) {
         cout << "6: Intelligence" << endl;
         cout << "7 :Damage Bonus" << endl;
         cout << "8 :Hit Points" << endl;
-        cout << "9:Armor Class" << endl;
-        cout << "10:Quit" << endl;
+        cout << "9 :Armor" << endl;
+        cout << "10 :Quit" << endl;
         cin >>input;
 
         switch (input) {
@@ -449,33 +448,36 @@ bool CharacterEditor::saveNPC(Character *pCharacter) {
 
 
 void CharacterEditor::updateWornItemEditor(Character *pCharacter) {
-    cout << " ----------------Worn Equipment-----------------" << endl;
+    cout << "------------- Equipped Items: --------------" << endl;
     map<string,Item*> wornEquipment = pCharacter->getWornEquipment() ;
     for (const auto& equipments : wornEquipment) {
         if(equipments.second != nullptr){
             equipments.second->printWeapon();
+            cout << "---------------------------" << endl;
         }
     }
     // print the available equipment
-    cout << "Available Equipment: " << endl;
+    cout << "------------- Items Inventory: --------------" << endl;
     pCharacter->getEquipment()->printContainer();
 
     int input;
     while(true){
         cout << "What Action you want to Perform" << endl;
-        cout << "\nChoose an option:" << endl;
-        cout << "1: Wear Item" << endl;
-        cout << "2: Remove" << endl;
+        cout << "1: Equip Item" << endl;
+        cout << "2: Remove Item" << endl;
         cout << "3: Quit" << endl;
+        cout << "Enter Option: ";
+
         cin >> input;
         switch (input){
             case 1 : {
                 // Logic for wearing items
                 while(true) {
                     int index;
-                    cout << "Input the Index which you want to Wear ? -1 to Quit" << endl;
+                    cout << "\nInput the Index which you want to Wear ? -1 to Quit" << endl;
                     cin >> index;
-                    if(index == -1 ){
+                    index = index - 1;
+                    if(index == -2 ){
                         break;
                     }
                     bool worn = pCharacter->wearItem(index);
@@ -483,9 +485,32 @@ void CharacterEditor::updateWornItemEditor(Character *pCharacter) {
                         break;
                     }
                 }
+                cout << "------------- Equipped Items: --------------" << endl;
+                map<string,Item*> wornEquipment = pCharacter->getWornEquipment() ;
+                for (const auto& equipments : wornEquipment) {
+                    if(equipments.second != nullptr){
+                        cout << "---------------------------" << endl;
+                        equipments.second->printWeapon();
+                    }
+                }
+                // print the available equipment
+                cout << "------------- Items Inventory: --------------" << endl;
+                pCharacter->getEquipment()->printContainer();
+                break;
             }
             case 2 : {
                 removeItem(pCharacter);
+                cout << "------------- Equipped Items: --------------" << endl;
+                map<string,Item*> wornEquipment = pCharacter->getWornEquipment() ;
+                for (const auto& equipments : wornEquipment) {
+                    if(equipments.second != nullptr){
+                        equipments.second->printWeapon();
+                        cout << "---------------------------" << endl;
+                    }
+                }
+                // print the available equipment
+                cout << "------------- Items Inventory: --------------" << endl;
+                pCharacter->getEquipment()->printContainer();
                 break;
                 // Login removing items
             }
@@ -507,8 +532,7 @@ void CharacterEditor::removeItem(Character* pCharacter) {
 
     while(true) {
         int index;
-        cout << "The type of weapon which you want to Remove ? -1 to Quit" << endl;
-        cout << "\nChoose an option:" << endl;
+        cout << "Which type of item do you want to remove ? -1 to Quit" << endl;
         cout << "1: Armor" << endl;
         cout << "2: Belt" << endl;
         cout << "3: Boots" << endl;
@@ -517,7 +541,10 @@ void CharacterEditor::removeItem(Character* pCharacter) {
         cout << "6: Shield" << endl;
         cout << "7: Weapon" << endl;
         cout << "8: Quit" << endl;
+        cout << "\nEnter Option: ";
         cin >> index;
+        cout << endl;
+
         switch (index) {
             case 1 : {
                 pCharacter->remove("Armor");

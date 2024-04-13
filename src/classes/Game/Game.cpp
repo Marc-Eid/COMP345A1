@@ -20,13 +20,11 @@ bool Game::getCampaign() {
             case 1: {
                 // TBD Load Pre-generated Campaign
                 campaign =loadPregeneratedCampaign();
-                campaign->printCampaign();
                 break;
             }
             case 2: {
                 MapEditor *mapEditor = new MapEditor();
                 campaign = mapEditor->runCampaignEditor();
-                campaign->printCampaign();
                 return true;
             }
             case 3: {
@@ -65,11 +63,11 @@ void Game::play()
         CharacterEditor characterEditor;
         Character* pCharacter = characterEditor.runCharacterEditor();
         if(pCharacter != nullptr){
-            cout << "\n\n-----------------------------------------------\n";
-            cout << "\t\tWelcome to DND WORLD\n";
-            cout << "-----------------------------------------------\n\n";
+            cout << "\n\n----------------------------------------------------------------------------------------------\n";
+            cout << "\t\t\t\t\t\t\t\t\t\t1WELCOME TO DND WORLD\n";
+            cout << "----------------------------------------------------------------------------------------------\n\n";
 
-            cout << "THE GAME RULES:\n";
+            cout << "\tTHE GAME RULES:\n";
 
             cout << "Objective:\n"
                       << " - Defeat all enemies on each level to unlock the door to the next level.\n"
@@ -127,10 +125,10 @@ void Game::play()
                                 cout << "\nChoose an option:" << endl;
                                 cout << "1: Move" << endl;
                                 cout << "2: Attack" << endl;
-                                cout << "3: Perform Action" << endl;
-                                cout << "4: Wear Items" << endl;
+                                cout << "3: Perform Loot Action" << endl;
+                                cout << "4: Items Inventory" << endl;
                                 cout << "5: Check Your Character Sheet"<< endl;
-                                cout << "6: Quit" << endl;
+                                cout << "6: End Turn" << endl;
                                 cout << "Enter option: ";
                                 cin >> input;
 
@@ -203,7 +201,6 @@ Campaign* Game::loadPregeneratedCampaign() {
             case 1 : {
                 MapEditor* mapEditor = new MapEditor();
                 Campaign* camp = mapEditor->runCampaignEditor("pre-generated");
-                camp->printCampaign();
                 return camp;
             }
             case -1 : {

@@ -65,9 +65,9 @@ bool ItemContainer::itemExist(Item *item) {
 }
 
 void ItemContainer::printContainer() const {
-    cout << "Total No of Equipment " << items.size() << endl;
+    cout << "Total Number of Items: " << items.size() << endl;
     for (int i = 0; i < items.size(); ++i) {
-        cout << "------------------ Slot No " << i << " ------------------\n";
+        cout << "------------------ Slot No " << i+1 << " ------------------\n";
         items[i]->printWeapon();
     }
     cout << "---------------------------------------------\n";
@@ -184,16 +184,17 @@ Item *ItemContainer::pickupItemFromContainer(int index) {
 void ItemContainer::itemPickupMenu(Character *character) {
     while(true){
         if(items.empty()){
-            cout << "The chest is empty nothing to pickup" << endl;
+            cout << "The chest is empty." << endl;
             return;
         }
         int input;
         printContainer();
-        cout << "Input the Index of the Weapon you want to equip: -1 to Quit" << endl;
+        cout << "Input the index of the item you want to pickup: -1 to Quit" << endl;
 
         cin >> input;
+        input = input - 1;
 
-        if(input == -1){
+        if(input == -2){
             return;
         }
 
@@ -202,14 +203,13 @@ void ItemContainer::itemPickupMenu(Character *character) {
         if(item == nullptr){
             continue;
         }
-        cout << "Adding to the inventory" << endl;
         bool equipped = character->equip(item);
         if(equipped){
-            cout << "Successfully Added to the inventory";
+            cout << "Successfully added item to the inventory.\n";
             continue;
         }
         else{
-            cout << "Error While Equipping the item";
+            cout << "Error While Equipping the item\n";
         }
     }
 }
