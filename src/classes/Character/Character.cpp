@@ -135,7 +135,7 @@ void Character::displayCharacterSheet() const {
     for (const auto& equipments : wornEquipment) {
         if(equipments.second != nullptr){
             equipments.second->printWeapon();
-            cout << "---------------------------" << endl;
+            cout << "\t\t---------------------------" << endl;
         }
     }
 

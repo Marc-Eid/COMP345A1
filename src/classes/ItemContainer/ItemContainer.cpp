@@ -184,7 +184,7 @@ Item *ItemContainer::pickupItemFromContainer(int index) {
 void ItemContainer::itemPickupMenu(Character *character) {
     while(true){
         if(items.empty()){
-            cout << "The chest is empty." << endl;
+            cout << "Empty, no items found..." << endl;
             return;
         }
         int input;
@@ -209,7 +209,7 @@ void ItemContainer::itemPickupMenu(Character *character) {
             continue;
         }
         else{
-            cout << "Error While Equipping the item\n";
+            cout << "Error While Picking up the Item\n";
         }
     }
 }
