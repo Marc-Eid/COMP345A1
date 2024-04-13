@@ -42,23 +42,20 @@ void Fighter::displayCharacterSheet() const {
 }
 
 bool Fighter::levelUp() {
-
-    cout << "Leveling Up the Fighter \n";
     Dice dice = Dice();
     hitPoints = dice.roll("1d6") + abilityScores["Constitution"];
 
-    for (int & attackBonu : attackBonus)
-    {
+    for (int & attackBonu : attackBonus){
         attackBonu += 1;
     }
+
     level++;
-    if (level == 6 || level == 11 || level == 16)
-    {
+
+    if (level == 6 || level == 11 || level == 16){
         attackBonus.push_back(1);
     }
-
+    cout << "You have levelled up to level " << level <<  endl;
     return true;
-
 }
 
 

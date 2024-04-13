@@ -67,10 +67,10 @@ bool ItemContainer::itemExist(Item *item) {
 void ItemContainer::printContainer() const {
     cout << "Total No of Equipment " << items.size() << endl;
     for (int i = 0; i < items.size(); ++i) {
-        cout << "----------- Slot No " << i << "------------------\n";
+        cout << "------------------ Slot No " << i << " ------------------\n";
         items[i]->printWeapon();
     }
-    cout << "------------------------------------\n";
+    cout << "---------------------------------------------\n";
 }
 
 

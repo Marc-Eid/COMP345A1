@@ -278,9 +278,9 @@ bool Map::isValid() {
  * Prints the Map
  */
 void Map::printMap() {
-    cout << "---------------------------------------------" << endl;
+    cout << "------------------------------------------------------------------------------------------" << endl;
     for (int j = height - 1; j >= 0; j--) {
-        cout << j << "\t";
+        cout << "\t\t" << j << "\t";
         for (int i = 0; i < width; i++) {
             if (map[i][j].getState() == Cell::State::CHARACTER) {
                 cout << map[i][j].getCharacter()->getName()[0] << " ";
@@ -302,11 +302,11 @@ void Map::printMap() {
         }
         cout << endl;
     }
-    cout << "\t";
+    cout << "\t\t\t";
     for (int i = 0; i < width; i++) {
         cout << i << " ";
     }
-    cout << "\n---------------------------------------------" << endl;
+    cout << "\n------------------------------------------------------------------------------------------" << endl;
 }
 
 Map::~Map() {

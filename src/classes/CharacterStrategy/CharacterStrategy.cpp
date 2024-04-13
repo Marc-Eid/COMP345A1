@@ -103,6 +103,7 @@ void HumanPlayerStrategy::attack(Character* source, Map* map) {
     int damage = dice.roll("1d6"); // Roll for damage
     source->attack(target, damage); // Perform the attack
     if (target->hitPoints <= 0) {
+        source->levelUp();
         int input;
         cout << "Do You want to search the Body : Input 0 to search the Body" << endl;
         cin >> input;
@@ -216,7 +217,7 @@ void AggressorStrategy::move(Character* c, Map* map){
     map->printMap();
     int movementRange = 2 + c->getLevel();
     if (map->moveNextTo(c, movementRange)){
-        cout << c->getName() << " advances towards you." << endl;
+        cout << c->getName() << " advanced towards you." << endl;
     }
 }
 
@@ -240,7 +241,7 @@ void FriendlyStrategy::move(Character* c, Map* map){
     map->printMap();
     int movementRange = 2 + c->getLevel();
     if (map->moveNextTo(c, movementRange)){
-        cout << c->getName() << " advances towards you." << endl;
+        cout << c->getName() << " advanced towards you." << endl;
     }
 }
 
