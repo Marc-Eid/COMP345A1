@@ -55,9 +55,9 @@ Character* CharacterEditor::createCharacter() {
 
     while(true){
         cout << "\nWhat type of fighter do you want to be?" << endl;
-        cout << "1: Nimble" << endl;
-        cout << "2: Bully" << endl;
-        cout << "3: Tank" << endl;
+        cout << "1: Nimble: known for their agility, speed, and precision" << endl;
+        cout << "2: Bully: specialize in direct confrontations and intimidation" << endl;
+        cout << "3: Tank: designed to absorb damage" << endl;
         cout << "4: Quit" << endl;
         cout << "Enter option: ";
         cin >> typeOfCharacter;

@@ -226,7 +226,7 @@ bool Map::isValid() {
 
         // Check if the Popped Coordinate is the Result
         if(c2.equalCoordinates(end)){
-            cout << "Map is valid" << endl;
+            //cout << "Map is valid" << endl;
             return true;
         }
         // If not then Explore all the Nodes
