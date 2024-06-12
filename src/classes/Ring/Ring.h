@@ -19,11 +19,6 @@
  * Libraries: Inherits <string> from Item.h.
  */
 class Ring: public Item {
-private:
-    /**
-     * Static const member that defines the allowedEnhancements of the item
-     */
-    static const std::vector<EnhancementType> allowedEnhancements;
 public:
     /**
      * @brief Construct a new Ring object.
@@ -31,7 +26,7 @@ public:
      * @param name The name of the ring.
      * @param enchantment The enchantment applied to the ring.
      */
-    Ring(const std::string& name, const Enchantment& enchantment);
+    Ring(const std::string& name);
     
     /**
      * @brief Get the type of the item.
@@ -39,6 +34,28 @@ public:
      * @return std::string Returns the type of the item as a string.
      */
     string getType() const override;
+
+    /**
+    * Calculates attribute
+    *
+    */
+    void CalculateAttributes() override;
+
+    /**
+* Serialization operator for
+* @param os
+* @param itemContainer
+* @return
+*/
+    friend std::ostream& operator<<(std::ostream& os, const Ring& Item);
+
+    /**
+     *  Deserialization operator for Item.
+     * @param is
+     * @param ItemContainer
+     * @return
+     */
+    friend std::istream& operator>>(std::istream& is, Ring& item);
 };
 
 

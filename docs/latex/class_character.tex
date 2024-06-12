@@ -3,7 +3,7 @@
 Inheritance diagram for Character\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{class_character}
+\includegraphics[height=3.000000cm]{class_character}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Public Member Functions}
@@ -14,44 +14,67 @@ Inheritance diagram for Character\+:\begin{figure}[H]
 \item 
 virtual \mbox{\hyperlink{class_character_a3333a88ae593c36b229c90371e935d42}{\texorpdfstring{$\sim$}{\string~}\+Character}} ()=default
 \begin{DoxyCompactList}\small\item\em Virtual destructor for the \doxylink{class_character}{Character} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_character_ae4c0add6fd0c2c686140c05fc827e067}\label{class_character_ae4c0add6fd0c2c686140c05fc827e067} 
+map$<$ string, int $>$ {\bfseries get\+Ability\+Scores} () const
+\item 
+\Hypertarget{class_character_af04b63c35ca8541a218c00a97d73682e}\label{class_character_af04b63c35ca8541a218c00a97d73682e} 
+map$<$ string, int $>$ {\bfseries get\+Modifiers} () const
+\item 
+\Hypertarget{class_character_aa1eb09d3616d28076502286cffc49a05}\label{class_character_aa1eb09d3616d28076502286cffc49a05} 
+map$<$ string, string $>$ {\bfseries get\+Equipment} () const
+\item 
+\Hypertarget{class_character_afd71abfd91b2d4494389aba65074b99f}\label{class_character_afd71abfd91b2d4494389aba65074b99f} 
+int {\bfseries get\+Hitpoints} () const
+\item 
+\Hypertarget{class_character_a6674dec79e4677370162aeb5674084bf}\label{class_character_a6674dec79e4677370162aeb5674084bf} 
+int {\bfseries get\+Armor\+Class} () const
+\item 
+\Hypertarget{class_character_a5d31d79ef0bc5d92cf61076a33a67858}\label{class_character_a5d31d79ef0bc5d92cf61076a33a67858} 
+int {\bfseries get\+Attack\+Bonus} () const
+\item 
+\Hypertarget{class_character_af644db086012065530259e6ba7da2f65}\label{class_character_af644db086012065530259e6ba7da2f65} 
+int {\bfseries get\+Damage\+Bonus} () const
+\item 
+\Hypertarget{class_character_a06713215a5850ec92194a1a711fb8cd7}\label{class_character_a06713215a5850ec92194a1a711fb8cd7} 
+int {\bfseries get\+Level} () const
+\item 
+\Hypertarget{class_character_a45625b5ce71c8dbdc6f3ac04f7a7624d}\label{class_character_a45625b5ce71c8dbdc6f3ac04f7a7624d} 
+string {\bfseries get\+Name} () const
+\item 
+\Hypertarget{class_character_a00f80266f4a017af8f36990740f1c15e}\label{class_character_a00f80266f4a017af8f36990740f1c15e} 
+void {\bfseries set\+Hitpoints} (int hp)
+\item 
+\Hypertarget{class_character_a5b140afcd1870a86eda749a3d4b0c222}\label{class_character_a5b140afcd1870a86eda749a3d4b0c222} 
+void {\bfseries set\+Armor\+Class} (int ac)
+\item 
+\Hypertarget{class_character_a6a8200507318aea3bbba193acd0af05c}\label{class_character_a6a8200507318aea3bbba193acd0af05c} 
+void {\bfseries set\+Attack\+Bonus} (int ab)
+\item 
+\Hypertarget{class_character_a25fb3d3568e9d566e42e1383efeb21a0}\label{class_character_a25fb3d3568e9d566e42e1383efeb21a0} 
+void {\bfseries set\+Damage\+Bonus} (int db)
+\item 
 virtual void \mbox{\hyperlink{class_character_ae75891dba0e685a810a87a5c3f2bfc18}{calculate\+Attributes}} ()=0
 \begin{DoxyCompactList}\small\item\em Pure virtual method to calculate derived attributes. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_character_aa6c888ee32bf1611e65ec3a0f472557f}{equip\+Item}} (const std\+::string \&item\+Category, const std\+::string \&item\+Name)
 \begin{DoxyCompactList}\small\item\em Equips an item to the character. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_character_a3c94099b45c725460feca64d3b2c984b}{display\+Character\+Sheet}} () const
-\begin{DoxyCompactList}\small\item\em Pure virtual method to display the character\textquotesingle{}s attribute sheet. \end{DoxyCompactList}\item 
-\Hypertarget{class_character_a06713215a5850ec92194a1a711fb8cd7}\label{class_character_a06713215a5850ec92194a1a711fb8cd7} 
-int {\bfseries get\+Level} () const
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pure virtual method to display the character\textquotesingle{}s attribute sheet. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_subject}{Subject}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries Attach} (\mbox{\hyperlink{class_observer}{Observer}} \texorpdfstring{$\ast$}{*}o)
+\begin{DoxyCompactList}\small\item\em Adds an observer to the list of observers. \end{DoxyCompactList}\item 
+virtual void {\bfseries Detach} (\mbox{\hyperlink{class_observer}{Observer}} \texorpdfstring{$\ast$}{*}o)
+\begin{DoxyCompactList}\small\item\em Removes an observer from the list of observers. \end{DoxyCompactList}\item 
+virtual void {\bfseries Notify} ()
+\begin{DoxyCompactList}\small\item\em notifies all subsribed observers \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Subject} ()
+\begin{DoxyCompactList}\small\item\em virtual destructor of the \doxylink{class_subject}{Subject} class \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static int \mbox{\hyperlink{class_character_a04cc9bbd6828307175128f19e6051d6a}{roll\+Dice}} (int number\+Of\+Dice, int dice\+Sides)
 \begin{DoxyCompactList}\small\item\em Simulates rolling dice to generate random numbers. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\Hypertarget{class_character_adb4ecda4d74dc671fd622d136c51acc8}\label{class_character_adb4ecda4d74dc671fd622d136c51acc8} 
-map$<$ string, int $>$ {\bfseries ability\+Scores}
-\item 
-\Hypertarget{class_character_a54fe9b0979ababd02c3374ba6ac3ea21}\label{class_character_a54fe9b0979ababd02c3374ba6ac3ea21} 
-map$<$ string, int $>$ {\bfseries modifiers}
-\item 
-\Hypertarget{class_character_aa461f22794fff5df85d5715f8654af9e}\label{class_character_aa461f22794fff5df85d5715f8654af9e} 
-int {\bfseries hit\+Points}
-\item 
-\Hypertarget{class_character_ac41230fc7770d66c3176c59fc2d7b920}\label{class_character_ac41230fc7770d66c3176c59fc2d7b920} 
-int {\bfseries armor\+Class}
-\item 
-\Hypertarget{class_character_a5eaa3f836d68257a67390a25726c4aba}\label{class_character_a5eaa3f836d68257a67390a25726c4aba} 
-int {\bfseries attack\+Bonus}
-\item 
-\Hypertarget{class_character_a576933c7dfea905a1608b9d438796d78}\label{class_character_a576933c7dfea905a1608b9d438796d78} 
-int {\bfseries damage\+Bonus}
-\item 
-\Hypertarget{class_character_ac542921479118b88128dd367d784a533}\label{class_character_ac542921479118b88128dd367d784a533} 
-map$<$ string, string $>$ {\bfseries equipment}
-\end{DoxyCompactItemize}
 \doxysubsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -80,6 +103,27 @@ string {\bfseries name}
 \item 
 \Hypertarget{class_character_af15a478fe650b87f59cbe5d071697307}\label{class_character_af15a478fe650b87f59cbe5d071697307} 
 int {\bfseries level}
+\item 
+\Hypertarget{class_character_adb4ecda4d74dc671fd622d136c51acc8}\label{class_character_adb4ecda4d74dc671fd622d136c51acc8} 
+map$<$ string, int $>$ {\bfseries ability\+Scores}
+\item 
+\Hypertarget{class_character_a54fe9b0979ababd02c3374ba6ac3ea21}\label{class_character_a54fe9b0979ababd02c3374ba6ac3ea21} 
+map$<$ string, int $>$ {\bfseries modifiers}
+\item 
+\Hypertarget{class_character_aa461f22794fff5df85d5715f8654af9e}\label{class_character_aa461f22794fff5df85d5715f8654af9e} 
+int {\bfseries hit\+Points}
+\item 
+\Hypertarget{class_character_ac41230fc7770d66c3176c59fc2d7b920}\label{class_character_ac41230fc7770d66c3176c59fc2d7b920} 
+int {\bfseries armor\+Class}
+\item 
+\Hypertarget{class_character_a5eaa3f836d68257a67390a25726c4aba}\label{class_character_a5eaa3f836d68257a67390a25726c4aba} 
+int {\bfseries attack\+Bonus}
+\item 
+\Hypertarget{class_character_a576933c7dfea905a1608b9d438796d78}\label{class_character_a576933c7dfea905a1608b9d438796d78} 
+int {\bfseries damage\+Bonus}
+\item 
+\Hypertarget{class_character_ac542921479118b88128dd367d784a533}\label{class_character_ac542921479118b88128dd367d784a533} 
+map$<$ string, string $>$ {\bfseries equipment}
 \end{DoxyCompactItemize}
 
 

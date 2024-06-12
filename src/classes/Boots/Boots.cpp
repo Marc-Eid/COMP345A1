@@ -4,16 +4,16 @@
 
 #include "Boots.h"
 
-const std::vector<EnhancementType> Boots::allowedEnhancements = {
-        EnhancementType::ArmorClass, EnhancementType::Dexterity
-};
 
-Boots::Boots(const std::string& name, const Enchantment& enchantment) : Item(name, enchantment) {
-    if (std::find(allowedEnhancements.begin(), allowedEnhancements.end(), enchantment.type) == allowedEnhancements.end()) {
-        throw std::runtime_error("Invalid enchantment type for Boots.");
-    }
+Boots::Boots(const std::string& name) : Item(name) {
+    CalculateAttributes();
 }
 
 string Boots::getType() const {
     return "Boots";
+}
+
+void Boots::CalculateAttributes() {
+    armorClass = rollDice();
+    abilityScores["Dexterity"] = rollDice();
 }

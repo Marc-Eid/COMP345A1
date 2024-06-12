@@ -4,16 +4,17 @@
 
 #include "Helmet.h"
 
-const std::vector<EnhancementType> Helmet::allowedEnhancements = {
-        EnhancementType::Intelligence, EnhancementType::Wisdom, EnhancementType::ArmorClass
-};
 
-Helmet::Helmet(const std::string& name, const Enchantment& enchantment) : Item(name, enchantment) {
-    if (std::find(allowedEnhancements.begin(), allowedEnhancements.end(), enchantment.type) == allowedEnhancements.end()) {
-        throw std::runtime_error("Invalid enchantment type for Helmet.");
-    }
+Helmet::Helmet(const std::string& name) : Item(name) {
+    CalculateAttributes();
 }
 
 string Helmet::getType() const {
     return "Helmet";
+}
+
+void Helmet::CalculateAttributes() {
+    abilityScores["Wisdom"] = rollDice();
+    abilityScores["Intelligence"] = rollDice();
+    armorClass = rollDice();
 }

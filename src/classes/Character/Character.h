@@ -2,9 +2,23 @@
 
 #include <string>
 #include <map>
+#include <vector>
+#include "../ObserverPattern/Subject.h"
+#include "../CellContent/CellContent.h"
+#include "../ItemContainer/ItemContainer.h"
+#include "../Weapon/Weapon.h"
+#include "../CharacterStrategy/CharacterStrategy.h"
+#include <list>
+#include "../Weapon/Weapon.h"
+#include "../GameLogger/GameLogger.h"
 
 using namespace std;
 
+class Map;
+class CharacterStrategy;
+class ItemContainer;
+class Item;
+class Weapon;
 
 /**
  * @file Character.h
@@ -30,9 +44,32 @@ using namespace std;
  *    Chosen for its efficient key-value storage and easy retrieval of character-related data.
  */
 
-class Character {
+class Character: public Subject, public CellContent, public IObservable{
 public:
+    Character()  = default;
+
+    int currentMap = 0;
+
+    int hitPoints;
+
+    void attach(IObserver* observer) override;
+
+    void detach(IObserver* observer) override;
+
+    void notify(const std::string& message) override;
+
     Character(const string& name, int level);
+
+    CharacterStrategy* strategy = nullptr;
+
+    // Method to set the strategy
+    void setStrategy(CharacterStrategy* newStrategy);
+    // Delegating move and attack actions to the strategy
+    void move(Map* map);
+
+    void attack(Map* map);
+
+    void freeAction(Map* map);
 
     /**
     * @brief Virtual destructor for the Character class.
@@ -41,10 +78,61 @@ public:
     */
     virtual ~Character() = default;
 
-    map<string, int> abilityScores; // Basic Attributes
-    map<string, int> modifiers;
-    int hitPoints, armorClass, attackBonus, damageBonus; // Derived Attributes
-    map<string, string> equipment; // Equipment Slots
+    // getter methods
+    map<string, int> getAbilityScores()  { return abilityScores; };
+    map<string, int> getModifiers()  { return modifiers; };
+    vector<int> getAttackBonus() const { return attackBonus; };
+
+
+    int getWisdom() { return  abilityScores["Wisdom"];};
+    int getConstitution() {return abilityScores["Constitution"];};
+    int getIntelligence() {return abilityScores["Intelligence"];};
+    int getCharisma(){return abilityScores["Charisma"];};
+    int getDexterity(){return abilityScores["Dexterity"];};
+    int getStrength() {return abilityScores["Strength"];};
+
+
+    int getDamageBonus() { return damageBonus; };
+    int getArmorClass() { return armorClass; };
+    int getHitPoints()  {return hitPoints;};
+
+
+    ItemContainer* getEquipment() { return equipment; };
+
+
+    int getHitpoints() const { return hitPoints; };
+    int getLevel() const { return level; };
+    ItemContainer* getItemContainer() { return equipment;};
+    string getName() const { return name; };
+
+    // Accessor method to get the weapon
+    Weapon* getWeapon() const {
+        auto it = wornEquipment.find("Weapon");
+        if (it != wornEquipment.end()) {
+            return dynamic_cast<Weapon*>(it->second);  // Return the weapon if found
+        }
+        return nullptr;  // Return nullptr if no weapon is equipped
+    }
+
+    map<string,Item*> getWornEquipment() const {
+        return wornEquipment;
+    }
+    // setter methods
+    void setHitpoints(int hp) {  hitPoints = hp; Notify();};
+    void setArmorClass(int ac) {  armorClass = ac; Notify();};
+    void setDamageBonus(int db) {  damageBonus = db; Notify();};
+
+    void setItemContainer(ItemContainer *itemContainer) {itemContainer = itemContainer;};
+
+    void setAbilityScores(const string& ability,int score){abilityScores[ability] = score;}
+
+
+    /**
+    * @brief method to set the Character's level.
+    *
+    * Implementations should call CalculateAttributes, to update Hitpoints, and Bonuses
+    */
+    void adjustLevel(int level);
 
 
     /**
@@ -55,16 +143,6 @@ public:
     virtual void calculateAttributes() = 0;
 
 
-    /**
-    * @brief Equips an item to the character.
-    *
-    * This method assigns an item to the specified equipment slot. If an item is already equipped in the slot,
-    * it will be replaced by the new item.
-    *
-    * @param itemCategory The category of the item (e.g., "weapon", "armor").
-    * @param itemName The name of the item to be equipped.
-    */
-    void equipItem(const std::string& itemCategory, const std::string& itemName);
 
     /**
     * @brief Simulates rolling dice to generate random numbers.
@@ -82,12 +160,59 @@ public:
     */
     virtual void displayCharacterSheet() const;
 
-    int getLevel() const;
 
+    /**
+     * @brief Adds Item to the Item Container
+     *
+     * @param item
+     * @return
+     */
+    bool equip(Item *item);
+
+    /**
+     * @brief Removes the Item from the Container
+     *
+     * @param item
+     * @return
+     */
+    bool unequip(int index);
+
+    /**
+     * @brief wears and Item from the container
+     *
+     * @param index
+     * @return
+     */
+    bool wearItem(int index);
+
+    /**
+     * @brief remove the worn Item and add it to the container
+     *
+     * @return
+     */
+    bool remove(string type);
+
+    /**
+     * @brief Level Up a character by One
+     *
+     * @param void
+     * @return Confirmation whether the Level is increased or not
+     */
+    virtual bool levelUp() = 0;
+
+    bool attack(Character* target, int attackRoll);
+
+    void onAttacked();
 protected:
     string name;
     int level;
 
+    map<string, int> abilityScores; // Basic Attributes
+    map<string, int> modifiers;
+    vector<int> attackBonus;
+    int armorClass, damageBonus; // Derived Attributes
+    map<string,Item*> wornEquipment;
+    ItemContainer* equipment; // Equipment
 
     /**
     * @brief Generates random ability scores for the character.
@@ -118,12 +243,6 @@ protected:
     */
     virtual void calculateArmorClass() = 0;
 
-    /**
-    * @brief Pure virtual method to calculate the character's attack bonus.
-    *
-    * Implementations should calculate the attack bonus based on the character's level, class, and relevant ability score modifiers.
-    */
-    virtual void calculateAttackBonus() = 0;
 
     /**
     * @brief Pure virtual method to calculate the character's damage bonus.
@@ -139,5 +258,27 @@ protected:
     * @return The armor class (AC) value of the specified armor.
     */
     static int getArmorACValue(const string& armorName);
+
+    friend std::ostream& operator<<(std::ostream& os, const Character& character);
+
+    friend std::istream& operator>>(std::istream& is, Character& character);
+
+private:
+    /**
+     * @brief Rolls Dice according to game rules
+     *
+     * @return Score calculated
+     */
+    int generateScore();
+
+    /**
+     * @brief Updates Bonus when new character is made
+     *
+     * @return void
+     */
+    void UpdateAttackBonus();
+
+    std::list<IObserver*> observers;
+
 };
 

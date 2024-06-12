@@ -7,6 +7,9 @@
 
 #include <string>
 #include <stdexcept>
+#include <map>
+#include <iostream>
+#include "../Dice/Dice.h"
 
 using namespace std;
 
@@ -15,21 +18,6 @@ using namespace std;
 *
 * Game Rules: Enchantments can be of different types and have different bonuses.
 */
-enum class EnhancementType {
-    Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, ArmorClass, AttackBonus, DamageBonus
-};
-
-/**
-* @brief Struct for the enchantment of an item
-* 
-* Game Rules: Enchantments can be of different types and have different bonuses.
-* Design: Used to store the type and bonus of an enchantment.
-*/
-struct Enchantment {
-    int bonus;
-    EnhancementType type;
-};
-
 /**
  * @brief Base class for all item types in the game
  *
@@ -41,7 +29,9 @@ struct Enchantment {
 class Item {
 protected:
     string name;
-    Enchantment enchantment;
+    map<string, int> abilityScores; // Basic Attributes
+    bool equipped;
+    int hitPoints, armorClass, damageBonus, attackBonus; // Derived Attributes
 
 public:
     /**
@@ -50,7 +40,7 @@ public:
     * @param name The name of the item.
     * @param enchantment The enchantment applied to the item.
     */
-    Item(const string& name, const Enchantment& enchantment);
+    Item(const string& name);
 
     /**
     * @brief Destructor for the Item object.
@@ -58,12 +48,7 @@ public:
     */
     virtual ~Item();
 
-    /**
-    * @brief Get Enchantment type of the item.
-    *
-    * @return Enchantment Returns the enchantment of the item.
-    */
-    Enchantment getEnchantment() const;
+
 
     /**
     * @brief Get the type of the item.
@@ -78,12 +63,82 @@ public:
      */
     string getName() const;
 
+
+
     /**
-     * @brief Static Function to convert Enhancement Type type to String
-     * @param type EnhancementType
-     * @return string Returns Enhancement Type in String
+     * @brief Will set Attributes for each type of Weapon
+     *
      */
-    static std::string enchantmentTypeToString(EnhancementType type);
+    void virtual CalculateAttributes() = 0 ;
+
+    /**
+     * Custom Roll for the item ability
+     *
+     * @return
+     */
+     int rollDice();
+
+     /**
+      * @brief print weapon on the console
+      *
+      */
+      void printWeapon();
+
+      /**
+       * @brief gets armor class
+       *
+       * @return
+       */
+      int getArmorClass(){return armorClass;};
+
+      /**
+       * @brief getter and setters for equipped
+       */
+       bool getEquipped() {return equipped;};
+
+       /**
+        * @brief set Equipped
+        */
+        void setEquipped(bool value){equipped = value; };
+
+        void setAttackBonus(int atk) {attackBonus = atk;};
+    void setHitpoints(int hp) {  hitPoints = hp;};
+    void setArmorClass(int ac) {  armorClass = ac;};
+    void setDamageBonus(int db) {  damageBonus = db;};
+
+    void setAbilityScores(const string& ability,int score){abilityScores[ability] = score;}
+
+    map<string, int> getAbilityScores() {return abilityScores;};
+
+    int getAttackBonus(){return attackBonus;};
+
+    int getDamageBonus(){return damageBonus;};
+
+    /**
+    * Serialization operator for
+    * @param os
+    * @param itemContainer
+    * @return
+    */
+    friend std::ostream& operator<<(std::ostream& os, const Item& Item);
+
+    /**
+     *  Deserialization operator for Item.
+     * @param is
+     * @param ItemContainer
+     * @return
+     */
+    friend std::istream& operator>>(std::istream& is, Item& item);
+
+private:
+    /**
+     * @brief Initializes attributes
+     *
+     *
+     */
+    void initializeAttributes();
+
+
 
 };
 

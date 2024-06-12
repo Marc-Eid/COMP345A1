@@ -58,6 +58,24 @@ int Dice::roll(const string& input) {
     // Apply the modifier
     total += modifier;
 
+    notify("Dice rolled: " + std::to_string(max(1, total)));
+
     // Ensure the total is at least 1
     return max(1, total);
+}
+
+void Dice::attach(IObserver* observer) {
+observers.push_back(observer);
+}
+
+void Dice::detach(IObserver* observer) {
+observers.remove(observer);
+}
+
+void Dice::notify(const std::string& message) {
+    if (loggingEnabled){
+        for(auto observer : observers) {
+            observer->update(message);
+        }
+    }
 }

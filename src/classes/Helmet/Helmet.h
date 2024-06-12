@@ -19,11 +19,7 @@
  * Libraries: Inherits <string> from Item.h
  */
 class Helmet: public Item {
-private:
-    /**
-     * Static const member that defines the allowedEnhancements of the item
-     */
-    static const std::vector<EnhancementType> allowedEnhancements;
+
 public:
     /**
      * @brief Construct a new Helmet object.
@@ -31,13 +27,19 @@ public:
      * @param name The name of the helmet.
      * @param enchantment The enchantment applied to the helmet.
      */
-    Helmet(const string& name, const Enchantment& enchantment);
+    Helmet(const string& name);
     /**
      * @brief Get the type of the item.
      *
      * @return std::string Returns the type of the item as a string.
      */
     string getType() const override;
+
+    /**
+     * Calculates attribute
+     *
+     */
+    void CalculateAttributes() override;
 
 };
 

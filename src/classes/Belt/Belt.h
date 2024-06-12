@@ -19,11 +19,7 @@
  * Libraries: Inherits <string> from Item.h.
  */
 class Belt : public Item {
-private:
-    /**
-     * Static const member that defines the allowedEnhancements of the item
-     */
-    static const std::vector<EnhancementType> allowedEnhancements;
+
 public:
     /**
      * @brief Construct a new Belt object.
@@ -31,7 +27,7 @@ public:
      * @param name The name of the belt.
      * @param enchantment The enchantment applied to the belt.
      */
-    Belt(const std::string& name, const Enchantment& enchantment);
+    Belt(const std::string& name);
     
     /**
      * @brief Get the type of the item.
@@ -39,6 +35,13 @@ public:
      * @return std::string Returns the type of the item as a string.
      */
     string getType() const override;
+
+    /**
+     * @brief Changes attributes according to the class
+     *
+     *
+     */
+    void CalculateAttributes() override;
 };
 
 #endif // COMP345A1_BELT_H

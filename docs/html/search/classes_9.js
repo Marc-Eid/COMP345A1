@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ring_0',['Ring',['../class_ring.html',1,'']]]
+  ['observer_0',['Observer',['../class_observer.html',1,'']]]
 ];
